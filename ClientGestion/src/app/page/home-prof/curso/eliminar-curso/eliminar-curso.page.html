@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'../../home-prof'">
+        <ion-icon name="arrow-undo"></ion-icon>&nbsp;
+      </ion-button>      
+    </ion-buttons>
+    <ion-label  slot="start">usuasio:</ion-label>{{user}}
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+        <ion-title> Eliminar curso </ion-title><br>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
+
+<ion-content>
+<ion-content
+  [scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+      
+    <div slot="fixed">
+      <ion-list>                       
+
+      <tr   *ngFor="let pCourse of pCourses">
+            
+           [ {{pCourse.nrc}} ] - [ {{pCourse.materia}} ] 
+  
+            <ion-button color="danger">
+              <ion-button color="danger" (click)="AlertOne(pcourse.nrc)">Eliminar</ion-button>
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>          
+      </tr>
+  </ion-list>
+  </div>
+</ion-content> 
+</ion-content>
+
+<ion-card>
+  <ion-item>    
+    <ion-button slot="end" color="danger" (click)="AlertAll()">
+      <ion-label> Eliminar Todo </ion-label>
+      <ion-icon slot="end" name="trash"></ion-icon> 
+    </ion-button>
+  </ion-item>
+</ion-card>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

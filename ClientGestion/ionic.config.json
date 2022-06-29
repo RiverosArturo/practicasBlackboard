@@ -1,0 +1,7 @@
+{
+  "name": "ClientGestion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

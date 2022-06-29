@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'../../home-prof'">
+        <ion-icon name="arrow-undo"></ion-icon>&nbsp;
+      </ion-button>      
+    </ion-buttons>
+    <ion-label>usuario:</ion-label>{{user}}
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-item>
+      <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+      <ion-label color="primary">Cursos</ion-label>
+    </ion-item>  
+  </ion-card>
+
+<ion-content
+  [scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+      
+    <div slot="fixed">
+      <ion-list>
+      <tr  *ngFor="let pCourse of pCourses">
+          <ion-label> NRC </ion-label>
+          <ion-label> [{{pCourse.nrc}}]</ion-label>  
+        
+           <ion-button color="secondary">            
+            <ion-button color="secondary" [routerLink]="['../../home-prof/menu-prof']">ver</ion-button>          
+          </ion-button>                    
+  
+            <ion-button color="danger">
+              <ion-button color="danger" (click)="AlertOne(pCourse.nrc)">Eliminar</ion-button>
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>    
+    </tr>
+  </ion-list>
+  </div>
+</ion-content> 
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

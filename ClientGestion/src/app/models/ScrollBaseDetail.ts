@@ -1,0 +1,3 @@
+interface ScrollBaseDetail {
+    isScrolling: boolean;
+  }

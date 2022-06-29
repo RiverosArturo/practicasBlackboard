@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-back-button slot = "start"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Modificar actividad </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+
+   <ion-card-content>
+      <ion-button > Modificar </ion-button><br><br>
+   </ion-card-content>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

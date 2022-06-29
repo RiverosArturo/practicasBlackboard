@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color = "primary">  <br>
+    <ion-title> Gestion de proyectos </ion-title><br>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color = "secondary">
+  <ion-card>
+
+      <ion-card>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-title> Home FCC </ion-title><br>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <img src = "assets/image/fcc.png"/><br>
+          <ion-title>Bienvenido</ion-title><br><br>
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <br>
+        <ion-title color = "primary">Sesión</ion-title><br>
+
+        <ion-button  [routerLink]="['/login-Admi',accessA]" color = "primary"> 
+          <ion-icon name="finger-print"></ion-icon> Acceso Admi  
+        </ion-button>
+        <ion-button  [routerLink]="['/login-Prof',accessP]" color = "primary"> 
+          <ion-icon name="finger-print"></ion-icon> Acceso Prof  
+        </ion-button>
+        <ion-button  [routerLink]="['/login-Student',accessS]" color = "primary"> 
+          <ion-icon name="finger-print"></ion-icon> Acceso Student  
+        </ion-button>
+        <br><br>
+        <ion-button [routerLink]="['../home-admi']" color = "primary"> 
+          <ion-icon name="cloud-upload"></ion-icon> Administrador   
+        </ion-button>
+        <ion-button [routerLink] = "'../home-prof'" color = "primary"> 
+          <ion-icon name="person"></ion-icon> Profesor   
+        </ion-button>
+        <ion-button [routerLink] = "'../home-stud'" color = "primary">
+          <ion-icon name="school-sharp"></ion-icon> Estudiante   
+        </ion-button><br><br>
+      </ion-card>
+  
+
+ </ion-card>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color = "primary">
+  </ion-toolbar>
+</ion-footer>
+
+

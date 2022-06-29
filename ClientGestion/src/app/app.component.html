@@ -1,0 +1,131 @@
+<ion-app>
+  
+  <ion-router-outlet></ion-router-outlet>
+
+
+<!-- /////////////////menu profesor/////////////////////////////////////////////////////////-->  
+<ion-menu type = "reveal" side="start" menu-id="MenuProf" content-id="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu profesor </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <ion-title color = "dark"> Gestionar curso </ion-title>
+        <ion-list>
+          <ion-item [routerLink] = "'/home-prof/crear-curso'"><ion-title color = "primary">Crear curso</ion-title></ion-item>
+          <ion-item [routerLink] = "'/home-prof/consultar-curso'"><ion-title color = "primary">Consultar curso</ion-title></ion-item>
+          <ion-item [routerLink] = "'/home-prof/eliminar-curso'"><ion-title color = "primary">Eliminar curso</ion-title></ion-item>
+        </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-title color = "dark"> Gestionar equipo </ion-title>
+      <ion-list>
+        <ion-item [routerLink] = "'/home-prof/generar-equipo'"><ion-title color = "primary">Generar equipo</ion-title></ion-item>
+        <ion-item [routerLink] = "'/home-prof/consultar-equipo'"><ion-title color = "primary">Consular equipo</ion-title></ion-item>
+        <ion-item [routerLink] = "'/home-prof/modificar-equipo'"><ion-title color = "primary">Modificar equipo</ion-title></ion-item>
+        <ion-item [routerLink] = "'/home-prof/eliminar-equipo'"><ion-title color = "primary">Eliminar equipo</ion-title></ion-item>
+      </ion-list>
+</ion-card>
+<ion-card>
+  <ion-title color = "dark"> Administar estudiantes </ion-title>
+    <ion-list>
+      <ion-item [routerLink] = "'/home-prof/subir-estudiante'"><ion-title color = "primary">Subir estudiante</ion-title></ion-item>
+      <ion-item [routerLink] = "'/home-prof/consultar-estudiante'"><ion-title color = "primary">Consultar estudiante</ion-title></ion-item>
+      <ion-item [routerLink] = "'/home-prof/eliminar-estudiante'"><ion-title color = "primary">Eliminar estudiante</ion-title></ion-item>
+    </ion-list>
+</ion-card>
+<ion-card>
+<ion-title color = "dark"> Gestionar activides </ion-title>
+  <ion-list>
+    <ion-item [routerLink] = "'/home-prof/alta-actividad'"><ion-title color = "primary">Dar de alta avtividad</ion-title></ion-item>
+    <ion-item [routerLink] = "'/home-prof/consultar-actividad'"><ion-title color = "primary">Consultar actividad</ion-title></ion-item>
+    <ion-item [routerLink] = "'/home-prof/modificar-actividad'"><ion-title color = "primary">Modificar actividad</ion-title></ion-item>
+    <ion-item [routerLink] = "'/home-prof/eliminar-actividad'"><ion-title color = "primary">Eliminar actividad</ion-title></ion-item>
+    <ion-item [routerLink] = "'/home-prof/evaluar-actividad'"><ion-title color = "primary">Evaluar actividad</ion-title></ion-item>
+  </ion-list>
+</ion-card>
+<ion-card>
+<ion-title color = "dark"> Gestionar Comunicacion </ion-title>
+  <ion-list>
+    <ion-item [routerLink] = "'/home-prof/avisos'"><ion-title color = "primary">Avisos</ion-title></ion-item>
+  </ion-list>
+</ion-card>
+  </ion-content>
+</ion-menu>
+
+  
+<!-- ------menu estudiante---------------------------------------------------------------------  -->
+<ion-menu type = "reveal" side="start" menu-id="MenuStud" content-id="main" >
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title >Menu estudiante </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color = "light">
+      <ion-card >
+          <ion-title color = "dark"> Gestionar curso </ion-title>
+        <ion-list>
+          <ion-item  [routerLink] = "'/home-stud/consultar'"><ion-title color = "primary">consultar curso</ion-title>></ion-item>
+        </ion-list>
+      </ion-card>
+      <ion-card>
+          <ion-title color = "dark"> Gestionar equipo </ion-title>
+          <ion-list>
+            <ion-item  [routerLink] = "'/home-stud/consultar-equipo'"><ion-title color = "primary">Consultar equipo</ion-title></ion-item>
+            <ion-item  [routerLink] = "'/home-stud/modificar-equipo'"><ion-title Color = "primary">Modificar equipo</ion-title></ion-item>
+          </ion-list>
+    </ion-card>
+    <ion-card>
+        <ion-list>
+          <ion-item [routerLink] = "'/home-stud/reporte'"><ion-title color = "primary">Generar reporte</ion-title></ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card>
+    <ion-title color = "dark"> Administar estudiantes </ion-title>
+      <ion-list>
+        <ion-item [routerLink] = "'/home-stud/consultar-estudiante'"><ion-title color = "primary">Consultar estudiante</ion-title></ion-item>
+        <ion-item [routerLink] = "'/home-stud/modificar-estudiante'"><ion-title color = "primary">Modificar estudiante</ion-title></ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+    <ion-title color = "dark"> Gestionar Actividades </ion-title>
+      <ion-list>
+        <ion-item [routerLink] = "'/home-stud/consultar-actividad'"><ion-title color = "primary">Consulatr actividades</ion-title></ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-title color = "dark"> Gestionar comunicacion </ion-title>
+        <ion-list>
+          <ion-item [routerLink] = "'/home-stud/avisos'"><ion-title color = "primary">Avisos</ion-title></ion-item>
+          <ion-item [routerLink] = "'/home-stud/chat'"><ion-title color = "primary">Chat</ion-title></ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-title color = "dark"> Reporte </ion-title>
+        <ion-list>
+          <ion-item [routerLink] = "'/home-stud/calificacion-promedio'"><ion-title color = "primary">Calificación y Promedio</ion-title></ion-item>
+        </ion-list>
+      </ion-card>
+  </ion-content>
+</ion-menu>
+
+<!-- //////menus de ejemplos/////////////////////////////////////////////////////////////////////////////////////////// -->  
+
+<ion-menu side="start" menuId="end" contentId="main" class="my-custom-menu">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title>Hola...</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    
+  </ion-content>
+</ion-menu>
+<!--////////////////////       MENU PRUEVA      //////////////////////////////////////////////////////-->>
+
+
+  <ion-router-outlet id = "main"></ion-router-outlet>
+
+</ion-app>

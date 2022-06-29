@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-back-button slot = "start"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Generar equipo </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+    <ion-card>
+      <form>
+      
+      <ion-item class="form-group">
+        <ion-label position="floating"> Nombre </ion-label>
+        <ion-input [(ngModel)]="equipo.nombre" name="nombre" ></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Descripcion</ion-label>
+        <select name="miselect" [(ngModel)]="equipo.equipo_nrc" name="nrc" >            
+          <option [value]="course.nrc" *ngFor="let course of courses">{{course.nrc}}</option>
+        </select>                
+      </ion-item>     
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-button  (click)="saveEquipo()"  >
+            <ion-label> Guardar </ion-label>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+      </form>
+    </ion-card>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

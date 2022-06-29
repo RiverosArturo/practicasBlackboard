@@ -1,0 +1,47 @@
+
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>      
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-card>
+  <ion-header>
+    <ion-title> Login </ion-title>
+  </ion-header>
+</ion-card>
+
+<ion-content>
+
+  <ion-card>
+    <form>
+      
+    <ion-item class="form-group">
+      <ion-label position="floating"> Usuario </ion-label>
+      <ion-input [(ngModel)]="login.user" name="user" ></ion-input>
+    </ion-item>  
+      
+    <ion-item class="form-group">
+      <ion-label position="floating"> Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="login.password" name="password" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-toolbar>        
+        <ion-button   (click)=" Login(login.user, login.password)">
+          <ion-label> Acceder </ion-label>
+        </ion-button>
+      </ion-toolbar>
+    </ion-item>
+    </form>    
+  </ion-card>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

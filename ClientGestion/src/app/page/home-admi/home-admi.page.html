@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario: {{user}}</ion-label>      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-card>
+     <ion-header>
+       <ion-card> 
+        <ion-title> Administrador </ion-title><br>
+       </ion-card>
+     </ion-header>
+   </ion-card>
+
+   <ion-card>      
+    <ion-title> CARGAR ARCHIVO</ion-title>
+  <ion-item>
+    
+    <!-- <h2>File Upload & Image Preview</h2>
+    <p class="lead">No Plugins <b>Just Javascript</b></p> -->
+
+    <!-- Upload  -->
+    <form id="file-upload-form" class="uploader">
+      <input id="file-upload" type="file" 
+      (change)="fileUpload($event)"
+      name="fileUpload" accept=".xls, .xlsx" />
+
+      <label for="file-upload" id="file-drag">
+        <img id="file-image" src="#" alt="Preview" class="hidden">
+        <div id="start">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <div>Cargar archivo!!!</div>
+          <div id="notimage" class="hidden">Please select an image</div>
+          <span id="file-upload-btn" class="btn btn-primary">Seleccionar</span>
+        </div>
+        <div id="response" class="hidden">
+          <div id="messages"></div>
+          <progress class="progress" id="file-progress" value="0">
+            <span>0</span>%
+          </progress>
+        </div>
+      </label>
+    </form>
+    
+     <ion-card>
+      <ion-item>
+        <ion-title *ngIf="boton==true">Guardar el archivo en: </ion-title> 
+        <ion-title *ngIf="boton==false">Asegurate de que tu archivo excel esta bien estructurado: </ion-title> 
+      </ion-item>
+      <ion-button (click)="validacion()" *ngIf="boton==false"> Valida Archivo </ion-button>
+      <ion-button (click)="Estudiante()" *ngIf="boton==true"> Estudiantes </ion-button>
+      <ion-button (click) = "Profesor()" *ngIf="boton==true"> Profesores </ion-button>
+      <ion-button (click) = "Curso()" *ngIf="boton==true"> Cursos </ion-button>
+     </ion-card>
+      
+     
+    
+  </ion-item><br>
+</ion-card>
+
+    <ion-card><br>
+      <ion-title> Listado </ion-title><br>
+      <ion-button [routerLink]="'../home-admi/list-students'"> Listar Estudiantes </ion-button>
+      <ion-button [routerLink]="'../home-admi/list-prof'"> Listar Profesores </ion-button>
+      <ion-button [routerLink]="'../home-admi/list-courses'"> Listar Curso </ion-button><br><br>
+    </ion-card>
+  </ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

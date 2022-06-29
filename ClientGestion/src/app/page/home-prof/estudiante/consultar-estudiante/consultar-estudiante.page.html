@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-back-button slot = "start"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Consultar estudiante </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+<!--prueba de games-------------------------------------------------------------->
+   <ion-card-content>
+        <div class = "col-md-4" *ngfor=" let game of game">
+          <div class="card text-center">
+            <div class="card-header">
+                {{game.title}}
+            </div>
+            <div class="card-body">
+              <p>{{game.description}}</p>
+            </div>
+          </div>
+        </div>
+      <br><br><br><br>
+<!----------------------------------------------------------------------------->
+      <ion-button > Consultar </ion-button><br><br>
+      
+   </ion-card-content>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

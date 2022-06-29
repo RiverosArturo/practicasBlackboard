@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="'../../home-admi'">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>      
+      <ion-label >Usuario: {{user}}</ion-label>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+
+<h1 slot="start"> Lista de Cursos</h1>
+
+
+<ion-content>
+<ion-content
+  [scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+      
+    <div slot="fixed">
+      <ion-list>
+      <tr  *ngFor="let course of courses">
+
+           [ {{course.nrc}} ] - [ {{course.materia}} ] - [{{course.clave}}] - [{{course.clave}}] - [{{course.horario}}]   
+        
+            <ion-button color="secondary">            
+              <ion-button color="secondary" [routerLink]="['/home-admi/edit-course',course.nrc]">Editar</ion-button>
+              <ion-icon name="pencil"></ion-icon>
+            </ion-button>
+  
+            <ion-button color="danger">
+              <ion-button color="danger" (click)="AlertOne(course.nrc)">Eliminar</ion-button>
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>          
+    </tr>
+  </ion-list>
+  </div>
+</ion-content>
+</ion-content> 
+
+
+<ion-card>
+  <ion-item>
+    <ion-button [routerLink]="'../add-course'" color="secondary" slot="end">
+      <ion-label> Agregar </ion-label>
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" color="danger" (click)="AlertAll()">
+      <ion-label> Eliminar Todo </ion-label>
+      <ion-icon slot="end" name="trash"></ion-icon> 
+    </ion-button>
+  </ion-item>
+</ion-card>
+
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>
+
+

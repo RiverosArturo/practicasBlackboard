@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario: {{user}}</ion-label>      
+    </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+            <ion-title> Estudiante </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+    <ion-card>
+        <h1> Gestionar curso </h1> <br>
+        <ion-button [routerLink] = "'../home-stud/consultar'">   Consultar curso   </ion-button>
+        <br><br>
+    </ion-card>
+    <ion-card>
+        <h1> Gestionar equipo </h1> <br>
+        <ion-button [routerLink] = "'../home-stud/consultar-equipo'">   Consultar equipo </ion-button>
+        <ion-button [routerLink] = "'../home-stud/modificar-equipo'">   Modificar equipo </ion-button>
+        <br><br>
+    </ion-card>
+    <ion-card>
+      <ion-button [routerLink] = "'../home-stud/reporte'">   Generar reporte  </ion-button>
+    </ion-card>
+    <ion-card>
+      <h1> Administar estudiantes </h1> <br>
+      <ion-button [routerLink] = "'../home-stud/consultar-estudiante'">   Consultar estudiante </ion-button>
+      <ion-button [routerLink] = "'../home-stud/modificar-estudiante'">   Modificar estudiante </ion-button>
+      <br><br>
+  </ion-card>
+  <ion-card>
+    <h1> Gestionar actividades </h1> <br>
+    <ion-button [routerLink] = "'../home-stud/consultar-actividad'">   Consultar actividad </ion-button>
+    <br><br>
+</ion-card>
+<ion-card>
+  <h1> Gestionar comunicacion </h1> <br>
+  <ion-button [routerLink] = "'../home-stud/avisos'">   Avisos </ion-button>
+  <ion-button [routerLink] = "'../home-stud/chat'">   Chat </ion-button>
+  <br><br>
+</ion-card>
+<ion-card>
+  <ion-button [routerLink] = "'../home-stud/calificacion-promedio'">   Ver reporte de calificaciones y promedio </ion-button>
+  <br><br>
+</ion-card>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>
