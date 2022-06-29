@@ -64,6 +64,7 @@ export class HomeAdmiPage implements OnInit {
   }
 
   fileUpload(event:any) {
+    this.verificacion = 0;
     this.boton = false;
     console.log('Soy fileUpload');
     console.log(event.target.files);
@@ -215,6 +216,7 @@ export class HomeAdmiPage implements OnInit {
                   }
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
+                  this.verificacion = 0;
                   this.boton = true;
                 }
               }
@@ -233,6 +235,7 @@ export class HomeAdmiPage implements OnInit {
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
                   this.boton = true;
+                  this.verificacion = 0;
                 }
               }
             }
@@ -263,6 +266,7 @@ export class HomeAdmiPage implements OnInit {
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
                   this.boton = true;
+                  this.verificacion = 0;
                 }
               }
             }else if(this.estudianteV.matricula == undefined){
@@ -280,6 +284,7 @@ export class HomeAdmiPage implements OnInit {
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
                   this.boton = true;
+                  this.verificacion = 0;
                 }
               }
             }
@@ -310,6 +315,7 @@ export class HomeAdmiPage implements OnInit {
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
                   this.boton = true;
+                  this.verificacion = 0;
                 }
               }
             }else if(this.profesorV.nTrabajador == undefined){
@@ -327,6 +333,7 @@ export class HomeAdmiPage implements OnInit {
                 }else{
                   window.alert("Tu archivo esta correcto!!!");
                   this.boton = true;
+                  this.verificacion = 0;
                 }
               }
             }
