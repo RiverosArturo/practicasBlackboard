@@ -23,10 +23,11 @@ export class HomePage implements OnInit {
   constructor(private datosService: DatosService ) { }
 
   ngOnInit() {
-    this.getAdmi();
+    /*this.getAdmi();
     this.getProf();
-    this.getStuden();
+    this.getStuden();*/
   }
+/*
   getAdmi(){
     this.datosService.getAdmis().subscribe(
       res => {
@@ -51,5 +52,5 @@ export class HomePage implements OnInit {
       err => console.error(err)
     );
   }
-  
+  */
 }

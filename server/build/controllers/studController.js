@@ -27,7 +27,7 @@ class StudController {
             if (stud.length > 0) {
                 return res.json(stud[0]);
             }
-            res.json({ Text: "El estudiante no exixte" });
+            res.json({ Text: "El estudiante no exiSte" });
         });
     }
     create(req, res) {

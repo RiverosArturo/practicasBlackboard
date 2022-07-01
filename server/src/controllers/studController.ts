@@ -13,7 +13,7 @@ class StudController {
         if (stud.length > 0 ){
             return res.json(stud[0]);
         }
-        res.json({Text:"El estudiante no exixte"});
+        res.json({Text:"El estudiante no exiSte"});
     }
     public async create (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO estudiante set ?', [req.body]);

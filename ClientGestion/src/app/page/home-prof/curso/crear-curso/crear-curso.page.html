@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons slot="start">
-      <ion-button [routerLink]="'../../home-prof'">
+      <ion-button [routerLink]="['../../home-prof']">
         <ion-icon name="arrow-undo"></ion-icon>&nbsp;
       </ion-button>      
     </ion-buttons>
@@ -43,15 +43,15 @@
 
       </ion-list>
     </ion-card>
-
+<!--
     <ion-item class="form-group">
       <ion-label position="floating"> N.Trsbajador </ion-label>
       <ion-input [(ngModel)]="pCourse.nTrabajador" name="nTrabajador"></ion-input>
     </ion-item>
-
+-->
     <ion-item>
       <ion-toolbar>
-        <ion-button slot="end"   (click)="saveProfCourse()">
+        <ion-button slot="end"   (click)=" saveProfCourse()">
           <ion-label> Guardar </ion-label>
         </ion-button>
       </ion-toolbar>

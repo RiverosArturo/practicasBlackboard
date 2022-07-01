@@ -13,7 +13,7 @@ class ProfController {
         if (prof.length > 0 ){
             return res.json(prof[0]);
         }
-        res.json({Text:"El profesor no exixte"});
+        res.json({Text:"El profesor no existe"});
     }
     public async create (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO profesor set ?', [req.body]);

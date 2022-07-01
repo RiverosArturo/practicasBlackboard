@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   };  
   login:User = {
     id: '',
-    user: 0,
+    user: 20,
     password: '',
   }  
   id:string;
@@ -65,9 +65,9 @@ export class LoginPage implements OnInit {
             if(password == this.admis.password){
               this.mensaje = 'Acceso consedido';
                 console.log(this.mensaje);
-                //this.router.navigate(['/home-admi']); 
+                this.router.navigate(['/home-admi',this.admis.id]); 
             }else{   
-              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);
             }            
           }else{    
@@ -81,8 +81,8 @@ export class LoginPage implements OnInit {
 //-------- Login Prof --------------------------------------------
     if(params.accessP == 2){
       console.log('hola Profesor');  
-      console.log('userLogin = ',user);
-      console.log('passwordLogin = ',password);    
+      //console.log('userLogin = ',user);
+      //console.log('passwordLogin = ',password);    
       this.datosService.getProf(user).subscribe(
         res => {
           this.profs = res; 
@@ -95,7 +95,7 @@ export class LoginPage implements OnInit {
                 console.log(this.mensaje);
                 this.router.navigate(['/home-prof',this.profs.nTrabajador]); 
             }else{   
-              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);
             }            
           }else{    
@@ -109,20 +109,20 @@ export class LoginPage implements OnInit {
 //--------- Login student--------------------------------------------
     if(params.accessS == 3){   
       console.log('hola Student');  
-      console.log('userLogin = ',user);
-      console.log('passwordLogin = ',password);   
+      //console.log('userLogin = ',user);
+      //console.log('passwordLogin = ',password);   
       this.datosService.getStudent(user).subscribe(
         res => {
           this.students = res;                 
-          console.log('userstudent = ',this.students.matricula);
-          console.log('passwordStudent = ',this.students.password);
+          //console.log('userstudent = ',this.students.matricula);
+          //console.log('passwordStudent = ',this.students.password);
           if(user == this.students.matricula){
             if(password == this.students.password){
               this.mensaje = 'Acceso consedido';
                 console.log(this.mensaje);
                 this.router.navigate(['/home-stud',this.students.matricula]); 
             }else{   
-              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);
             }            
           }else{    
@@ -134,50 +134,6 @@ export class LoginPage implements OnInit {
       );
           
     }           
-  }
-  updateProf(){
-    this.datosService.updateProf(this.prof.nTrabajador, this.prof)
-    .subscribe(
-      res =>{
-        console.log(res);
-        this.router.navigate(['/home-admi']);
-      },
-      err => console.error(err)
-    )
-  }
-
-  access(){                   
-///////////////////////////////////////////////////////////////////////////////////////
-  //  console.log(this.user.user)   
-  //  console.log(this.user.password)
-  //  console.log(this.user);    
-  //  console.log(this,params);
-
-    //this.router.navigate(['/home-admi']);
-  }
-  getAdmi(){
-    this.datosService.getAdmis().subscribe(
-      res => {
-        this.admis = res;     
-      },
-      err => console.error(err)
-    );
-  }
-  getProfs(){
-    this.datosService.getProfs().subscribe(
-      res => {
-        this.profs = res;     
-      },
-      err => console.error(err)
-    );
-  }
-  getStudent(){
-    this.datosService.getStudents().subscribe(
-      res => {
-        this.students = res;     
-      },
-      err => console.error(err)
-    );
-  }
+  }  
 
 }

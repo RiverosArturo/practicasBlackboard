@@ -31,22 +31,25 @@
         <ion-button  [routerLink]="['/login-Admi',accessA]" color = "primary"> 
           <ion-icon name="finger-print"></ion-icon> Acceso Admi  
         </ion-button>
-        <ion-button  [routerLink]="['/login-Prof',accessP]" color = "primary"> 
-          <ion-icon name="finger-print"></ion-icon> Acceso Prof  
+        <ion-button  [routerLink]="['/login-Prof',accessP]" color = "primary">           
+          <ion-icon name="school-sharp"></ion-icon> Acceso Profesor  
         </ion-button>
         <ion-button  [routerLink]="['/login-Student',accessS]" color = "primary"> 
-          <ion-icon name="finger-print"></ion-icon> Acceso Student  
+          <ion-icon name="person"></ion-icon> Acceso Alumno  
         </ion-button>
+        <!--
         <br><br>
-        <ion-button [routerLink]="['../home-admi']" color = "primary"> 
+        <ion-button [routerLink]="['../home-admi',accessA]" color = "primary"> 
           <ion-icon name="cloud-upload"></ion-icon> Administrador   
         </ion-button>
-        <ion-button [routerLink] = "'../home-prof'" color = "primary"> 
+        <ion-button [routerLink] = "['../home-prof',accessP]" color = "primary"> 
           <ion-icon name="person"></ion-icon> Profesor   
         </ion-button>
-        <ion-button [routerLink] = "'../home-stud'" color = "primary">
+        <ion-button [routerLink] = "['../home-stud',accessS]" color = "primary">
           <ion-icon name="school-sharp"></ion-icon> Estudiante   
-        </ion-button><br><br>
+        </ion-button>
+        -->
+        <br><br>
       </ion-card>
   
 

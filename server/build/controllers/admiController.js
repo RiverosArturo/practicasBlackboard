@@ -22,12 +22,12 @@ class AdmiController {
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { user } = req.params;
-            const admi = yield database_1.default.query('SELECT * FROM administrador WHERE user = ?', [user]);
+            const { id } = req.params;
+            const admi = yield database_1.default.query('SELECT * FROM administrador WHERE id = ?', [id]);
             if (admi.length > 0) {
                 return res.json(admi[0]);
             }
-            res.json({ Text: "El Admistrador no exixte" });
+            res.json({ Text: "El Admistrador no existe" });
         });
     }
 }

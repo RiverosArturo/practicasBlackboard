@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-eliminar-curso',
@@ -9,10 +10,10 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./eliminar-curso.page.scss'],
 })
 export class EliminarCursoPage implements OnInit {
-  user:number=201347656;
+  user:number=0;
   pCourses:any=[];
 
-  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController) { }
+  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -23,7 +24,7 @@ export class EliminarCursoPage implements OnInit {
     this.getProfCourse();
   }
   getProfCourse(){
-    this.datosService.getCourses().subscribe(
+    this.datosService.getProfCourses().subscribe(
       res => {
         this.pCourses = res;
       },
@@ -31,7 +32,7 @@ export class EliminarCursoPage implements OnInit {
     );
   }
   deleteProfCourse(nrc: number){
-    this.datosService.deleteCourse(nrc).subscribe(
+    this.datosService.deleteProfCourse(nrc).subscribe(
       res => {
         console.log(res);
         this.getProfCourse();
@@ -39,7 +40,7 @@ export class EliminarCursoPage implements OnInit {
       err => console.error(err)
     )
   }
-  deleteAllCourses(){
+  deleteAllProfCourses(){
     this.datosService.deleteAllProfCourse().subscribe(
       res => {
         console.log(res);
@@ -94,7 +95,7 @@ export class EliminarCursoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteAllCourses();            
+            this.deleteAllProfCourses();            
           }
         }
       ]

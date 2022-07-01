@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from 'src/app/home/home.page';
+import { CrearCursoPage } from './curso/crear-curso/crear-curso.page';
+import { ConsultarCursoPage } from './curso/consultar-curso/consultar-curso.page';
 
 import { HomeProfPage } from './home-prof.page';
 
@@ -81,6 +83,10 @@ const routes: Routes = [
   {
     path: 'menu-prof',
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
+  },
+  {
+   path: 'page/crear-curso',
+   component: CrearCursoPage 
   }
   
 ];

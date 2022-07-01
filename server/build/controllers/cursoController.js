@@ -27,7 +27,7 @@ class CursoController {
             if (curso.length > 0) {
                 return res.json(curso[0]);
             }
-            res.json({ Text: "El curso no exixte" });
+            res.json({ Text: "El curso no existe" });
         });
     }
     create(req, res) {

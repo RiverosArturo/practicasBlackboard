@@ -11,11 +11,6 @@ class LoginRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', loginController_1.default.getlistProf);
-        this.router.get('/:nTrabajador', loginController_1.default.getOneProf);
-        this.router.get('/', loginController_1.default.getlistStudent);
-        this.router.get('/:matricula', loginController_1.default.getOneStudent);
-        this.router.get('/', loginController_1.default.getlistAdmi);
         this.router.get('/:id', loginController_1.default.getOneAdmi);
     }
 }

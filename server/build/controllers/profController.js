@@ -27,7 +27,7 @@ class ProfController {
             if (prof.length > 0) {
                 return res.json(prof[0]);
             }
-            res.json({ Text: "El profesor no exixte" });
+            res.json({ Text: "El profesor no existe" });
         });
     }
     create(req, res) {

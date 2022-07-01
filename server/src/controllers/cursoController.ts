@@ -13,7 +13,7 @@ class CursoController {
         if (curso.length > 0 ){
             return res.json(curso[0]);
         }
-        res.json({Text:"El curso no exixte"});
+        res.json({Text:"El curso no existe"});
     }
     public async create (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO curso set ?', [req.body]);

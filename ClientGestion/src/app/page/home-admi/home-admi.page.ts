@@ -55,7 +55,6 @@ export class HomeAdmiPage implements OnInit {
     const params = this.activedRoute.snapshot.params;     
     this.user=params.id;
     
-    //this.getCourse();
   }
 
   getCourse(){

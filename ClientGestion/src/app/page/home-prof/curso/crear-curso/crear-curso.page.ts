@@ -14,18 +14,19 @@ import { ProfCourse } from 'src/app/models/ProfCourse';
   styleUrls: ['./crear-curso.page.scss'],
 })
 export class CrearCursoPage implements OnInit {
-  user:number=201347656;
+  user:number = 201347656;
 
   @HostBinding('class') classes = 'row';
 
   pCourse: ProfCourse = {
+    nTrabajador:0,
     nrc:0,
   };
   course: Curso = {
     nrc:0,
   }
   prof: Prof = {
-    password: '',
+    
   };
   pCourses:any=[];
   profs:any = [];
@@ -43,6 +44,10 @@ export class CrearCursoPage implements OnInit {
   ngOnInit() {
     this.getCourse();
     this.getProf();  
+    const params = this.activedRoute.snapshot.params;  
+    //this.user = params.user;  
+    console.log('variable params: ',params);
+    //this.pCourse.nTrabajador = this.user;    
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
@@ -68,16 +73,21 @@ export class CrearCursoPage implements OnInit {
       err => console.error(err)
     );
   }
+  
   saveProfCourse(){
+    console.log(this.pCourse);
+    /*
     this.datosService.saveProfCourse(this.pCourse)
     .subscribe(
       res => {
-        console.log(res);    
+        console.log(res);            
+        console.log('Curso save');
         this.getProfCourses()          
         this.router.navigate(['/home-prof']);
       },
       err => console.error(err)
     )
+    */
   }  
 
 }

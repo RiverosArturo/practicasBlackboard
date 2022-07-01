@@ -5,6 +5,7 @@ import { DatosService } from '../../../../services/datos.service';
 import { Curso } from 'src/app/models/Curso';
 import { Prof } from 'src/app/models/Prof';
 import { ProfCourse } from 'src/app/models/ProfCourse';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-consultar-curso',
@@ -12,7 +13,7 @@ import { ProfCourse } from 'src/app/models/ProfCourse';
   styleUrls: ['./consultar-curso.page.scss'],
 })
 export class ConsultarCursoPage implements OnInit {
-  user:number=201347656;
+  user:number=0;
   pCourse: ProfCourse = {
     nrc:0       
   };
@@ -34,10 +35,12 @@ export class ConsultarCursoPage implements OnInit {
 
   edit:boolean = false;
 
-  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController ) { }
+  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
   ngOnInit() {
     this.getProfCourses();
     this.getCourses();
+    const params = this.activedRoute.snapshot.params;   
+    this.user = params.user;   
   }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');

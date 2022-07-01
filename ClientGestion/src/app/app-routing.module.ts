@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/home-stud/home-stud.module').then( m => m.HomeStudPageModule)
   },
   {
-    path: 'home-admi',
+    path: 'home-admi/:id',
     loadChildren: () => import('./page/home-admi/home-admi.module').then( m => m.HomeAdmiPageModule)
   },
   {

@@ -9,13 +9,14 @@ import { DatosService } from 'src/app/services/datos.service';
   styleUrls: ['./home-prof.page.scss'],
 })
 export class HomeProfPage implements OnInit {
-  user:string='User';
+  user:number=0;
 
   constructor(private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params; 
-    this.user = params.nTrabajador;    
+    this.user = params.nTrabajador;   
+    console.log('User: ',this.user); 
   }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
