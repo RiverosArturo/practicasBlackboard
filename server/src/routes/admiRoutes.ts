@@ -11,7 +11,7 @@ class AdmiRoutes {
 
     config(): void { 
         this.router.get('/', admiController.list);
-        this.router.get('/:user', admiController.getOne);
+        this.router.get('/:id', admiController.getOne);
     }
 
 }

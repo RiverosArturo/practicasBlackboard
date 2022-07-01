@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from 'src/app/services/datos.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 import * as XLSX from 'xlsx';
 import { Student } from '../../models/Student';
@@ -47,11 +47,15 @@ export class HomeAdmiPage implements OnInit {
   verificacion:number=0;
   boton:boolean=false;
   courses:any = {};
+  user:string;
 
-  constructor(private datosService: DatosService) { }
+  constructor(private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.getCourse();
+    const params = this.activedRoute.snapshot.params;     
+    this.user=params.id;
+    
+    //this.getCourse();
   }
 
   getCourse(){

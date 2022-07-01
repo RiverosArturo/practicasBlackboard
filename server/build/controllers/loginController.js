@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class LoginController {
-    list(req, res) {
+    getlistProf(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const prof = yield database_1.default.query('SELECT * FROM profesor');
             res.json(prof);
@@ -27,7 +27,41 @@ class LoginController {
             if (prof.length > 0) {
                 return res.json(prof[0]);
             }
-            res.status(404).json({ Text: "El profesor no exixte" });
+            res.json({ Text: "El profesor no exixte" });
+        });
+    }
+    //---------------------------------------------------------------------------------------------------
+    getlistStudent(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const student = yield database_1.default.query('SELECT * FROM studiante');
+            res.json(student);
+        });
+    }
+    getOneStudent(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            const student = yield database_1.default.query('SELECT * FROM estudiante WHERE matricula = ?', [matricula]);
+            if (student.length > 0) {
+                return res.json(student[0]);
+            }
+            res.json({ Text: "El Alumno no exixte" });
+        });
+    }
+    //-------------------------------------------------------------------------------------------------------
+    getlistAdmi(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const admi = yield database_1.default.query('SELECT * FROM administrador');
+            res.json(admi);
+        });
+    }
+    getOneAdmi(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const admi = yield database_1.default.query('SELECT * FROM administrador WHERE id = ?', [id]);
+            if (admi.length > 0) {
+                return res.json(admi[0]);
+            }
+            res.json({ Text: "El administrador no exixte" });
         });
     }
 }

@@ -1,6 +1,6 @@
 export interface Admi {
 
-    user?: number;
+    id?: string;
     password?: string;
 
 }

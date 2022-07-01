@@ -20,53 +20,119 @@ export class LoginPage implements OnInit {
   users:any=[];
 
   admi: Admi = {
-    user: 201347656,
-    password: 'password',
+    id: '',
+    password: '',
   };
   prof: Prof = {
-    nTrabajador: 201347656,
-    password: 'password',
+    nTrabajador: 0,
+    password: '',
   };
   student: Student = {
-    matricula: 201347656,
-    password: 'password',
-  };
-  
-  login:User = {
-    user: 201347656,
+    matricula: 0,
     password: '',
-  }
-  nTrabajador:201347656;
-  
+  };  
+  login:User = {
+    id: '',
+    user: 0,
+    password: '',
+  }  
+  id:string;
+  mensaje:string;
+  condition:boolean = false;
+
   constructor(private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute) { }
 
-  ngOnInit() {    
-    
-  }
-  Login(user:number,nTrabajador:number){
-    nTrabajador=201347656;
-    const params = this.activedRoute.snapshot.params;          
-
+  ngOnInit() { 
+    const params = this.activedRoute.snapshot.params;    
     if(params.accessA == 1){
-      console.log('hola Tony Admi');
-      if(user == 1){
-        console.log('hola Admi');
-      }
-    }    
-    if(params.accessP == 2){
-      console.log('hola Profesor');
-      console.log('User: ',user);
-      console.log('Usuario: ',nTrabajador);
-      if(user == nTrabajador){
-        console.log('Acceso consedido');
-        this.router.navigate(['/home-prof']);      
-      }
+      this.condition = true;
     }
-    if(params.accesS == 3){
-      console.log('hola Student');
-      if(params.accesS == user){
-        console.log('hola Student');
-      }
+  }
+  Login(id:string, user:number, password:string){
+    const params = this.activedRoute.snapshot.params; 
+    //console.log('userLogin = ',user);
+    //console.log('passwordLogin = ',password);    
+//------- Login Admi ----------------------------------------    
+    if(params.accessA == 1){      
+      console.log('hola Admi');  
+      console.log('userLogin = ',id);
+      console.log('passwordLogin = ',password);   
+      this.datosService.getOneAdmi(id).subscribe(
+        res => {
+          this.admis = res;
+          console.log(res);
+          if(id == this.admis.id){
+            if(password == this.admis.password){
+              this.mensaje = 'Acceso consedido';
+                console.log(this.mensaje);
+                //this.router.navigate(['/home-admi']); 
+            }else{   
+              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              console.log(this.mensaje);
+            }            
+          }else{    
+            this.mensaje = 'Usuario no Existe';        
+            console.log(this.mensaje);
+          }
+        },
+        err => console.error(err)
+      );    
+    }    
+//-------- Login Prof --------------------------------------------
+    if(params.accessP == 2){
+      console.log('hola Profesor');  
+      console.log('userLogin = ',user);
+      console.log('passwordLogin = ',password);    
+      this.datosService.getProf(user).subscribe(
+        res => {
+          this.profs = res; 
+          //console.log('res = ',this.profs);          
+          //console.log('userProf = ',this.profs.nTrabajador);
+          //console.log('passwordProf = ',this.profs.password);
+          if(user == this.profs.nTrabajador){
+            if(password == this.profs.password){
+              this.mensaje = 'Acceso consedido';
+                console.log(this.mensaje);
+                this.router.navigate(['/home-prof',this.profs.nTrabajador]); 
+            }else{   
+              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              console.log(this.mensaje);
+            }            
+          }else{    
+            this.mensaje = 'Usuario no Existe';        
+            console.log(this.mensaje);
+          }
+        },
+        err => console.error(err)
+      );         
+    }
+//--------- Login student--------------------------------------------
+    if(params.accessS == 3){   
+      console.log('hola Student');  
+      console.log('userLogin = ',user);
+      console.log('passwordLogin = ',password);   
+      this.datosService.getStudent(user).subscribe(
+        res => {
+          this.students = res;                 
+          console.log('userstudent = ',this.students.matricula);
+          console.log('passwordStudent = ',this.students.password);
+          if(user == this.students.matricula){
+            if(password == this.students.password){
+              this.mensaje = 'Acceso consedido';
+                console.log(this.mensaje);
+                this.router.navigate(['/home-stud',this.students.matricula]); 
+            }else{   
+              this.mensaje = 'Acceso negado, Usuario o Password incorrecto';         
+              console.log(this.mensaje);
+            }            
+          }else{    
+            this.mensaje = 'Usuario no Existe';        
+            console.log(this.mensaje);
+          }
+        },
+        err => console.error(err)
+      );
+          
     }           
   }
   updateProf(){

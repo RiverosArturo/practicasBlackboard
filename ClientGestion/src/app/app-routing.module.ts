@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'home-stud',
+    path: 'home-stud/:matricula',
     loadChildren: () => import('./page/home-stud/home-stud.module').then( m => m.HomeStudPageModule)
   },
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/home-admi/home-admi.module').then( m => m.HomeAdmiPageModule)
   },
   {
-    path: 'home-prof',
+    path: 'home-prof/:nTrabajador',
     loadChildren: () => import('./page/home-prof/home-prof.module').then( m => m.HomeProfPageModule)
   },
   {

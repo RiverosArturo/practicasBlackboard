@@ -12,7 +12,7 @@ class AdmiRoutes {
     }
     config() {
         this.router.get('/', admiController_1.default.list);
-        this.router.get('/:user', admiController_1.default.getOne);
+        this.router.get('/:id', admiController_1.default.getOne);
     }
 }
 const admiRoutes = new AdmiRoutes();

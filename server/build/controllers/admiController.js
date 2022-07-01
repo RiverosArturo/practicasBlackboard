@@ -27,7 +27,7 @@ class AdmiController {
             if (admi.length > 0) {
                 return res.json(admi[0]);
             }
-            res.status(404).json({ Text: "El Admistrador no exixte" });
+            res.json({ Text: "El Admistrador no exixte" });
         });
     }
 }
