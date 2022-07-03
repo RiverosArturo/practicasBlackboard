@@ -7,7 +7,6 @@ import { Prof } from 'src/app/models/Prof';
 import { ProfCourse } from 'src/app/models/ProfCourse';
 import { Router, ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-consultar-curso',
   templateUrl: './consultar-curso.page.html',
@@ -46,11 +45,6 @@ export class ConsultarCursoPage implements OnInit {
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
   }
-  openmenu0(){
-    this.menu.enable(true,'end');
-    this.menu.open('end')
-  }
-  
   getProfCourses(){
     this.datosService.getProfCourses().subscribe(
       res => {
@@ -58,7 +52,7 @@ export class ConsultarCursoPage implements OnInit {
       },
       err => console.error(err)
     );
-  }/*
+  }
   getCourses(){
     this.datosService.getCourses().subscribe(
       res => {
@@ -140,6 +134,6 @@ export class ConsultarCursoPage implements OnInit {
     });
 
     await alert.present();
-  }*/
+  }
 
 }

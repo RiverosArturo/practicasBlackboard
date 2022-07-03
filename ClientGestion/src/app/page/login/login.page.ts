@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     password: '',
   };  
   login:User = {
-    id: '',
+    id: 'admi',
     user: 20,
     password: '',
   }  
@@ -58,8 +58,7 @@ export class LoginPage implements OnInit {
       //console.log('passwordLogin = ',password);   
       this.datosService.getOneAdmi(id).subscribe(
         res => {
-          this.admis = res;
-          console.log(res);
+          this.admis = res;         
           if(id == this.admis.id){
             if(password == this.admis.password){
               this.mensaje = 'Acceso consedido';
