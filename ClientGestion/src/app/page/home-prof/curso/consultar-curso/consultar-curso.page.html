@@ -9,15 +9,20 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+        <ion-title> Consultar Curso </ion-title><br>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
+
 <ion-content>
-
-  <ion-card>
-    <ion-item>
-      <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-      <ion-label color="primary">Cursos</ion-label>
-    </ion-item>  
-  </ion-card>
-
+  
+  
 <ion-content
   [scrollEvents]="true"
   (ionScrollStart)="logScrollStart()"
@@ -26,7 +31,7 @@
       
     <div slot="fixed">
       <ion-list>
-      <tr  *ngFor="let pCourse of pCourses">
+      <tr  ngFor="let pCourse of pCourses">
           <ion-label> NRC </ion-label>
           <ion-label> [{{pCourse.nrc}}]</ion-label>  
         

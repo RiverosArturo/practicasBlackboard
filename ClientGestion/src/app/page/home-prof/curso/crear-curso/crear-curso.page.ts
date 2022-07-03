@@ -45,9 +45,9 @@ export class CrearCursoPage implements OnInit {
     this.getCourse();
     this.getProf();  
     const params = this.activedRoute.snapshot.params;  
-    //this.user = params.user;  
-    console.log('variable params: ',params);
-    //this.pCourse.nTrabajador = this.user;    
+    this.user = params.user;  
+    console.log('Rser: ',this.user);
+    this.pCourse.nTrabajador = this.user;    
   }
   getCourse(){
     this.datosService.getCourses().subscribe(

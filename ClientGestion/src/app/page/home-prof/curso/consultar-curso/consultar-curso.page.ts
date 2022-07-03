@@ -7,45 +7,50 @@ import { Prof } from 'src/app/models/Prof';
 import { ProfCourse } from 'src/app/models/ProfCourse';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-consultar-curso',
   templateUrl: './consultar-curso.page.html',
   styleUrls: ['./consultar-curso.page.scss'],
 })
 export class ConsultarCursoPage implements OnInit {
-  user:number=0;
-  pCourse: ProfCourse = {
-    nrc:0       
+  
+  prof: Prof = {  
+    nTrabajador:0    
   };
   course: Curso = {
     nrc:0,
-  }
-  prof: Prof = {  
-    password: '',
-    
+  }  
+  pCourse: ProfCourse = {
+    nTrabajador:0,
+    nrc:0,       
   };
-  pCoursess: Curso={
-     nrc: 0,
-     materia: ''
-  }
-
-  pCourses:any=[];
+    
   profs:any = [];
   courses:any = [];
-
+  pCourses:any=[];
+  
   edit:boolean = false;
+  user:number=0;
 
-  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
+  constructor(private menu:MenuController, private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
   ngOnInit() {
     this.getProfCourses();
-    this.getCourses();
-    const params = this.activedRoute.snapshot.params;   
-    this.user = params.user;   
+    //this.getCourses();
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;  
+    console.log('User: ',this.user);
+    this.pCourse.nTrabajador = this.user;   
   }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
-  }  
+  }
+  openmenu0(){
+    this.menu.enable(true,'end');
+    this.menu.open('end')
+  }
+  
   getProfCourses(){
     this.datosService.getProfCourses().subscribe(
       res => {
@@ -53,7 +58,7 @@ export class ConsultarCursoPage implements OnInit {
       },
       err => console.error(err)
     );
-  }
+  }/*
   getCourses(){
     this.datosService.getCourses().subscribe(
       res => {
@@ -135,6 +140,6 @@ export class ConsultarCursoPage implements OnInit {
     });
 
     await alert.present();
-  }
+  }*/
 
 }

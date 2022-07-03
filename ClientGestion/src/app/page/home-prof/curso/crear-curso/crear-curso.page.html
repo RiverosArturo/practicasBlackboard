@@ -34,10 +34,10 @@
           </ion-label>
         </ion-list-header>            
         
-        <ion-item>
+        <ion-item>          
           <ion-label>NRC</ion-label>
           <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-            <option [value]="course.nrc" *ngFor="let course of courses">{{course.nrc}}</option>
+            <option [value]="course.nrc" ngFor="let course of courses">{{course.nrc}}</option>
           </select>                
       </ion-item> {{pCourse.nrc}}      
 

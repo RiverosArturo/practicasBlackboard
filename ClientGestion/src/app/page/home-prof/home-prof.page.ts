@@ -18,14 +18,6 @@ export class HomeProfPage implements OnInit {
     this.user = params.nTrabajador;   
     console.log('User: ',this.user); 
   }
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
-
-  openmenu0(){
-    this.menu.enable(true,'end');
-    this.menu.open('end')
-  }
+  
 
 }
