@@ -33,18 +33,18 @@ export class ConsultarCursoPage implements OnInit {
   user:number=0;
 
   constructor(private menu:MenuController, private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
-  ngOnInit() {
-    this.getProfCourses();
-    //this.getCourses();
-    const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;  
-    console.log('User: ',this.user);
-    this.pCourse.nTrabajador = this.user;   
-  }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
   }
+  ngOnInit() {
+    this.getProfCourses();
+    this.getCourses();
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;  
+    console.log('User: ',this.user);
+    this.pCourse.nTrabajador = this.user;   
+  }  
   getProfCourses(){
     this.datosService.getProfCourses().subscribe(
       res => {
