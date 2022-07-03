@@ -14,13 +14,13 @@ import { ProfCourse } from 'src/app/models/ProfCourse';
   styleUrls: ['./crear-curso.page.scss'],
 })
 export class CrearCursoPage implements OnInit {
-  user:number = 201347656;
+  user:number = 20201511;
 
   @HostBinding('class') classes = 'row';
 
   pCourse: ProfCourse = {
     nTrabajador:0,
-    nrc:0,
+    nrc:0
   };
   course: Curso = {
     nrc:0,
@@ -76,18 +76,14 @@ export class CrearCursoPage implements OnInit {
   
   saveProfCourse(){
     console.log(this.pCourse);
-    /*
+
     this.datosService.saveProfCourse(this.pCourse)
     .subscribe(
       res => {
-        console.log(res);            
-        console.log('Curso save');
-        this.getProfCourses()          
-        this.router.navigate(['/home-prof']);
+        console.log(res);
       },
       err => console.error(err)
-    )
-    */
+    );
   }  
 
 }
