@@ -5,7 +5,7 @@
         <ion-icon name="arrow-undo"></ion-icon>&nbsp;
       </ion-button>      
     </ion-buttons>
-    <ion-label  slot="start">usuasio:</ion-label>{{user}}
+    <ion-label  slot="start">usuasio: {{user}} </ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -32,7 +32,7 @@
 
       <tr   *ngFor="let pCourse of pCourses">
             
-           [ {{pCourse.nrc}} ] - [ {{}} ] 
+           [ {{pCourse.nrc}} ] 
   
             <ion-button color="danger">
               <ion-button color="danger" (click)="AlertOne(pcourse.nrc)">Eliminar</ion-button>

@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   users:any=[];
 
   admi: Admi = {
-    id: '',
+    id: 'admi',
     password: '',
   };
   prof: Prof = {
@@ -50,13 +50,12 @@ export class LoginPage implements OnInit {
   }
   Login(id:string, user:number, password:string){
     const params = this.activedRoute.snapshot.params; 
-    //console.log('userLogin = ',user);
-    //console.log('passwordLogin = ',password);    
+    
 //------- Login Admi ----------------------------------------    
     if(params.accessA == 1){      
       console.log('hola Admi');  
-      console.log('userLogin = ',id);
-      console.log('passwordLogin = ',password);   
+      //console.log('userLogin = ',id);
+      //console.log('passwordLogin = ',password);   
       this.datosService.getOneAdmi(id).subscribe(
         res => {
           this.admis = res;

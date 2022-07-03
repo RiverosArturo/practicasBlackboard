@@ -22,6 +22,10 @@ export class EliminarCursoPage implements OnInit {
 
   ngOnInit() {
     this.getProfCourse();
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;  
+    console.log('User: ',this.user);
+    
   }
   getProfCourse(){
     this.datosService.getProfCourses().subscribe(

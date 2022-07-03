@@ -5,6 +5,7 @@ import { CrearCursoPage } from './curso/crear-curso/crear-curso.page';
 import { ConsultarCursoPage } from './curso/consultar-curso/consultar-curso.page';
 
 import { HomeProfPage } from './home-prof.page';
+import { EliminarCursoPage } from './curso/eliminar-curso/eliminar-curso.page';
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
   {
     path: 'eliminar-equipo',
     loadChildren: () => import('./equipo/eliminar-equipo/eliminar-equipo.module').then( m => m.EliminarEquipoPageModule)
-  },
+  },/*
   {
     path: 'eliminar-curso',
     loadChildren: () => import('./curso/eliminar-curso/eliminar-curso.module').then( m => m.EliminarCursoPageModule)
@@ -39,7 +40,7 @@ const routes: Routes = [
   {
     path: 'crear-curso',
     loadChildren: () => import('./curso/crear-curso/crear-curso.module').then( m => m.CrearCursoPageModule)
-  },
+  },*/
   {
     path: 'subir-estudiante',
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
@@ -85,10 +86,21 @@ const routes: Routes = [
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {
-   path: 'page/crear-curso',
+   path: 'crear-curso/:user',
    component: CrearCursoPage 
+  },
+  {
+    path: 'consultar-curso/:user',
+    component: ConsultarCursoPage
+  },
+  {
+    path: 'eliminar-curso/:user',
+    component: EliminarCursoPage
+  },
+  {
+    path: 'home-prof',
+    component: HomeProfPage
   }
-  
 ];
 
 @NgModule({
