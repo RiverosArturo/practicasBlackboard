@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-eliminar-curso',
-  templateUrl: './eliminar-curso.page.html',
-  styleUrls: ['./eliminar-curso.page.scss'],
+  selector: 'app-delete-course',
+  templateUrl: './delete-course.page.html',
+  styleUrls: ['./delete-course.page.scss'],
 })
-export class EliminarCursoPage implements OnInit {
-  user:number=0;
+export class DeleteCoursePage implements OnInit {
+
+  user:number;
+  courses:any=[];
   pCourses:any=[];
 
-  constructor(private menu:MenuController,private datosService:DatosService,private alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
-
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
+  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
+    this.getCourse();
     this.getProfCourse();
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user;  
     console.log('User: ',this.user);
-    
   }
   getProfCourse(){
     this.datosService.getProfCourses().subscribe(
@@ -35,7 +31,15 @@ export class EliminarCursoPage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteProfCourse(nrc: number){
+  getCourse(){
+    this.datosService.getCourses().subscribe(
+      res => {
+        this.courses = res;
+      },
+      err => console.error(err)
+    );
+  }
+  deleteProfCourse(nrc:number){
     this.datosService.deleteProfCourse(nrc).subscribe(
       res => {
         console.log(res);
@@ -44,7 +48,7 @@ export class EliminarCursoPage implements OnInit {
       err => console.error(err)
     )
   }
-  deleteAllProfCourses(){
+  deleteAllProfCourse(){
     this.datosService.deleteAllProfCourse().subscribe(
       res => {
         console.log(res);
@@ -77,7 +81,6 @@ export class EliminarCursoPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
   async AlertAll() {
@@ -99,12 +102,11 @@ export class EliminarCursoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteAllProfCourses();            
+            this.deleteAllProfCourse();
           }
         }
       ]
     });
-
     await alert.present();
   }
 

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EliminarCursoPageRoutingModule } from './eliminar-curso-routing.module';
+import { DeleteCoursePageRoutingModule } from './delete-course-routing.module';
 
-import { EliminarCursoPage } from './eliminar-curso.page';
+import { DeleteCoursePage } from './delete-course.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EliminarCursoPageRoutingModule
+    DeleteCoursePageRoutingModule
   ],
-  declarations: [EliminarCursoPage]
+  declarations: [DeleteCoursePage]
 })
-export class EliminarCursoPageModule {}
+export class DeleteCoursePageModule {}
