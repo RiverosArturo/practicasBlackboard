@@ -23,15 +23,15 @@
       <tr  *ngFor="let pCourse of pCourses">
 
         <div *ngIf="pCourse.nTrabajador == user;">
-          <ion-item class="form-group"> 
-            <ion-label>NRC:[ {{pCourse.nrc}} ]-[ {{pCourse.nTrabajador}} ]</ion-label> 
-          </ion-item>
-        </div>                
-  
+          
+            <ion-label>NRC:[ {{pCourse.nrc}} ]-[ {{pCourse.nTrabajador}} ]</ion-label>       
+
             <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(pCourse.nrc,pCourse.nTrabajador)">Eliminar</ion-button>
+              <ion-button color="danger" (click)="AlertOne(pCourse.nTrabajador, pCourse.nrc)">Eliminar</ion-button>
               <ion-icon name="trash"></ion-icon>
-            </ion-button>          
+            </ion-button>
+
+        </div>                                      
     </tr>
   </ion-list>
   </div>

@@ -39,10 +39,10 @@ export class DeleteCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteProfCourse(nrc:number){
+  deleteProfCourse(nTrabajador:number, nrc:number){
     this.datosService.deleteProfCourse(nrc).subscribe(
       res => {
-        console.log(res);
+        console.log(res);        
         this.getProfCourse();
       },
       err => console.error(err)
@@ -57,7 +57,7 @@ export class DeleteCoursePage implements OnInit {
       err => console.error(err)
     )
   }
-  async AlertOne(nrc: number) {
+  async AlertOne(nTrabajador:number, nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -76,7 +76,7 @@ export class DeleteCoursePage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteProfCourse(nrc);
+            this.deleteProfCourse(nTrabajador, nrc);
           }
         }
       ]
