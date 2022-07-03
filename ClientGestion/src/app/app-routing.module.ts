@@ -50,7 +50,9 @@ const routes: Routes = [
   {
     path: 'login-Student/:accessS',
     component: LoginPage
-  }
+  },
+  
+
 ];
 
 @NgModule({

@@ -2,10 +2,11 @@ import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from 'src/app/home/home.page';
 import { CrearCursoPage } from './curso/crear-curso/crear-curso.page';
-import { ConsultarCursoPage } from './curso/consultar-curso/consultar-curso.page';
+
 
 import { HomeProfPage } from './home-prof.page';
 import { EliminarCursoPage } from './curso/eliminar-curso/eliminar-curso.page';
+import { ConsultCoursePage } from './curso/consult-course/consult-course.page';
 
 const routes: Routes = [
   {
@@ -90,17 +91,22 @@ const routes: Routes = [
    component: CrearCursoPage 
   },
   {
-    path: 'consultar-curso/:user',
-    component: ConsultarCursoPage
-  },
-  {
     path: 'eliminar-curso/:user',
     component: EliminarCursoPage
   },
   {
     path: 'home-prof',
     component: HomeProfPage
+  },
+  {
+    path: 'consult-course',
+    loadChildren: () => import('./curso/consult-course/consult-course.module').then( m => m.ConsultCoursePageModule)
+  },
+  {
+    path: 'consult-course/:user',
+    component: ConsultCoursePage 
   }
+
 ];
 
 @NgModule({

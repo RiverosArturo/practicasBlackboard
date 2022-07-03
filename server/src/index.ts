@@ -36,8 +36,7 @@ class Server {
         this.app.use('/api/profCourse',profCourseRoutes);
         this.app.use('/api/admi',admiRoutes);
         this.app.use('/api/admi',equipoRoutes);
-        this.app.use('/api/login',loginRoutes);
-        
+        this.app.use('/api/login',loginRoutes);        
     }
     start(): void{
         this.app.listen(this.app.get('port'), () => {
