@@ -15,7 +15,7 @@ export class HomeProfPage implements OnInit {
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params; 
-    this.user = params.nTrabajador;   
+    this.user = params.user;   
     console.log('User: ',this.user); 
   }
   

@@ -32,7 +32,7 @@ export class ConsultCoursePage implements OnInit {
   user:number=0;
   nTrabajador:number;
 
-  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     this.getProfCourses();

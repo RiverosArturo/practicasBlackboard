@@ -15,7 +15,7 @@ export class HomeStudPage implements OnInit {
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;     
-    this.user = params.matricula;  
+    this.user = params.user;  
   }
 
   OpenMenuStud(){

@@ -102,8 +102,8 @@ export class CreateCoursePage implements OnInit {
   async AlertOne(nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong> Guardar </strong>!!! '+ nrc ,
+      header: 'Confirma!',
+      message: 'Message <strong> Guardar curso </strong> '+ nrc ,
       buttons: [
         {
           text: 'Cancelar',
@@ -117,7 +117,7 @@ export class CreateCoursePage implements OnInit {
           text: 'Guardar',
           id: 'confirm-button',
           handler: () => {
-            console.log('Confirm Okay');
+            console.log('Confirma Okay');
             this.saveProfCourse();
             this.Alert(nrc);
           }

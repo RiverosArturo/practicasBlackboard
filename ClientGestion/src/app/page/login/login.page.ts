@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
     password: '',
   }  
   id:string;
+  user:number;
   mensaje:string;
   condition:boolean = false;
 
@@ -63,7 +64,8 @@ export class LoginPage implements OnInit {
             if(password == this.admis.password){
               this.mensaje = 'Acceso consedido';
                 console.log(this.mensaje);
-                this.router.navigate(['/home-admi',this.admis.id]); 
+                id = this.admis.id;
+                this.router.navigate(['/home-admi',id]); 
             }else{   
               this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);
@@ -91,7 +93,8 @@ export class LoginPage implements OnInit {
             if(password == this.profs.password){
               this.mensaje = 'Acceso consedido';
                 console.log(this.mensaje);
-                this.router.navigate(['/home-prof',this.profs.nTrabajador]); 
+                user = this.profs.nTrabajador;                
+                this.router.navigate(['/home-prof',user]); 
             }else{   
               this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);
@@ -107,18 +110,15 @@ export class LoginPage implements OnInit {
 //--------- Login student--------------------------------------------
     if(params.accessS == 3){   
       console.log('hola Student');  
-      //console.log('userLogin = ',user);
-      //console.log('passwordLogin = ',password);   
       this.datosService.getStudent(user).subscribe(
         res => {
-          this.students = res;                 
-          //console.log('userstudent = ',this.students.matricula);
-          //console.log('passwordStudent = ',this.students.password);
+          this.students = res;   
           if(user == this.students.matricula){
             if(password == this.students.password){
               this.mensaje = 'Acceso consedido';
                 console.log(this.mensaje);
-                this.router.navigate(['/home-stud',this.students.matricula]); 
+                user = this.students.matricula;
+                this.router.navigate(['/home-stud',user]); 
             }else{   
               this.mensaje = 'Acceso negado, Password incorrecto';         
               console.log(this.mensaje);

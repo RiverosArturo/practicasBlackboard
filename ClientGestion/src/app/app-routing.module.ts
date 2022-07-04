@@ -28,11 +28,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/home-admi/home-admi.module').then( m => m.HomeAdmiPageModule)
   },
   {
-    path: 'home-prof/:nTrabajador',
+    path: 'home-prof/:user',
     loadChildren: () => import('./page/home-prof/home-prof.module').then( m => m.HomeProfPageModule)
   },
   {
-    path:'home-admi/edit-student/:matricula',
+    path:'home-admi/edit-student/:user',
     component: EditStudentPage
   },
   {
