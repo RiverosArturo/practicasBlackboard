@@ -30,6 +30,7 @@ export class ConsultCoursePage implements OnInit {
   
   edit:boolean = false;
   user:number=0;
+  nTrabajador:number;
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
@@ -37,7 +38,7 @@ export class ConsultCoursePage implements OnInit {
     this.getProfCourses();
     this.getCourse();
     const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;  
+    this.user = params.user;
     console.log('User: ',this.user);
     this.pCourse.nTrabajador = this.user;
   }

@@ -24,10 +24,10 @@
     </ion-card>
 
     <ion-label>Selecciona el  NRC </ion-label>
-    <form>
-             
+    <form>             
       <ion-card>
       <ion-list>
+        
         <ion-list-header>
           <ion-label>
             Selecciona 
@@ -37,7 +37,7 @@
         <ion-item>          
           <ion-label>NRC</ion-label>
           <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-              <option [value]="course.nrc" ngFor="let course of courses">{{course.nrc}}</option>
+              <option [value]="course.nrc" *ngFor="let course of courses">{{course.nrc}}</option>
           </select>                
       </ion-item> 
       <ion-label> {{pCourse.nrc}} </ion-label>
@@ -47,7 +47,7 @@
 
     <ion-item>
       <ion-toolbar>
-        <ion-button slot="end"   (click)=" saveProfCourse()">
+        <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
           <ion-label> Guardar </ion-label>
         </ion-button>
       </ion-toolbar>

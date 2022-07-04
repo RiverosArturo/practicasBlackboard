@@ -1,13 +1,13 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from 'src/app/home/home.page';
-import { CrearCursoPage } from './curso/crear-curso/crear-curso.page';
 
 
 import { HomeProfPage } from './home-prof.page';
 import { ConsultCoursePage } from './curso/consult-course/consult-course.page';
 import { DeleteCoursePage } from './curso/delete-course/delete-course.page';
 import { CreateCoursePage } from './curso/create-course/create-course.page';
+import { MenuProfPage } from './menu-prof/menu-prof.page';
 
 
 const routes: Routes = [
@@ -77,8 +77,8 @@ const routes: Routes = [
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {
-   path: 'crear-curso/:user',
-   component: CrearCursoPage 
+    path: 'menu-prof/:user',
+    component: MenuProfPage 
   },
   {
     path: 'home-prof',

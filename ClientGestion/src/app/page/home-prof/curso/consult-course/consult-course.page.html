@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="'../../home-prof'">
+      <ion-button [routerLink]="['../../home-prof']">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>      
       <ion-label >Usuario: {{user}}</ion-label>
@@ -25,7 +25,7 @@
            [ {{pCourse.nrc}} ]
         
             <ion-button color="secondary">            
-              <ion-button color="secondary" [routerLink]="['']">ver curso</ion-button>
+              <ion-button color="secondary" [routerLink]="['../../menu-prof']">ver curso</ion-button>
               <ion-icon name="eye-outline"></ion-icon>
             </ion-button>
             

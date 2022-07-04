@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
-import { AlertController } from '@ionic/angular';
+//import { AlertController } from '@ionic/angular';
 import { ProfCourse } from 'src/app/models/ProfCourse';
 import { Curso } from 'src/app/models/Curso';
 import { Prof } from 'src/app/models/Prof';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-course',
@@ -30,9 +31,9 @@ export class CreateCoursePage implements OnInit {
   pCourses:any=[];
   
   edit:boolean = false;
-  user:number=0;
+  user:number;
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor( private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
   
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -70,33 +71,42 @@ export class CreateCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  
-  deleteCourse(nrc:number){
-    this.datosService.deleteCourse(nrc).subscribe(
+  saveProfCourse(){
+    this.datosService.saveProfCourse(this.pCourse)
+    .subscribe(
       res => {
-        console.log(res);
-        this.getCourse();
+        console.log(res);    
+        console.log('Curso guardado---');
+        //this.router.navigate(['/home-prof']);
       },
       err => console.error(err)
     )
   }
-  deleteAllCourses(){
-    this.datosService.deleteAllCourses().subscribe(
-      res => {
-        console.log(res);
-        this.getCourse();
-      },
-      err => console.error(err)
-    )
+  async Alert(nrc: number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmado!',
+      message: 'Message <strong> Curso </strong> '+ nrc +' guardado' ,
+      buttons: [
+        {
+          text: 'ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
-  async AlertOne(clave: number) {
+  async AlertOne(nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ clave ,
+      message: 'Message <strong> Guardar </strong>!!! '+ nrc ,
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
@@ -104,42 +114,16 @@ export class CreateCoursePage implements OnInit {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Ok',
+          text: 'Guardar',
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteCourse(clave);
+            this.saveProfCourse();
+            this.Alert(nrc);
           }
         }
       ]
     });
     await alert.present();
   }
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllCourses();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
 }
