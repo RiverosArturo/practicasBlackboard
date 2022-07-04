@@ -1,9 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>create-course</ion-title>
-  </ion-toolbar>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="'../../home-prof'">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>      
+      <ion-label >Usuario: {{user}}</ion-label>
+    </ion-buttons>
+  </ion-toolbar>  
 </ion-header>
 
 <ion-content>
+  <ion-card>
 
-</ion-content>
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Crear curso </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+    <ion-label>Selecciona el  NRC </ion-label>
+    <form>
+             
+      <ion-card>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>
+            Selecciona 
+          </ion-label>
+        </ion-list-header>            
+        
+        <ion-item>          
+          <ion-label>NRC</ion-label>
+          <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
+              <option [value]="course.nrc" ngFor="let course of courses">{{course.nrc}}</option>
+          </select>                
+      </ion-item> 
+      <ion-label> {{pCourse.nrc}} </ion-label>
+
+      </ion-list>
+    </ion-card>
+
+    <ion-item>
+      <ion-toolbar>
+        <ion-button slot="end"   (click)=" saveProfCourse()">
+          <ion-label> Guardar </ion-label>
+        </ion-button>
+      </ion-toolbar>
+    </ion-item><br>
+    </form>
+
+  </ion-card>
+</ion-content> 
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>
+
+
