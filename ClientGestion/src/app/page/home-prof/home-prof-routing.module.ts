@@ -8,6 +8,7 @@ import { ConsultCoursePage } from './curso/consult-course/consult-course.page';
 import { DeleteCoursePage } from './curso/delete-course/delete-course.page';
 import { CreateCoursePage } from './curso/create-course/create-course.page';
 import { MenuProfPage } from './menu-prof/menu-prof.page';
+import { GenerarEquipoPage } from './equipo/generar-equipo/generar-equipo.page';
 
 
 const routes: Routes = [
@@ -81,10 +82,6 @@ const routes: Routes = [
     component: MenuProfPage 
   },
   {
-    path: 'home-prof',
-    component: HomeProfPage
-  },
-  {
     path: 'consult-course',
     loadChildren: () => import('./curso/consult-course/consult-course.module').then( m => m.ConsultCoursePageModule)
   },
@@ -107,7 +104,12 @@ const routes: Routes = [
   {
     path: 'create-course/:user',
     component: CreateCoursePage
-  }
+  },
+  {
+    path: 'home-prof/:user',
+    component: HomeProfPage
+  },
+  
 
 ];
 

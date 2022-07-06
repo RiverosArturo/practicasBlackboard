@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
@@ -20,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'home-stud/:matricula',
+    path: 'home-stud/:user',
     loadChildren: () => import('./page/home-stud/home-stud.module').then( m => m.HomeStudPageModule)
   },
   {

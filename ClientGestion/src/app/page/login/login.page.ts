@@ -54,9 +54,7 @@ export class LoginPage implements OnInit {
     
 //------- Login Admi ----------------------------------------    
     if(params.accessA == 1){      
-      console.log('hola Admi');  
-      //console.log('userLogin = ',id);
-      //console.log('passwordLogin = ',password);   
+      console.log('hola Admi'); 
       this.datosService.getOneAdmi(id).subscribe(
         res => {
           this.admis = res;         
@@ -81,14 +79,9 @@ export class LoginPage implements OnInit {
 //-------- Login Prof --------------------------------------------
     if(params.accessP == 2){
       console.log('hola Profesor');  
-      //console.log('userLogin = ',user);
-      //console.log('passwordLogin = ',password);    
       this.datosService.getProf(user).subscribe(
         res => {
           this.profs = res; 
-          //console.log('res = ',this.profs);          
-          //console.log('userProf = ',this.profs.nTrabajador);
-          //console.log('passwordProf = ',this.profs.password);
           if(user == this.profs.nTrabajador){
             if(password == this.profs.password){
               this.mensaje = 'Acceso consedido';

@@ -9,11 +9,19 @@ class ProfCourseController {
     }
     public async getOne (req:Request, res:Response): Promise<any>{
         const  {nTrabajador} = req.params;
-        const pcourse = await pool.query('SELECT * FROM profesor_curso WHERE nTrabajador = ?', [nTrabajador])
-        if (pcourse.length > 0 ){
-            return res.json(pcourse[0]);
+        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nTrabajador = ?', [nTrabajador])
+        if (pCourse.length > 0 ){
+            return res.json(pCourse[0]);
         }
         res.status(404).json({Text:"El curso no existe"});
+    }
+    public async getOneNrcCourse (req:Request, res:Response): Promise<any>{
+        const  {nrc} = req.params;
+        const nrcCourse = await pool.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc])
+        if (nrcCourse.length > 0 ){
+            return res.json(nrcCourse[0]);
+        }
+        res.json({Text:"El curso no existe"});
     }
     public async create (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO profesor_curso set ?', [req.body]);

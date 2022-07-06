@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
-//import { AlertController } from '@ionic/angular';
 import { ProfCourse } from 'src/app/models/ProfCourse';
 import { Curso } from 'src/app/models/Curso';
 import { Prof } from 'src/app/models/Prof';
@@ -25,10 +24,15 @@ export class CreateCoursePage implements OnInit {
     nTrabajador:0,
     nrc:0,       
   };
+  profCourse: ProfCourse = {
+    nTrabajador:0,
+    nrc:0,
+  }
     
   profs:any = [];
   courses:any = [];
   pCourses:any=[];
+  profCourses:any=[];
   
   edit:boolean = false;
   user:number;
@@ -41,11 +45,24 @@ export class CreateCoursePage implements OnInit {
   }
   ngOnInit() {
     this.getProfCourses();
-    this.getCourse();
+    this.getCourse();    
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user;  
     console.log('User: ',this.user);
     this.pCourse.nTrabajador = this.user;
+  }
+  getOneNrcCourse(nrc:number){
+    console.log(this.pCourse.nTrabajador);
+    console.log(nrc);
+    
+    //this.datosService.getCourse(nrc).subscribe(
+    this.datosService.getOneNrcCourse(nrc).subscribe(
+      res => {          
+        this.profCourse = res;
+        console.log(this.profCourse);   
+      },
+      err => console.error(err)
+    )
   }
   getCourse(){
     this.datosService.getCourses().subscribe(

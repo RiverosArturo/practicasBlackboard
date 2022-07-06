@@ -46,12 +46,6 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   getOneAdmi(id:string) {
     return this.http.get(`${this.API_URI}/login/${id}`);
   }
-  getOneProf(user: number){
-    return this.http.get(`${this.API_URI}/login/${user}`);
-  }
-  getOneStudent() {
-    return this.http.get(`${this.API_URI}/login`);
-  }
   //Funciones Student////////////////////////////////////////////////////////////////////////////////////
   getStudents() {
     return this.http.get(`${this.API_URI}/student`);
@@ -115,6 +109,9 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   }
   getProfCourse(nTrabajador: number) {
     return this.http.get(`${this.API_URI}/profCourse/${nTrabajador}`);
+  }
+  getOneNrcCourse(nrc:number) {
+    return this.http.get(`${this.API_URI}/curso/${nrc}`);
   }
   deleteProfCourse(nrc: number){
     return this.http.delete(`${this.API_URI}/profCourse/${nrc}`);
