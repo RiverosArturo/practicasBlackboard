@@ -32,8 +32,8 @@ export class MenuProfPage implements OnInit {
   constructor(private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    //const params = this.activedRoute.snapshot.params;  
-    //this.user = params.user;
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;
     console.log('User: ',this.user);
     
   }

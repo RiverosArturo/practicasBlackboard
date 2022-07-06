@@ -109,6 +109,10 @@ const routes: Routes = [
     path: 'home-prof/:user',
     component: HomeProfPage
   },
+  {
+    path: 'consult-course/:user',
+    component: ConsultCoursePage
+  }
   
 
 ];
