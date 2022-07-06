@@ -30,15 +30,14 @@ export class ConsultCoursePage implements OnInit {
   
   edit:boolean = false;
   user:number=0;
-  nTrabajador:number;
 
-  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
+  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.getProfCourses();
     this.getCourse();
     const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;
+    this.user = params.user;      
     console.log('User: ',this.user);
     this.pCourse.nTrabajador = this.user;
   }
@@ -57,6 +56,15 @@ export class ConsultCoursePage implements OnInit {
       },
       err => console.error(err)
     );
+  }
+  getNrcCourse(nrc:number){
+    console.log('NRC: ',nrc);
+    this.datosService.getNrcCourse(nrc).subscribe(
+      res => {
+        console.log('Res ',res);        
+      },
+      err => console.error(err)
+    )
   }
   deleteCourse(nrc:number){
     this.datosService.deleteCourse(nrc).subscribe(

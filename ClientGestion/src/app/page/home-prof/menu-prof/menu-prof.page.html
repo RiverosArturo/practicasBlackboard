@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/consult-course',user]">
+      <ion-button [routerLink]="['/home-prof/curso/consult-course',user]">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
       <ion-label >Usuario: {{user}} </ion-label>      
@@ -25,29 +25,29 @@
 
     <ion-card>
         <h1> Gestionar equipo </h1> <br>
-        <ion-button [routerLink] = "'../../home-prof/menu-prof/generar-equipo'">   Generar equipo </ion-button>
-        <ion-button [routerLink] = "'../../home-prof/consultar-equipo'">   Consultar equipo </ion-button>
-        <ion-button [routerLink] = "'../../home-prof/modificar-equipo'">   Modificar equipo </ion-button>
-        <ion-button [routerLink] = "'../../home-prof/eliminar-equipo'">   Eliminar equipo </ion-button>
+        <ion-button [routerLink] = "'/home-prof/equipo/generar-equipo'">   Generar equipo </ion-button>
+        <ion-button [routerLink] = "'/home-prof/equipo/consultar-equipo'">   Consultar equipo </ion-button>
+        <ion-button [routerLink] = "'/home-prof/equipo/modificar-equipo'">   Modificar equipo </ion-button>
+        <ion-button [routerLink] = "'/home-prof/equipo/eliminar-equipo'">   Eliminar equipo </ion-button>
         <br><br>
     </ion-card>
     <ion-card>
       <h1>Administar estudiante</h1>
-      <ion-button [routerLink] = "'../../home-prof/menu-prof/subir-estudiante'">   Subir estudiante  </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/consultar-estudiante'">   Consultar estudiante   </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/eliminar-estudiante'">   Eliminar estudiante   </ion-button>
+      <ion-button [routerLink] = "['/home-prof/estudiante/subir-estudiante',user]">   Subir estudiante  </ion-button>
+      <ion-button [routerLink] = "'/home-prof/estudiante/consultar-estudiante'">   Consultar estudiante   </ion-button>
+      <ion-button [routerLink] = "'/home-prof/estudiante/eliminar-estudiante'">   Eliminar estudiante   </ion-button>
     </ion-card>
     <ion-card>
       <h1>Gestionar actividades</h1>
-      <ion-button [routerLink] = "'../../home-prof/alta-actividad'">   Dar de alta actividad  </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/consultar-actividad'">   Consultar actividad   </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/modificar-actividad'">   Modificar actividad   </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/eliminar-actividad'">   Eliminar actividad   </ion-button>
-      <ion-button [routerLink] = "'../../home-prof/evaluar-actividad'">   Evaluar actividad   </ion-button>
+      <ion-button [routerLink] = "'/home-prof/actividades/alta-actividad'">   Dar de alta actividad  </ion-button>
+      <ion-button [routerLink] = "'/home-prof/actividades/consultar-actividad'">   Consultar actividad   </ion-button>
+      <ion-button [routerLink] = "'/home-prof/actividades/modificar-actividad'">   Modificar actividad   </ion-button>
+      <ion-button [routerLink] = "'/home-prof/actividades/home-prof/eliminar-actividad'">   Eliminar actividad   </ion-button>
+      <ion-button [routerLink] = "'/home-prof/actividades/evaluar-actividad'">   Evaluar actividad   </ion-button>
     </ion-card>
     <ion-card>
       <h1>Gestionar comunicacion</h1>
-      <ion-button [routerLink] = "'../../home-prof/avisos'">   Avisos  </ion-button>
+      <ion-button [routerLink] = "'/home-prof/avisos/avisos'">   Avisos  </ion-button>
     </ion-card>
 
   </ion-card>

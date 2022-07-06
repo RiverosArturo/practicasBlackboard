@@ -9,6 +9,7 @@ import { DeleteCoursePage } from './curso/delete-course/delete-course.page';
 import { CreateCoursePage } from './curso/create-course/create-course.page';
 import { MenuProfPage } from './menu-prof/menu-prof.page';
 import { GenerarEquipoPage } from './equipo/generar-equipo/generar-equipo.page';
+import { SubirEstudiantePage } from './estudiante/subir-estudiante/subir-estudiante.page';
 
 
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./equipo/eliminar-equipo/eliminar-equipo.module').then( m => m.EliminarEquipoPageModule)
   },
   {
-    path: 'subir-estudiante',
+    path: 'subir-estudiante/:user',
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
   },
   {
@@ -74,7 +75,7 @@ const routes: Routes = [
     component: HomePage
   },
   {
-    path: 'menu-prof',
+    path: 'menu-prof/:user',
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {
@@ -112,6 +113,10 @@ const routes: Routes = [
   {
     path: 'consult-course/:user',
     component: ConsultCoursePage
+  },
+  {
+    path: 'subir-estudiante/:user',
+    component: SubirEstudiantePage
   }
   
 

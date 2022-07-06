@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subir-estudiante',
@@ -7,8 +8,9 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./subir-estudiante.page.scss'],
 })
 export class SubirEstudiantePage implements OnInit {
+  user:number;
 
-  constructor(private menu:MenuController) { }
+  constructor(private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -16,6 +18,12 @@ export class SubirEstudiantePage implements OnInit {
   }
 
   ngOnInit() {
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;
+    console.log('User: ',this.user);
+  }
+  getNrc(user){
+
   }
 
 }

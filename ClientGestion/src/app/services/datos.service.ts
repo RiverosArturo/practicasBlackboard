@@ -110,6 +110,9 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   getProfCourse(nTrabajador: number) {
     return this.http.get(`${this.API_URI}/profCourse/${nTrabajador}`);
   }
+  getNrcCourse(nrc:number) {
+    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
+  }
   getOneNrcCourse(nrc:number) {
     return this.http.get(`${this.API_URI}/curso/${nrc}`);
   }
