@@ -12,6 +12,7 @@ import profCourseRoutes from "./routes/profCourseRoutes";
 import admiRoutes from "./routes/admiRoutes";
 import equipoRoutes  from "./routes/equipoRoutes";
 import loginRoutes from "./routes/loginRoutes";
+import studCourseRoutes from "./routes/studCourseRoutes";
 
 class Server {
     public app : Application;
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/api/curso', cursoRoutes);
         this.app.use('/api/prof', profRoutes);
         this.app.use('/api/profCourse',profCourseRoutes);
+        this.app.use('/api/studCourse',studCourseRoutes);
         this.app.use('/api/admi',admiRoutes);
         this.app.use('/api/admi',equipoRoutes);
         this.app.use('/api/login',loginRoutes);        

@@ -9,6 +9,7 @@ import { ProfCourse } from '../models/ProfCourse';
 import { Equipo } from '../models/Equipo';
 
 import { Observable } from 'rxjs';
+import { cursoEstudiante } from '../models/cursoEstudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -139,6 +140,15 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   }
   verifica(nrc:number){
     return this.http.get(`${this.API_URI}/curso/${nrc}`)
+  }
+
+  /////////Curso_estudiante///////////
+  getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
+    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
+  }
+
+  crearCursoEst(subirEst:cursoEstudiante){
+    return this.http.post(`${this.API_URI}/studCourse`, subirEst);
   }
 
 }

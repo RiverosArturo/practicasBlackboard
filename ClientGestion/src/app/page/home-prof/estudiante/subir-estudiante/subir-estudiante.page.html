@@ -18,8 +18,6 @@
   </ion-toolbar>
 </ion-header>
 
-   
-
 <ion-content>
   <ion-card>
 
@@ -29,7 +27,8 @@
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> Subir estudiante </ion-title><br>
-            <ion-label slot="end" >Usuario: {{user}} </ion-label>
+            <ion-label slot="end" >Profesor: {{user}} </ion-label>
+            <ion-label slot="end" >Curso: {{nrc}} </ion-label>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -37,7 +36,17 @@
 
 
    <ion-card-content>
-      <ion-button > Enviar </ion-button><br><br>
+      <form (ngSubmit)="onSubmit()" #subirEstForm="ngForm">
+          <ion-label for="profesor" color="dark">Profesor:</ion-label>
+          <ion-input type="text" name="profesor" #profesor="ngModel" [(ngModel)]="subirEst.nTrabajador" color="primary" readonly="true"></ion-input>
+
+          <ion-label for="materia" color="dark">Materia:</ion-label>
+          <ion-input type="text" name="materia" #materia="ngModel" [(ngModel)]="subirEst.nrc" color="primary" readonly="true"></ion-input>
+
+          <ion-label for="estudiante" color="dark">Estudiante:</ion-label>
+          <ion-input type="text" name="estudiante" #estudiante="ngModel" [(ngModel)]="subirEst.matricula" color="primary" placeholder="Matricula estudiante"></ion-input>
+        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir estudiante </ion-button><br><br>
+      </form>
    </ion-card-content>
 
   </ion-card>
