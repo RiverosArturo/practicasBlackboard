@@ -44,21 +44,19 @@ export class SubirEstudiantePage implements OnInit {
 
   onSubmit(){
     if(!isNaN(this.subirEst.matricula) && this.subirEst.matricula.toString().length==9){
-      console.log("Matricula despues del if: " + this.subirEst.matricula);
+
+      console.log("Paso 1ra condicion");
       this.datosService.getStudent(this.subirEst.matricula).subscribe(
         res => {
           this.getEs = res;
-        }
-      );
-      //Verificamos que el estudiante exista en la BD
+          //Verificamos que el estudiante exista en la BD
       if(this.getEs.matricula != undefined){
-        console.log(this.getEs.matricula);
+        console.log("Paso segunda condicion")
+        // console.log(this.getEs.matricula);
         this.datosService.getOneCursoEst(this.subirEst.nrc, this.subirEst.nTrabajador, this.subirEst.matricula).subscribe(
           res => {
             this.getEsCur = res;
-          }
-        );
-        //Verificamos que el estudiante no este subido a la lista del curso
+            //Verificamos que el estudiante no este subido a la lista del curso
         if(this.getEsCur.matricula == 0 ){
           alert("Estudiante subido con exito!!!");
           this.datosService.crearCursoEst(this.subirEst)
@@ -68,15 +66,17 @@ export class SubirEstudiantePage implements OnInit {
               },
               err => console.error(err)
             )
-          
-        }else{
-          alert("El estudiante ya se encuentra en este curso!!!");
-        }
-
-
+        
       }else{
-        alert("El estudiante no se encuentra en la base de datos!!!");
+        alert("El estudiante ya se encuentra en este curso!!!");
       }
+          }
+        );
+    }else{
+      alert("El estudiante no se encuentra en la base de datos!!!");
+    }
+        }
+      );
     }else{
       alert("La matricula debe ser un numero entero de 9 caracteres!!!");
       console.log(this.subirEst);
