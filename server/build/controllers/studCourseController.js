@@ -32,26 +32,6 @@ class studCourseController {
             }
         });
     }
-    getNrcCourse(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE nrc = ?', [nrc]);
-            if (pCourse.length > 0) {
-                return res.json(pCourse[0]);
-            }
-            res.status(404).json({ Text: "El curso no existe" });
-        });
-    }
-    getOneNrcCourse(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const nrcCourse = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE nrc = ?', [nrc]);
-            if (nrcCourse.length > 0) {
-                return res.json(nrcCourse[0]);
-            }
-            res.json({ Text: "El curso no existe" });
-        });
-    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO estudiante_curso set ?', [req.body]);
@@ -60,22 +40,16 @@ class studCourseController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE nrc = ?', [req.body, nrc]);
+            const { matricula } = req.params;
+            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE matricula = ?', [req.body, matricula]);
             res.json({ message: 'The curso was UPDATE' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('DELETE FROM estudiante_curso WHERE nrc = ?', [nrc]);
+            const { matricula } = req.params;
+            yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ?', [matricula]);
             res.json({ message: 'The course was deleted' });
-        });
-    }
-    deleteAllProfCourses(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM estudiante_curso');
-            res.json({ message: 'The courses was deleted' });
         });
     }
 }
