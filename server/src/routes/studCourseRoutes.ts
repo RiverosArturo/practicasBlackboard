@@ -10,11 +10,11 @@ class studCourseRoutes {
     }  
 
     config(): void { 
-        this.router.get('/', studCourseController.list);
+        this.router.get('/:nrc/:nTrabajador', studCourseController.list);
         this.router.get('/:nrc/:nTrabajador/:matricula', studCourseController.getOne);
         this.router.post('/', studCourseController.create);
-        this.router.put('/:matricula', studCourseController.update); 
-        this.router.delete('/:matricula', studCourseController.delete); 
+        this.router.put('/:nrc/:nTrabajador/:matricula', studCourseController.update); 
+        this.router.delete('/:nrc/:nTrabajador/:matricula', studCourseController.delete); 
     }
 
 }

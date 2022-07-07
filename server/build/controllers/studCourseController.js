@@ -16,8 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class studCourseController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pCourse = yield database_1.default.query('SELECT * FROM estudiante_curso');
-            res.json(pCourse);
+            const { nrc, nTrabajador } = req.params;
+            const pCourse = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
+            if (pCourse.length > 0) {
+                return res.json(pCourse[0]);
+            }
+            else {
+                return res.json({ Text: "No hay estudiantes en este curso!!!" });
+            }
         });
     }
     getOne(req, res) {
@@ -40,15 +46,15 @@ class studCourseController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { matricula } = req.params;
-            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE matricula = ?', [req.body, matricula]);
+            const { nrc, nTrabajador, matricula } = req.params;
+            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ?', [nrc, nTrabajador, matricula]);
             res.json({ message: 'The curso was UPDATE' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { matricula } = req.params;
-            yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ?', [matricula]);
+            const { nrc, nTrabajador, matricula } = req.params;
+            yield database_1.default.query('DELETE FROM estudiante_curso WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ? ', [nrc, nTrabajador, matricula]);
             res.json({ message: 'The course was deleted' });
         });
     }
