@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProfCourse } from '../../../models/ProfCourse'
 import { Prof } from '../../../models/Prof'
 import { Curso } from '../../../models/Curso'
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-menu-prof',
@@ -13,7 +14,7 @@ import { Curso } from '../../../models/Curso'
 export class MenuProfPage implements OnInit {
 
   user:number= 2013;
-  curso:string = 'IA';
+  curso:string = 'software';
 
   prof: Prof = {  
     nTrabajador:0    
@@ -28,14 +29,17 @@ export class MenuProfPage implements OnInit {
 
   pCourses:number;
   nTrabajador:number;
+  nrc:number = 0;  
 
   constructor(private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;
-    console.log('User: ',this.user);
-    
+    console.log(params);
+    this.user = params.user; 
+    this.nrc  = params.nrc;
+    console.log('nrc: ',this.nrc);      
+  
   }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');

@@ -75,20 +75,12 @@ const routes: Routes = [
     component: HomePage
   },
   {
-    path: 'menu-prof/:user',
+    path: 'menu-prof/:user/:nrc',
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {
-    path: 'menu-prof/:user',
-    component: MenuProfPage 
-  },
-  {
-    path: 'consult-course',
-    loadChildren: () => import('./curso/consult-course/consult-course.module').then( m => m.ConsultCoursePageModule)
-  },
-  {
     path: 'consult-course/:user',
-    component: ConsultCoursePage 
+    loadChildren: () => import('./curso/consult-course/consult-course.module').then( m => m.ConsultCoursePageModule)
   },
   {
     path: 'delete-course',

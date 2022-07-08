@@ -20,14 +20,19 @@
       
     <div slot="fixed">
       <ion-list>
-      <tr  *ngFor="let pCourse of pCourses">
+      <tr  *ngFor="let pCourse of pCourses">                   
 
-           [ {{pCourse.nrc}} ]
-        
+        <ion-button color="danguer">            
+          <ion-button color="danger" (click)="getNRC(user, pCourse.nrc)" >ver</ion-button>
+          
+        </ion-button>
+          
             <ion-button color="secondary">            
-              <ion-button color="secondary" (click)="getNrcCourse(pcourse.nrc);" [routerLink]="['../../menu-prof',user]">ver curso</ion-button>
+              <ion-button color="secondary" (click)="getNRC(pCourse.nrc)"  [routerLink]="['../../menu-prof',user, nrc]">ver curso</ion-button>
               <ion-icon name="eye-outline"></ion-icon>
             </ion-button>
+
+            [ {{pCourse.nrc}} ]- [{{pCourse.nTrabajador}}]
             
     </tr>
   </ion-list>

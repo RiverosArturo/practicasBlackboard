@@ -4,7 +4,8 @@ import { AlertController } from '@ionic/angular';
 import { ProfCourse } from 'src/app/models/ProfCourse';
 import { Curso } from 'src/app/models/Curso';
 import { Prof } from 'src/app/models/Prof';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-consult-course',
@@ -21,8 +22,9 @@ export class ConsultCoursePage implements OnInit {
   }  
   pCourse: ProfCourse = {
     nTrabajador:0,
-    nrc:0,       
+    nrc:0,     
   };
+
     
   profs:any = [];
   courses:any = [];
@@ -30,6 +32,8 @@ export class ConsultCoursePage implements OnInit {
   
   edit:boolean = false;
   user:number=0;
+  nrc:number=0;
+  
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
@@ -37,8 +41,7 @@ export class ConsultCoursePage implements OnInit {
     this.getProfCourses();
     this.getCourse();
     const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;      
-    console.log('User: ',this.user);
+    this.user = params.user; 
     this.pCourse.nTrabajador = this.user;
   }
   getCourse(){
@@ -57,14 +60,8 @@ export class ConsultCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  getNrcCourse(nrc:number){
-    console.log('NRC: ',nrc);
-    this.datosService.getNrcCourse(nrc).subscribe(
-      res => {
-        console.log('Res ',res);        
-      },
-      err => console.error(err)
-    )
+  getNRC(nrc:number){  
+    this.nrc = nrc;       
   }
   deleteCourse(nrc:number){
     this.datosService.deleteCourse(nrc).subscribe(
