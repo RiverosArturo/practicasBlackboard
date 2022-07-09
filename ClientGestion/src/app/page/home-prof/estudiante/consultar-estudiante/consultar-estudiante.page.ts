@@ -18,7 +18,7 @@ import { Student } from 'src/app/models/Student';
 })
 export class ConsultarEstudiantePage implements OnInit {
 
-  alumno: Student = {
+  student: Student = {
     matricula:0,
     nombre:'',
   }    
@@ -29,15 +29,20 @@ export class ConsultarEstudiantePage implements OnInit {
     
   students:any = [];
   courses:any = [];
-  
-
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
-
-
   ngOnInit() {
-    
+    this.getStudCourse();    
+  }
+  getStudCourse(){
+    this.datosService.getStudCourse().subscribe(
+      res => {
+        this.student = res;
+        console.log(this.student);        
+      },
+      err => console.error(err)
+    );
   }
 
   OpenMenuProf(){

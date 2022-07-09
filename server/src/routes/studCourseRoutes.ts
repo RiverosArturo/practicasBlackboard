@@ -10,6 +10,7 @@ class studCourseRoutes {
     }  
 
     config(): void { 
+        this.router.get('/', studCourseController.getlist);
         this.router.get('/:nrc/:nTrabajador', studCourseController.list);
         this.router.get('/:nrc/:nTrabajador/:matricula', studCourseController.getOne);
         this.router.post('/', studCourseController.create);

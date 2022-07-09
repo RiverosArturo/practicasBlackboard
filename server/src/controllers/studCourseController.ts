@@ -2,7 +2,10 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class studCourseController {
-
+    public async getlist (req: Request, res: Response){
+        const studCourse = await pool.query('SELECT * FROM estudiante_curso');
+          res.json(studCourse);
+      }
     public async list (req: Request, res: Response){
         const {nrc, nTrabajador} = req.params;
         const pCourse = await pool.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);

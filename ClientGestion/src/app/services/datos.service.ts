@@ -6,6 +6,7 @@ import { Prof }  from '../models/Prof';
 import { Curso } from '../models/Curso';
 import { Login }  from '../models/Login';
 import { ProfCourse } from '../models/ProfCourse';
+import { StudCourse } from '../models/StudCourse';
 import { Equipo } from '../models/Equipo';
 
 import { Observable } from 'rxjs';
@@ -64,6 +65,25 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.delete(`${this.API_URI}/student/${matricula}`);
   }
   updateStudent(matricula: number, updateStudent: Student):Observable<Student> {
+    return this.http.put(`${this.API_URI}/student/${matricula}`, updateStudent);
+  }
+  //Funciones Student Course////////////////////////////////////////////////////////////////////////////////////
+  getStudCourse() {
+    return this.http.get(`${this.API_URI}/studCourse`);
+  }
+  getOneStudCourse(matricula: number ){
+    return this.http.get(`${this.API_URI}/student/${matricula}`);
+  }
+  saveStudCourse(student: Student){
+    return this.http.post(`${this.API_URI}/student/`,student);
+  }
+  deleteAllStudCourse(){
+    return this.http.delete(`${this.API_URI}/student`);
+  }
+  deleteOneStudCourse(matricula: number){
+    return this.http.delete(`${this.API_URI}/student/${matricula}`);
+  }
+  updateStudCourse(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.put(`${this.API_URI}/student/${matricula}`, updateStudent);
   }
   // Funciones profs ////////////////////////////////////////////////////////////////////////////
