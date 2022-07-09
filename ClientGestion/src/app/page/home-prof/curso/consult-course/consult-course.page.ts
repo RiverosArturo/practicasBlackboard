@@ -18,7 +18,11 @@ export class ConsultCoursePage implements OnInit {
     nTrabajador:0    
   };
   course: Curso = {
+    materia:'',
     nrc:0,
+  }
+  course2: Curso = {
+    materia:'',
   }  
   pCourse: ProfCourse = {
     nTrabajador:0,
@@ -33,7 +37,7 @@ export class ConsultCoursePage implements OnInit {
   edit:boolean = false;
   user:number=0;
   nrc:number=0;
-  
+  nrc2:number=0;
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
@@ -42,7 +46,7 @@ export class ConsultCoursePage implements OnInit {
     this.getCourse();
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user; 
-    this.pCourse.nTrabajador = this.user;
+    this.pCourse.nTrabajador = this.user;   
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
@@ -60,8 +64,10 @@ export class ConsultCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  getNRC(nrc:number){  
-    this.nrc = nrc;       
+  getNRC(user:number ,nrc:number){  
+    this.nrc2 = nrc;   
+    //console.log('user:',user, 'nrc:',this.nrc2);
+    //this.router.navigate(['/menu-prof',user,this.nrc2]);    
   }
   deleteCourse(nrc:number){
     this.datosService.deleteCourse(nrc).subscribe(

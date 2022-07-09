@@ -19,20 +19,25 @@
   (ionScrollEnd)="logScrollEnd()">
       
     <div slot="fixed">
-      <ion-list>
-      <tr  *ngFor="let pCourse of pCourses">
+      <ion-list>      
 
-        <div *ngIf="pCourse.nTrabajador == user;">
-          
-            <ion-label>NRC:[ {{pCourse.nrc}} ]-[ {{pCourse.nTrabajador}} ]</ion-label>       
-
-            <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(pCourse.nTrabajador, pCourse.nrc)">Eliminar</ion-button>
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>
-
-        </div>                                      
-    </tr>
+    <tr  *ngFor="let pCourse of pCourses" >           
+      <div *ngIf="pCourse.nTrabajador == user;">            
+        <ion-button color="medium">&nbsp;            
+          <tr *ngFor="let course of courses">
+            <div *ngIf="course.nrc == pCourse.nrc">&nbsp;&nbsp;          
+              <ion-button color="danger" (click)="AlertOne(pCourse.nTrabajador, pCourse.nrc)"  >Eliminar
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>&nbsp;&nbsp;
+              <ion-label>
+                Profesor:[{{pCourse.nTrabajador}}], NRC:[{{pCourse.nrc}}]-[{{course.materia}}]    
+              </ion-label>
+              &nbsp;&nbsp;&nbsp;  
+            </div>
+          </tr>&nbsp;                     
+        </ion-button>          
+      </div>     
+  </tr>
   </ion-list>
   </div>
 </ion-content>

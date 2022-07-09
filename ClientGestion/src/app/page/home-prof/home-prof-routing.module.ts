@@ -75,7 +75,7 @@ const routes: Routes = [
     component: HomePage
   },
   {
-    path: 'menu-prof/:user/:nrc',
+    path: 'menu-prof/:user/:nrc2/:pCurse.nrc',
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {

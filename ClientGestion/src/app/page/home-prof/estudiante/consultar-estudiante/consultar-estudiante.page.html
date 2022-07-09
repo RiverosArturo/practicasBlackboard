@@ -14,29 +14,32 @@
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Consultar estudiante </ion-title><br>
+            <ion-title> lista de alumnos </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
     </ion-card>
-
-<!--prueba de games-------------------------------------------------------------->
-   <ion-card-content>
-        <div class = "col-md-4" *ngfor=" let game of game">
-          <div class="card text-center">
-            <div class="card-header">
-                {{game.title}}
-            </div>
-            <div class="card-body">
-              <p>{{game.description}}</p>
-            </div>
-          </div>
-        </div>
-      <br><br><br><br>
 <!----------------------------------------------------------------------------->
-      <ion-button > Consultar </ion-button><br><br>
-      
-   </ion-card-content>
+
+<ion-content>
+  <ion-content
+    [scrollEvents]="true"
+    (ionScrollStart)="logScrollStart()"
+    (ionScroll)="logScrolling($event)"
+    (ionScrollEnd)="logScrollEnd()">
+        
+      <div slot="fixed">
+        <ion-list>
+          <tr  *ngFor="let student of students" >           
+               
+          </tr>
+        </ion-list>
+    </div>
+  </ion-content>
+  </ion-content>
+   
+<!----------------------------------------------------------------------------->
+      <ion-button > Consultar </ion-button><br><br>      
 
   </ion-card>
 </ion-content>

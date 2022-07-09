@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfCourse } from 'src/app/models/ProfCourse';
+import { Curso } from 'src/app/models/Curso';
+
 
 @Component({
   selector: 'app-delete-course',
@@ -13,6 +16,18 @@ export class DeleteCoursePage implements OnInit {
   user:number;
   courses:any=[];
   pCourses:any=[];
+
+  course: Curso = {
+    materia:'',
+    nrc:0,
+  }
+  course2: Curso = {
+    materia:'',
+  }  
+  pCourse: ProfCourse = {
+    nTrabajador:0,
+    nrc:0,     
+  };
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
 
