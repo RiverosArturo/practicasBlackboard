@@ -28,14 +28,14 @@ class studCourseController {
         res.json({Message: 'Estudiante Saved in curso'});
     }
     public async update (req:Request, res:Response): Promise<void>{
-        const {nrc, nTrabajador, matricula} = req.params;
-        await pool.query('UPDATE estudiante_curso set ? WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ?', [nrc, nTrabajador, matricula]);
+        const {matricula, nrc} = req.params;
+        await pool.query('UPDATE estudiante_curso set ? WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ?', [nrc, matricula]);
         res.json({message: 'The curso was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{
-        const {nrc, nTrabajador, matricula} = req.params;
-        await pool.query('DELETE FROM estudiante_curso WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ? ', [nrc, nTrabajador, matricula]);
-        res.json({message: 'The course was deleted'});
+        const {matricula} = req.params;
+        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? ', [matricula]);
+        res.json({message: 'The student was deleted'});
     }
 }
 const StudCourseController = new studCourseController();

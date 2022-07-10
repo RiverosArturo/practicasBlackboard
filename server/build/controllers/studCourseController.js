@@ -52,16 +52,16 @@ class studCourseController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc, nTrabajador, matricula } = req.params;
-            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ?', [nrc, nTrabajador, matricula]);
+            const { matricula, nrc } = req.params;
+            yield database_1.default.query('UPDATE estudiante_curso set ? WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ?', [nrc, matricula]);
             res.json({ message: 'The curso was UPDATE' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc, nTrabajador, matricula } = req.params;
-            yield database_1.default.query('DELETE FROM estudiante_curso WHERE nrc = ? AND WHERE nTrabajador = ? AND matricula = ? ', [nrc, nTrabajador, matricula]);
-            res.json({ message: 'The course was deleted' });
+            const { matricula } = req.params;
+            yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ? ', [matricula]);
+            res.json({ message: 'The student was deleted' });
         });
     }
 }

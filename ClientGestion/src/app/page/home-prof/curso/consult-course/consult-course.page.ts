@@ -44,6 +44,7 @@ export class ConsultCoursePage implements OnInit {
   ngOnInit() {
     this.getProfCourses();
     this.getCourse();
+    this.getNRC(this.user,this.nrc);
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user; 
     this.pCourse.nTrabajador = this.user;   

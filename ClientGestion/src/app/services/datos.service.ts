@@ -21,6 +21,26 @@ export class DatosService {
 
   constructor(private http: HttpClient) { }
 
+  //---------- funciones sStudent course---------------------------------------------------
+  getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
+    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
+  }
+  crearCursoEst(subirEst:cursoEstudiante){
+    return this.http.post(`${this.API_URI}/studCourse`, subirEst);
+  }
+  getStudCourse() {
+    return this.http.get(`${this.API_URI}/studCourse`);
+  }
+  deleteStudCourse(matricula: number, nrc:number){
+    return this.http.delete(`${this.API_URI}/studCourse/${matricula}`);
+  }
+  deleteAllStudCourse(){
+    return this.http.delete(`${this.API_URI}/studCourse`);
+  }  
+  updateStudCourse(matricula: number, updateStudent: Student):Observable<Student> {
+    return this.http.put(`${this.API_URI}/studCourse/${matricula}`, updateStudent);
+  }
+
 //Funciones equipo////////////////////////////////////////////////////////////////////////////////////
 getEquipos() {
   return this.http.get(`${this.API_URI}/equipo`);
@@ -65,25 +85,6 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.delete(`${this.API_URI}/student/${matricula}`);
   }
   updateStudent(matricula: number, updateStudent: Student):Observable<Student> {
-    return this.http.put(`${this.API_URI}/student/${matricula}`, updateStudent);
-  }
-  //Funciones Student Course////////////////////////////////////////////////////////////////////////////////////
-  getStudCourse() {
-    return this.http.get(`${this.API_URI}/studCourse`);
-  }
-  getOneStudCourse(matricula: number ){
-    return this.http.get(`${this.API_URI}/student/${matricula}`);
-  }
-  saveStudCourse(student: Student){
-    return this.http.post(`${this.API_URI}/student/`,student);
-  }
-  deleteAllStudCourse(){
-    return this.http.delete(`${this.API_URI}/student`);
-  }
-  deleteOneStudCourse(matricula: number){
-    return this.http.delete(`${this.API_URI}/student/${matricula}`);
-  }
-  updateStudCourse(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.put(`${this.API_URI}/student/${matricula}`, updateStudent);
   }
   // Funciones profs ////////////////////////////////////////////////////////////////////////////
@@ -161,14 +162,6 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   verifica(nrc:number){
     return this.http.get(`${this.API_URI}/curso/${nrc}`)
   }
-
-  /////////Curso_estudiante///////////
-  getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
-    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
-  }
-
-  crearCursoEst(subirEst:cursoEstudiante){
-    return this.http.post(`${this.API_URI}/studCourse`, subirEst);
-  }
+  
 
 }

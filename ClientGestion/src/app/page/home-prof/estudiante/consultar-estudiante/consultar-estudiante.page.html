@@ -6,9 +6,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-
     <ion-card>
       <ion-header>
         <ion-toolbar>
@@ -19,9 +16,6 @@
         </ion-toolbar>
       </ion-header>
     </ion-card>
-
-  </ion-card>
-</ion-content>
 
 <!----------------------------------------------------------------------------->
 
@@ -34,8 +28,13 @@
         
       <div slot="fixed">
         <ion-list>
-          <tr  *ngFor="let student of students" >           
-               {{student.matricula}}
+          <tr  *ngFor="let student of students" >                            
+           <ion-card color="light">&nbsp;&nbsp;&nbsp;           
+                <ion-button color="secondary" >Editar 
+                  <ion-icon name="pencil"></ion-icon>
+                </ion-button>&nbsp;&nbsp;                    
+                Matricula:{{student.matricula}}, NRC:{{student.nrc}}&nbsp;&nbsp;  
+           </ion-card>&nbsp;                      
           </tr>
         </ion-list>
     </div>

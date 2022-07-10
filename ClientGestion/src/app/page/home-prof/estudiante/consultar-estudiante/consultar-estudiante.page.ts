@@ -38,7 +38,7 @@ export class ConsultarEstudiantePage implements OnInit {
   getStudCourse(){
     this.datosService.getStudCourse().subscribe(
       res => {
-        this.student = res;
+        this.students = res;
         console.log(this.student);        
       },
       err => console.error(err)

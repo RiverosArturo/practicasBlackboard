@@ -28,6 +28,11 @@ export class MenuProfPage implements OnInit {
     nTrabajador:0,
     nrc:0,       
   };
+  dat={
+    user:0,
+    nrc2:0,
+    ntr:0,
+  }
 
   pCourses:number;
   nTrabajador:number;
@@ -39,19 +44,22 @@ export class MenuProfPage implements OnInit {
 
   ngOnInit() {    
     const params = this.activedRoute.snapshot.params;  
-    console.log(params);
+    //const dat = this.activedRoute.snapshot.params;
+    //console.log('dat:',dat);
     this.user = params.user; 
     this.nrc  = params.nrc2; 
-    this.nrc3 = params.pCourse;   
-    console.log('user: ',this.user,'nrc: ',this.nrc);
-    console.log('nrc: ',this.nrc);
+    this.dat = params.pCourse;
+    console.log(this.dat);
+    //this.nrc3 = params.pCourse;   
+    //console.log('user: ',this.user,'nrc: ',this.nrc);
+    //console.log('nrc: ',this.nrc);
     console.log('nrc3: ',this.nrc3);
     this.datosService.getCourse(this.nrc)
       .subscribe(
         res =>{
-          console.log(res);
+       //   console.log(res);
           this.course = res;     
-          console.log('materia: ',this.course.materia);
+          //console.log('materia: ',this.course.materia);
           this.curso = this.course.materia;     
         },
         err => console.error(err)
