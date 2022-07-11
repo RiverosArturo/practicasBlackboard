@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProfCourse } from '../../../models/ProfCourse';
 import { Prof } from '../../../models/Prof';
 import { Curso } from '../../../models/Curso';
 import { User } from 'src/app/models/User';
 import { DatosService } from '../../../services/datos.service';
 
+
 @Component({
   selector: 'app-menu-prof',
   templateUrl: './menu-prof.page.html',
   styleUrls: ['./menu-prof.page.scss'],
 })
-export class MenuProfPage implements OnInit {
-
-  user:number= 2013;
-  curso:string = 'software';
+export class MenuProfPage implements OnInit {  
 
   prof: Prof = {  
     nTrabajador:0    
@@ -28,45 +26,42 @@ export class MenuProfPage implements OnInit {
     nTrabajador:0,
     nrc:0,       
   };
-  dat={
-    user:0,
-    nrc2:0,
-    ntr:0,
-  }
+  dat:{
+    user10:number,
+    nrc20:number,
+    nrc30:number,
+  };
 
   pCourses:number;
   nTrabajador:number;
-  nrc:number = 0;  
-  nrc2:number = 0;
-  nrc3:number = 0;
 
+  user:number= 2013;
+  curso:string = 'software';
+  nrc:number = 10;  
+  nrc2:number = 10;
+  nrc3:number = 10;
+  
   constructor(private datosService: DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
-  ngOnInit() {    
+  ngOnInit() {         
     const params = this.activedRoute.snapshot.params;  
-    //const dat = this.activedRoute.snapshot.params;
-    //console.log('dat:',dat);
-    this.user = params.user; 
-    this.nrc  = params.nrc2; 
-    this.dat = params.pCourse;
-    console.log(this.dat);
-    //this.nrc3 = params.pCourse;   
-    //console.log('user: ',this.user,'nrc: ',this.nrc);
-    //console.log('nrc: ',this.nrc);
-    console.log('nrc3: ',this.nrc3);
-    this.datosService.getCourse(this.nrc)
+
+    this.user = params.user;
+    this.nrc2 = params.nrc2;
+
+    console.log('params:', params);
+    console.log('user:',this.user);
+    console.log('nrc2:',this.nrc2);
+    console.log('nrc3:',this.nrc3);
+    
+    this.datosService.getCourse(this.nrc2)
       .subscribe(
-        res =>{
-       //   console.log(res);
-          this.course = res;     
-          //console.log('materia: ',this.course.materia);
+        res =>{       
+          this.course = res;               
           this.curso = this.course.materia;     
         },
         err => console.error(err)
       )
-      
-    //console.log(this.course.materia);
-    //this.curso = this.course.materia;
   }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
