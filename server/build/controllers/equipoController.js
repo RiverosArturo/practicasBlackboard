@@ -27,7 +27,17 @@ class EquipoController {
             if (equipo.length > 0) {
                 return res.json(equipo[0]);
             }
-            res.status(404).json({ Text: "El Equipo no exixte" });
+            res.json({ id: 0, nombre: '', curso_nrc: 0 });
+        });
+    }
+    getOneEquipoN(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nombre } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id = ? OR nombre = ?', [id, nombre]);
+            if (equipo.length > 0) {
+                return res.json(equipo[0]);
+            }
+            res.json({ id: 0, nombre: '', curso_nrc: 0 });
         });
     }
     saveEquipo(req, res) {

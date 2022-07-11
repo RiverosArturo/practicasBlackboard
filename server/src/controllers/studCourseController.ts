@@ -33,8 +33,8 @@ class studCourseController {
         res.json({message: 'The curso was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{
-        const {matricula} = req.params;
-        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? ', [matricula]);
+        const {matricula, nrc} = req.params;
+        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? ', [matricula, nrc]);
         res.json({message: 'The student was deleted'});
     }
 }

@@ -1,9 +1,10 @@
 import { Component,HostBinding, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Equipo } from '../../../../models/Equipo';
-import { Curso } from '../../../../models/Curso';
 import { DatosService } from '../../../../services/datos.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-generar-equipo',
@@ -12,16 +13,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class GenerarEquipoPage implements OnInit {
 
+  nrc:number = 15437;
   equipo:Equipo = {
-    id:0 ,
+    id: 0,
     nombre:'',
-    curso_nrc:0,
+    curso_nrc: this.nrc
   }
-  course: Curso = {
-    nrc:0,
-  }
-  equipos:any=[];
-  courses:any=[];
+
+  getEquipoId:any = [];
+  getEquipoN:any = [];
+  
 
   constructor(private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
 
@@ -31,33 +32,42 @@ export class GenerarEquipoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCourse();
-  }
-  getEquipo(){
-    this.datosService.getEquipos().subscribe(
-      res => {
-        this.equipos = res;
-      },
-      err => console.error(err)
-    );
-  }
-  saveEquipo(){
-    this.datosService.saveEquipo(this.equipos)
-    .subscribe(
-      res => {
-        console.log(res);              
-        this.router.navigate(['/']);
-      },
-      err => console.error(err)
-    )
-  }
-  getCourse(){
-    this.datosService.getCourses().subscribe(
-      res => {
-        this.courses = res;
-      },
-      err => console.error(err)
-    );
+    
   }
 
+  onSubmit(){
+    if(!isNaN(this.equipo.id) && this.equipo.id.toString().length==9){
+      this.equipo.nombre=this.equipo.nombre.split(" ").join("");
+      console.log(this.equipo);
+      this.datosService.getOneEquipo(this.equipo.id).subscribe(
+        res => {
+          this.getEquipoId = res;
+          console.log(this.getEquipoId);
+          if(this.getEquipoId.id == 0 ){
+            console.log(this.equipo.nombre);
+            this.datosService.getOneEquipoN(this.equipo.id, this.equipo.nombre.split(" ").join("")).subscribe(
+              res => {
+                this.getEquipoN = res;
+                console.log(this.getEquipoN);
+                if(this.getEquipoN.nombre == ''){
+                  alert("Equipo generado con exito!!!");
+                  this.datosService.saveEquipo(this.equipo)
+                    .subscribe(
+                      res => {
+                        console.log(res);
+                      },
+                      err => console.error(err)
+                  );
+                }else{
+                  alert("El nombre de equipo ya existe!!!")
+                }
+            });
+          }else{
+            alert("El id del equipo ya existe!!!")
+          }
+      });
+    }else{
+      alert("El id del equipo tiene que ser un número de 9 digitos!!!");
+    }
+  }
 }

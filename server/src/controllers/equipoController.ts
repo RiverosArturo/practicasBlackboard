@@ -13,7 +13,15 @@ class EquipoController {
         if (equipo.length > 0 ){
             return res.json(equipo[0]);
         }
-        res.status(404).json({Text:"El Equipo no exixte"});
+        res.json({id: 0, nombre: '', curso_nrc: 0});
+    }
+    public async getOneEquipoN (req:Request, res:Response): Promise<any>{
+        const {id, nombre} = req.params;
+        const equipo = await pool.query('SELECT * FROM equipo WHERE id = ? OR nombre = ?', [id, nombre])
+        if (equipo.length > 0 ){
+            return res.json(equipo[0]);
+        }
+        res.json({id: 0, nombre: '', curso_nrc: 0});
     }
     public async saveEquipo (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO equipo set ?', [req.body]);

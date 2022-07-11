@@ -20,30 +20,19 @@
       </ion-header>
     </ion-card>
 
-    <ion-card>
-      <form>
-      
-      <ion-item class="form-group">
-        <ion-label position="floating"> Nombre </ion-label>
-        <ion-input [(ngModel)]="equipo.nombre" name="nombre" ></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label>Descripcion</ion-label>
-        <select name="miselect" [(ngModel)]="equipo.equipo_nrc" name="nrc" >            
-          <option [value]="course.nrc" *ngFor="let course of courses">{{course.nrc}}</option>
-        </select>                
-      </ion-item>     
+    <ion-card-content>
+      <form (ngSubmit)="onSubmit()" #generarEq="ngForm">
+          <ion-label for="curso" color="dark">Curso:</ion-label>
+          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc" color="primary" readonly="true">{{nrc}}</ion-input>
 
-      <ion-item>
-        <ion-toolbar>
-          <ion-button  (click)="saveEquipo()"  >
-            <ion-label> Guardar </ion-label>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
+          <ion-label for="id" color="dark">Id equipo:</ion-label>
+          <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="equipo.id" color="primary" placeholder="Id para el equipo"></ion-input>
+
+          <ion-label for="nombre" color="dark">Nombre:</ion-label>
+          <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="equipo.nombre" color="primary" placeholder="Nombre del equipo"></ion-input>
+        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Generar equipo </ion-button><br><br>
       </form>
-    </ion-card>
+   </ion-card-content>
 
   </ion-card>
 </ion-content>

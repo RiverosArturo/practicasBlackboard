@@ -36,7 +36,7 @@ class Server {
         this.app.use('/api/profCourse', profCourseRoutes_1.default);
         this.app.use('/api/studCourse', studCourseRoutes_1.default);
         this.app.use('/api/admi', admiRoutes_1.default);
-        this.app.use('/api/admi', equipoRoutes_1.default);
+        this.app.use('/api/equipo', equipoRoutes_1.default);
         this.app.use('/api/login', loginRoutes_1.default);
     }
     start() {

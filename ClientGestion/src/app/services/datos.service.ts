@@ -32,7 +32,7 @@ export class DatosService {
     return this.http.get(`${this.API_URI}/studCourse`);
   }
   deleteStudCourse(matricula: number, nrc:number){
-    return this.http.delete(`${this.API_URI}/studCourse/${matricula}`);
+    return this.http.delete(`${this.API_URI}/studCourse/${matricula}/${nrc}`);
   }
   deleteAllStudCourse(){
     return this.http.delete(`${this.API_URI}/studCourse`);
@@ -45,17 +45,20 @@ export class DatosService {
 getEquipos() {
   return this.http.get(`${this.API_URI}/equipo`);
 }
-getOneEquipo(matricula: number ){
-  return this.http.get(`${this.API_URI}/equipo/${matricula}`);
+getOneEquipo(id: number ){
+  return this.http.get(`${this.API_URI}/equipo/${id}`);
 }
-saveEquipo(student: Student){
-  return this.http.post(`${this.API_URI}/equipo/`,student);
+getOneEquipoN(id:number, nombre: string ){
+  return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}`);
+}
+saveEquipo(equipo: Equipo){
+  return this.http.post(`${this.API_URI}/equipo/`,equipo);
 }
 deleteAllEquipo(){
   return this.http.delete(`${this.API_URI}/equipo`);
 }
-deleteEquipo(matricula: number){
-  return this.http.delete(`${this.API_URI}/equipo/${matricula}`);
+deleteEquipo(id: number){
+  return this.http.delete(`${this.API_URI}/equipo/${id}`);
 }
 updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
