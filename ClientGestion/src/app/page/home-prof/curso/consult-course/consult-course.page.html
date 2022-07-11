@@ -21,24 +21,24 @@
   (ionScrollEnd)="logScrollEnd()">
       
     <div slot="fixed">
-      <ion-list>
+      
       <tr  *ngFor="let pCourse of pCourses" >           
         <div *ngIf="pCourse.nTrabajador == user;">            
-          <ion-card color="medium">&nbsp;            
+          <ion-card color="medium">            
             <tr *ngFor="let course of courses">
-              <div *ngIf="course.nrc == pCourse.nrc">&nbsp;&nbsp;&nbsp;
+              <div *ngIf="course.nrc == pCourse.nrc">
                 <ion-button color="tertiary" (click)="getNRC(user, pCourse.nrc)"  [routerLink]="['../../menu-prof',user, nrc2, pCourse.nrc]">ver curso
                    &nbsp;<ion-icon name="eye-outline"></ion-icon>
                 </ion-button>
-                <ion-label>
+                <ion-label >&nbsp;&nbsp;&nbsp;
                   NRC:[{{pCourse.nrc}}], Materia:[{{course.materia}}]    
-                </ion-label>&nbsp;&nbsp;&nbsp;  
+                </ion-label>
               </div>
-            </tr>&nbsp;                     
+            </tr>                     
           </ion-card>          
         </div>     
     </tr>
-  </ion-list>
+  
   </div>
 </ion-content>
 </ion-content> 
