@@ -13,6 +13,7 @@ import admiRoutes from "./routes/admiRoutes";
 import equipoRoutes  from "./routes/equipoRoutes";
 import loginRoutes from "./routes/loginRoutes";
 import studCourseRoutes from "./routes/studCourseRoutes";
+import actividadRoutes from "./routes/actividadRoutes";
 
 class Server {
     public app : Application;
@@ -38,6 +39,7 @@ class Server {
         this.app.use('/api/studCourse',studCourseRoutes);
         this.app.use('/api/admi',admiRoutes);
         this.app.use('/api/equipo',equipoRoutes);
+        this.app.use('/api/actividad',actividadRoutes);
         this.app.use('/api/login',loginRoutes);        
     }
     start(): void{

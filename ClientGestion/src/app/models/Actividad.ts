@@ -1,5 +1,6 @@
 export interface Actividad {
 
+    id?: string;
     nombre?: string;
     descripcion?: string;
     fecha?: string;

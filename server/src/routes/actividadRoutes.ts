@@ -1,0 +1,25 @@
+import { Router } from 'express';
+import ActividadController from '../controllers/actividadController';
+
+class actividadRoutes {
+
+    public router : Router = Router();
+
+    constructor(){
+        this.config();
+    }  
+
+    config(): void { 
+        //this.router.get('/', ActividadController.getlist);
+        this.router.get('/:id/:idEquipo', ActividadController.list);
+        this.router.get('/:id', ActividadController.getOne);
+        this.router.post('/', ActividadController.create);
+        this.router.put('/:id', ActividadController.update);
+        //this.router.put('/:id/:idEquipo', ActividadController.updateActEq);
+        this.router.delete('/:id', ActividadController.delete);
+        //this.router.delete('/:id/:idEquipo', ActividadController.deleteActEq); 
+    }
+
+}
+const ActividadRoutes = new actividadRoutes();
+export default ActividadRoutes.router;

@@ -11,6 +11,7 @@ import { Equipo } from '../models/Equipo';
 
 import { Observable } from 'rxjs';
 import { cursoEstudiante } from '../models/cursoEstudiante';
+import { Actividad } from '../models/Actividad';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,15 @@ deleteEquipo(id: number){
 }
 updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
+}
+
+///FUNCIONES ACTIVIDAD/////////////////////////////////
+getOneActividad(id:string){
+  return this.http.get(`${this.API_URI}/actividad/${id}`);
+}
+
+saveActividad(actividad: Actividad){
+  return this.http.post(`${this.API_URI}/actividad/`,actividad);
 }
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
   getAdmis() {
