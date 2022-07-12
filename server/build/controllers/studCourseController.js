@@ -64,6 +64,12 @@ class studCourseController {
             res.json({ message: 'The student was deleted' });
         });
     }
+    deleteAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('DELETE FROM estudiante_curso');
+            res.json({ message: 'The students was deleted' });
+        });
+    }
 }
 const StudCourseController = new studCourseController();
 exports.default = StudCourseController;

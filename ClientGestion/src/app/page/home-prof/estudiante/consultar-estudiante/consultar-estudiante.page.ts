@@ -26,19 +26,32 @@ export class ConsultarEstudiantePage implements OnInit {
     nrc:0,     
   };
 
+  user:number= 2013;
     
   students:any = [];
+  studCourses:any = [];
   courses:any = [];
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.getStudCourse();    
+    this.getStudCourse(); 
+    this.getStudent();
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;      
+  }
+  getStudent(){
+    this.datosService.getStudents().subscribe(
+      res => {
+        this.students = res;     
+      },
+      err => console.error(err)
+    );
   }
   getStudCourse(){
     this.datosService.getStudCourse().subscribe(
       res => {
-        this.students = res;
+        this.studCourses = res;
         console.log(this.student);        
       },
       err => console.error(err)

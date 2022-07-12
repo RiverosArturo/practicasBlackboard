@@ -38,8 +38,7 @@ export class MenuProfPage implements OnInit {
   user:number= 2013;
   curso:string = 'software';
   nrc:number = 10;  
-  nrc2:number = 10;
-  nrc3:number = 10;
+  
   
   constructor(private datosService: DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
@@ -47,14 +46,13 @@ export class MenuProfPage implements OnInit {
     const params = this.activedRoute.snapshot.params;  
 
     this.user = params.user;
-    this.nrc2 = params.nrc2;
+    this.nrc = params.nrc;
 
     console.log('params:', params);
-    console.log('user:',this.user);
-    console.log('nrc2:',this.nrc2);
-    console.log('nrc3:',this.nrc3);
+    console.log('user:',this.user);    
+    console.log('nrc:',this.nrc);
     
-    this.datosService.getCourse(this.nrc2)
+    this.datosService.getCourse(this.nrc)
       .subscribe(
         res =>{       
           this.course = res;               

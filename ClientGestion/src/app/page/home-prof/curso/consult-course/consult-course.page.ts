@@ -46,12 +46,7 @@ export class ConsultCoursePage implements OnInit {
     this.getCourse();    
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user; 
-    this.pCourse.nTrabajador = this.user;   
-    //this.getNRC(this.user,this.nrc);
-  }
-  getNRC(user:number ,nrc:number,){  
-    this.nrc2 = nrc;   
-    //this.router.navigate(['/menu-prof',user,this.nrc2]);    
+    this.pCourse.nTrabajador = this.user;       
   }
   getCourse(){
     this.datosService.getCourses().subscribe(

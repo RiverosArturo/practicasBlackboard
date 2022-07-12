@@ -19,4 +19,10 @@ import { DatosService } from './services/datos.service';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },DatosService,  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+  user:number = 0;
+
+}
+
+

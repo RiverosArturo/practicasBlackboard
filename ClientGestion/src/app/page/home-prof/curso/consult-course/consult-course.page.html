@@ -27,10 +27,10 @@
           <ion-card color="medium">            
             <tr *ngFor="let course of courses">
               <div *ngIf="course.nrc == pCourse.nrc">
-                <ion-button color="tertiary" (click)="getNRC(user, pCourse.nrc)"  [routerLink]="['../../menu-prof',user, nrc2, pCourse.nrc]">ver curso
+                <ion-button color="tertiary"  [routerLink]="['../../menu-prof',user, pCourse.nrc]" >ver curso                  
                    &nbsp;<ion-icon name="eye-outline"></ion-icon>
-                </ion-button>
-                <ion-label >&nbsp;&nbsp;&nbsp;
+                </ion-button>                
+                <ion-label >&nbsp;
                   NRC:[{{pCourse.nrc}}], Materia:[{{course.materia}}]    
                 </ion-label>
               </div>

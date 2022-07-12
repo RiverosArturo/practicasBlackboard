@@ -28,6 +28,7 @@ export class EliminarEstudiantePage implements OnInit {
 
     
   students:any = [];
+  studCourses:any = [];
   courses:any = [];
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
@@ -35,10 +36,11 @@ export class EliminarEstudiantePage implements OnInit {
   ngOnInit() {
     this.getStudCourse();    
   }
+  
   getStudCourse(){
     this.datosService.getStudCourse().subscribe(
       res => {
-        this.students = res;        
+        this.studCourses = res;        
       },
       err => console.error(err)
     );
@@ -54,8 +56,7 @@ export class EliminarEstudiantePage implements OnInit {
   }
   deleteAllStudCourse(){
     this.datosService.deleteAllStudCourse().subscribe(
-      res => {
-        console.log(res);
+      res => {      
         this.getStudCourse();
       },
       err => console.error(err)
@@ -106,7 +107,7 @@ export class EliminarEstudiantePage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-           // this.deleteAllProfCourse();
+            this.deleteAllStudCourse();
           }
         }
       ]

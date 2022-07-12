@@ -39,7 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
   },
   {
-    path: 'consultar-estudiante',
+    path: 'consultar-estudiante/:user',
     loadChildren: () => import('./estudiante/consultar-estudiante/consultar-estudiante.module').then( m => m.ConsultarEstudiantePageModule)
   },
   {
@@ -75,7 +75,7 @@ const routes: Routes = [
     component: HomePage
   },
   {
-    path: 'menu-prof/:user/:nrc2/:pCurse.nrc',
+    path: 'menu-prof/:user/:nrc',
     loadChildren: () => import('./menu-prof/menu-prof.module').then( m => m.MenuProfPageModule)
   },
   {

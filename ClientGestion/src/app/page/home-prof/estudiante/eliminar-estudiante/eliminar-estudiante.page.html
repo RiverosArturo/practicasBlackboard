@@ -28,12 +28,12 @@
         
       <div slot="fixed">
         <ion-list>
-          <tr  *ngFor="let student of students" >                            
+          <tr  *ngFor="let studCourse of studCourses" >                            
            <ion-card color="light">&nbsp;
               <ion-button color="danger" (click)="AlertOne(student.matricula, student.nrc)"  >
                 <ion-icon name="trash"></ion-icon>
               </ion-button>
-                Matricula:{{student.matricula}}, NRC:{{student.nrc}}&nbsp;&nbsp;  
+                Matricula:{{studCourse.matricula}}, NRC:{{studCourse.nrc}}&nbsp;&nbsp;  
            </ion-card>                  
           </tr>
         </ion-list>

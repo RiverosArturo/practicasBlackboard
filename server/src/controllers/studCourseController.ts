@@ -37,6 +37,10 @@ class studCourseController {
         await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? ', [matricula, nrc]);
         res.json({message: 'The student was deleted'});
     }
+    public async deleteAll (req:Request, res:Response): Promise <void>{
+        await pool.query('DELETE FROM estudiante_curso');
+        res.json({message: 'The students was deleted'});
+    }
 }
 const StudCourseController = new studCourseController();
 export default StudCourseController;
