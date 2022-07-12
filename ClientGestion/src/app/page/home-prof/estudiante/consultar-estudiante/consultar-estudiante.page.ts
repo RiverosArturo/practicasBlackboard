@@ -37,8 +37,17 @@ export class ConsultarEstudiantePage implements OnInit {
   ngOnInit() {
     this.getStudCourse(); 
     this.getStudent();
+    this.getCourse();
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user;      
+  }
+  getCourse(){
+    this.datosService.getCourses().subscribe(
+      res => {
+        this.courses = res;
+      },
+      err => console.error(err)
+    );
   }
   getStudent(){
     this.datosService.getStudents().subscribe(

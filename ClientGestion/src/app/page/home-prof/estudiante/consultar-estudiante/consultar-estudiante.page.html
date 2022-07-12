@@ -40,19 +40,24 @@
     (ionScrollEnd)="logScrollEnd()">
         
     <div slot="fixed">        
-        <tr  *ngFor="let studCourse of studCourses" >
-            
-              
-                <!--
-                  <ion-button color="light">&nbsp;        
-                      <ion-button color="secondary" >Editar 
-                        <ion-icon name="pencil"></ion-icon>
-                      </ion-button>&nbsp;&nbsp;                    
-                        {{studCourse.matricula}}, NRC:{{studCourse.nrc}}&nbsp;&nbsp;  
-                  </ion-button>&nbsp;
-                  -->
-                                                                     
-        </tr>        
+        
+        <tr  *ngFor="let studCourse of studCourses" >            
+              <ion-button color="light">&nbsp;        
+                  <ion-button color="secondary" >Editar 
+                    <ion-icon name="pencil"></ion-icon>
+                    </ion-button>&nbsp;&nbsp;    
+                    <tr *ngFor="let student of students">
+                      <div *ngIf="studCourse.matricula == student.matricula">
+                        <tr *ngFor="let course of courses">
+                          <div *ngIf=" studCourse.nrc == course.nrc">
+                            {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
+                          </div>
+                        </tr>                                                
+                      </div>
+                    </tr>                                      
+              </ion-button>&nbsp;                                                                     
+        </tr> 
+
     </div>
   </ion-content>
   </ion-content>

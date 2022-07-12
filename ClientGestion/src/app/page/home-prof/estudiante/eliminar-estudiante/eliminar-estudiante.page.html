@@ -27,16 +27,24 @@
     (ionScrollEnd)="logScrollEnd()">
         
       <div slot="fixed">
-        <ion-list>
-          <tr  *ngFor="let studCourse of studCourses" >                            
-           <ion-card color="light">&nbsp;
-              <ion-button color="danger" (click)="AlertOne(student.matricula, student.nrc)"  >
-                <ion-icon name="trash"></ion-icon>
-              </ion-button>
-                Matricula:{{studCourse.matricula}}, NRC:{{studCourse.nrc}}&nbsp;&nbsp;  
-           </ion-card>                  
-          </tr>
-        </ion-list>
+                
+        <tr  *ngFor="let studCourse of studCourses" >            
+          <ion-button color="light">&nbsp;        
+            <ion-button color="danger" (click)="AlertOne(student.matricula, student.nrc)"  >
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>&nbsp;&nbsp;    
+                <tr *ngFor="let student of students">
+                  <div *ngIf="studCourse.matricula == student.matricula">
+                    <tr *ngFor="let course of courses">
+                      <div *ngIf=" studCourse.nrc == course.nrc">
+                        {{studCourse.matricula}}, {{student.nombre}},  NRC:{{studCourse.nrc}}, {{course.materia}}   
+                      </div>
+                    </tr>                                                
+                  </div>
+                </tr>                                      
+          </ion-button>&nbsp;                                                                     
+        </tr> 
+
     </div>
   </ion-content>
   </ion-content>

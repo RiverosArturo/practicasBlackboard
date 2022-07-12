@@ -7,6 +7,7 @@ import { cursoEstudiante } from '../../../../models/cursoEstudiante';
 import { User } from '../../../../models/User';
 import { FormsModule } from '@angular/forms';
 import { DatosService } from 'src/app/services/datos.service';
+import { ConsultarEquipoPageModule } from '../../equipo/consultar-equipo/consultar-equipo.module';
 
 @Component({
   selector: 'app-subir-estudiante',
@@ -14,32 +15,50 @@ import { DatosService } from 'src/app/services/datos.service';
   styleUrls: ['./subir-estudiante.page.scss'],
 })
 export class SubirEstudiantePage implements OnInit {
+
   user:number;
+  nrc:number=0;  
+  course:string='hola';
 
-  constructor(private datosService: DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
-
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
-  params = this.activedRoute.snapshot.params;
-  nrc:number=15437;
+  params = this.activedRoute.snapshot.params;  
   nTrabajador:number=this.params.user;
   getEs:any = [];
   getEsCur:any = [];
+  courses:any=[];
+  
   subirEst: cursoEstudiante = {
     matricula: 0,
     nrc: this.nrc,
     nTrabajador: this.nTrabajador
   };
 
-  ngOnInit() {
-    const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;
-    this.nTrabajador = params.user;
-    console.log('User: ',this.user);
+  constructor(private datosService: DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
+  ngOnInit() {    
+    const params = this.activedRoute.snapshot.params;  
+    console.log(params);
+
+    this.user = params.user;
+    this.nrc = params.nrc;
+    this.course = params.curso;
+
+    this.nTrabajador = params.user;
+    console.log(this.nrc);
+    this.getCourse();
     //this.search.valueChanges.subscribe(value => this.searchEmitter.emit(value));
+  }
+  getCourse(){
+    this.datosService.getCourses().subscribe(
+      res => {
+        this.courses = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  OpenMenuProf(){
+    this.menu.enable(true,'MenuProf');
+    this.menu.open('MenuProf')
   }
 
   onSubmit(){

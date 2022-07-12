@@ -24,11 +24,10 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons slot="start">
+          <ion-buttons>
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> Subir estudiante </ion-title><br>
-            <ion-label slot="end" >Profesor: {{user}} </ion-label>
-            <ion-label slot="end" >Curso: {{nrc}} </ion-label>
+            <ion-label slot="end" >Profesor: {{user }}, Curso:{{nrc}},{{ course}} </ion-label>            
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -41,7 +40,7 @@
           <ion-input type="text" name="profesor" #profesor="ngModel" [(ngModel)]="subirEst.nTrabajador" color="primary" readonly="true"></ion-input>
 
           <ion-label for="materia" color="dark">Materia:</ion-label>
-          <ion-input type="text" name="materia" #materia="ngModel" [(ngModel)]="subirEst.nrc" color="primary" readonly="true"></ion-input>
+          <ion-input type="text" name="materia" #materia="ngModel" [(ngModel)]="nrc" color="primary" readonly="true"></ion-input>
 
           <ion-label for="estudiante" color="dark">Estudiante:</ion-label>
           <ion-input type="text" name="estudiante" #estudiante="ngModel" [(ngModel)]="subirEst.matricula" color="primary" placeholder="Matricula estudiante"></ion-input>

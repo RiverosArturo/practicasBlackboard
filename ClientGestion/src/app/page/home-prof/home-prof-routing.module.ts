@@ -35,7 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./equipo/eliminar-equipo/eliminar-equipo.module').then( m => m.EliminarEquipoPageModule)
   },
   {
-    path: 'subir-estudiante/:user',
+    path: 'subir-estudiante/:user/:nrc/:curso',
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
   },
   {

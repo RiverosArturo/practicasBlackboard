@@ -35,8 +35,25 @@ export class EliminarEstudiantePage implements OnInit {
 
   ngOnInit() {
     this.getStudCourse();    
+    this.getStudent();
+    this.getCourse();
   }
-  
+  getCourse(){
+    this.datosService.getCourses().subscribe(
+      res => {
+        this.courses = res;
+      },
+      err => console.error(err)
+    );
+  }
+  getStudent(){
+    this.datosService.getStudents().subscribe(
+      res => {
+        this.students = res;     
+      },
+      err => console.error(err)
+    );
+  }
   getStudCourse(){
     this.datosService.getStudCourse().subscribe(
       res => {
