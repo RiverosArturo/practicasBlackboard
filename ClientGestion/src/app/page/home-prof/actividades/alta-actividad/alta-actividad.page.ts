@@ -42,7 +42,7 @@ export class AltaActividadPage implements OnInit {
       res => {
         this.getActividad = res;
 
-        if(this.getActividad.id==""){
+        if( this.getActividad.id == ""){
           alert("Actividad agregada con exito!!!");
           this.datosService.saveActividad(this.actividadCurso).subscribe(
             res => {
