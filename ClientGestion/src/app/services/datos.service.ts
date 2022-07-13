@@ -70,6 +70,10 @@ getOneActividad(id:string){
   return this.http.get(`${this.API_URI}/actividad/${id}`);
 }
 
+getOneActividadEq(id:string, id_equipo:number){
+  return this.http.get(`${this.API_URI}/actividad/${id}/${id_equipo}`);
+}
+
 saveActividad(actividad: Actividad){
   return this.http.post(`${this.API_URI}/actividad/`,actividad);
 }

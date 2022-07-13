@@ -23,11 +23,25 @@ class ActividadController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ?', [id]);
+            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL ', [id]);
             if (actividad.length > 0) {
                 return res.json(actividad[0]);
             }
-            res.json({ id: "", nombre: "", descripcion: "", fecha: "", fechaEntrega: "", horaEntrega: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+            else {
+                res.json({ id: "", nombre: "", descripcion: "", fecha: "", fechaEntrega: "", horaEntrega: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+            }
+        });
+    }
+    getOneEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, id_equipo } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? ', [id, id_equipo]);
+            if (actividad.length > 0) {
+                return res.json(actividad[0]);
+            }
+            else {
+                res.json({ id: "", nombre: "", descripcion: "", fecha: "", fechaEntrega: "", horaEntrega: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+            }
         });
     }
     create(req, res) {

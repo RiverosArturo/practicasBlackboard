@@ -9,11 +9,21 @@ class ActividadController {
     }
     public async getOne (req:Request, res:Response): Promise<any>{
         const  {id} = req.params;
-        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ?', [id])
+        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL ', [id])
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
+        }else{
+            res.json({id: "", nombre:"", descripcion:"", fecha:"", fechaEntrega:"",horaEntrega:"",noTrabajador:0,nrc:0,id_equipo:0});
         }
-        res.json({id: "", nombre:"", descripcion:"", fecha:"", fechaEntrega:"",horaEntrega:"",noTrabajador:0,nrc:0,id_equipo:0});
+    }
+    public async getOneEq (req:Request, res:Response): Promise<any>{
+        const  {id, id_equipo} = req.params;
+        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? ', [id,id_equipo])
+        if (actividad.length > 0 ){
+            return res.json(actividad[0]);
+        }else{
+            res.json({id: "", nombre:"", descripcion:"", fecha:"", fechaEntrega:"",horaEntrega:"",noTrabajador:0,nrc:0,id_equipo:0});
+        }
     }
     public async create (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO actividad set ?', [req.body]);

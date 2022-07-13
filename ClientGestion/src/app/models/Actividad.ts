@@ -8,6 +8,6 @@ export interface Actividad {
     horaEntrega?: string;
     noTrabajador?: number;
     nrc?: number;
-    idEquipo?: number;
+    id_equipo?: number;
 
 }
