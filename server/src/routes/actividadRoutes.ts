@@ -11,8 +11,9 @@ class actividadRoutes {
 
     config(): void { 
         //this.router.get('/', ActividadController.getlist);
-        this.router.get('/:id/:idEquipo', ActividadController.list);
+        this.router.get('/', ActividadController.list);
         this.router.get('/:id', ActividadController.getOne);
+        this.router.get('/:id/:id_equipo', ActividadController.getOneEq);
         this.router.post('/', ActividadController.create);
         this.router.put('/:id', ActividadController.update);
         //this.router.put('/:id/:idEquipo', ActividadController.updateActEq);
