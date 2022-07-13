@@ -125,7 +125,7 @@ saveActividad(actividad: Actividad){
   }
   deleteAllCourses(){
     return this.http.delete(`${this.API_URI}/curso`);
-  }
+  }  
   getCourse(nrc:number) {
     return this.http.get(`${this.API_URI}/curso/${nrc}`);
   }
@@ -147,9 +147,12 @@ saveActividad(actividad: Actividad){
   }
   getNrcCourse(nrc:number) {
     return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
-  }
+  }  
   getOneNrcCourse(nrc:number) {
     return this.http.get(`${this.API_URI}/curso/${nrc}`);
+  }
+  getNRCCourse(nrc:number) {
+    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
   }
   deleteProfCourse(nrc: number){
     return this.http.delete(`${this.API_URI}/profCourse/${nrc}`);

@@ -9,9 +9,7 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
   <ion-card>
-
     <ion-card>
       <ion-header>
         <ion-toolbar>
@@ -22,44 +20,58 @@
         </ion-toolbar>
       </ion-header>
     </ion-card>
-
-    <ion-label>Selecciona el  NRC </ion-label>
-    <form>             
-      <ion-card>
-      <ion-list>
-        
-        <ion-list-header>
-          <ion-label>
-            Selecciona 
-          </ion-label>
-        </ion-list-header>            
-        
-        <ion-item>          
-          <ion-label>NRC</ion-label>
-          <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-              <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
-          </select>                
-      </ion-item> 
-      <ion-label> {{pCourse.nrc}} </ion-label>
-
-      </ion-list>
-    </ion-card>
-
-    <ion-item>
-      <ion-toolbar>
-        <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
-          <ion-label> Guardar </ion-label>
-        </ion-button>
-        <ion-button slot="end"   (click)=" getOneNrcCourse(pCourse.nrc)">
-          <ion-label> prueba </ion-label>
-        </ion-button>
-        
-      </ion-toolbar>
-    </ion-item><br>
-    </form>
-
   </ion-card>
-</ion-content> 
+
+
+<ion-content>
+    <ion-label>Selecciona el  NRC </ion-label>
+    <form>      
+    <ion-card>      
+      <ion-header>
+        <ion-label> Selecciona </ion-label>
+      </ion-header>                  
+      <ion-item>          
+        <ion-label>NRC</ion-label>
+        <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
+            <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
+        </select>                
+      </ion-item> 
+      <ion-label> {{pCourse.nrc}} </ion-label>            
+    </ion-card>
+  <ion-item>
+    <ion-toolbar>
+      <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
+        <ion-label> Guardar </ion-label>
+      </ion-button>
+      <ion-button slot="end"   (click)=" getOneNrcCourse(pCourse.nrc)">
+        <ion-label> prueba </ion-label>
+      </ion-button>
+      <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
+        <ion-label> prueba2 </ion-label>
+      </ion-button>      
+    </ion-toolbar>
+  </ion-item><br>
+  </form>
+-----------------------------------------------------------------------------------------------
+  <ion-content
+        [scrollEvents]="true"
+        (ionScrollStart)="logScrollStart()"
+        (ionScroll)="logScrolling($event)"
+        (ionScrollEnd)="logScrollEnd()">
+
+        <div slot="fixed">        
+            <tr  *ngFor="let pCourse of pCourses" >           
+              <div *ngIf="pCourse.nTrabajador == user;">                                            
+                  <div *ngIf="pCourse.nTrabajador == user">
+                      hola: {{pCourse.nTrabajador}}
+                  </div>                                       
+              </div>     
+            </tr>    
+        </div>
+      </ion-content>
+  
+  </ion-content>
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

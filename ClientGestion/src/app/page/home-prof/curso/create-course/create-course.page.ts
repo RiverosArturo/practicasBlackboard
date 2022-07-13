@@ -36,6 +36,7 @@ export class CreateCoursePage implements OnInit {
   
   edit:boolean = false;
   user:number;
+  nrc:number=0;
 
   constructor( private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
   
@@ -48,15 +49,26 @@ export class CreateCoursePage implements OnInit {
     this.getCourse();    
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user;  
-    console.log('User: ',this.user);
-    this.pCourse.nTrabajador = this.user;
-  }
+    console.log('User: ',this.user);    
+    this.pCourse.nTrabajador = this.user;    
+    console.log('NRC:',this.nrc);
+  }  
+  
   getOneNrcCourse(nrc:number){
     console.log(this.pCourse.nTrabajador);
     console.log(nrc);
-    
-    //this.datosService.getCourse(nrc).subscribe(
     this.datosService.getOneNrcCourse(nrc).subscribe(
+      res => {          
+        this.profCourse = res;
+        console.log(this.profCourse);   
+      },
+      err => console.error(err)
+    )
+  }
+  getNRCCourse(nrc:number){
+    console.log(this.pCourse.nTrabajador);
+    console.log(nrc);
+    this.datosService.getNRCCourse(nrc).subscribe(
       res => {          
         this.profCourse = res;
         console.log(this.profCourse);   
@@ -93,8 +105,7 @@ export class CreateCoursePage implements OnInit {
     .subscribe(
       res => {
         console.log(res);    
-        console.log('Curso guardado---');
-        //this.router.navigate(['/home-prof']);
+        console.log('Curso guardado---');        
       },
       err => console.error(err)
     )
@@ -134,8 +145,9 @@ export class CreateCoursePage implements OnInit {
           text: 'Guardar',
           id: 'confirm-button',
           handler: () => {
-            console.log('Confirma Okay');
-            this.saveProfCourse();
+            console.log('Confirma Okay');            
+            console.log(nrc);            
+            //this.saveProfCourse();
             this.Alert(nrc);
           }
         }

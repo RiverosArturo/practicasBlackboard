@@ -15,6 +15,7 @@ class ProfCourseRoutes {
         this.router.get('/:nTrabajador', profCourseController_1.default.getOne);
         this.router.get('/:nrc', profCourseController_1.default.getOneNrcCourse);
         this.router.get('/:nrc', profCourseController_1.default.getNrcCourse);
+        this.router.get('/:nrc', profCourseController_1.default.getNRCCourse);
         this.router.post('/', profCourseController_1.default.create);
         this.router.put('/:nrc', profCourseController_1.default.update);
         this.router.delete('/:nrc', profCourseController_1.default.delete);

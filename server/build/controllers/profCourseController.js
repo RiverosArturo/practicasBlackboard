@@ -40,6 +40,16 @@ class ProfCourseController {
             res.status(404).json({ Text: "El curso no existe" });
         });
     }
+    getNRCCourse(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc]);
+            if (pCourse.length > 0) {
+                return res.json(pCourse[0]);
+            }
+            res.status(404).json({ Text: "El curso no existe" });
+        });
+    }
     getOneNrcCourse(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc } = req.params;
