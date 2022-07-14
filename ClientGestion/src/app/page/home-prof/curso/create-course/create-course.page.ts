@@ -48,34 +48,21 @@ export class CreateCoursePage implements OnInit {
     this.getProfCourses();
     this.getCourse();    
     const params = this.activedRoute.snapshot.params;  
-    this.user = params.user;  
-    console.log('User: ',this.user);    
-    this.pCourse.nTrabajador = this.user;    
-    console.log('NRC:',this.nrc);
+    this.user = params.user;      
+    this.pCourse.nTrabajador = this.user;        
   }  
-  
-  getOneNrcCourse(nrc:number){
-    console.log(this.pCourse.nTrabajador);
-    console.log(nrc);
-    this.datosService.getOneNrcCourse(nrc).subscribe(
+  // optiene el curso de un usuario en espesifico  
+  getUSERNRC(user:number, nrc:number){    
+    console.log(user,nrc);
+    this.datosService.getUSERNRC(user, nrc).subscribe(
       res => {          
-        this.profCourse = res;
-        console.log(this.profCourse);   
+        this.pCourse = res;
+        console.log(this.pCourse);   
       },
       err => console.error(err)
     )
   }
-  getNRCCourse(nrc:number){
-    console.log(this.pCourse.nTrabajador);
-    console.log(nrc);
-    this.datosService.getNRCCourse(nrc).subscribe(
-      res => {          
-        this.profCourse = res;
-        console.log(this.profCourse);   
-      },
-      err => console.error(err)
-    )
-  }
+  // optiene el dato curso
   getCourse(){
     this.datosService.getCourses().subscribe(
       res => {
@@ -84,6 +71,7 @@ export class CreateCoursePage implements OnInit {
       err => console.error(err)
     );
   }
+//Optiene el dato nTrabajador
   getProf(){
     this.datosService.getProfs().subscribe(
       res => {
@@ -92,6 +80,7 @@ export class CreateCoursePage implements OnInit {
       err => console.error(err)
     );
   }
+  //optiene la tabla profesor_curso
   getProfCourses(){
     this.datosService.getProfCourses().subscribe(
       res => {
@@ -100,6 +89,7 @@ export class CreateCoursePage implements OnInit {
       err => console.error(err)
     );
   }
+  // guerda el curso del profesor
   saveProfCourse(){
     this.datosService.saveProfCourse(this.pCourse)
     .subscribe(
@@ -110,6 +100,7 @@ export class CreateCoursePage implements OnInit {
       err => console.error(err)
     )
   }
+//------------------------------------------------------------------  
   async Alert(nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

@@ -35,7 +35,7 @@
         <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
             <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
         </select>                
-      </ion-item> 
+      </ion-item> <br>
       <ion-label> {{pCourse.nrc}} </ion-label>            
     </ion-card>
   <ion-item>
@@ -43,7 +43,7 @@
       <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
         <ion-label> Guardar </ion-label>
       </ion-button>
-      <ion-button slot="end"   (click)=" getOneNrcCourse(pCourse.nrc)">
+      <ion-button slot="end"   (click)=" getUSERNRC(user, pCourse.nrc)">
         <ion-label> prueba </ion-label>
       </ion-button>
       <ion-button slot="end"   (click)=" AlertOne(pCourse.nrc)">
@@ -52,23 +52,6 @@
     </ion-toolbar>
   </ion-item><br>
   </form>
------------------------------------------------------------------------------------------------
-  <ion-content
-        [scrollEvents]="true"
-        (ionScrollStart)="logScrollStart()"
-        (ionScroll)="logScrolling($event)"
-        (ionScrollEnd)="logScrollEnd()">
-
-        <div slot="fixed">        
-            <tr  *ngFor="let pCourse of pCourses" >           
-              <div *ngIf="pCourse.nTrabajador == user;">                                            
-                  <div *ngIf="pCourse.nTrabajador == user">
-                      hola: {{pCourse.nTrabajador}}
-                  </div>                                       
-              </div>     
-            </tr>    
-        </div>
-      </ion-content>
   
   </ion-content>
 

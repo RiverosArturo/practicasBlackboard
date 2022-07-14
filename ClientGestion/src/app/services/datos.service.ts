@@ -149,14 +149,8 @@ saveActividad(actividad: Actividad){
   getProfCourse(nTrabajador: number) {
     return this.http.get(`${this.API_URI}/profCourse/${nTrabajador}`);
   }
-  getNrcCourse(nrc:number) {
-    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
-  }  
-  getOneNrcCourse(nrc:number) {
-    return this.http.get(`${this.API_URI}/curso/${nrc}`);
-  }
-  getNRCCourse(nrc:number) {
-    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
+  getUSERNRC(user:number,nrc:number) {
+    return this.http.get(`${this.API_URI}/profCourse/${user}/${nrc}`);
   }
   deleteProfCourse(nrc: number){
     return this.http.delete(`${this.API_URI}/profCourse/${nrc}`);
@@ -166,9 +160,6 @@ saveActividad(actividad: Actividad){
   }  
   saveProfCourse(pCourse: ProfCourse){
     return this.http.post(`${this.API_URI}/profCourse/`,pCourse);
-  }
-  updateProfCourse(nrc, updateProfCourse){
-    return this.http.put(`${this.API_URI}/profCourse/${nrc}`, updateProfCourse);
   }
 
   /////funciones ////////////////////////////////////////////////////////////////////////////////////////////

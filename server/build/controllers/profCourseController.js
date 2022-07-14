@@ -30,26 +30,17 @@ class ProfCourseController {
             res.status(404).json({ Text: "El curso no existe" });
         });
     }
-    getNrcCourse(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc]);
-            if (pCourse.length > 0) {
-                return res.json(pCourse[0]);
-            }
-            res.status(404).json({ Text: "El curso no existe" });
-        });
-    }
     getNRCCourse(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc]);
+            const { nTrabajador, nrc } = req.params;
+            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nTrabajador = ? AND WHERE nrc = ?', [nTrabajador, nrc]);
             if (pCourse.length > 0) {
                 return res.json(pCourse[0]);
             }
-            res.status(404).json({ Text: "El curso no existe" });
+            res.json({ Text: "El curso no existe" });
         });
     }
+    // no borrar optiene el nrc para poder guardar el curso
     getOneNrcCourse(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc } = req.params;

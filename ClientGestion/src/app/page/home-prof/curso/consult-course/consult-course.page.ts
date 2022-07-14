@@ -64,75 +64,7 @@ export class ConsultCoursePage implements OnInit {
       err => console.error(err)
     );
   }  
-  deleteCourse(nrc:number){
-    this.datosService.deleteCourse(nrc).subscribe(
-      res => {
-        console.log(res);
-        this.getCourse();
-      },
-      err => console.error(err)
-    )
-  }
-  deleteAllCourses(){
-    this.datosService.deleteAllCourses().subscribe(
-      res => {
-        console.log(res);
-        this.getCourse();
-      },
-      err => console.error(err)
-    )
-  }
-  async AlertOne(clave: number) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ clave ,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteCourse(clave);
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllCourses();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+  
+  
 
 }

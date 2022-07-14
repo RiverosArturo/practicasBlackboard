@@ -16,24 +16,15 @@ class ProfCourseController {
         res.status(404).json({Text:"El curso no existe"});
     }
     
-    public async getNrcCourse (req:Request, res:Response): Promise<any>{
-        const  {nrc} = req.params;
-        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc])
-        if (pCourse.length > 0 ){
-            return res.json(pCourse[0]);
-        }
-        res.status(404).json({Text:"El curso no existe"});
-    }
-
     public async getNRCCourse (req:Request, res:Response): Promise<any>{
-        const  {nrc} = req.params;
-        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc])
+        const  {nTrabajador,nrc} = req.params;        
+        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nTrabajador = ? AND WHERE nrc = ?', [nTrabajador, nrc])
         if (pCourse.length > 0 ){
             return res.json(pCourse[0]);
         }
-        res.status(404).json({Text:"El curso no existe"});
+        res.json({Text:"El curso no existe"});
     }
-    
+// no borrar optiene el nrc para poder guardar el curso
     public async getOneNrcCourse (req:Request, res:Response): Promise<any>{
         const  {nrc} = req.params;
         const nrcCourse = await pool.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc])
