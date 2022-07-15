@@ -21,9 +21,53 @@
     </ion-card>
 
 
-   <ion-card-content>
-      <ion-button > Modificar </ion-button><br><br>
-   </ion-card-content>
+    <ion-card>
+      <form>
+      
+      <ion-item class="form-group">
+        <ion-label position="floating"> id </ion-label>
+        <ion-input [(ngModel)]="avtivity.nombre" name="id" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> Nombre </ion-label>
+        <ion-input [(ngModel)]="activity.nombre" name="nombre" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> descripcion </ion-label>
+        <ion-input [(ngModel)]="activity.descripcion" name="descripcion" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> fecha </ion-label>
+        <ion-input [(ngModel)]="activity.fecha" name="fecha" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> fecha de entrega </ion-label>
+        <ion-input [(ngModel)]="activity.fechaEnctrega" name="fechaEntrega" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> Hora de engrega </ion-label>
+        <ion-input [(ngModel)]="activity.horaEntrega" name="horaEntrega" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> NRC </ion-label>
+        <ion-input [(ngModel)]="activity.nrc" name="nrc" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="form-group">
+        <ion-label position="floating"> id de equipo </ion-label>
+        <ion-input [(ngModel)]="activity.id_equipo" name="id_equipo" autofocus></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-footer>
+          <ion-toolbar>    
+            <ion-button slot="end" color="primary" > Guerdar  
+              <ion-icon name="folder-outline"></ion-icon>
+            </ion-button>    
+          </ion-toolbar>  
+        </ion-footer>
+      </ion-item>
+      </form>
+    </ion-card>
 
   </ion-card>
 </ion-content>

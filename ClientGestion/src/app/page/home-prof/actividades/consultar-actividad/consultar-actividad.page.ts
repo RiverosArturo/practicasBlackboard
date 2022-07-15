@@ -26,7 +26,8 @@ export class ConsultarActividadPage implements OnInit {
   getActivity(){
     this.datosService.getActivity().subscribe(
       res => {
-        this.activitys = res;        
+        this.activitys = res; 
+        console.log(res);       
       },
       err => console.error(err)
     );
