@@ -6,27 +6,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
 
     <ion-card>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Consultar Actividad </ion-title><br>
+            <ion-title> Lista de Actividad </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
     </ion-card>
 
+    <ion-content>
+      <ion-content
+        [scrollEvents]="true"
+        (ionScrollStart)="logScrollStart()"
+        (ionScroll)="logScrolling($event)"
+        (ionScrollEnd)="logScrollEnd()">
+            
+          <div slot="fixed">
+            <ion-list>
+            <tr  *ngFor="let activity of activitys">
 
-   <ion-card-content>
-      <ion-button > Modificar </ion-button><br><br>
-   </ion-card-content>
+              
+                <ion-button color="primary" >
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-button>                    
+                         
+                 {{ activity.id }}, {{ activity.nombre }}, {{ activity.descripcion }} 
+              
+          </tr>
+        </ion-list>
+        </div>
+      </ion-content>
+      </ion-content>
 
-  </ion-card>
-</ion-content>
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

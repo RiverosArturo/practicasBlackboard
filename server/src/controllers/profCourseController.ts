@@ -15,10 +15,10 @@ class ProfCourseController {
         }
         res.status(404).json({Text:"El curso no existe"});
     }
-    
-    public async getNRCCourse (req:Request, res:Response): Promise<any>{
-        const  {nTrabajador,nrc} = req.params;        
-        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nTrabajador = ? AND WHERE nrc = ?', [nTrabajador, nrc])
+// optiene user y nrc para filtar un curso exixtente    
+    public async getUSERNRC (req:Request, res:Response): Promise<any>{
+        const  {nrc} = req.params;        
+        const pCourse = await pool.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc])
         if (pCourse.length > 0 ){
             return res.json(pCourse[0]);
         }

@@ -52,12 +52,11 @@ export class CreateCoursePage implements OnInit {
     this.pCourse.nTrabajador = this.user;        
   }  
   // optiene el curso de un usuario en espesifico  
-  getUSERNRC(user:number, nrc:number){    
-    console.log(user,nrc);
-    this.datosService.getUSERNRC(user, nrc).subscribe(
-      res => {          
-        this.pCourse = res;
-        console.log(this.pCourse);   
+  getUSERNRC(user:number, nrc:number ){    
+    console.log(user, nrc);    
+    this.datosService.getUSERNRC(nrc).subscribe(
+      res => {
+        console.log(res)        
       },
       err => console.error(err)
     )
@@ -66,7 +65,7 @@ export class CreateCoursePage implements OnInit {
   getCourse(){
     this.datosService.getCourses().subscribe(
       res => {
-        this.courses = res;
+        this.courses = res;        
       },
       err => console.error(err)
     );
@@ -138,7 +137,7 @@ export class CreateCoursePage implements OnInit {
           handler: () => {
             console.log('Confirma Okay');            
             console.log(nrc);            
-            //this.saveProfCourse();
+            this.saveProfCourse();
             this.Alert(nrc);
           }
         }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Equipo } from 'src/app/models/Equipo';
 
 @Component({
   selector: 'app-modificar-equipo',
@@ -7,6 +8,11 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./modificar-equipo.page.scss'],
 })
 export class ModificarEquipoPage implements OnInit {
+
+  equipo:Equipo ={
+    nombre: '',
+    curso_nrc: 0,
+  }
 
   constructor(private menu:MenuController) { }
 

@@ -14,16 +14,37 @@
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Modificar equipo </ion-title><br>
+            <ion-title> Editar equipo </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
     </ion-card>
 
-
-   <ion-card-content>
-      <ion-button > Modificar </ion-button><br><br>
-   </ion-card-content>
+    
+      <ion-card>
+        <form>
+        
+        <ion-item class="form-group">
+          <ion-label position="floating"> Nombre </ion-label>
+          <ion-input [(ngModel)]="equipo.nombre" name="nombre" autofocus></ion-input>
+        </ion-item>
+        <ion-item class="form-group">
+          <ion-label position="floating"> NRC </ion-label>
+          <ion-input [(ngModel)]="equipo.correo" name="NRC" autofocus></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-footer>
+            <ion-toolbar>    
+              <ion-button slot="end" color="primary" > Guerdar  
+                <ion-icon name="folder-outline"></ion-icon>
+              </ion-button>    
+            </ion-toolbar>  
+          </ion-footer>
+        </ion-item>
+        </form>
+      </ion-card>
+    
 
   </ion-card>
 </ion-content>

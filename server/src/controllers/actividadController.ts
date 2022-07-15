@@ -7,6 +7,10 @@ class ActividadController {
       const actividad = await pool.query('SELECT * FROM actividad');
         res.json(actividad);
     }
+    public async getActivity (req: Request, res: Response){
+        const actividad = await pool.query('SELECT * FROM actividad');
+          res.json(actividad);
+      }
     public async getOne (req:Request, res:Response): Promise<any>{
         const  {id} = req.params;
         const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL ', [id])

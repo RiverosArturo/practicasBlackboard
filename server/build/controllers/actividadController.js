@@ -20,6 +20,12 @@ class ActividadController {
             res.json(actividad);
         });
     }
+    getActivity(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const actividad = yield database_1.default.query('SELECT * FROM actividad');
+            res.json(actividad);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

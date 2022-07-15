@@ -12,7 +12,7 @@ class ProfCourseRoutes {
     config(): void { 
         this.router.get('/', profCourseController.list);
         this.router.get('/:nTrabajador', profCourseController.getOne);        
-        this.router.get('/:user/:nrc', profCourseController.getNRCCourse);
+        this.router.get('/:nrc', profCourseController.getUSERNRC);
 
         this.router.post('/', profCourseController.create);
         this.router.put('/:nrc', profCourseController.update); 

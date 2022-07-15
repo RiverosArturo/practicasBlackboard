@@ -6,8 +6,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
 
     <ion-card>
       <ion-header>
@@ -21,13 +19,40 @@
     </ion-card>
 
 
-   <ion-card-content>
-      <ion-button > Eliminar </ion-button><br><br>
-   </ion-card-content>
+    <ion-content>
+      <ion-content
+        [scrollEvents]="true"
+        (ionScrollStart)="logScrollStart()"
+        (ionScroll)="logScrolling($event)"
+        (ionScrollEnd)="logScrollEnd()">
+            
+          <div slot="fixed">
+            <ion-list>
+            <tr  *ngFor="let equipo of equipos">
 
-  </ion-card>
-</ion-content>
+              
+                <ion-button color="danger" >
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>                    
+                         
+                 {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }} 
+              
+          </tr>
+        </ion-list>
+        </div>
+      </ion-content>
+      </ion-content> 
+
 
 <ion-footer>
-  <ion-toolbar color = "primary"></ion-toolbar>
+  <ion-toolbar>    
+    <ion-button slot="end" color="danger" > Eliminar todo 
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>    
+  </ion-toolbar>  
+</ion-footer>
+
+<ion-footer>
+  <ion-toolbar color = "primary">    
+  </ion-toolbar>  
 </ion-footer>

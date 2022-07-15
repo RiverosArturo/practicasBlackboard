@@ -66,6 +66,9 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
 }
 
 ///FUNCIONES ACTIVIDAD/////////////////////////////////
+getActivity(){
+  return this.http.get(`${this.API_URI}/actividad`);
+}
 getOneActividad(id:string){
   return this.http.get(`${this.API_URI}/actividad/${id}`);
 }
@@ -149,8 +152,9 @@ saveActividad(actividad: Actividad){
   getProfCourse(nTrabajador: number) {
     return this.http.get(`${this.API_URI}/profCourse/${nTrabajador}`);
   }
-  getUSERNRC(user:number,nrc:number) {
-    return this.http.get(`${this.API_URI}/profCourse/${user}/${nrc}`);
+  
+  getUSERNRC( nrc:number) {
+    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
   }
   deleteProfCourse(nrc: number){
     return this.http.delete(`${this.API_URI}/profCourse/${nrc}`);
