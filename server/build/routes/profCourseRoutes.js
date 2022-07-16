@@ -11,12 +11,10 @@ class ProfCourseRoutes {
         this.config();
     }
     config() {
+        this.router.get('/:nTrabajador/:nrc', profCourseController_1.default.getUSERNRC);
         this.router.get('/', profCourseController_1.default.list);
-        this.router.get('/:nTrabajador', profCourseController_1.default.getOne);
-        this.router.get('/:nrc', profCourseController_1.default.getUSERNRC);
         this.router.post('/', profCourseController_1.default.create);
-        this.router.put('/:nrc', profCourseController_1.default.update);
-        this.router.delete('/:nrc', profCourseController_1.default.delete);
+        this.router.delete('/:nTrabajador/:nrc', profCourseController_1.default.delete);
         this.router.delete('/', profCourseController_1.default.deleteAllProfCourses);
     }
 }

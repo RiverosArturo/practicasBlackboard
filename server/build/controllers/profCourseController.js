@@ -14,42 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class ProfCourseController {
+    // optiene user y nrc para filtar un curso exixtente    
+    getUSERNRC(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nTrabajador, nrc } = req.params;
+            const curso = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nTrabajador = ? AND nrc = ? ', [nTrabajador, nrc]);
+            if (curso.length > 0) {
+                return res.json(curso[0]);
+            }
+            res.json({ Text: "El curso no existe" });
+        });
+    }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso');
             res.json(pCourse);
-        });
-    }
-    getOne(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nTrabajador } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nTrabajador = ?', [nTrabajador]);
-            if (pCourse.length > 0) {
-                return res.json(pCourse[0]);
-            }
-            res.status(404).json({ Text: "El curso no existe" });
-        });
-    }
-    // optiene user y nrc para filtar un curso exixtente    
-    getUSERNRC(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc]);
-            if (pCourse.length > 0) {
-                return res.json(pCourse[0]);
-            }
-            res.json({ Text: "El curso no existe" });
-        });
-    }
-    // no borrar optiene el nrc para poder guardar el curso
-    getOneNrcCourse(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const nrcCourse = yield database_1.default.query('SELECT * FROM profesor_curso WHERE nrc = ?', [nrc]);
-            if (nrcCourse.length > 0) {
-                return res.json(nrcCourse[0]);
-            }
-            res.json({ Text: "El curso no existe" });
         });
     }
     create(req, res) {
@@ -58,17 +37,10 @@ class ProfCourseController {
             res.json({ Message: 'curso Saved' });
         });
     }
-    update(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('UPDATE profesor_curso set ? WHERE nrc = ?', [req.body, nrc]);
-            res.json({ message: 'The curso was UPDATE' });
-        });
-    }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('DELETE FROM profesor_curso WHERE nrc = ?', [nrc]);
+            const { nTrabajador, nrc } = req.params;
+            yield database_1.default.query('DELETE FROM profesor_curso WHERE nTrabajador = ? AND nrc = ? ', [nTrabajador, nrc]);
             res.json({ message: 'The course was deleted' });
         });
     }

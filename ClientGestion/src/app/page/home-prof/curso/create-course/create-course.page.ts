@@ -36,14 +36,11 @@ export class CreateCoursePage implements OnInit {
   
   edit:boolean = false;
   user:number;
-  nrc:number=0;
+  nrc:number=15438;
+  nTrabajador:number;
 
   constructor( private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
   
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
   ngOnInit() {
     this.getProfCourses();
     this.getCourse();    
@@ -51,12 +48,38 @@ export class CreateCoursePage implements OnInit {
     this.user = params.user;      
     this.pCourse.nTrabajador = this.user;        
   }  
-  // optiene el curso de un usuario en espesifico  
-  getUSERNRC(user:number, nrc:number ){    
-    console.log(user, nrc);    
-    this.datosService.getUSERNRC(nrc).subscribe(
+  getUSERNRC(user, nrc){
+
+    this.nTrabajador = user;
+    console.log('user:', user, 'nrc', nrc);  
+
+    this.datosService.getUSERNRC(this.nTrabajador, nrc).subscribe(
       res => {
-        console.log(res)        
+        this.profCourses = res;
+        console.log(this.profCourses);
+        if(nrc == 0){
+          console.log('Selecciona un NRC');
+          this.Alert3();
+        }else{
+          if(this.profCourses.nTrabajador == user && this.profCourses.nrc == nrc){
+            console.log('El curso ya existe');
+            this.Alert2(nrc);
+          }else{
+            console.log('Guardando curso');
+            this.AlertSave(nrc);
+          }
+        }        
+      },
+      err => console.error(err)
+    );
+  }
+  // guerda el curso del profesor
+  saveProfCourse(){
+    this.datosService.saveProfCourse(this.pCourse)
+    .subscribe(
+      res => {
+        console.log(res);    
+        console.log('Curso guardado---');        
       },
       err => console.error(err)
     )
@@ -87,19 +110,42 @@ export class CreateCoursePage implements OnInit {
       },
       err => console.error(err)
     );
-  }
-  // guerda el curso del profesor
-  saveProfCourse(){
-    this.datosService.saveProfCourse(this.pCourse)
-    .subscribe(
-      res => {
-        console.log(res);    
-        console.log('Curso guardado---');        
-      },
-      err => console.error(err)
-    )
-  }
+  }  
 //------------------------------------------------------------------  
+async Alert3() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Alerta!',
+    message: 'Message <strong> Selecciona un NRC </strong> ',
+    buttons: [
+      {
+        text: 'ok',
+        id: 'confirm-button',
+        handler: () => {
+          console.log('Confirm Okay');
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+async Alert2(nrc: number) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Alerta!',
+    message: 'Message <strong>El Curso </strong> '+ nrc +' ya existe!' ,
+    buttons: [
+      {
+        text: 'ok',
+        id: 'confirm-button',
+        handler: () => {
+          console.log('Confirm Okay');
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
   async Alert(nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -117,7 +163,7 @@ export class CreateCoursePage implements OnInit {
     });
     await alert.present();
   }
-  async AlertOne(nrc: number) {
+  async AlertSave(nrc: number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirma!',
@@ -144,5 +190,9 @@ export class CreateCoursePage implements OnInit {
       ]
     });
     await alert.present();
+  }
+  OpenMenuProf(){
+    this.menu.enable(true,'MenuProf');
+    this.menu.open('MenuProf')
   }
 }

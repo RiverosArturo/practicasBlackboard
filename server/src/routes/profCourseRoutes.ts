@@ -9,15 +9,11 @@ class ProfCourseRoutes {
         this.config();
     }  
 
-    config(): void { 
-        this.router.get('/', profCourseController.list);
-        this.router.get('/:nTrabajador', profCourseController.getOne);        
-        this.router.get('/:nrc', profCourseController.getUSERNRC);
-
-        this.router.post('/', profCourseController.create);
-        this.router.put('/:nrc', profCourseController.update); 
-        
-        this.router.delete('/:nrc', profCourseController.delete); 
+    config(): void {              
+        this.router.get('/:nTrabajador/:nrc', profCourseController.getUSERNRC);
+        this.router.get('/', profCourseController.list);   
+        this.router.post('/', profCourseController.create);                
+        this.router.delete('/:nTrabajador/:nrc', profCourseController.delete); 
         this.router.delete('/', profCourseController.deleteAllProfCourses);
     }
 

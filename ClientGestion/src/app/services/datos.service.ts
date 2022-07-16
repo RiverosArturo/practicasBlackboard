@@ -17,12 +17,13 @@ import { Actividad } from '../models/Actividad';
   providedIn: 'root'
 })
 export class DatosService {
+  nTrabajdor:number;
 
   API_URI = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
-  //---------- funciones sStudent course---------------------------------------------------
+//  funciones sStudent course---------------------------------------------------
   getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
     return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
   }
@@ -146,23 +147,20 @@ saveActividad(actividad: Actividad){
     return this.http.put(`${this.API_URI}/curso/${clave}`, updateCourse);
   }
   // Funciones profesor_curso /////////////////////////////////////////////////////////////////////
-  getProfCourses() {
+  
+  getUSERNRC(nTabajador:number, nrc: number){//    
+    return this.http.get(`${this.API_URI}/profCourse/${nTabajador}/${nrc}`);
+  }
+  getProfCourses() { //
     return this.http.get(`${this.API_URI}/profCourse`);
   }
-  getProfCourse(nTrabajador: number) {
-    return this.http.get(`${this.API_URI}/profCourse/${nTrabajador}`);
+  deleteProfCourse(nTrabajador:number, nrc: number){//
+    return this.http.delete(`${this.API_URI}/profCourse/${nTrabajador}/${nrc}`);
   }
-  
-  getUSERNRC( nrc:number) {
-    return this.http.get(`${this.API_URI}/profCourse/${nrc}`);
-  }
-  deleteProfCourse(nrc: number){
-    return this.http.delete(`${this.API_URI}/profCourse/${nrc}`);
-  }
-  deleteAllProfCourse(){
+  deleteAllProfCourse(){//
     return this.http.delete(`${this.API_URI}/profCourse`);
   }  
-  saveProfCourse(pCourse: ProfCourse){
+  saveProfCourse(pCourse: ProfCourse){ //
     return this.http.post(`${this.API_URI}/profCourse/`,pCourse);
   }
 

@@ -55,10 +55,12 @@ export class DeleteCoursePage implements OnInit {
     );
   }
   deleteProfCourse(nTrabajador:number, nrc:number){
-    this.datosService.deleteProfCourse(nrc).subscribe(
+    console.log('user', nTrabajador, 'nrc:', nrc);
+    this.datosService.deleteProfCourse(nTrabajador, nrc).subscribe(
       res => {
         console.log(res);        
         this.getProfCourse();
+        //this.AlertDelete(nrc);
       },
       err => console.error(err)
     )
@@ -71,6 +73,23 @@ export class DeleteCoursePage implements OnInit {
       },
       err => console.error(err)
     )
+  }
+  async AlertDelete(nrc:number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta!',
+      message: 'Message <strong>El Curso </strong> '+ nrc +' se ha eliminado!' ,
+      buttons: [
+        {
+          text: 'ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   async AlertOne(nTrabajador:number, nrc: number) {
     const alert = await this.alertController.create({
