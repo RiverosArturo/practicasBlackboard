@@ -2,10 +2,11 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class studCourseController {
-    public async getlist (req: Request, res: Response){
-        const studCourse = await pool.query('SELECT * FROM estudiante_curso');
-          res.json(studCourse);
-      }
+    public async getlist(req: Request, res: Response){    
+        const {nrc, nTrabajador} = req.params;    
+        const studCourse = await pool.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
+        res.json(studCourse);
+      }    
     public async list (req: Request, res: Response){
         const {nrc, nTrabajador} = req.params;
         const pCourse = await pool.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
@@ -33,8 +34,8 @@ class studCourseController {
         res.json({message: 'The curso was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{
-        const {matricula, nrc} = req.params;
-        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? ', [matricula, nrc]);
+        const {matricula, nrc, nTabajador} = req.params;
+        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? AND nTrabajador = ?', [matricula, nrc, nTabajador]);
         res.json({message: 'The student was deleted'});
     }
     public async deleteAll (req:Request, res:Response): Promise <void>{

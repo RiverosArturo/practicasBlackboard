@@ -23,18 +23,18 @@ export class DatosService {
 
   constructor(private http: HttpClient) { }
 
-//  funciones sStudent course---------------------------------------------------
+//  funciones Student course---------------------------------------------------
   getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
     return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
   }
   crearCursoEst(subirEst:cursoEstudiante){
     return this.http.post(`${this.API_URI}/studCourse`, subirEst);
   }
-  getStudCourse() {
-    return this.http.get(`${this.API_URI}/studCourse`);
-  }
-  deleteStudCourse(matricula: number, nrc:number){
-    return this.http.delete(`${this.API_URI}/studCourse/${matricula}/${nrc}`);
+  getStudCourse(nTrabajador:number, nrc:number) {
+    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}`);
+  }  
+  deleteStudCourse(matricula: number, nrc:number, nTrabajador:number){
+    return this.http.delete(`${this.API_URI}/studCourse/${matricula}/${nrc}/${nTrabajador}`);
   }
   deleteAllStudCourse(){
     return this.http.delete(`${this.API_URI}/studCourse`);

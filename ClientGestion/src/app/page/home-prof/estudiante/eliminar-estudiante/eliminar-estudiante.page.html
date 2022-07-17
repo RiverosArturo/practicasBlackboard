@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-back-button slot = "start"> </ion-back-button>
+      <ion-back-button slot = "start">{{user}} </ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,9 @@
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> Eliminar alumnos </ion-title><br>
+            <ion-item slot="end">
+              <ion-label>Curso: {{nrc}},{{curso}} </ion-label>   
+           </ion-item>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -29,15 +32,17 @@
       <div slot="fixed">
                 
         <tr  *ngFor="let studCourse of studCourses" >            
-          <ion-button color="light">&nbsp;        
-            <ion-button color="danger" (click)="AlertOne(student.matricula, student.nrc)"  >
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>&nbsp;&nbsp;    
+          <ion-button color="light">&nbsp;                    
                 <tr *ngFor="let student of students">
                   <div *ngIf="studCourse.matricula == student.matricula">
                     <tr *ngFor="let course of courses">
                       <div *ngIf=" studCourse.nrc == course.nrc">
-                        {{studCourse.matricula}}, {{student.nombre}},  NRC:{{studCourse.nrc}}, {{course.materia}}   
+
+                        <ion-button color="danger" (click)="AlertOne(student.matricula, nrc, nTrabajador)"  >
+                          <ion-icon name="trash"></ion-icon>
+                        </ion-button>&nbsp;&nbsp;    
+
+                        {{studCourse.matricula}}, {{student.nombre}},  NRC:{{studCourse.nrc}}, {{course.materia}}. {{studCourse.nTrabajador}}    
                       </div>
                     </tr>                                                
                   </div>
