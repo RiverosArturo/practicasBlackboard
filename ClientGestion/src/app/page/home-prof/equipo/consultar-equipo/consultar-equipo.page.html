@@ -2,7 +2,6 @@
   <ion-toolbar color = "primary">
     <ion-buttons>
       <ion-back-button slot = "start"> </ion-back-button>
-      <ion-label >Profesor: {{user}} </ion-label>     
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,12 +10,9 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons>
+          <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> consultar equipos </ion-title><br>
-            <ion-item slot="end">
-              <ion-label>Curso: {{nrc}},{{curso}} </ion-label>   
-           </ion-item>
+            <ion-title> consultar equipo </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -34,12 +30,11 @@
             <tr  *ngFor="let equipo of equipos">
 
               
-                <ion-button color="secondary" >
-                  <ion-icon name="add-outline"></ion-icon>
-                  <ion-label>Agregar alumno al equipo: </ion-label>                  
+                <ion-button color="primary" >
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
                 </ion-button>                    
                          
-                {{ equipo.nombre }},<!-- id:{{ equipo.id }}-->
+                 {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }} 
               
           </tr>
         </ion-list>

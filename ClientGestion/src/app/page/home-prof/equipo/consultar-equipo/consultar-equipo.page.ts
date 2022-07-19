@@ -1,15 +1,7 @@
-
-import { MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
-import { ProfCourse } from 'src/app/models/ProfCourse';
-import { Curso } from 'src/app/models/Curso';
-import { Prof } from 'src/app/models/Prof';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from 'src/app/models/User';
-import { Student } from 'src/app/models/Student';
-
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -17,33 +9,20 @@ import { Student } from 'src/app/models/Student';
   styleUrls: ['./consultar-equipo.page.scss'],
 })
 export class ConsultarEquipoPage implements OnInit {
-  
+  user:string='Administrador';
+
   courses:any = [];
   equipos:any = [];
 
-  user:number= 2013;
-  nrc:number = 0;
-  curso:string = '';
-  nTrabajador:number= 0;
-
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
-
-    const params = this.activedRoute.snapshot.params;  
-    console.log(params);
-
-    this.user = params.user;   
-    this.nTrabajador = params.user; 
-    this.nrc = params.nrc;  
-    this.curso = params.curso;  
-
     this.getCourse();
-    this.getEquipo(this.nrc);
+    this.getEquipo();
   }
 
-  getEquipo(nrc:number){
-    this.datosService.getEquipos(nrc).subscribe(
+  getEquipo(){
+    this.datosService.getEquipos().subscribe(
       res => {
         this.equipos = res;
       },

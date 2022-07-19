@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-eliminar-actividad',
@@ -10,30 +9,17 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./eliminar-actividad.page.scss'],
 })
 export class EliminarActividadPage implements OnInit {
-  user:number= 2013;
-  nrc:number = 0;
-  curso:string = '';
-  nTrabajador:number= 0;
+  user:string='Administrador';
 
   courses:any = [];
   equipos:any = [];
   activitys:any =[];
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private activedRoute:ActivatedRoute) { }
+  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
-
-    const params = this.activedRoute.snapshot.params;  
-    console.log(params);
-
-    this.user = params.user;   
-    this.nTrabajador = params.user; 
-    this.nrc = params.nrc;  
-    this.curso = params.curso;
-
-
     this.getCourse();
-    this.getEquipo(this.nrc);
+    this.getEquipo();
     this.getActivity();
   }
 
@@ -45,8 +31,8 @@ export class EliminarActividadPage implements OnInit {
       err => console.error(err)
     );
   }
-  getEquipo(nrc:number){
-    this.datosService.getEquipos(nrc).subscribe(
+  getEquipo(){
+    this.datosService.getEquipos().subscribe(
       res => {
         this.equipos = res;
       },

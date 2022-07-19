@@ -2,7 +2,6 @@
   <ion-toolbar color = "primary">
     <ion-buttons>
       <ion-back-button slot = "start"> </ion-back-button>
-      <ion-label >Profesor: {{user}} </ion-label>    
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,12 +12,9 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons>
+          <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> Generar equipo </ion-title><br>
-            <ion-item slot="end">
-              <ion-label>Curso: {{nrc}},{{cursoA}} </ion-label>   
-           </ion-item>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -27,7 +23,7 @@
     <ion-card-content>
       <form (ngSubmit)="onSubmit()" #generarEq="ngForm">
           <ion-label for="curso" color="dark">Curso:</ion-label>
-          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc" color="primary" readonly="true">{{nrc}},{{ cursoA}}</ion-input>
+          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc" color="primary" readonly="true">{{nrc}}</ion-input>
 
           <ion-label for="id" color="dark">Id equipo:</ion-label>
           <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="equipo.id" color="primary" placeholder="Id para el equipo"></ion-input>

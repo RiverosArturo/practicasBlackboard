@@ -16,8 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class studCourseController {
     getlist(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc, nTrabajador } = req.params;
-            const studCourse = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
+            const studCourse = yield database_1.default.query('SELECT * FROM estudiante_curso');
             res.json(studCourse);
         });
     }
@@ -55,8 +54,8 @@ class studCourseController {
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { matricula, nrc, nTabajador } = req.params;
-            yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? AND nTrabajador = ?', [matricula, nrc, nTabajador]);
+            const { matricula, nrc } = req.params;
+            yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? ', [matricula, nrc]);
             res.json({ message: 'The student was deleted' });
         });
     }
