@@ -16,7 +16,8 @@ const database_1 = __importDefault(require("../database"));
 class EquipoController {
     getEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const equipo = yield database_1.default.query('SELECT * FROM equipo');
+            const { nrc } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE curso_nrc = ?', [nrc]);
             res.json(equipo);
         });
     }

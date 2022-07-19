@@ -1,9 +1,17 @@
-import { Component,HostBinding, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+
 import { Equipo } from '../../../../models/Equipo';
-import { DatosService } from '../../../../services/datos.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { DatosService } from '../../../../services/datos.service';
+import { AlertController } from '@ionic/angular';
+import { ProfCourse } from 'src/app/models/ProfCourse';
+import { Curso } from 'src/app/models/Curso';
+import { Prof } from 'src/app/models/Prof';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { Student } from 'src/app/models/Student';
+
 
 
 @Component({
@@ -13,7 +21,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class GenerarEquipoPage implements OnInit {
 
-  nrc:number = 15437;
+  user:number= 2013;
+  nrc:number = 0;
+  cursoA:string = '';
+  nTrabajador:number= 0;
+
   equipo:Equipo = {
     id: 0,
     nombre:'',
@@ -28,17 +40,23 @@ export class GenerarEquipoPage implements OnInit {
   equipos:any = [];
 
   getEquipoId:any = [];
-  getEquipoN:any = [];
-  
+  getEquipoN:any = [];  
 
-  constructor(private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
+  constructor(private menu:MenuController, private datosService:DatosService, private router:Router, private activedRoute:ActivatedRoute) { }
 
-  OpenMenuProf(){
+  OpenMenuProf(){  
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
   }
 
   ngOnInit() {
+    const params = this.activedRoute.snapshot.params;  
+    console.log(params);
+
+    this.user = params.user;   
+    this.nTrabajador = params.user; 
+    this.nrc = params.nrc;  
+    this.cursoA = params.curso;
     
   }
 

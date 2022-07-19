@@ -26,15 +26,15 @@
     <ion-card>
       <h1>Administar estudiante</h1>
       <ion-button [routerLink] = "['/home-prof/estudiante/subir-estudiante',user,nrc,curso]">   Subir estudiante  </ion-button>
-      <ion-button [routerLink] = "['/home-prof/estudiante/consultar-estudiante',user]">   Consultar estudiante   </ion-button>
-      <ion-button [routerLink] = "['/home-prof/estudiante/eliminar-estudiante']">   Eliminar estudiante   </ion-button>
+      <ion-button [routerLink] = "['/home-prof/estudiante/consultar-estudiante',user,nrc,curso]">   Consultar estudiante   </ion-button>
+      <ion-button [routerLink] = "['/home-prof/estudiante/eliminar-estudiante',user,nrc,curso]">   Eliminar estudiante   </ion-button>
     </ion-card>
     <ion-card>
         <h1> Gestionar equipo </h1> <br>
-        <ion-button [routerLink] = "'/home-prof/equipo/generar-equipo'">   Generar equipo </ion-button>
-        <ion-button [routerLink] = "'/home-prof/equipo/consultar-equipo'">   Consultar equipo </ion-button>
-        <ion-button [routerLink] = "'/home-prof/equipo/modificar-equipo'">   Modificar equipo </ion-button>
-        <ion-button [routerLink] = "'/home-prof/equipo/eliminar-equipo'">   Eliminar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-prof/equipo/generar-equipo',user,nrc,curso]">   Generar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-prof/equipo/consultar-equipo',user,nrc,curso]">   Consultar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-prof/equipo/modificar-equipo']">   Modificar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-prof/equipo/eliminar-equipo']">   Eliminar equipo </ion-button>
         <br><br>
     </ion-card>    
     <ion-card>

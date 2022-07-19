@@ -25,18 +25,30 @@ export class EliminarEstudiantePage implements OnInit {
   course: Curso = {    
     nrc:0,     
   };
-
     
   students:any = [];
-  studCourses:any = [];
   courses:any = [];
+  studCourses:any = [];
+
+  user:number = 0;
+  nrc:number = 0;
+  curso:string = '';
+  nTrabajador:number = 0;
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.getStudCourse();    
+    const params = this.activedRoute.snapshot.params;  
+
+    this.user = params.user;
+    this.nrc = params.nrc;
+    this.nTrabajador = params.user;
+    this.curso = params.curso;
+    
+    this.getStudCourse( this.nrc, this.nTrabajador);    
     this.getStudent();
     this.getCourse();
+    console.log(this.nTrabajador);
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
@@ -54,32 +66,26 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     );
   }
-  getStudCourse(){
-    this.datosService.getStudCourse().subscribe(
+  getStudCourse( nrc, nTrabajador){        
+    this.datosService.getStudCourse(nrc, nTrabajador).subscribe(
       res => {
-        this.studCourses = res;        
+        this.studCourses = res;              
       },
       err => console.error(err)
     );
   }
-  deleteStudCourse(matricula:number, nrc:number){
-    this.datosService.deleteStudCourse(matricula, nrc).subscribe(
+  deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){            
+    this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(
       res => {       
         console.log(res); 
-        this.getStudCourse();
+        this.getStudCourse(nrc, nTrabajador);
       },
       err => console.error(err)
     )
   }
-  deleteAllStudCourse(){
-    this.datosService.deleteAllStudCourse().subscribe(
-      res => {      
-        this.getStudCourse();
-      },
-      err => console.error(err)
-    )
-  }
-  async AlertOne(matricula:number, nrc:number) {
+  
+  async AlertOne(matricula:number, nrc:number, nTrabajador:number) {    
+    console.log(matricula, nrc, nTrabajador);
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -98,13 +104,14 @@ export class EliminarEstudiantePage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteStudCourse(matricula, nrc);
+            this.deleteStudCourse(matricula, nrc, nTrabajador);
           }
         }
       ]
     });
     await alert.present();
   }
+
   async AlertAll() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -130,6 +137,15 @@ export class EliminarEstudiantePage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  deleteAllStudCourse(){
+    this.datosService.deleteAllStudCourse().subscribe(
+      res => {      
+        this.getStudCourse(this.nrc, this.nTrabajador);
+      },
+      err => console.error(err)
+    )
   }
 
   OpenMenuProf(){
