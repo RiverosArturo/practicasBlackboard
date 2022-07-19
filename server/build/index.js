@@ -16,6 +16,7 @@ const equipoRoutes_1 = __importDefault(require("./routes/equipoRoutes"));
 const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const studCourseRoutes_1 = __importDefault(require("./routes/studCourseRoutes"));
 const actividadRoutes_1 = __importDefault(require("./routes/actividadRoutes"));
+const equipoStudentsRoutes_1 = __importDefault(require("./routes/equipoStudentsRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -40,6 +41,7 @@ class Server {
         this.app.use('/api/equipo', equipoRoutes_1.default);
         this.app.use('/api/actividad', actividadRoutes_1.default);
         this.app.use('/api/login', loginRoutes_1.default);
+        this.app.use('/api/equipoStudents', equipoStudentsRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

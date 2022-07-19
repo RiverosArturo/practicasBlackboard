@@ -8,12 +8,8 @@ class studCourseController {
       }
     public async list (req: Request, res: Response){
         const {nrc, nTrabajador} = req.params;
-        const pCourse = await pool.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
-        if (pCourse.length > 0 ){
-            return res.json(pCourse[0]);
-        }else{
-            return res.json({Text: "No hay estudiantes en este curso!!!"});
-        }
+        const pCourse = await pool.query('SELECT * FROM `estudiante_curso` WHERE nrc=? AND nTrabajador=?', [nrc, nTrabajador]);
+        res.json(pCourse);
     }
     public async getOne (req:Request, res:Response): Promise<any>{
         const {nrc, nTrabajador, matricula} = req.params;

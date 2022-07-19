@@ -22,6 +22,17 @@
 
 
    <ion-card-content>
+    <ion-item>          
+      <ion-label>Actividad:</ion-label>
+      <select name="actividad" [(ngModel)]="actividad.nrc" name="nrc" >            
+          <option [value]="actividad.id" *ngFor="let actividad of actividads">{{actividad.id}},{{ actividad.nombre}}</option>
+      </select>                
+    </ion-item> <br>
+    <tr  *ngFor="let actividad of actividads" >            
+      <ion-button color="light">&nbsp;        
+        {{actividad.id}}, {{actividad.nombre}}, {{actividad.matricula}}, {{actividad.calificacion}}                                       
+      </ion-button>&nbsp;                                                                     
+    </tr> 
       <ion-button > Evaluar </ion-button><br><br>
    </ion-card-content>
 

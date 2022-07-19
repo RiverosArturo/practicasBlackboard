@@ -20,6 +20,13 @@ export class GenerarEquipoPage implements OnInit {
     curso_nrc: this.nrc
   }
 
+  equipo1:Equipo = {
+    id: 0,
+    nombre:'',
+    curso_nrc: 0
+  }
+  equipos:any = [];
+
   getEquipoId:any = [];
   getEquipoN:any = [];
   
@@ -69,5 +76,14 @@ export class GenerarEquipoPage implements OnInit {
     }else{
       alert("El id del equipo tiene que ser un número de 9 digitos!!!");
     }
+  }
+
+  obtenEquipos(){
+    this.datosService.getEquipos().subscribe(
+        res => {
+          this.equipos = res;
+        },
+        err => console.error(err)
+    );
   }
 }

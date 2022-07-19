@@ -33,6 +33,9 @@ export class DatosService {
   getStudCourse() {
     return this.http.get(`${this.API_URI}/studCourse`);
   }
+  getStudCourseBien(nrc: number, nTrabajador: number){
+    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}`);
+  }
   deleteStudCourse(matricula: number, nrc:number){
     return this.http.delete(`${this.API_URI}/studCourse/${matricula}/${nrc}`);
   }
@@ -66,9 +69,17 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
 }
 
+////////////////////EQUIPOS ESTUDIANTES///////////////////////
+getEquipoStud(nTrabajador: number, nrc: number, id: number){
+  return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
+}
+
 ///FUNCIONES ACTIVIDAD/////////////////////////////////
 getActivity(){
   return this.http.get(`${this.API_URI}/actividad`);
+}
+getAct(listAct:number){
+  return this.http.get(`${this.API_URI}/actividad/${listAct}`);
 }
 getOneActividad(id:string){
   return this.http.get(`${this.API_URI}/actividad/${id}`);

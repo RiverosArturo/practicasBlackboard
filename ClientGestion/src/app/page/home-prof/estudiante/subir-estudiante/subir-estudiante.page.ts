@@ -8,6 +8,7 @@ import { User } from '../../../../models/User';
 import { FormsModule } from '@angular/forms';
 import { DatosService } from 'src/app/services/datos.service';
 import { ConsultarEquipoPageModule } from '../../equipo/consultar-equipo/consultar-equipo.module';
+import { Student } from '../../../../models/Student';
 
 @Component({
   selector: 'app-subir-estudiante',
@@ -17,14 +18,20 @@ import { ConsultarEquipoPageModule } from '../../equipo/consultar-equipo/consult
 export class SubirEstudiantePage implements OnInit {
 
   user:number;
-  nrc:number=0;  
   course:string='hola';
 
   params = this.activedRoute.snapshot.params;  
   nTrabajador:number=this.params.user;
+  nrc:number=this.params.nrc;  
   getEs:any = [];
   getEsCur:any = [];
   courses:any=[];
+  estudiante: Student = {
+    matricula:0,
+    password: '',
+    nombre: ''
+  }
+  estudiantes: any = [];
   
   subirEst: cursoEstudiante = {
     matricula: 0,
@@ -45,6 +52,7 @@ export class SubirEstudiantePage implements OnInit {
     this.nTrabajador = params.user;
     console.log(this.nrc);
     this.getCourse();
+    this.funcEstud();
     //this.search.valueChanges.subscribe(value => this.searchEmitter.emit(value));
   }
   getCourse(){
@@ -101,6 +109,16 @@ export class SubirEstudiantePage implements OnInit {
       console.log(this.subirEst);
       console.log("cifra: " + this.subirEst.matricula.toString().length);
     }
+  }
+
+  funcEstud(){
+    this.datosService.getStudents()
+            .subscribe(
+              res => {
+                this.estudiantes = res;
+              },
+              err => console.error(err)
+    );
   }
 
   // search = new FormControl('');

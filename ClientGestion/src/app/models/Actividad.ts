@@ -9,5 +9,7 @@ export interface Actividad {
     noTrabajador?: number;
     nrc?: number;
     id_equipo?: number;
+    calificacion?: number;
+    matricula?: number;
 
 }

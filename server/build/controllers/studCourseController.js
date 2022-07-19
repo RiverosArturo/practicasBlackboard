@@ -23,13 +23,8 @@ class studCourseController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc, nTrabajador } = req.params;
-            const pCourse = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
-            if (pCourse.length > 0) {
-                return res.json(pCourse[0]);
-            }
-            else {
-                return res.json({ Text: "No hay estudiantes en este curso!!!" });
-            }
+            const pCourse = yield database_1.default.query('SELECT * FROM `estudiante_curso` WHERE nrc=? AND nTrabajador=?', [nrc, nTrabajador]);
+            res.json(pCourse);
         });
     }
     getOne(req, res) {
