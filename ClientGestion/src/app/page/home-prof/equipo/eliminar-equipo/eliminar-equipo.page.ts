@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgForOfContext } from '@angular/common';
 
 @Component({
   selector: 'app-eliminar-equipo',
@@ -9,20 +11,23 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./eliminar-equipo.page.scss'],
 })
 export class EliminarEquipoPage implements OnInit {
-  user:string='Administrador';
+  user:number= 2013;
+  nrc:number = 0;
+  curso:string = '';
+  nTrabajador:number= 0;
 
   courses:any = [];
   equipos:any = [];
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
+  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.getCourse();
-    this.getEquipo();
+    this.getEquipo(this.nrc);
   }
 
-  getEquipo(){
-    this.datosService.getEquipos().subscribe(
+  getEquipo(nrc:number){
+    this.datosService.getEquipos(nrc).subscribe(
       res => {
         this.equipos = res;
       },

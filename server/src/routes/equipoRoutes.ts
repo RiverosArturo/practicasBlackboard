@@ -11,7 +11,7 @@ class EquipoRoutes {
     }  
 
     config(): void { 
-        this.router.get('/', equipoController.getEquipo);
+        this.router.get('/:nrc', equipoController.getEquipo);
         this.router.get('/:id', equipoController.getOneEquipo);
         this.router.get('/:id/:nombre', equipoController.getOneEquipoN);
         this.router.post('/', equipoController.saveEquipo);

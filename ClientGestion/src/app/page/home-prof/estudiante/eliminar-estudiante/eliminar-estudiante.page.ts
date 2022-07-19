@@ -48,6 +48,7 @@ export class EliminarEstudiantePage implements OnInit {
     this.getStudCourse( this.nrc, this.nTrabajador);    
     this.getStudent();
     this.getCourse();
+    console.log(this.nTrabajador);
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
@@ -65,16 +66,13 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     );
   }
-  getStudCourse( nrc, nTrabajador){
-    console.log( nrc, nTrabajador );
-    /*
-    this.datosService.getStudCourse(nrc, nTabajador).subscribe(
+  getStudCourse( nrc, nTrabajador){        
+    this.datosService.getStudCourse(nrc, nTrabajador).subscribe(
       res => {
-        this.studCourses = res;
-        console.log(this.student);        
+        this.studCourses = res;              
       },
       err => console.error(err)
-    );*/
+    );
   }
   deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){            
     this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(
@@ -85,14 +83,7 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     )
   }
-  deleteAllStudCourse(){
-    this.datosService.deleteAllStudCourse().subscribe(
-      res => {      
-        this.getStudCourse(this.nrc, this.nTrabajador);
-      },
-      err => console.error(err)
-    )
-  }
+  
   async AlertOne(matricula:number, nrc:number, nTrabajador:number) {    
     console.log(matricula, nrc, nTrabajador);
     const alert = await this.alertController.create({
@@ -120,6 +111,7 @@ export class EliminarEstudiantePage implements OnInit {
     });
     await alert.present();
   }
+
   async AlertAll() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -145,6 +137,15 @@ export class EliminarEstudiantePage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  deleteAllStudCourse(){
+    this.datosService.deleteAllStudCourse().subscribe(
+      res => {      
+        this.getStudCourse(this.nrc, this.nTrabajador);
+      },
+      err => console.error(err)
+    )
   }
 
   OpenMenuProf(){
