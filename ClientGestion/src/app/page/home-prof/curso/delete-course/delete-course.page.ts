@@ -31,12 +31,13 @@ export class DeleteCoursePage implements OnInit {
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute ) { }
 
-  ngOnInit() {
-    this.getCourse();
-    this.getProfCourse();
+  ngOnInit() {    
     const params = this.activedRoute.snapshot.params;  
     this.user = params.user;  
     console.log('User: ',this.user);
+
+    this.getCourse();
+    this.getProfCourse();
   }
   getProfCourse(){
     this.datosService.getProfCourses().subscribe(
@@ -60,7 +61,7 @@ export class DeleteCoursePage implements OnInit {
       res => {
         console.log(res);        
         this.getProfCourse();
-        //this.AlertDelete(nrc);
+        this.AlertDelete(nrc);
       },
       err => console.error(err)
     )
