@@ -33,8 +33,9 @@ export class ConsultarEstudiantePage implements OnInit {
   curso:string='cur';
     
   students:any = [];
-  studCourses:any = [];
   courses:any = [];
+  studCourses:any = [];
+  
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
@@ -54,8 +55,32 @@ export class ConsultarEstudiantePage implements OnInit {
     console.log(matricula,nrc, nTrabajador);
 
   }
-  AlertAll(){
-
+  
+  async AlertAll() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: 'Message <strong>Eliminar todo el registro?</strong>!!! ',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+            //this.deleteAllProfCourse();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
