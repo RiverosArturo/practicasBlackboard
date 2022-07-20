@@ -18,17 +18,18 @@ import { AlertController } from '@ionic/angular';
 export class SubirEstudiantePage implements OnInit {
 
   user:number;
-  nrc:number=0;  
   course:string='hola';
 
   params = this.activedRoute.snapshot.params;  
   nTrabajador:number=this.params.user;
+  nrc:number=this.params.nrc;  
   getEs:any = [];
   getEsCur:any = [];
 
   courses:any=[];
   students:any=[];
   profStudent:any=[];
+  estudiantes:any = [];
   
   subirEst: cursoEstudiante = {
     matricula: 0,
@@ -223,6 +224,16 @@ export class SubirEstudiantePage implements OnInit {
       console.log(this.subirEst);
       console.log("cifra: " + this.subirEst.matricula.toString().length);
     }
+  }
+
+  funcEstud(){
+    this.datosService.getStudents()
+            .subscribe(
+              res => {
+                this.estudiantes = res;
+              },
+              err => console.error(err)
+    );
   }
 
   // search = new FormControl('');

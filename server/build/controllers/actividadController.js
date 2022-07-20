@@ -20,6 +20,13 @@ class ActividadController {
             res.json(actividad);
         });
     }
+    listAct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { listAct } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM actividad where id = ? ', [listAct]);
+            res.json(actividad);
+        });
+    }
     getActivity(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const actividad = yield database_1.default.query('SELECT * FROM actividad');

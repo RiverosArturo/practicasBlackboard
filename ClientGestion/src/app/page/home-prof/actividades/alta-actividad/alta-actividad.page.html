@@ -79,8 +79,10 @@
       <ion-label for="curso" color="dark">Curso:</ion-label>
       <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
       
-      <ion-label for="equipo" color="dark">Equipo:</ion-label>
-      <ion-input type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789"></ion-input>
+      <ion-label for="equipo" color="dark">Equipo  </ion-label>
+      <select type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789">
+        <option [value]="equipo.id" *ngFor="let equipo of equipos">{{equipo.id}},{{ equipo.nombre}}</option>
+      </select><br>
     
       <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
     </form>

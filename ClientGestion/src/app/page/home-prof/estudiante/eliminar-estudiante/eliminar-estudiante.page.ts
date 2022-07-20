@@ -74,8 +74,7 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){            
-    console.log('Dat en funcion delete:',matricula, nrc, nTrabajador);    
+  deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){                  
     this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(
       res => {       
         console.log(res); 

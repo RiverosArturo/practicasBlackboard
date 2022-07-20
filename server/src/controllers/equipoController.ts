@@ -4,8 +4,7 @@ import pool from '../database';
 class EquipoController {
 
     public async getEquipo (req: Request, res: Response){
-        const  {nrc} = req.params;  
-      const equipo = await pool.query('SELECT * FROM equipo WHERE curso_nrc = ?',[nrc]);
+      const equipo = await pool.query('SELECT * FROM equipo');
         res.json(equipo);
     }
     public async getOneEquipo (req:Request, res:Response): Promise<any>{

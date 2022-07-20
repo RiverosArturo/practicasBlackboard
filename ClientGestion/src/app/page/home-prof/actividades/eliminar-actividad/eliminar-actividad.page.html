@@ -35,7 +35,9 @@
                 <ion-button color="danger" >                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
-                         
+                <ion-button [routerLink] = "'/home-prof/actividades/modificar-actividad'" color="primary" >                  
+                  actualizar
+                </ion-button>  
                  {{ activity.id }}, {{ activity.nombre }}, {{ activity.descripcion }} 
               
           </tr>

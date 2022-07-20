@@ -13,27 +13,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class EquipoController {
-    getEquipo(req, res) {
+class EquipoStudentsController {
+    getEquipos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const equipo = yield database_1.default.query('SELECT * FROM equipo');
+            const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes');
+            res.json(equipo);
+        });
+    }
+    getEquiposBien(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes WHERE id=? AND nrc=?', [id, nrc]);
             res.json(equipo);
         });
     }
     getOneEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id = ?', [id]);
-            if (equipo.length > 0) {
-                return res.json(equipo[0]);
-            }
-            res.json({ id: 0, nombre: '', curso_nrc: 0 });
-        });
-    }
-    getOneEquipoN(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id, nombre } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id = ? OR nombre = ?', [id, nombre]);
+            const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes WHERE id = ?', [id]);
             if (equipo.length > 0) {
                 return res.json(equipo[0]);
             }
@@ -42,30 +39,30 @@ class EquipoController {
     }
     saveEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO equipo set ?', [req.body]);
+            yield database_1.default.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
             res.json({ Message: 'Equipo Saved' });
         });
     }
     updateEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE equipo set ? WHERE id = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE equipo_estudiantes set ? WHERE id = ?', [req.body, id]);
             res.json({ message: 'The Equipo was UPDATE' });
         });
     }
     deleteEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM equipo WHERE id = ?', [id]);
+            yield database_1.default.query('DELETE FROM equipo_estudiantes WHERE id = ?', [id]);
             res.json({ message: 'The Equipo was deleted' });
         });
     }
     deleteAllEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM equipo');
+            yield database_1.default.query('DELETE FROM equipo_estudiantes');
             res.json({ message: 'The Equipo was deleted' });
         });
     }
 }
-const equipoController = new EquipoController();
-exports.default = equipoController;
+const equipoStudentsController = new EquipoStudentsController();
+exports.default = equipoStudentsController;

@@ -27,9 +27,6 @@ export class ConsultarEstudiantePage implements OnInit {
   };
 
   user:number= 2013;
-  nrc:number = 0;
-  curso:string = '';
-  nTrabajador:number= 0;
     
   students:any = [];
   studCourses:any = [];
@@ -38,30 +35,12 @@ export class ConsultarEstudiantePage implements OnInit {
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    
-    const params = this.activedRoute.snapshot.params;  
-    console.log(params);
-
-    this.user = params.user;   
-    this.nTrabajador = params.user; 
-    this.nrc = params.nrc;  
-    this.curso = params.curso;  
-
-    this.getStudCourse(this.nrc, this.nTrabajador); 
+    this.getStudCourse(); 
     this.getStudent();
     this.getCourse();
-      
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user;      
   }
-  getStudCourse(nrc:number, nTrabajador:number){
-    this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
-      res => {
-        this.studCourses = res;
-        console.log(this.student);        
-      },
-      err => console.error(err)
-    );
-  }
-  
   getCourse(){
     this.datosService.getCourses().subscribe(
       res => {
@@ -78,7 +57,15 @@ export class ConsultarEstudiantePage implements OnInit {
       err => console.error(err)
     );
   }
-
+  getStudCourse(){
+    this.datosService.getStudCourse().subscribe(
+      res => {
+        this.studCourses = res;
+        console.log(this.student);        
+      },
+      err => console.error(err)
+    );
+  }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');

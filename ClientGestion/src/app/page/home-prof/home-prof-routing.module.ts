@@ -19,11 +19,11 @@ const routes: Routes = [
   },
   
   {
-    path: 'generar-equipo/:user/:nrc/:curso',
+    path: 'generar-equipo',
     loadChildren: () => import('./equipo/generar-equipo/generar-equipo.module').then( m => m.GenerarEquipoPageModule)
   },
   {
-    path: 'consultar-equipo/:user/:nrc/:curso',
+    path: 'consultar-equipo',
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {
@@ -39,11 +39,11 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
   },
   {
-    path: 'consultar-estudiante/:user/:nrc/:curso',
+    path: 'consultar-estudiante/:user',
     loadChildren: () => import('./estudiante/consultar-estudiante/consultar-estudiante.module').then( m => m.ConsultarEstudiantePageModule)
   },
   {
-    path: 'eliminar-estudiante/:user/:nrc/:curso',
+    path: 'eliminar-estudiante',
     loadChildren: () => import('./estudiante/eliminar-estudiante/eliminar-estudiante.module').then( m => m.EliminarEstudiantePageModule)
   },
   {

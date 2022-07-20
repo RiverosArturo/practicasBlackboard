@@ -14,6 +14,7 @@ import equipoRoutes  from "./routes/equipoRoutes";
 import loginRoutes from "./routes/loginRoutes";
 import studCourseRoutes from "./routes/studCourseRoutes";
 import actividadRoutes from "./routes/actividadRoutes";
+import equipoStudentsRoutes from './routes/equipoStudentsRoutes';
 
 class Server {
     public app : Application;
@@ -40,7 +41,8 @@ class Server {
         this.app.use('/api/admi',admiRoutes);
         this.app.use('/api/equipo',equipoRoutes);
         this.app.use('/api/actividad',actividadRoutes);
-        this.app.use('/api/login',loginRoutes);        
+        this.app.use('/api/login',loginRoutes); 
+        this.app.use('/api/equipoStudents',equipoStudentsRoutes);        
     }
     start(): void{
         this.app.listen(this.app.get('port'), () => {
