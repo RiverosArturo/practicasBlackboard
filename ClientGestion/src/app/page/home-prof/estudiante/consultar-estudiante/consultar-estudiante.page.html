@@ -15,6 +15,7 @@
   <ion-toolbar color = "primary">
     <ion-buttons>
       <ion-back-button slot = "start"> </ion-back-button>
+      <ion-label >Usuario:{{user}} </ion-label>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,9 +23,12 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons slot="start">
+          <ion-buttons>
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> lista de alumnos </ion-title><br>
+            <ion-item slot="end">
+              <ion-label>Curso:{{ nrc}},{{ curso}} </ion-label>   
+            </ion-item>            
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -48,6 +52,11 @@
                       <div *ngIf="studCourse.matricula == student.matricula">
                         <tr *ngFor="let course of courses">
                           <div *ngIf=" studCourse.nrc == course.nrc">
+
+                            <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
+                              <ion-icon name="trash"></ion-icon>
+                            </ion-button>
+
                             {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
                           </div>
                         </tr>                                                
@@ -61,6 +70,14 @@
   </ion-content>
    
 <!----------------------------------------------------------------------------->       
+<ion-card>
+  <ion-item>    
+    <ion-button slot="end" color="danger" (click)="AlertAll()">
+      <ion-label> Eliminar Todo </ion-label>
+      <ion-icon slot="end" name="trash"></ion-icon> 
+    </ion-button>
+  </ion-item>
+</ion-card>
 
 
 <ion-footer>

@@ -12,8 +12,10 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./generar-equipo.page.scss'],
 })
 export class GenerarEquipoPage implements OnInit {
-
+  user:number=0;
   nrc:number = 15437;
+  curso:number=0;
+
   equipo:Equipo = {
     id: 0,
     nombre:'',

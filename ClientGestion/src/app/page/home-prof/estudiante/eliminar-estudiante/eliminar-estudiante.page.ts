@@ -66,8 +66,8 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     );
   }
-  getStudCourse( nrc, nTrabajador){        
-    this.datosService.getStudCourse().subscribe(
+  getStudCourse( nrc:number, nTrabajador:number){        
+    this.datosService.getStudCourse(nrc, nTrabajador).subscribe(
       res => {
         this.studCourses = res;              
       },

@@ -39,7 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/subir-estudiante/subir-estudiante.module').then( m => m.SubirEstudiantePageModule)
   },
   {
-    path: 'consultar-estudiante/:user',
+    path: 'consultar-estudiante/:user/:nrc/:curso',
     loadChildren: () => import('./estudiante/consultar-estudiante/consultar-estudiante.module').then( m => m.ConsultarEstudiantePageModule)
   },
   {

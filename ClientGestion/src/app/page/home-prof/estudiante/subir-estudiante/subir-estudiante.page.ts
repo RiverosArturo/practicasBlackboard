@@ -44,7 +44,8 @@ export class SubirEstudiantePage implements OnInit {
     this.user = params.user;
     this.nrc = params.nrc;
     this.course = params.curso;
-    this.nTrabajador = params.user;    
+    this.nTrabajador = params.user; 
+       
     this.getCourse();
     this.getStudent();    
   }

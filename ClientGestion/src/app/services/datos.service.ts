@@ -30,10 +30,10 @@ export class DatosService {
   crearCursoEst(subirEst:cursoEstudiante){
     return this.http.post(`${this.API_URI}/studCourse`, subirEst);
   }
-  getStudCourse() {
-    return this.http.get(`${this.API_URI}/studCourse`);
-  }
   getStudCourseBien(nrc: number, nTrabajador: number){
+    return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}`);
+  }
+  getStudCourse(nrc: number, nTrabajador: number){
     return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}`);
   }
   deleteStudCourse(matricula: number, nrc:number, nTrabajador:number){

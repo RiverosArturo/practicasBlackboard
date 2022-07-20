@@ -16,7 +16,8 @@ const database_1 = __importDefault(require("../database"));
 class studCourseController {
     getlist(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const studCourse = yield database_1.default.query('SELECT * FROM estudiante_curso');
+            const { nrc, nTrabajador } = req.params;
+            const studCourse = yield database_1.default.query('SELECT * FROM `estudiante_curso` WHERE nrc=? AND nTrabajador=?', [nrc, nTrabajador]);
             res.json(studCourse);
         });
     }
