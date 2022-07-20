@@ -30,7 +30,7 @@
                 
         <tr  *ngFor="let studCourse of studCourses" >            
           <ion-button color="light">&nbsp;        
-            <ion-button color="danger" (click)="AlertOne(student.matricula, student.nrc)"  >
+            <ion-button color="danger" (click)="AlertOne(studCourse.matricula, studCourse.nrc, studCourse.nTrabajador)"  >
               <ion-icon name="trash"></ion-icon>
             </ion-button>&nbsp;&nbsp;    
                 <tr *ngFor="let student of students">
@@ -52,7 +52,7 @@
 <!----------------------------------------------------------------------------->       
 <ion-card>
   <ion-item>    
-    <ion-button slot="end" color="danger" (click)="AlertAll()">
+    <ion-button slot="end" color="danger" (click)="AlertAll(studCourse.nrc, studCourse.nTrabajador)">
       <ion-label> Eliminar Todo </ion-label>
       <ion-icon slot="end" name="trash"></ion-icon> 
     </ion-button>

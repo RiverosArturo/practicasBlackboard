@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -9,14 +10,26 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./consultar-equipo.page.scss'],
 })
 export class ConsultarEquipoPage implements OnInit {
-  user:string='Administrador';
 
   courses:any = [];
   equipos:any = [];
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
+  user:number= 2013;
+  nrc:number = 0;
+  nTrabajador:number=0;
+  curso:string='cur';
+
+  constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
+
+    const params = this.activedRoute.snapshot.params;  
+    console.log(params);
+    this.user = params.user;
+    this.nrc = params.nrc;
+    this.curso = params.curso;
+    this.nTrabajador = params.user;
+
     this.getCourse();
     this.getEquipo();
   }

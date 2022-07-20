@@ -17,7 +17,7 @@ class studCourseRoutes {
         this.router.post('/', studCourseController_1.default.create);
         this.router.put('/:nrc/:nTrabajador/:matricula', studCourseController_1.default.update);
         this.router.delete('/:matricula/:nrc/:nTrabajador', studCourseController_1.default.deleteOne);
-        this.router.delete('/', studCourseController_1.default.deleteAll);
+        this.router.delete('/:nrc/:nTrabajador', studCourseController_1.default.deleteAll);
     }
 }
 const StudCourseRoutes = new studCourseRoutes();

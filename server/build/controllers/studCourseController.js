@@ -57,12 +57,13 @@ class studCourseController {
         return __awaiter(this, void 0, void 0, function* () {
             const { matricula, nrc, nTrabajador } = req.params;
             yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? AND nTrabajador = ?', [matricula, nrc, nTrabajador]);
-            res.json({ message: 'The student was deleted One>>>', matricula, nrc, nTrabajador });
+            res.json({ message: 'The student was deleted' });
         });
     }
     deleteAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM estudiante_curso');
+            const { nrc, nTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
             res.json({ message: 'The students was deleted' });
         });
     }

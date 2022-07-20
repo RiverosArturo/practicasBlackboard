@@ -39,8 +39,8 @@ export class DatosService {
   deleteStudCourse(matricula: number, nrc:number, nTrabajador:number){
     return this.http.delete(`${this.API_URI}/studCourse/${matricula}/${nrc}/${nTrabajador}`);
   }
-  deleteAllStudCourse(){
-    return this.http.delete(`${this.API_URI}/studCourse`);
+  deleteAllStudCourse(nrc:number, nTrabajador:number){
+    return this.http.delete(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}`);
   }  
   updateStudCourse(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.put(`${this.API_URI}/studCourse/${matricula}`, updateStudent);

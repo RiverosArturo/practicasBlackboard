@@ -51,12 +51,52 @@ export class ConsultarEstudiantePage implements OnInit {
     this.getStudent();
     this.getCourse();
   }
-  AlertOne(matricula:number,nrc:number,nTrabajador:number){
-    console.log(matricula,nrc, nTrabajador);
-
+  deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){
+    console.log('user', nTrabajador, 'nrc:', nrc);
+    this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res);        
+        this.getStudCourse(this.nrc,this.nTrabajador);     
+      },
+      err => console.error(err)
+    )
   }
-  
-  async AlertAll() {
+  deleteAllStudCourse(nrc:number, nTrabajador:number){
+    this.datosService.deleteAllStudCourse(nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res);
+        this.getStudCourse(this.nrc,this.nTrabajador);
+      },
+      err => console.error(err)
+    )
+  }
+  async AlertOne(matricula:number, nrc:number, nTrabajador:number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: ' <strong>Eliminar</strong>!!! '+ matricula ,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.deleteStudCourse(matricula, nrc, nTrabajador);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async AlertAll(nrc:number, nTrabajador:number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -75,7 +115,7 @@ export class ConsultarEstudiantePage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            //this.deleteAllProfCourse();
+            this.deleteAllStudCourse(nrc, nTrabajador);
           }
         }
       ]

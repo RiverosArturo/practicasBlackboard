@@ -31,11 +31,12 @@ class studCourseController {
     }
     public async deleteOne (req:Request, res:Response): Promise <void>{
         const {matricula, nrc, nTrabajador} = req.params;
-        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? AND nTrabajador = ?', [matricula, nrc, nTrabajador]);        
-        res.json({message: 'The student was deleted One>>>',matricula, nrc, nTrabajador});
+        await pool.query('DELETE FROM estudiante_curso WHERE matricula = ? AND nrc = ? AND nTrabajador = ?', [matricula, nrc, nTrabajador]); 
+        res.json({message: 'The student was deleted'});
     }
     public async deleteAll (req:Request, res:Response): Promise <void>{
-        await pool.query('DELETE FROM estudiante_curso');
+        const {nrc, nTrabajador} = req.params;
+        await pool.query('DELETE FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]); 
         res.json({message: 'The students was deleted'});
     }
 }
