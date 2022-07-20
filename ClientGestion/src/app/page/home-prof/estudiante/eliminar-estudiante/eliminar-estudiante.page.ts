@@ -41,9 +41,9 @@ export class EliminarEstudiantePage implements OnInit {
     const params = this.activedRoute.snapshot.params;  
 
     this.user = params.user;
-    this.nrc = params.nrc;
-    this.nTrabajador = params.user;
+    this.nrc = params.nrc;    
     this.curso = params.curso;
+    this.nTrabajador = params.user;
     
     this.getStudCourse( this.nrc, this.nTrabajador);    
     this.getStudent();
@@ -75,6 +75,7 @@ export class EliminarEstudiantePage implements OnInit {
     );
   }
   deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){            
+    console.log('Dat en funcion delete:',matricula, nrc, nTrabajador);    
     this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(
       res => {       
         console.log(res); 
@@ -83,9 +84,8 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     )
   }
-  
-  async AlertOne(matricula:number, nrc:number, nTrabajador:number) {    
-    console.log(matricula, nrc, nTrabajador);
+// Elimina un alumno de la lista del curso
+  async AlertOne(matricula:number, nrc:number, nTrabajador:number) {        
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -111,7 +111,7 @@ export class EliminarEstudiantePage implements OnInit {
     });
     await alert.present();
   }
-
+//Alert para Elimina todes los alumnos del curso
   async AlertAll() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -138,7 +138,7 @@ export class EliminarEstudiantePage implements OnInit {
     });
     await alert.present();
   }
-
+// funcion para eliminar todos las alumnos del curso
   deleteAllStudCourse(){
     this.datosService.deleteAllStudCourse().subscribe(
       res => {      
@@ -147,7 +147,7 @@ export class EliminarEstudiantePage implements OnInit {
       err => console.error(err)
     )
   }
-
+// funcion del menu profesor
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')

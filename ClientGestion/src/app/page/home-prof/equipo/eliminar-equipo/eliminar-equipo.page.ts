@@ -11,8 +11,8 @@ import { NgForOfContext } from '@angular/common';
   styleUrls: ['./eliminar-equipo.page.scss'],
 })
 export class EliminarEquipoPage implements OnInit {
-  user:number= 2013;
-  nrc:number = 0;
+  user:number= 201347656;
+  nrc:number = 15438;
   curso:string = '';
   nTrabajador:number= 0;
 

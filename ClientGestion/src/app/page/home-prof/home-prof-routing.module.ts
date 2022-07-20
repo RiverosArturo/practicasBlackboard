@@ -27,11 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {
-    path: 'modificar-equipo',
+    path: 'modificar-equipo/:user/:nrc/:curso',
     loadChildren: () => import('./equipo/modificar-equipo/modificar-equipo.module').then( m => m.ModificarEquipoPageModule)
   },
   {
-    path: 'eliminar-equipo/:user/:nrc/:curso',
+    path: 'eliminar-equipo',
     loadChildren: () => import('./equipo/eliminar-equipo/eliminar-equipo.module').then( m => m.EliminarEquipoPageModule)
   },
   {

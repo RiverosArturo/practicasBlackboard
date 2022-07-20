@@ -33,11 +33,14 @@
             <ion-list>
             <tr  *ngFor="let equipo of equipos">
 
-              
+              <ion-button color="primary" >                  
+                <ion-label>Ver integrantes </ion-label>                  
+              </ion-button>
+            
                 <ion-button color="secondary" >
                   <ion-icon name="add-outline"></ion-icon>
                   <ion-label>Agregar alumno al equipo: </ion-label>                  
-                </ion-button>                    
+                </ion-button>            
                          
                 {{ equipo.nombre }},<!-- id:{{ equipo.id }}-->
               
