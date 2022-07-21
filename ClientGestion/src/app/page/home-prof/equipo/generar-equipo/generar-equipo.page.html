@@ -13,9 +13,12 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons slot="start">
+          <ion-buttons>
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
             <ion-title> Generar equipo </ion-title><br>
+            <ion-item slot="end">
+              <ion-label>Curso:{{ nrc}},{{ course}} </ion-label>   
+            </ion-item>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -23,15 +26,24 @@
 
     <ion-card-content>
       <form (ngSubmit)="onSubmit()" #generarEq="ngForm">
-          <ion-label for="curso" color="dark">Curso:</ion-label>
-          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc" color="primary" readonly="true">{{nrc}}</ion-input>
-
-          <ion-label for="id" color="dark">Id equipo:</ion-label>
-          <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="equipo.id" color="primary" placeholder="Id para el equipo"></ion-input>
-
-          <ion-label for="nombre" color="dark">Nombre:</ion-label>
-          <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="equipo.nombre" color="primary" placeholder="Nombre del equipo"></ion-input>
-        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Generar equipo </ion-button><br><br>
+        <ion-item>
+          <ion-label>Llena los parametros</ion-label>
+          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc"  readonly="true"></ion-input>
+          <ion-input type="text" name="nTrabajador" #curso="ngModel" [(ngModel)]="equipo.nTrabajador"  readonly="true"></ion-input>
+        </ion-item>  
+        <ion-card>
+          <ion-item>
+            <ion-label for="id" color="dark">Id equipo:</ion-label>
+            <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="equipo.id" color="primary" placeholder="Id para el equipo"></ion-input>
+        </ion-item>  
+          <ion-item>
+            <ion-label for="nombre" color="dark">Nombre:</ion-label>
+            <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="equipo.nombre" color="primary" placeholder="Nombre del equipo"></ion-input>
+          </ion-item>          
+          <ion-item>
+            <ion-button slot="end" type="submit" value="Enviar" value="number" maxlength="9"> Generar equipo </ion-button><br><br>
+        </ion-item>  
+      </ion-card>      
       </form>
    </ion-card-content>
 

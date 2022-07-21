@@ -12,9 +12,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./generar-equipo.page.scss'],
 })
 export class GenerarEquipoPage implements OnInit {
-  user:number=0;
-  nrc:number = 15437;
-  curso:number=0;
+ 
+  user:number= 2013;
+  nrc:number = 0;
+  nTrabajador:number=0;
+  course:string='cur';
 
   equipo:Equipo = {
     id: 0,
@@ -31,9 +33,8 @@ export class GenerarEquipoPage implements OnInit {
 
   getEquipoId:any = [];
   getEquipoN:any = [];
-  
 
-  constructor(private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
+  constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -41,7 +42,12 @@ export class GenerarEquipoPage implements OnInit {
   }
 
   ngOnInit() {
-    
+    const params = this.activedRoute.snapshot.params;  
+    console.log(params);
+    this.user = params.user;
+    this.nrc = params.nrc;
+    this.course = params.curso;
+    this.nTrabajador = params.user;
   }
 
   onSubmit(){

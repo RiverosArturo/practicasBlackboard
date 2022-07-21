@@ -65,8 +65,8 @@ saveEquipo(equipo: Equipo){
 deleteAllEquipo(){
   return this.http.delete(`${this.API_URI}/equipo`);
 }
-deleteEquipo(id: number,nombre:string,curso_nrc:number){
-  return this.http.delete(`${this.API_URI}/equipo/${id}/${nombre}/${curso_nrc}`);
+deleteEquipo(id: number){
+  return this.http.delete(`${this.API_URI}/equipo/${id}`);
 }
 updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);

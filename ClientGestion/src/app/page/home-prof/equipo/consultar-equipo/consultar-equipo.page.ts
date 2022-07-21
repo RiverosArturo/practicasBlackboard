@@ -54,8 +54,8 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteCourse(nrc:number){
-    this.datosService.deleteCourse(nrc).subscribe(
+  deleteEquipo(id:number){
+    this.datosService.deleteEquipo(id).subscribe(
       res => {
         console.log(res);
         this.getCourse();
@@ -72,11 +72,11 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     )
   }
-  async AlertOne(clave: number) {
+  async AlertOne(id: number,nombre:string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ clave ,
+      header: 'Confirma',
+      message: '<strong>Eliminar </strong>!!! '+ nombre ,
       buttons: [
         {
           text: 'Cancel',
@@ -91,13 +91,14 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            //this.deleteCourse(clave);
+            this.deleteEquipo(id);
           }
         }
       ]
     });
     await alert.present();
   }
+
   async AlertAll() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

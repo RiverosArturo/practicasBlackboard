@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   
   {
-    path: 'generar-equipo',
+    path: 'generar-equipo/:user/:nrc/:curso',
     loadChildren: () => import('./equipo/generar-equipo/generar-equipo.module').then( m => m.GenerarEquipoPageModule)
   },
   {
