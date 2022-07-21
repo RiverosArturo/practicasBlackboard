@@ -7,8 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
 
     <ion-card>
       <ion-header>
@@ -24,31 +22,30 @@
       </ion-header>
     </ion-card>
 
-    <ion-card-content>
-      <form (ngSubmit)="onSubmit()" #generarEq="ngForm">
-        <ion-item>
-          <ion-label>Llena los parametros</ion-label>
-          <ion-input type="text" name="curso" #curso="ngModel" [(ngModel)]="equipo.nrc"  readonly="true"></ion-input>
-          <ion-input type="text" name="nTrabajador" #curso="ngModel" [(ngModel)]="equipo.nTrabajador"  readonly="true"></ion-input>
-        </ion-item>  
-        <ion-card>
-          <ion-item>
-            <ion-label for="id" color="dark">Id equipo:</ion-label>
-            <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="equipo.id" color="primary" placeholder="Id para el equipo"></ion-input>
-        </ion-item>  
-          <ion-item>
-            <ion-label for="nombre" color="dark">Nombre:</ion-label>
-            <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="equipo.nombre" color="primary" placeholder="Nombre del equipo"></ion-input>
-          </ion-item>          
-          <ion-item>
-            <ion-button slot="end" type="submit" value="Enviar" value="number" maxlength="9"> Generar equipo </ion-button><br><br>
-        </ion-item>  
-      </ion-card>      
-      </form>
-   </ion-card-content>
+    <ion-content>
 
-  </ion-card>
-</ion-content>
+      <ion-card>
+        <form>
+        <ion-item class="form-group">
+          <ion-label position="floating"> id del Equipo </ion-label>
+          <ion-input [(ngModel)]="equipo.id" name="id" autofocus></ion-input>
+        </ion-item> 
+        <ion-item class="form-group">
+          <ion-label position="floating"> Nombre </ion-label>
+          <ion-input [(ngModel)]="equipo.nombre" name="nombre" autofocus></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-toolbar>
+            <ion-button   (click)="AlertSave(equipo.id, equipo.nombre, equipo.curso_nrc, nTrabajador)">
+              <ion-label> Guardar </ion-label>
+            </ion-button>
+          </ion-toolbar>
+        </ion-item>
+        </form>
+      </ion-card>
+    
+    </ion-content>
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

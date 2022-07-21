@@ -4,6 +4,7 @@ import { Equipo } from '../../../../models/Equipo';
 import { DatosService } from '../../../../services/datos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -19,27 +20,17 @@ export class GenerarEquipoPage implements OnInit {
   course:string='cur';
 
   equipo:Equipo = {
-    id: 0,
-    nombre:'',
-    curso_nrc: this.nrc
+    curso_nrc:0,
+    nTrabajador: 0,    
   }
 
-  equipo1:Equipo = {
-    id: 0,
-    nombre:'',
-    curso_nrc: 0
-  }
   equipos:any = [];
+  equips:any = [];
 
   getEquipoId:any = [];
   getEquipoN:any = [];
 
-  constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
-
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
+  constructor( public alertController:AlertController,private activedRoute:ActivatedRoute,private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
@@ -48,50 +39,50 @@ export class GenerarEquipoPage implements OnInit {
     this.nrc = params.nrc;
     this.course = params.curso;
     this.nTrabajador = params.user;
-  }
 
-  onSubmit(){
-    if(!isNaN(this.equipo.id) && this.equipo.id.toString().length==9){
-      this.equipo.nombre=this.equipo.nombre.split(" ").join("");
-      console.log(this.equipo);
-      this.datosService.getOneEquipo(this.equipo.id).subscribe(
-        res => {
-          this.getEquipoId = res;
-          console.log(this.getEquipoId);
-          if(this.getEquipoId.id == 0 ){
-            console.log(this.equipo.nombre);
-            this.datosService.getOneEquipoN(this.equipo.id, this.equipo.nombre.split(" ").join("")).subscribe(
-              res => {
-                this.getEquipoN = res;
-                console.log(this.getEquipoN);
-                if(this.getEquipoN.nombre == ''){
-                  alert("Equipo generado con exito!!!");
-                  this.datosService.saveEquipo(this.equipo)
-                    .subscribe(
-                      res => {
-                        console.log(res);
-                      },
-                      err => console.error(err)
-                  );
-                }else{
-                  alert("El nombre de equipo ya existe!!!")
-                }
-            });
-          }else{
-            alert("El id del equipo ya existe!!!")
+    this.equipo.curso_nrc = this.nrc;
+    this.equipo.nTrabajador = this.nTrabajador;
+    this.getEquipos();
+  }
+  async AlertSave(id, nombre, curso_nrc, nTrabajador) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensage!',
+      message: ' Equipo '+ nombre+' guardado.' ,
+      buttons: [
+        {
+          text: 'ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.saveEquipo();
           }
-      });
-    }else{
-      alert("El id del equipo tiene que ser un número de 9 digitos!!!");
-    }
+        }
+      ]
+    });
+    await alert.present();
   }
-
-  obtenEquipos(){
+// Guarda los parametros del equipo creado  
+  saveEquipo(){
+    this.datosService.saveEquipo(this.equipo)
+    .subscribe(
+      res => {
+        console.log(res);    
+        console.log('Equipo generado.');        
+      },
+      err => console.error(err)
+    )
+  }  
+  getEquipos(){
     this.datosService.getEquipos().subscribe(
         res => {
-          this.equipos = res;
+          this.equips = res;
         },
         err => console.error(err)
     );
+  }
+  OpenMenuProf(){
+    this.menu.enable(true,'MenuProf');
+    this.menu.open('MenuProf')
   }
 }
