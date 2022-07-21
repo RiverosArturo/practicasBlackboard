@@ -14,9 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class EquipoController {
+    getEquipos1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE nrc = ?', [nrc]);
+            res.json(equipo);
+        });
+    }
     getEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const equipo = yield database_1.default.query('SELECT * FROM equipo');
+            const equipo = yield database_1.default.query('SELECT * FROM equipo ');
             res.json(equipo);
         });
     }

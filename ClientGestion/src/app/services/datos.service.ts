@@ -47,6 +47,9 @@ export class DatosService {
   }
 
 //Funciones equipo////////////////////////////////////////////////////////////////////////////////////
+getEquipos1(nrc:number) {
+  return this.http.get(`${this.API_URI}/equipo/${nrc}`);
+}
 getEquipos() {
   return this.http.get(`${this.API_URI}/equipo`);
 }

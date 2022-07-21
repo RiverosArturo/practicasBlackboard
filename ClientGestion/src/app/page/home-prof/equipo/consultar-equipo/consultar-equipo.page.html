@@ -33,18 +33,25 @@
             <ion-list>
             <tr  *ngFor="let equipo of equipos">
 
-              <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
-                <ion-icon name="trash"></ion-icon>
+              <ion-button color="primary" >
+                <ion-icon name="add-outline"></ion-icon>
+                <ion-label>agregar</ion-label>
               </ion-button>
 
-              <ion-button color="primary" >                  
-                <ion-label>Ver integrantes </ion-label>                  
+              <ion-button color="primary">
+                &nbsp;<ion-icon name="eye-outline"></ion-icon> 
+                <ion-label>ver</ion-label>                                
               </ion-button>
             
-              <ion-button color="secondary" >
-                <ion-icon name="add-outline"></ion-icon>
-                <ion-label>Agregar alumno al equipo: </ion-label>                  
-              </ion-button>            
+              <ion-button color="primary" >
+                <ion-icon name="pencil-outline"></ion-icon>
+                <ion-label>editar</ion-label>
+              </ion-button>
+              
+              <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
+                <ion-icon name="trash"></ion-icon>
+                <ion-label>eliminar</ion-label>
+              </ion-button>
                          
                  {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }} 
               

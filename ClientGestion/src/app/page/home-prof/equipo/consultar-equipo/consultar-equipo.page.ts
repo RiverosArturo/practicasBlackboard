@@ -31,10 +31,10 @@ export class ConsultarEquipoPage implements OnInit {
     this.nTrabajador = params.user;
 
     this.getCourse();
-    this.getEquipo();
+    this.getEquipos(this.nrc);
   }
 
-  getEquipo(){
+  getEquipos(nrc:number){
     this.datosService.getEquipos().subscribe(
       res => {
         this.equipos = res;
@@ -91,7 +91,7 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteCourse(clave);
+            //this.deleteCourse(clave);
           }
         }
       ]
@@ -117,7 +117,7 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteAllCourses();
+            //this.deleteAllCourses();
           }
         }
       ]

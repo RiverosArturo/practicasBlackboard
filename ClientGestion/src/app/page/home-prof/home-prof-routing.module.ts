@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./equipo/generar-equipo/generar-equipo.module').then( m => m.GenerarEquipoPageModule)
   },
   {
-    path: 'consultar-equipo',
+    path: 'consultar-equipo/:user/:nrc/:curso',
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {
