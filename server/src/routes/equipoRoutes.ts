@@ -11,10 +11,12 @@ class EquipoRoutes {
     }  
 
     config(): void { 
-        this.router.get('/:nrc', equipoController.getEquipos1);
-        this.router.get('/', equipoController.getEquipo);
-        this.router.get('/:id', equipoController.getOneEquipo);
-        this.router.get('/:id/:nombre', equipoController.getOneEquipoN);
+        //this.router.get('/:nrc', equipoController.getEquipos1);
+        this.router.get('/:id/:nombre/:curso_nrc/:nTrabajador', equipoController.getEquipo);
+        this.router.get('/', equipoController.getEquipos);
+        //this.router.get('/:id', equipoController.getOneEquipo);
+        //this.router.get('/:id/:nombre', equipoController.getOneEquipoN);
+
         this.router.post('/', equipoController.saveEquipo);
         this.router.put('/:id', equipoController.updateEquipo); 
         this.router.delete('/:id', equipoController.deleteEquipo); 

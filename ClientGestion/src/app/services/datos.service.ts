@@ -47,26 +47,20 @@ export class DatosService {
   }
 
 //Funciones equipo////////////////////////////////////////////////////////////////////////////////////
-getEquipos1(nrc:number) {
-  return this.http.get(`${this.API_URI}/equipo/${nrc}`);
+getEquipo(id:number, nombre:string, curso_nrc:number, nTrabajador:number) {
+  return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}/${curso_nrc}/${nTrabajador}`);
 }
 getEquipos() {
   return this.http.get(`${this.API_URI}/equipo`);
 }
-getOneEquipo(id: number ){
-  return this.http.get(`${this.API_URI}/equipo/${id}`);
-}
-getOneEquipoN(id:number, nombre: string ){
-  return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}`);
-}
 saveEquipo(equipo: Equipo){
   return this.http.post(`${this.API_URI}/equipo/`,equipo);
 }
-deleteAllEquipo(){
-  return this.http.delete(`${this.API_URI}/equipo`);
-}
 deleteEquipo(id: number){
   return this.http.delete(`${this.API_URI}/equipo/${id}`);
+}
+deleteAllEquipo(){
+  return this.http.delete(`${this.API_URI}/equipo`);
 }
 updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);

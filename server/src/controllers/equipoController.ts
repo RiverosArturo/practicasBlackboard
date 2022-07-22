@@ -2,31 +2,15 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class EquipoController {
-    public async getEquipos1 (req: Request, res: Response){
-        const  {nrc} = req.params;
-        const equipo = await pool.query('SELECT * FROM equipo WHERE nrc = ?', [nrc])
+    public async getEquipo(req: Request, res: Response){
+        const  {id,nombre,curso_nrc,nTrabajador} = req.params;
+        const equipo = await pool.query('SELECT * FROM equipo WHERE id=? AND nombre=? AND curso_nrc=? AND nTrabajador=?', [id,nombre,curso_nrc,nTrabajador])
           res.json(equipo);
       }
-    public async getEquipo (req: Request, res: Response){      
+    public async getEquipos (req: Request, res: Response){      
       const equipo = await pool.query('SELECT * FROM equipo ');
         res.json(equipo);
-    }
-    public async getOneEquipo (req:Request, res:Response): Promise<any>{
-        const  {id} = req.params;
-        const equipo = await pool.query('SELECT * FROM equipo WHERE id = ?', [id])
-        if (equipo.length > 0 ){
-            return res.json(equipo[0]);
-        }
-        res.json({id: 0, nombre: '', curso_nrc: 0});
-    }
-    public async getOneEquipoN (req:Request, res:Response): Promise<any>{
-        const {id, nombre} = req.params;
-        const equipo = await pool.query('SELECT * FROM equipo WHERE id = ? OR nombre = ?', [id, nombre])
-        if (equipo.length > 0 ){
-            return res.json(equipo[0]);
-        }
-        res.json({id: 0, nombre: '', curso_nrc: 0});
-    }
+    }    
     public async saveEquipo (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO equipo set ?', [req.body]);
         res.json({Message: 'Equipo Saved'});

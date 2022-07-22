@@ -14,37 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class EquipoController {
-    getEquipos1(req, res) {
+    getEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE nrc = ?', [nrc]);
+            const { id, nombre, curso_nrc, nTrabajador } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id=? AND nombre=? AND curso_nrc=? AND nTrabajador=?', [id, nombre, curso_nrc, nTrabajador]);
             res.json(equipo);
         });
     }
-    getEquipo(req, res) {
+    getEquipos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const equipo = yield database_1.default.query('SELECT * FROM equipo ');
             res.json(equipo);
-        });
-    }
-    getOneEquipo(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id = ?', [id]);
-            if (equipo.length > 0) {
-                return res.json(equipo[0]);
-            }
-            res.json({ id: 0, nombre: '', curso_nrc: 0 });
-        });
-    }
-    getOneEquipoN(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id, nombre } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE id = ? OR nombre = ?', [id, nombre]);
-            if (equipo.length > 0) {
-                return res.json(equipo[0]);
-            }
-            res.json({ id: 0, nombre: '', curso_nrc: 0 });
         });
     }
     saveEquipo(req, res) {
