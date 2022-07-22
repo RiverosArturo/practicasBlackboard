@@ -44,7 +44,9 @@ export class GenerarEquipoPage implements OnInit {
     this.equipo.nTrabajador = this.nTrabajador;
     this.getEquipos();
   }
-  async AlertSave(id, nombre, curso_nrc, nTrabajador) {
+  async AlertSave(id, nombre, curso_nrc, nTrabajador) {  
+    console.log(id, nombre, curso_nrc, nTrabajador)
+    /*
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mensage!',
@@ -61,6 +63,7 @@ export class GenerarEquipoPage implements OnInit {
       ]
     });
     await alert.present();
+    */
   }
 // Guarda los parametros del equipo creado  
   saveEquipo(){
