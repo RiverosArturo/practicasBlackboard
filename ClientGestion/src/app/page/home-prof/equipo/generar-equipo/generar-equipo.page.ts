@@ -44,25 +44,40 @@ export class GenerarEquipoPage implements OnInit {
     this.equipo.nTrabajador = this.nTrabajador;
     this.getEquipos();
   }
+  Save(id, nombre, curso_nrc, nTrabajador){
+    console.log(id, nombre, curso_nrc, nTrabajador);  
+    this.datosService.getEquipo(id, nombre, curso_nrc, nTrabajador).subscribe(
+      res => {
+        this.equipo = res;
+        console.log(this.equipo);
+        if(id == null || nombre == null){
+          console.log('Llena los parametros');
+          //this.Alert3();
+        }else{
+          if(this.equipo.nTrabajador == nTrabajador && this.equipo.curso_nrc == curso_nrc){
+            console.log('El curso ya existe');
+            //this.Alert2(nrc);
+          }else{
+            console.log('Guardando curso');
+            //this.AlertSave(nrc);
+          }
+        }        
+      },
+      err => console.error(err)
+    );
+  }
   getEquipo(id:number, nombre:string, curso_nrc:number, nTrabajador:number){
     this.datosService.getEquipo(id, nombre, curso_nrc, nTrabajador).subscribe(
         res => {
-          this.auxs = res;    
-          console.log('Datos resividos:',this.auxs);
-          if(id == this.auxs.id && nombre == this.auxs.nombre && curso_nrc == this.auxs.curso_nrc && nTrabajador == this.auxs.nTrabajador){
-            console.log('El equipo ya existe, eliga otro nombre.');
-          }else{
-            console.log('Equipo creado.');
-            //this.saveEquipo();
-          }
+          console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador);
+          this.equipo = res;
         },
         err => console.error(err)
     );
   }
-  Save(id, nombre, curso_nrc, nTrabajador) {  
-    console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador);    
-    this.getEquipo(id,nombre,curso_nrc,nTrabajador);    
-
+  Save2(id, nombre, curso_nrc, nTrabajador) {  
+    //console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador);        
+    //this.getEquipo(id,nombre,curso_nrc,nTrabajador);  
     /*
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
