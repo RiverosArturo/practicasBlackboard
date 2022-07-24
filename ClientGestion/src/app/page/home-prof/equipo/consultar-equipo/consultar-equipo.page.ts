@@ -53,7 +53,7 @@ export class ConsultarEquipoPage implements OnInit {
     );
   }
   deleteEquipo(id:number, nombre:string, nrc:number, nTrabajador:number){        
-    this.datosService.deleteEquipo(id).subscribe(
+    this.datosService.deleteEquipo(id, nombre, nrc, nTrabajador).subscribe(
       res => {
         console.log(res); 
         this.getEquipos1(this.nrc, nTrabajador);       

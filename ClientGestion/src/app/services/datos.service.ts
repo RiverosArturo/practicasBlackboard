@@ -59,8 +59,8 @@ getEquipos() {
 saveEquipo(equipo: Equipo){
   return this.http.post(`${this.API_URI}/equipo/`,equipo);
 }
-deleteEquipo(id: number){
-  return this.http.delete(`${this.API_URI}/equipo/${id}`);
+deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipo/${id}/${nombre}/${nrc}/${nTrabajador}`);
 }
 deleteAllEquipos(nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
