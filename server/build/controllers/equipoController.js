@@ -21,9 +21,16 @@ class EquipoController {
             res.json(equipo);
         });
     }
+    getEquipos1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { curso_nrc, nTrabajador } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?', [curso_nrc, nTrabajador]);
+            res.json(equipo);
+        });
+    }
     getEquipos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const equipo = yield database_1.default.query('SELECT * FROM equipo ');
+            const equipo = yield database_1.default.query('SELECT * FROM equipo');
             res.json(equipo);
         });
     }
@@ -43,13 +50,14 @@ class EquipoController {
     deleteEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM equipo WHERE id = ?', [id]);
+            yield database_1.default.query('DELETE  FROM equipo WHERE id = ?', [id]);
             res.json({ message: 'The Equipo was deleted' });
         });
     }
-    deleteAllEquipo(req, res) {
+    deleteAllEquipos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM equipo');
+            const { curso_nrc, nTrabajador } = req.params;
+            yield database_1.default.query('DELETE  FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?', [curso_nrc, nTrabajador]);
             res.json({ message: 'The Equipo was deleted' });
         });
     }

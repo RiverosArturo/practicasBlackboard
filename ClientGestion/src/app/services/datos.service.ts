@@ -50,6 +50,9 @@ export class DatosService {
 getEquipo(id:number, nombre:string, curso_nrc:number, nTrabajador:number) {
   return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}/${curso_nrc}/${nTrabajador}`);
 }
+getEquipos1(nrc:number, nTrabajador:number) {    
+  return this.http.get(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
+}
 getEquipos() {
   return this.http.get(`${this.API_URI}/equipo`);
 }
@@ -59,8 +62,8 @@ saveEquipo(equipo: Equipo){
 deleteEquipo(id: number){
   return this.http.delete(`${this.API_URI}/equipo/${id}`);
 }
-deleteAllEquipo(){
-  return this.http.delete(`${this.API_URI}/equipo`);
+deleteAllEquipos(nrc: number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
 }
 updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);

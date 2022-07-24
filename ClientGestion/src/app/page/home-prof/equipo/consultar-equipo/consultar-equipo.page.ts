@@ -23,19 +23,17 @@ export class ConsultarEquipoPage implements OnInit {
 
   ngOnInit() {
 
-    const params = this.activedRoute.snapshot.params;  
-    console.log(params);
+    const params = this.activedRoute.snapshot.params;      
     this.user = params.user;
     this.nrc = params.nrc;
     this.curso = params.curso;
     this.nTrabajador = params.user;
 
     this.getCourse();
-    this.getEquipos(this.nrc);
+    this.getEquipos1(this.nrc, this.nTrabajador);
   }
-
-  getEquipos(nrc:number){
-    this.datosService.getEquipos().subscribe(
+  getEquipos1(nrc:number, nTrabajador:number){    
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
         this.equipos = res;
       },
@@ -54,25 +52,24 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteEquipo(id:number){
+  deleteEquipo(id:number, nombre:string, nrc:number, nTrabajador:number){        
     this.datosService.deleteEquipo(id).subscribe(
       res => {
-        console.log(res);
-        this.getCourse();
+        console.log(res); 
+        this.getEquipos1(this.nrc, nTrabajador);       
       },
       err => console.error(err)
     )
   }
-  deleteAllCourses(){
-    this.datosService.deleteAllCourses().subscribe(
+  deleteAllEquipos(nrc:number, nTrabajador:number){
+    this.datosService.deleteAllEquipos(nrc, nTrabajador).subscribe(
       res => {
-        console.log(res);
-        this.getCourse();
+        console.log(res);        
       },
       err => console.error(err)
     )
   }
-  async AlertOne(id: number,nombre:string) {
+  async AlertDeleteEquipo(id: number,nombre:string, curso_nrc:number, nTrabajador:number) {    
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirma',
@@ -91,7 +88,7 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteEquipo(id);
+            this.deleteEquipo(id, nombre, curso_nrc, nTrabajador);            
           }
         }
       ]

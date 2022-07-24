@@ -49,10 +49,8 @@ export class CreateCoursePage implements OnInit {
     this.pCourse.nTrabajador = this.user;        
   }  
   getUSERNRC(user, nrc){
-
     this.nTrabajador = user;
     console.log('user:', user, 'nrc', nrc);  
-
     this.datosService.getUSERNRC(this.nTrabajador, nrc).subscribe(
       res => {
         this.profCourses = res;
