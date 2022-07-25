@@ -44,7 +44,7 @@ export class GenerarEquipoPage implements OnInit {
     this.getEquipos();
   }
   Save(id, nombre, curso_nrc, nTrabajador){
-    console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador); 
+    //console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador); 
     this.datosService.getEquipo(id, nombre, curso_nrc, nTrabajador).subscribe(
       res => {
         this.pequipos = res;
@@ -52,7 +52,9 @@ export class GenerarEquipoPage implements OnInit {
           console.log('Llena los parametros');
           this.AlertLLenar();
         }else{
-          console.log('Datos resividos:',this.pequipos.id); 
+          this.saveEquipo();
+          this.AlertEquipoGenerado(nombre);
+          //console.log('Datos resividos:',this.pequipos.id); 
           /*
           if(this.equipo.nTrabajador == nTrabajador && this.equipo.curso_nrc == curso_nrc){
             console.log('El equipo ya existe');
@@ -65,6 +67,23 @@ export class GenerarEquipoPage implements OnInit {
       },
       err => console.error(err)
     );
+  }
+  async AlertEquipoGenerado(nombre) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmado',
+      message:  nombre +' creado',
+      buttons: [
+        {
+          text: 'ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   async Alert_ya_existe(nombre) {
     const alert = await this.alertController.create({
@@ -137,7 +156,7 @@ export class GenerarEquipoPage implements OnInit {
     this.datosService.saveEquipo(this.equipo)
     .subscribe(
       res => {
-        console.log(res);               
+        console.log(res);                       
       },
       err => console.error(err)
     )

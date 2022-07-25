@@ -64,7 +64,8 @@ export class ConsultarEquipoPage implements OnInit {
   deleteAllEquipos(nrc:number, nTrabajador:number){
     this.datosService.deleteAllEquipos(nrc, nTrabajador).subscribe(
       res => {
-        console.log(res);        
+        console.log(res);    
+        this.getEquipos1(this.nrc, nTrabajador);    
       },
       err => console.error(err)
     )

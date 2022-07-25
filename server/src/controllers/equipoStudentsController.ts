@@ -29,6 +29,7 @@ class EquipoStudentsController {
         await pool.query('UPDATE equipo_estudiantes set ? WHERE id = ?', [req.body, id]);
         res.json({message: 'The Equipo was UPDATE'});
     }
+    /*
     public async deleteEquipo (req:Request, res:Response): Promise <void>{
         const {id} = req.params;
         await pool.query('DELETE FROM equipo_estudiantes WHERE id = ?', [id]);
@@ -38,6 +39,7 @@ class EquipoStudentsController {
         await pool.query('DELETE FROM equipo_estudiantes');
         res.json({message: 'The Equipo was deleted'});
     }
+    */
 }
 const equipoStudentsController = new EquipoStudentsController();
 export default equipoStudentsController;

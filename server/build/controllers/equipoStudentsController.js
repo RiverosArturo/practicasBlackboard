@@ -50,19 +50,6 @@ class EquipoStudentsController {
             res.json({ message: 'The Equipo was UPDATE' });
         });
     }
-    deleteEquipo(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('DELETE FROM equipo_estudiantes WHERE id = ?', [id]);
-            res.json({ message: 'The Equipo was deleted' });
-        });
-    }
-    deleteAllEquipo(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM equipo_estudiantes');
-            res.json({ message: 'The Equipo was deleted' });
-        });
-    }
 }
 const equipoStudentsController = new EquipoStudentsController();
 exports.default = equipoStudentsController;

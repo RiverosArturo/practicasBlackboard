@@ -50,15 +50,14 @@ class EquipoController {
     deleteEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nombre, curso_nrc, nTrabajador } = req.params;
-            //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ?', [id,nombre,curso_nrc,nTrabajador]); 
-            //await pool.query('DELETE  FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id, nombre, curso_nrc, nTrabajador]);
+            yield database_1.default.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id, nombre, curso_nrc, nTrabajador]);
             res.json({ message: 'The Equipo was deleted' });
         });
     }
     deleteAllEquipos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { curso_nrc, nTrabajador } = req.params;
-            //await pool.query('DELETE  FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?',[curso_nrc, nTrabajador]);
+            yield database_1.default.query('DELETE FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?', [curso_nrc, nTrabajador]);
             res.json({ message: 'The Equipos was deleted' });
         });
     }
