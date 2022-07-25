@@ -27,14 +27,14 @@ class EquipoController {
     }
     public async deleteEquipo (req:Request, res:Response): Promise <void>{
         const {id, nombre, curso_nrc, nTrabajador} = req.params;
-        //await pool.query('DELETE FROM equipo WHERE id = ?', [id]); 
+        //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ?', [id,nombre,curso_nrc,nTrabajador]); 
         //await pool.query('DELETE  FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id, nombre, curso_nrc, nTrabajador]);
-        res.json({message: 'The Equipo was deleted',id,nombre,curso_nrc,nTrabajador});
+        res.json({message: 'The Equipo was deleted'});
     }
     public async deleteAllEquipos (req:Request, res:Response): Promise <void>{
         const {curso_nrc, nTrabajador} = req.params;
-        await pool.query('DELETE  FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?',[curso_nrc, nTrabajador]);
-        res.json({message: 'The Equipo was deleted'});
+        //await pool.query('DELETE  FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?',[curso_nrc, nTrabajador]);
+        res.json({message: 'The Equipos was deleted'});
     }
 }
 const equipoController = new EquipoController();

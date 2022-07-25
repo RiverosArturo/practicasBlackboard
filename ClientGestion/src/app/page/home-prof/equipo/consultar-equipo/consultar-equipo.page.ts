@@ -96,11 +96,11 @@ export class ConsultarEquipoPage implements OnInit {
     await alert.present();
   }
 
-  async AlertAll() {
+  async AlertDeleteAll(nrc:number, nTrabajador:number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
+      message: 'Deseas eliminar todos los equipo? ',
       buttons: [
         {
           text: 'Cancel',
@@ -115,7 +115,7 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            //this.deleteAllCourses();
+            this.deleteAllEquipos(nrc,nTrabajador);
           }
         }
       ]
