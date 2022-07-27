@@ -33,14 +33,14 @@
             <ion-list>
             <tr  *ngFor="let equipo of equipos">
 
-              <ion-button color="primary" >
-                <ion-icon name="add-outline"></ion-icon>
-                <ion-label>agregar</ion-label>
+              <ion-button color="primary" (click)="addStudent(equipo.nombre)">
+                <ion-icon name="add-outline"></ion-icon>           
               </ion-button>
 
-              <ion-button color="primary">
-                &nbsp;<ion-icon name="eye-outline"></ion-icon> 
-                <ion-label>ver</ion-label>                                
+              <ion-button color="primary">                
+                 {{ equipo.nombre }} 
+                <ion-button> <ion-icon name="chevron-down-outline"></ion-icon> </ion-button>  
+                <ion-button> <ion-icon name="chevron-up-outline"></ion-icon> </ion-button>
               </ion-button>
             
               <ion-button color="primary" >
@@ -49,12 +49,41 @@
               </ion-button>
               
               <ion-button color="danger" (click)="AlertDeleteEquipo(equipo.id, equipo.nombre, equipo.curso_nrc, equipo.nTrabajador)">                                          
-                <ion-icon name="trash"></ion-icon>
-                <ion-label>eliminar</ion-label>
+                <ion-icon name="trash"></ion-icon>                
               </ion-button>
-                         
+
+              <div *ngIf="add == true && equipo.nombre == nomb ;">
+                <ion-item class="form-group">                  
+                <ion-card>                  
+                  <form>      
+                  <ion-card>      
+                    <ion-header>
+                      <ion-label> Selecciona al alumno </ion-label>
+                    </ion-header>                  
+                    <ion-item>          
+                      <ion-label>Alumno</ion-label>
+                      <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
+                          <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
+                      </select>                
+                    </ion-item> <br>
+                    <ion-label> {{pCourse.nrc}} </ion-label>            
+                  </ion-card>
+                <ion-item>
+                  <ion-toolbar>      
+                    <ion-button slot="end"   (click)=" getUSERNRC(user, pCourse.nrc)">
+                      <ion-label> Agregar </ion-label>
+                    </ion-button>            
+                  </ion-toolbar>
+                </ion-item>
+                </form>
+                </ion-card>
+                </ion-item>
+              </div>
+
+
+                 <!--        
                  {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }}, {{equipo.nTrabajador}} 
-              
+                -->
           </tr>
         </ion-list>
         </div>

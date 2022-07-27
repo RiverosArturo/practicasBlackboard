@@ -13,16 +13,20 @@ export class ConsultarEquipoPage implements OnInit {
 
   courses:any = [];
   equipos:any = [];
+  studEquipo:any = [];
 
   user:number= 2013;
   nrc:number = 0;
   nTrabajador:number=0;
   curso:string='cur';
 
+  add:boolean = false;
+  nomb:string;
+  equi:boolean = false;
+
   constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
-
     const params = this.activedRoute.snapshot.params;      
     this.user = params.user;
     this.nrc = params.nrc;
@@ -31,6 +35,20 @@ export class ConsultarEquipoPage implements OnInit {
 
     this.getCourse();
     this.getEquipos1(this.nrc, this.nTrabajador);
+  }
+  addStudent(nombre:string){
+    this.add = true;
+    this.nomb =nombre;
+    console.log(this.nomb);
+  }
+  saveStudentEquipo(){
+    this.datosService.saveStudEquipo(this.studEquipo)
+    .subscribe(
+      res => {
+        console.log(res);                       
+      },
+      err => console.error(err)
+    )
   }
   getEquipos1(nrc:number, nTrabajador:number){    
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(

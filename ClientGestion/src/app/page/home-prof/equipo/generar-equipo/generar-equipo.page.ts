@@ -21,7 +21,7 @@ export class GenerarEquipoPage implements OnInit {
 
   equipo:Equipo = {
     //id:1,
-    nombre:'Equipo1',
+    nombre:'',
     curso_nrc:0,
     nTrabajador: 0,    
   }
@@ -43,34 +43,38 @@ export class GenerarEquipoPage implements OnInit {
     this.getEquipos();
   }
 
-  Save(id:number, nombre:string, nrc:number, nTrabajador:number){      
-    this.datosService.getEquipo(id, nombre, nrc, nTrabajador).subscribe(
-      res => {
-        this.oneEquipos = res;              
-        if(id == null && nombre == null){
-          console.log('Llena los parametros');
-          this.AlertLLenar();
+  Save(id:number, nombre:string, nrc:number, nTrabajador:number){  
+    this.datosService.getid(id).subscribe(
+      res => {              
+        this.oneEquipos = res;
+        console.log('::>', this.oneEquipos.id);
+        if(this.oneEquipos.id == id){
+          console.log('El id ya existe, intente con otro.');
+          this.Alert_ya_existe_id(id);
         }else{
-          this.datosService.getid(id).subscribe(
-            res => {              
-              this.oneEquipos = res;
+          this.datosService.getEquipo(id, nombre, nrc, nTrabajador).subscribe(
+            res => {
+              this.oneEquipos = res;              
+              if(id == null && nombre == null){
+                console.log('Llena los parametros');
+                this.AlertLLenar();
+              }else{                              
+                console.log('::>',this.oneEquipos); 
+                if(this.oneEquipos.nombre == nombre && this.oneEquipos.curso_nrc == nrc && this.oneEquipos.nTrabajador == nTrabajador){                  
+                    console.log('El equipo ya Existe.');
+                    this.Alert_ya_existe(nombre);                
+                }else{
+                  console.log('Equipo creado.');
+                  this.AlertEquipoGenerado(nombre);
+                }
+              }  
             },
             err => console.error(err)
-        );
-          /*
-          console.log('::>',this.oneEquipos); 
-          if(this.oneEquipos.nombre == nombre && this.oneEquipos.curso_nrc == nrc && this.oneEquipos.nTrabajador == nTrabajador){
-            
-              console.log('El equipo ya Existe.');
-              this.Alert_ya_existe(nombre);                
-          }else{
-            console.log('Equipo creado.');
-            this.AlertEquipoGenerado(nombre);
-          }*/
-        }  
+          );
+        }
       },
       err => console.error(err)
-    );
+    );    
   }
   async AlertEquipoGenerado(nombre) {
     const alert = await this.alertController.create({
@@ -90,11 +94,28 @@ export class GenerarEquipoPage implements OnInit {
     });
     await alert.present();
   }
+  async Alert_ya_existe_id(id){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta!',
+      message: 'El id '+ id +' ya existe, intente con otro',
+      buttons: [
+        {
+          text: 'ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
   async Alert_ya_existe(nombre) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta!',
-      message: 'El equipo '+ nombre +'ya existe',
+      message: 'El equipo '+ nombre +' ya existe',
       buttons: [
         {
           text: 'ok',

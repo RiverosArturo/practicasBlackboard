@@ -74,9 +74,13 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
 }
 
 ////////////////////EQUIPOS ESTUDIANTES///////////////////////
+saveStudEquipo(studEquipo: Equipo){
+  return this.http.post(`${this.API_URI}/equipo/`,studEquipo);
+}
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
 }
+
 
 ///FUNCIONES ACTIVIDAD/////////////////////////////////
 getActivity(){
