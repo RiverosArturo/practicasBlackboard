@@ -26,10 +26,12 @@
 
       <ion-card>
         <form>
+          
         <ion-item class="form-group">
           <ion-label position="floating"> id del Equipo </ion-label>
           <ion-input [(ngModel)]="equipo.id" name="id" autofocus></ion-input>
         </ion-item> 
+
         <ion-item class="form-group">
           <ion-label position="floating"> Nombre </ion-label>
           <ion-input [(ngModel)]="equipo.nombre" name="nombre" autofocus></ion-input>
@@ -37,7 +39,7 @@
         
         <ion-item>
           <ion-toolbar>
-            <ion-button   (click)="Save(equipo.id, equipo.nombre, equipo.curso_nrc, nTrabajador)">
+            <ion-button   (click)="Save(equipo.id, equipo.nombre, nrc, nTrabajador)">
               <ion-label> Guardar </ion-label>
             </ion-button>
           </ion-toolbar>

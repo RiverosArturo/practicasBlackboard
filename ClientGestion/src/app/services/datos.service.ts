@@ -47,13 +47,17 @@ export class DatosService {
   }
 
 //Funciones equipo////////////////////////////////////////////////////////////////////////////////////
-getEquipo(id:number, nombre:string, curso_nrc:number, nTrabajador:number) {
-  return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}/${curso_nrc}/${nTrabajador}`);
+getid(id:number) {
+  return this.http.get(`${this.API_URI}/equipo/${id}`);
 }
+getEquipo(id:number, nombre:string, nrc:number, nTrabajador:number) {
+  return this.http.get(`${this.API_URI}/equipo/${id}/${nombre}/${nrc}/${nTrabajador}`);
+}
+//lista los equipos en la consulta
 getEquipos1(nrc:number, nTrabajador:number) {    
   return this.http.get(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
 }
-getEquipos() {
+getEquipos() {//no tocar
   return this.http.get(`${this.API_URI}/equipo`);
 }
 saveEquipo(equipo: Equipo){

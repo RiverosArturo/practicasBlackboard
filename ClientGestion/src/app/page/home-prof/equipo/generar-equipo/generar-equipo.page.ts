@@ -20,22 +20,21 @@ export class GenerarEquipoPage implements OnInit {
   course:string='cur';
 
   equipo:Equipo = {
+    //id:1,
+    nombre:'Equipo1',
     curso_nrc:0,
     nTrabajador: 0,    
   }
 
   equipos:any = [];
-  pequipos:any = [];
-
-  getEquipoId:any = [];
-  getEquipoN:any = [];
+  oneEquipos:any = [];
 
   constructor( public alertController:AlertController,private activedRoute:ActivatedRoute,private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;    
     this.user = params.user;
-    this.nrc = params.nrc;
+    this.nrc = params.nrc;    
     this.course = params.curso;
     this.nTrabajador = params.user;
 
@@ -43,27 +42,32 @@ export class GenerarEquipoPage implements OnInit {
     this.equipo.nTrabajador = this.nTrabajador;
     this.getEquipos();
   }
-  Save(id, nombre, curso_nrc, nTrabajador){
-    //console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador); 
-    this.datosService.getEquipo(id, nombre, curso_nrc, nTrabajador).subscribe(
+
+  Save(id:number, nombre:string, nrc:number, nTrabajador:number){      
+    this.datosService.getEquipo(id, nombre, nrc, nTrabajador).subscribe(
       res => {
-        this.pequipos = res;
-        if(id == null || nombre == null){
+        this.oneEquipos = res;              
+        if(id == null && nombre == null){
           console.log('Llena los parametros');
           this.AlertLLenar();
         }else{
-          this.saveEquipo();
-          this.AlertEquipoGenerado(nombre);
-          //console.log('Datos resividos:',this.pequipos.id); 
+          this.datosService.getid(id).subscribe(
+            res => {              
+              this.oneEquipos = res;
+            },
+            err => console.error(err)
+        );
           /*
-          if(this.equipo.nTrabajador == nTrabajador && this.equipo.curso_nrc == curso_nrc){
-            console.log('El equipo ya existe');
-            this.Alert_ya_existe(nombre);
+          console.log('::>',this.oneEquipos); 
+          if(this.oneEquipos.nombre == nombre && this.oneEquipos.curso_nrc == nrc && this.oneEquipos.nTrabajador == nTrabajador){
+            
+              console.log('El equipo ya Existe.');
+              this.Alert_ya_existe(nombre);                
           }else{
-            console.log('Equipo creado');
-            //this.AlertSave(nrc);            
+            console.log('Equipo creado.');
+            this.AlertEquipoGenerado(nombre);
           }*/
-        }        
+        }  
       },
       err => console.error(err)
     );
@@ -79,6 +83,7 @@ export class GenerarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
+            this.saveEquipo();            
           }
         }
       ]
@@ -127,29 +132,7 @@ export class GenerarEquipoPage implements OnInit {
         },
         err => console.error(err)
     );
-  }
-  Save2(id, nombre, curso_nrc, nTrabajador) {  
-    //console.log('Datos enviados:',id, nombre, curso_nrc, nTrabajador);        
-    //this.getEquipo(id,nombre,curso_nrc,nTrabajador);  
-    /*
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Mensage!',
-      message: ' Equipo '+ nombre+' guardado.' ,
-      buttons: [
-        {
-          text: 'ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.saveEquipo();
-          }
-        }
-      ]
-    });
-    await alert.present();
-    */
-  }
+  }  
 
 // Guarda los parametros del equipo creado  
   saveEquipo(){
