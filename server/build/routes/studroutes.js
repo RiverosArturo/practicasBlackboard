@@ -7,7 +7,7 @@ const express_1 = require("express");
 const studController_1 = __importDefault(require("../controllers/studController"));
 class StudRoutes {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.config();
     }
     config() {

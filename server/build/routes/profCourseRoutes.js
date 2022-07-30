@@ -7,7 +7,7 @@ const express_1 = require("express");
 const profCourseController_1 = __importDefault(require("../controllers/profCourseController"));
 class ProfCourseRoutes {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.config();
     }
     config() {
