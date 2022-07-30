@@ -36,7 +36,7 @@ class ActividadController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL ', [id]);
+            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL LIMIT 1 ', [id]);
             if (actividad.length > 0) {
                 return res.json(actividad[0]);
             }
@@ -48,7 +48,7 @@ class ActividadController {
     getOneEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, id_equipo } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? ', [id, id_equipo]);
+            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? LIMIT 1', [id, id_equipo]);
             if (actividad.length > 0) {
                 return res.json(actividad[0]);
             }
