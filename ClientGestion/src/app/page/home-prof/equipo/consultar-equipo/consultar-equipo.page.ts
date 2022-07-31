@@ -3,6 +3,7 @@ import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute} from '@angular/router';
+import { Student } from 'src/app/models/Student';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -11,9 +12,14 @@ import { Router, ActivatedRoute} from '@angular/router';
 })
 export class ConsultarEquipoPage implements OnInit {
 
+  student: Student = {
+    matricula:0,
+  } 
+
   courses:any = [];
   equipos:any = [];
-  studEquipo:any = [];
+  studentEquipo:any = [];//Alumno integrante del equipo
+  studentsEquipo:any = [];//Alumnos integrantes del equipo
 
   user:number= 2013;
   nrc:number = 0;
@@ -23,6 +29,9 @@ export class ConsultarEquipoPage implements OnInit {
   add:boolean = false;
   nomb:string;
   equi:boolean = false;
+
+  students:any = [];//nombre del alumno  
+  studCourses:any = [];//Alumnos del curso
 
   constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
@@ -35,6 +44,8 @@ export class ConsultarEquipoPage implements OnInit {
 
     this.getCourse();
     this.getEquipos1(this.nrc, this.nTrabajador);
+    this.getStudCourse(this.nrc,this.nTrabajador); 
+    this.getStudent();
   }
   addStudent(nombre:string){
     this.add = true;
@@ -42,14 +53,35 @@ export class ConsultarEquipoPage implements OnInit {
     console.log(this.nomb);
   }
   saveStudentEquipo(){
+    this.add = false;
+    /*
     this.datosService.saveStudEquipo(this.studEquipo)
     .subscribe(
       res => {
         console.log(res);                       
       },
       err => console.error(err)
-    )
+    )*/
   }
+
+  getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
+    this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
+      res => {
+        this.studCourses = res;
+        console.log(res);        
+      },
+      err => console.error(err)
+    );
+  }
+  getStudent(){
+    this.datosService.getStudents().subscribe(
+      res => {
+        this.students = res;     
+      },
+      err => console.error(err)
+    );
+  }
+  
   getEquipos1(nrc:number, nTrabajador:number){    
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {

@@ -62,15 +62,15 @@
                     </ion-header>                  
                     <ion-item>          
                       <ion-label>Alumno</ion-label>
-                      <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-                          <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
+                      <select name="miselect" [(ngModel)]="studentEquipo.matricula" name="matricula" >            
+                          <option [value]="studCourse.matricula" *ngFor="let studCourse of studCourses">Alumno:{{studCourse.matricula}}</option>
                       </select>                
                     </ion-item> <br>
-                    <ion-label> {{pCourse.nrc}} </ion-label>            
+                    <ion-label> {{studentEquipo.matricula}} </ion-label>            
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
-                    <ion-button slot="end"   (click)=" getUSERNRC(user, pCourse.nrc)">
+                    <ion-button slot="end"   (click)=" saveStudentEquipo()">
                       <ion-label> Agregar </ion-label>
                     </ion-button>            
                   </ion-toolbar>
