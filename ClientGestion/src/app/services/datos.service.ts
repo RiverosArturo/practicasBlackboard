@@ -89,11 +89,11 @@ getActivity(){
 getAct(listAct:number){
   return this.http.get(`${this.API_URI}/actividad/${listAct}`);
 }
-getOneActividad(id:string){
+getOneActividad(id:string, nTrabajador:number, nrc:number){
   return this.http.get(`${this.API_URI}/actividad/${id}`);
 }
 
-getOneActividadEq(id:string, id_equipo:number){
+getOneActividadEq(id:string, id_equipo:number, nTrabajador:number, nrc:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${id_equipo}`);
 }
 

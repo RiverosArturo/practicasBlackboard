@@ -24,7 +24,7 @@
     <ion-card>
       <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAct="ngForm">
         <ion-label for="id" color="dark">Id actividad:</ion-label>
-        <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" placeholder="Id actividad Ej: ACT1/123456"></ion-input>
+        <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" ></ion-input>
     
         <ion-label for="nombre" color="dark">Nombre:</ion-label>
         <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="actividadCurso.nombre" color="primary" placeholder="Nombre de la actividad"></ion-input>
@@ -76,9 +76,7 @@
         <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
         
         <ion-label for="equipo" color="dark">Equipo  </ion-label>
-        <select type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789">
-          <option [value]="equipo.id" *ngFor="let equipo of equipos">{{equipo.id}},{{ equipo.nombre}}</option>
-        </select><br>
+        <ion-input type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789"></ion-input><br>
       
         <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
       </form>

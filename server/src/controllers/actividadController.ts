@@ -17,8 +17,8 @@ class ActividadController {
           res.json(actividad);
       }
     public async getOne (req:Request, res:Response): Promise<any>{
-        const  {id} = req.params;
-        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo IS NULL LIMIT 1 ', [id])
+        const  {id,noTrabajador,nrc} = req.params;
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE id=? AND noTrabajador=? AND nrc=? AND id_equipo IS NULL LIMIT 1', [id,noTrabajador,nrc])
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
         }else{
@@ -26,8 +26,8 @@ class ActividadController {
         }
     }
     public async getOneEq (req:Request, res:Response): Promise<any>{
-        const  {id, id_equipo} = req.params;
-        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? LIMIT 1', [id,id_equipo])
+        const  {id, id_equipo,noTrabajador,nrc} = req.params;
+        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? AND noTrabajador=? AND nrc=? LIMIT 1', [id,id_equipo,noTrabajador,nrc])
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
         }else{

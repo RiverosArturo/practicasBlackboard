@@ -35,10 +35,10 @@
                 <ion-button color="danger" >                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
-                <ion-button [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo]" color="primary" >                  
+                <ion-button [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
                   actualizar
                 </ion-button>  
-                 {{ activity.id }}, {{ activity.nombre }}, {{ activity.descripcion }} {{activity.id_equipo}}
+                 {{ activity.nrc }}, {{ activity.noTrabajador }}, {{ activity.id}} {{activity.id_equipo}}
               
           </tr>
         </ion-list>
