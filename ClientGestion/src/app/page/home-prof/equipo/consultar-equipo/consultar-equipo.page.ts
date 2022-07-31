@@ -18,7 +18,12 @@ export class ConsultarEquipoPage implements OnInit {
 
   courses:any = [];
   equipos:any = [];
-  studentEquipo:any = [];//Alumno integrante del equipo
+  studentEquipo:any = {//Alumno integrante del equipo
+    matricula:0,
+    id_equipo:0,
+    nrc:0,
+    nTrabajador:0,
+  };
   studentsEquipo:any = [];//Alumnos integrantes del equipo
 
   user:number= 2013;
@@ -52,13 +57,19 @@ export class ConsultarEquipoPage implements OnInit {
     this.nomb =nombre;
     console.log(this.nomb);
   }
-  saveStudentEquipo(){
+  saveStudentEquipo(matricula:number){
     this.add = false;
+
+    //this.studentEquipo.matricula = matricula; 
+    this.studentEquipo.nrc = this.nrc;
+    this.studentEquipo.nTrabajador = this.nTrabajador;                 
+    console.log('Equipo::> ',this.studentEquipo);
     /*
-    this.datosService.saveStudEquipo(this.studEquipo)
+    this.datosService.saveStudentEquipo(this.studentEquipo)
     .subscribe(
       res => {
-        console.log(res);                       
+        console.log(res);  
+        this.add = false;                     
       },
       err => console.error(err)
     )*/

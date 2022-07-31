@@ -63,14 +63,14 @@
                     <ion-item>          
                       <ion-label>Alumno</ion-label>
                       <select name="miselect" [(ngModel)]="studentEquipo.matricula" name="matricula" >            
-                          <option [value]="studCourse.matricula" *ngFor="let studCourse of studCourses">Alumno:{{studCourse.matricula}}</option>
+                          <option [value]="studCourse.matricula" *ngFor="let studCourse of studCourses">{{studCourse.matricula}}</option>
                       </select>                
                     </ion-item> <br>
                     <ion-label> {{studentEquipo.matricula}} </ion-label>            
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
-                    <ion-button slot="end"   (click)=" saveStudentEquipo()">
+                    <ion-button slot="end"   (click)=" saveStudentEquipo(studentEquipo.matricula)">
                       <ion-label> Agregar </ion-label>
                     </ion-button>            
                   </ion-toolbar>
