@@ -35,8 +35,8 @@ class ActividadController {
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, noTrabajador, nrc } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE id=? AND noTrabajador=? AND nrc=? AND id_equipo IS NULL LIMIT 1', [id, noTrabajador, nrc]);
+            const { id, nrc, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [id, nrc, noTrabajador]);
             if (actividad.length > 0) {
                 return res.json(actividad[0]);
             }
@@ -47,8 +47,8 @@ class ActividadController {
     }
     getOneEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, id_equipo, noTrabajador, nrc } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? AND noTrabajador=? AND nrc=? LIMIT 1', [id, id_equipo, noTrabajador, nrc]);
+            const { id, nrc, id_equipo, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [id, nrc, id_equipo, noTrabajador]);
             if (actividad.length > 0) {
                 return res.json(actividad[0]);
             }
@@ -63,10 +63,17 @@ class ActividadController {
             res.json({ Message: 'Actividad Saved' });
         });
     }
-    update(req, res) {
+    updateAct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('UPDATE actividad set ? WHERE id = ?', [req.body, id]);
+            const { id, nrc, noTrabajador } = req.params;
+            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=?', [req.body, id, nrc, noTrabajador]);
+            res.json({ message: 'The actividad was UPDATE' });
+        });
+    }
+    updateActEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, noTrabajador, id_equipo } = req.params;
+            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body, id, nrc, noTrabajador, id_equipo]);
             res.json({ message: 'The actividad was UPDATE' });
         });
     }

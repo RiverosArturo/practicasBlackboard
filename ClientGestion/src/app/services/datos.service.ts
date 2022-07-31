@@ -89,16 +89,23 @@ getActivity(){
 getAct(listAct:number){
   return this.http.get(`${this.API_URI}/actividad/${listAct}`);
 }
-getOneActividad(id:string, nTrabajador:number, nrc:number){
-  return this.http.get(`${this.API_URI}/actividad/${id}`);
+getOneActividad(id:string,nrc:number,noTrabajador:number){
+  return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
 }
 
-getOneActividadEq(id:string, id_equipo:number, nTrabajador:number, nrc:number){
-  return this.http.get(`${this.API_URI}/actividad/${id}/${id_equipo}`);
+getOneActividadEq(id:string, nrc:number, id_equipo:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
 }
 
 saveActividad(actividad: Actividad){
   return this.http.post(`${this.API_URI}/actividad/`,actividad);
+}
+
+actualizarAct(id:string,nrc:number,noTrabajador:number,updateAct:Actividad){
+  return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`,updateAct);
+}
+actualizarActEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateAct:Actividad){
+  return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}/${id_equipo}`,updateAct);
 }
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
   getAdmis() {

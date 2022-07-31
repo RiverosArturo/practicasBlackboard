@@ -64,7 +64,7 @@ export class AltaActividadPage implements OnInit {
     console.log(this.actividadCurso);
     if(this.actividadCurso.id_equipo == null){
       console.log("Insertare actividad para ACTIVIDAD!!!")
-      this.datosService.getOneActividad(this.actividadCurso.id, this.actividadCurso.noTrabajador, this.actividadCurso.nrc).subscribe(
+      this.datosService.getOneActividad(this.actividadCurso.id,this.actividadCurso.nrc,this.actividadCurso.noTrabajador).subscribe(
         res => {
           this.getActividad = res;
           if( this.getActividad.id == ""){
@@ -103,7 +103,7 @@ export class AltaActividadPage implements OnInit {
         });
     }else{
       console.log("Insertare actividad para EQUIPO!!!")
-      this.datosService.getOneActividadEq(this.actividadCurso.id, this.actividadCurso.id_equipo, this.actividadCurso.noTrabajador, this.actividadCurso.nrc).subscribe(
+      this.datosService.getOneActividadEq(this.actividadCurso.id,this.actividadCurso.nrc, this.actividadCurso.id_equipo, this.actividadCurso.noTrabajador).subscribe(
         res => {
           this.getActividadE = res;
           console.log("-----------------------");

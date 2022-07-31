@@ -17,8 +17,8 @@ class ActividadController {
           res.json(actividad);
       }
     public async getOne (req:Request, res:Response): Promise<any>{
-        const  {id,noTrabajador,nrc} = req.params;
-        const actividad = await pool.query('SELECT * FROM `actividad` WHERE id=? AND noTrabajador=? AND nrc=? AND id_equipo IS NULL LIMIT 1', [id,noTrabajador,nrc])
+        const  {id,nrc,noTrabajador} = req.params;
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [id,nrc,noTrabajador])
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
         }else{
@@ -26,8 +26,8 @@ class ActividadController {
         }
     }
     public async getOneEq (req:Request, res:Response): Promise<any>{
-        const  {id, id_equipo,noTrabajador,nrc} = req.params;
-        const actividad = await pool.query('SELECT * FROM actividad WHERE id = ? AND id_equipo = ? AND noTrabajador=? AND nrc=? LIMIT 1', [id,id_equipo,noTrabajador,nrc])
+        const  {id,nrc,id_equipo,noTrabajador} = req.params;
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [id,nrc,id_equipo,noTrabajador])
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
         }else{
@@ -38,9 +38,14 @@ class ActividadController {
         await pool.query('INSERT INTO actividad set ?', [req.body]);
         res.json({Message: 'Actividad Saved'});
     }
-    public async update (req:Request, res:Response): Promise<void>{
-        const { id } = req.params;
-        await pool.query('UPDATE actividad set ? WHERE id = ?', [req.body, id]);
+    public async updateAct (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador} = req.params;
+        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=?', [req.body,id,nrc,noTrabajador]);
+        res.json({message: 'The actividad was UPDATE'});
+    }
+    public async updateActEq (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador,id_equipo} = req.params;
+        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
         res.json({message: 'The actividad was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{

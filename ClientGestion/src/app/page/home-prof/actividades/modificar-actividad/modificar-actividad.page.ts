@@ -37,13 +37,11 @@ export class ModificarActividadPage implements OnInit {
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;
-    console.log("Soy params: " + params.id + params.id_equipo + params.nrc + params.noTrabajador);
     if(params.id_equipo > 0 && params.id_equipo != null){
-      console.log("Soy equipo");
-      console.log("Soy params: " + params.id_equipo);
       //se obtiene la actividad de equipo
+      console.log("Soy params: kk" + params.id + params.id_equipo + params.nrc + params.noTrabajador);
       this.condicionE = false;
-      this.datosService.getOneActividadEq(params.id, params.id_equipo, params.nTrabajador, params.nrc)
+      this.datosService.getOneActividadEq(params.id,params.nrc,params.id_equipo,params.noTrabajador)
       .subscribe(
         res =>{
           console.log(res);
@@ -57,10 +55,10 @@ export class ModificarActividadPage implements OnInit {
         }
       );
     }else{
-      console.log("Soy params: " + params.id_equipo);
+      console.log("Soy params ff: " + params.id + params.nrc + params.noTrabajador);
       //se obtiene la actividad para curso
       this.condicionE = true;
-      this.datosService.getOneActividad(params.id, params.nTrabajador, params.nrc)
+      this.datosService.getOneActividad(params.id,params.nrc,params.noTrabajador)
       .subscribe(
         res =>{
           console.log(res);
@@ -75,15 +73,26 @@ export class ModificarActividadPage implements OnInit {
   }
 
   onSubmit(){
-    // if(this.actividadCurso.id_equipo > 0 && this.actividadCurso.id_equipo != null){
-    //   this.datosService.modificarAct(this.actividadCurso.id, this.actividadCurso.id_equipo)
-    //         .subscribe(
-    //           res => {
-    //             console.log(res);
-    //           },
-    //           err => console.error(err)
-    //         )
-    // }
-
+    if(this.actividadCurso.id_equipo > 0 && this.actividadCurso.id_equipo != null){
+      alert("Actividad actualizada con exito!!!");
+      this.datosService.actualizarActEq(this.actividadCurso.id, this.actividadCurso.nrc, this.actividadCurso.noTrabajador, this.actividadCurso.id_equipo, this.actividadCurso)
+            .subscribe(
+              res => {
+                console.log(res);
+              },
+              err => console.error(err)
+            )
+    }else{
+      alert("Actividad actualizada con exito!!!");
+      this.datosService.actualizarAct(this.actividadCurso.id, this.actividadCurso.nrc, this.actividadCurso.noTrabajador, this.actividadCurso)
+            .subscribe(
+              res => {
+                console.log(res);
+              },
+              err => console.error(err)
+            )
+    }
   }
+
+
 }

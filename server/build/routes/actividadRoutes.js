@@ -13,11 +13,12 @@ class actividadRoutes {
     config() {
         this.router.get('/', actividadController_1.default.getActivity);
         this.router.get('/', actividadController_1.default.list);
-        this.router.get('/:id/:noTrabajador/:nrc', actividadController_1.default.getOne);
+        this.router.get('/:id/:nrc/:noTrabajador', actividadController_1.default.getOne);
         this.router.get('/:listAct', actividadController_1.default.listAct);
-        this.router.get('/:id/:id_equipo/:noTrabajador/:nrc', actividadController_1.default.getOneEq);
+        this.router.get('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_1.default.getOneEq);
         this.router.post('/', actividadController_1.default.create);
-        this.router.put('/:id', actividadController_1.default.update);
+        this.router.put('/:id/:nrc/:noTrabajador', actividadController_1.default.updateAct);
+        this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', actividadController_1.default.updateActEq);
         //this.router.put('/:id/:idEquipo', ActividadController.updateActEq);
         this.router.delete('/:id', actividadController_1.default.delete);
         //this.router.delete('/:id/:idEquipo', ActividadController.deleteActEq); 
