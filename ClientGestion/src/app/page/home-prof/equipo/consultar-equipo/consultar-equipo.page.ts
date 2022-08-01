@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute} from '@angular/router';
 import { Student } from 'src/app/models/Student';
+import {  } from 'src/app/models/StudentEquipo';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -18,6 +19,7 @@ export class ConsultarEquipoPage implements OnInit {
 
   courses:any = [];
   equipos:any = [];
+
   studentEquipo:any = {//Alumno integrante del equipo
     matricula:0,
     id_equipo:0,
@@ -54,17 +56,17 @@ export class ConsultarEquipoPage implements OnInit {
   }
   addStudent(nombre:string){
     this.add = true;
-    this.nomb =nombre;
-    console.log(this.nomb);
+    this.nomb =nombre;    
   }
-  saveStudentEquipo(matricula:number){
+  saveStudentEquipo(id:number){
     this.add = false;
-
-    //this.studentEquipo.matricula = matricula; 
+    console.log(id);
+    this.studentEquipo.id_equipo = id;
     this.studentEquipo.nrc = this.nrc;
-    this.studentEquipo.nTrabajador = this.nTrabajador;                 
+    this.studentEquipo.nTrabajador = this.nTrabajador;    
+
     console.log('Equipo::> ',this.studentEquipo);
-    /*
+    
     this.datosService.saveStudentEquipo(this.studentEquipo)
     .subscribe(
       res => {
@@ -72,19 +74,18 @@ export class ConsultarEquipoPage implements OnInit {
         this.add = false;                     
       },
       err => console.error(err)
-    )*/
+    )
   }
 
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
     this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
       res => {
-        this.studCourses = res;
-        console.log(res);        
+        this.studCourses = res;              
       },
       err => console.error(err)
     );
   }
-  getStudent(){
+  getStudent(){//optiene los alumnos inscritos en el sistema
     this.datosService.getStudents().subscribe(
       res => {
         this.students = res;     

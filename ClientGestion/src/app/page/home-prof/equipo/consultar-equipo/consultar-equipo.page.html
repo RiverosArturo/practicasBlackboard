@@ -66,11 +66,11 @@
                           <option [value]="studCourse.matricula" *ngFor="let studCourse of studCourses">{{studCourse.matricula}}</option>
                       </select>                
                     </ion-item> <br>
-                    <ion-label> {{studentEquipo.matricula}} </ion-label>            
+                    <ion-label>{{studentEquipo.matricula}} </ion-label>            
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
-                    <ion-button slot="end"   (click)=" saveStudentEquipo(studentEquipo.matricula)">
+                    <ion-button slot="end"   (click)=" saveStudentEquipo(equipo.id)">
                       <ion-label> Agregar </ion-label>
                     </ion-button>            
                   </ion-toolbar>
