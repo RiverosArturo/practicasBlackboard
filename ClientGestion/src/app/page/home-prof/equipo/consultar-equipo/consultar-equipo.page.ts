@@ -62,9 +62,15 @@ export class ConsultarEquipoPage implements OnInit {
     this.nomb =nombre;   
     //this.getOneEquipo(id, this.nrc, this.nTrabajador); 
   }
+  notQuery(){
+    this.query = false;
+  }
   addStudent(nombre:string){
     this.add = true;
     this.nomb =nombre;    
+  }
+  notAdd(){
+    this.add = false;
   }
   saveStudentEquipo(id:number){
     this.add = false;
