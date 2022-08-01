@@ -19,6 +19,7 @@ export class ConsultarEquipoPage implements OnInit {
 
   courses:any = [];
   equipos:any = [];
+  oneEquipos:any = [];
 
   studentEquipo:any = {//Alumno integrante del equipo
     matricula:0,
@@ -34,6 +35,7 @@ export class ConsultarEquipoPage implements OnInit {
   curso:string='cur';
 
   add:boolean = false;
+  query:boolean = false;
   nomb:string;
   equi:boolean = false;
 
@@ -53,6 +55,12 @@ export class ConsultarEquipoPage implements OnInit {
     this.getEquipos1(this.nrc, this.nTrabajador);
     this.getStudCourse(this.nrc,this.nTrabajador); 
     this.getStudent();
+
+  }
+  queryEquipo(id:number, nombre:string){
+    this.query = true;
+    this.nomb =nombre;   
+    //this.getOneEquipo(id, this.nrc, this.nTrabajador); 
   }
   addStudent(nombre:string){
     this.add = true;
@@ -93,7 +101,14 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  
+  getOneEquipo(id_equipo:number,nrc:number, nTrabajador:number){    
+    this.datosService.getOneEquipo(id_equipo, nrc, nTrabajador).subscribe(
+      res => {
+        this.oneEquipos = res;
+      },
+      err => console.error(err)
+    );
+  }
   getEquipos1(nrc:number, nTrabajador:number){    
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {

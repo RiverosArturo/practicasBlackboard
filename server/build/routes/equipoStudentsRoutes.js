@@ -16,10 +16,9 @@ class EquipoStudentsRoutes {
         this.router.get('/:nTrabajador/:nrc/:id', equipoStudentsController_1.default.getEquiposBien);
         this.router.post('/', equipoStudentsController_1.default.saveEquipo);
         this.router.put('/:id', equipoStudentsController_1.default.updateEquipo);
-        /*
-        this.router.delete('/:id', equipoStudentsController.deleteEquipo);
-        this.router.delete('/', equipoStudentsController.deleteAllEquipo);
-        */
+        //------------------------------------------------------------------------------------        
+        this.router.post('/', equipoStudentsController_1.default.saveStudentEquipo);
+        this.router.get('/:id_equipo/:nrc/:nTrabajador', equipoStudentsController_1.default.getEquipo);
     }
 }
 const equipoStudentsRoutes = new EquipoStudentsRoutes();

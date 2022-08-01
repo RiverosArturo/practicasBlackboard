@@ -50,6 +50,20 @@ class EquipoStudentsController {
             res.json({ message: 'The Equipo was UPDATE' });
         });
     }
+    //-------------------------------------------------------------------------------------------------    
+    saveStudentEquipo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
+            res.json({ Message: 'Alumno agregado al equipo.' });
+        });
+    }
+    getEquipo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_equipo, nrc, nTrabajador } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes WHERE id_equipo = ? AND NRC = ? AND nTrabajador = ?', [id_equipo, nrc, nTrabajador]);
+            res.json(equipo);
+        });
+    }
 }
 const equipoStudentsController = new EquipoStudentsController();
 exports.default = equipoStudentsController;
