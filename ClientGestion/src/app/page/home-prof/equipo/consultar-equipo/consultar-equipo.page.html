@@ -84,28 +84,24 @@
               <div *ngIf="query == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
                 <ion-card>  
-                  <ion-label> Alumnos del equipo </ion-label> 
-                  <!--
-                  <ion-content
-                    [scrollEvents]="true"
-                    (ionScrollStart)="logScrollStart()"
-                    (ionScroll)="logScrolling($event)"
-                    (ionScrollEnd)="logScrollEnd()">
-                        
-                      <div slot="fixed">
-                        <ion-list>
+                  <ion-label> Alumnos del  {{ equipo.nombre}}</ion-label> 
+                  <ion-content>
+                    <ion-content
+                      [scrollEvents]="true"
+                      (ionScrollStart)="logScrollStart()"
+                      (ionScroll)="logScrolling($event)"
+                      (ionScrollEnd)="logScrollEnd()">
+                          
+                        <div slot="fixed">                                                 
                         <tr  *ngFor="let oneEquipo of oneEquipos">
-                            {{oneEquipo.matricula}}
-                        </tr>
-                      </ion-list>
-                      </div>
-                    </ion-content>
-                    </ion-content> 
-                    -->
+                           hola:: {{oneEquipo.matricula}}
+                        </tr>                           
+                        </div>
+                    </ion-content>                    
+                  </ion-content>
                 </ion-card>
                 </ion-item>
               </div>
-
 
                  <!--        
                  {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }}, {{equipo.nTrabajador}} 

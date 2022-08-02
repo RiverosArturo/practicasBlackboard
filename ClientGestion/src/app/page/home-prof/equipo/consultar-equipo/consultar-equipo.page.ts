@@ -19,15 +19,14 @@ export class ConsultarEquipoPage implements OnInit {
 
   courses:any = [];
   equipos:any = [];
-  oneEquipos:any = [];
+  oneEquipos:any = [];//Alumnos integrantes del equipo
 
-  studentEquipo:any = {//Alumno integrante del equipo
+  studentEquipo:any = {// estructura del alumno integrante del equipo
     matricula:0,
     id_equipo:0,
     nrc:0,
     nTrabajador:0,
   };
-  studentsEquipo:any = [];//Alumnos integrantes del equipo
 
   user:number= 2013;
   nrc:number = 0;
@@ -39,7 +38,7 @@ export class ConsultarEquipoPage implements OnInit {
   nomb:string;
   equi:boolean = false;
 
-  students:any = [];//nombre del alumno  
+  students:any = [];//Alumnos de la base para nombre del alumno  
   studCourses:any = [];//Alumnos del curso
 
   constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
@@ -58,9 +57,11 @@ export class ConsultarEquipoPage implements OnInit {
 
   }
   queryEquipo(id:number, nombre:string){
+    this.add = false;
     this.query = true;
     this.nomb =nombre;   
-    //this.getOneEquipo(id, this.nrc, this.nTrabajador); 
+    //console.log('::>', id, this.nrc, this.nTrabajador);
+    this.getOneEquipo(id, this.nrc, this.nTrabajador); 
   }
   notQuery(){
     this.query = false;
@@ -107,10 +108,11 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  getOneEquipo(id_equipo:number,nrc:number, nTrabajador:number){    
-    this.datosService.getOneEquipo(id_equipo, nrc, nTrabajador).subscribe(
+  getOneEquipo(id:number,nrc:number, nTrabajador:number){    
+    this.datosService.getOneEquipo(id, nrc, nTrabajador).subscribe(
       res => {
         this.oneEquipos = res;
+        console.log(this.oneEquipos);
       },
       err => console.error(err)
     );
