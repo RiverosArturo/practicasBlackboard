@@ -60,7 +60,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.add = false;
     this.query = true;
     this.nomb =nombre;   
-    //console.log('::>', id, this.nrc, this.nTrabajador);
+    console.log('::>', id, this.nrc, this.nTrabajador);
     this.getOneEquipo(id, this.nrc, this.nTrabajador); 
   }
   notQuery(){
@@ -111,8 +111,7 @@ export class ConsultarEquipoPage implements OnInit {
   getOneEquipo(id:number,nrc:number, nTrabajador:number){    
     this.datosService.getOneEquipo(id, nrc, nTrabajador).subscribe(
       res => {
-        this.oneEquipos = res;
-        console.log(this.oneEquipos);
+        this.oneEquipos = res;        
       },
       err => console.error(err)
     );

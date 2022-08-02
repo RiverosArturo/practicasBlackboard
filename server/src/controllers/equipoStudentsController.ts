@@ -37,8 +37,12 @@ public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
 public async getEquipo (req: Request, res: Response){
     const { id_equipo, nrc, nTrabajador } = req.params;    
     const equipo = await pool.query('SELECT * FROM equipo_estudiantes ', [id_equipo, nrc, nTrabajador])
-      res.json(equipo);
-      //res.json({Message: 'id del equipo',id_equipo});
+    res.json(equipo);
+    /*if (equipo.length > 0 ){
+        return res.json(equipo[0]);
+    }else{            
+        res.json('dato no encontrado');
+    }*/      
   }
 
 }

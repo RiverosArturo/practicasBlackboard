@@ -62,7 +62,11 @@ class EquipoStudentsController {
             const { id_equipo, nrc, nTrabajador } = req.params;
             const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes ', [id_equipo, nrc, nTrabajador]);
             res.json(equipo);
-            //res.json({Message: 'id del equipo',id_equipo});
+            /*if (equipo.length > 0 ){
+                return res.json(equipo[0]);
+            }else{
+                res.json('dato no encontrado');
+            }*/
         });
     }
 }
