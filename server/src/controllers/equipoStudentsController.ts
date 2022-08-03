@@ -2,7 +2,7 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class EquipoStudentsController {
-
+    /*
     public async getEquipos (req: Request, res: Response){
       const equipo = await pool.query('SELECT * FROM equipo_estudiantes');
         res.json(equipo);
@@ -28,21 +28,16 @@ class EquipoStudentsController {
         const { id } = req.params;
         await pool.query('UPDATE equipo_estudiantes set ? WHERE id = ?', [req.body, id]);
         res.json({message: 'The Equipo was UPDATE'});
-    }
+    }*/
 //-------------------------------------------------------------------------------------------------    
 public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
     await pool.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
     res.json({Message: 'Alumno agregado al equipo.'});
 }
 public async getEquipo (req: Request, res: Response){
-    const { id_equipo, nrc, nTrabajador } = req.params;    
-    const equipo = await pool.query('SELECT * FROM equipo_estudiantes ', [id_equipo, nrc, nTrabajador])
-    res.json(equipo);
-    /*if (equipo.length > 0 ){
-        return res.json(equipo[0]);
-    }else{            
-        res.json('dato no encontrado');
-    }*/      
+    const {id_equipo, nrc, nTrabajador} = req.params;
+    const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
+      res.json(equipo);
   }
 
 }
