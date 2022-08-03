@@ -31,7 +31,7 @@ class ActividadController {
         if (actividad.length > 0 ){
             return res.json(actividad[0]);
         }else{
-            res.json({id: "", nombre:"", descripcion:"", fecha:"", fechaEntrega:"",horaEntrega:"",noTrabajador:0,nrc:0,id_equipo:0});
+            res.json({id: "FALLO", nombre:"", descripcion:"", fecha:"", fechaEntrega:"",horaEntrega:"",noTrabajador:0,nrc:0,id_equipo:0});
         }
     }
     public async create (req:Request, res:Response): Promise<void> {
@@ -49,8 +49,13 @@ class ActividadController {
         res.json({message: 'The actividad was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{
-        const {id} = req.params;
-        await pool.query('DELETE FROM actividad WHERE id = ?', [id]);
+        const {id,nrc,noTrabajador} = req.params;
+        await pool.query('DELETE FROM actividad WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id,nrc,noTrabajador]);
+        res.json({message: 'The Profesor was delated'});
+    }
+    public async deleteEq (req:Request, res:Response): Promise <void>{
+        const {id,nrc,id_equipo,noTrabajador} = req.params;
+        await pool.query('DELETE FROM actividad WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id,nrc,id_equipo,noTrabajador]);
         res.json({message: 'The Profesor was delated'});
     }
 }

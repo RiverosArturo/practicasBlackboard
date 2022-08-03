@@ -2,7 +2,6 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class EquipoStudentsController {
-    /*
     public async getEquipos (req: Request, res: Response){
       const equipo = await pool.query('SELECT * FROM equipo_estudiantes');
         res.json(equipo);
@@ -28,7 +27,7 @@ class EquipoStudentsController {
         const { id } = req.params;
         await pool.query('UPDATE equipo_estudiantes set ? WHERE id = ?', [req.body, id]);
         res.json({message: 'The Equipo was UPDATE'});
-    }*/
+    }
 //-------------------------------------------------------------------------------------------------    
 public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
     await pool.query('INSERT INTO equipo_estudiantes set ?', [req.body]);

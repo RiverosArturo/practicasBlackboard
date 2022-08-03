@@ -7,7 +7,7 @@ const express_1 = require("express");
 const actividadController_1 = __importDefault(require("../controllers/actividadController"));
 class actividadRoutes {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.config();
     }
     config() {
@@ -20,7 +20,8 @@ class actividadRoutes {
         this.router.put('/:id/:nrc/:noTrabajador', actividadController_1.default.updateAct);
         this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', actividadController_1.default.updateActEq);
         //this.router.put('/:id/:idEquipo', ActividadController.updateActEq);
-        this.router.delete('/:id', actividadController_1.default.delete);
+        this.router.delete('/:id/:nrc/:noTrabajador', actividadController_1.default.delete);
+        this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_1.default.deleteEq);
         //this.router.delete('/:id/:idEquipo', ActividadController.deleteActEq); 
     }
 }

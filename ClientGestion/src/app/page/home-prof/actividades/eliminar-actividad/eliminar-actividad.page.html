@@ -13,7 +13,7 @@
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Eliminar actividad </ion-title><br>
+            <ion-title> Consultar actividad </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -30,9 +30,8 @@
           <div slot="fixed">
             <ion-list>
             <tr  *ngFor="let activity of activitys">
-
               
-                <ion-button color="danger" >                  
+                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
                 <ion-button [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  

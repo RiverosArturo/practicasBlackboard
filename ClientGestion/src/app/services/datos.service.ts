@@ -110,6 +110,12 @@ actualizarAct(id:string,nrc:number,noTrabajador:number,updateAct:Actividad){
 actualizarActEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateAct:Actividad){
   return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}/${id_equipo}`,updateAct);
 }
+deleteActividad(id:string,nrc:number,noTrabajador:number){
+  return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
+}
+deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
+  return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
+}
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
   getAdmis() {
     return this.http.get(`${this.API_URI}/admi`);

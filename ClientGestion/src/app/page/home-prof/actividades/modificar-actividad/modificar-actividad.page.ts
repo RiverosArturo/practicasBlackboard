@@ -79,6 +79,8 @@ export class ModificarActividadPage implements OnInit {
             .subscribe(
               res => {
                 console.log(res);
+                this.router.navigate(['/home-prof/home-prof/menu-prof',this.actividadCurso.noTrabajador,this.actividadCurso.nrc]);
+                // window.location.reload();
               },
               err => console.error(err)
             )
@@ -88,6 +90,8 @@ export class ModificarActividadPage implements OnInit {
             .subscribe(
               res => {
                 console.log(res);
+                this.router.navigate(['/home-prof/home-prof/menu-prof',this.actividadCurso.noTrabajador,this.actividadCurso.nrc]);
+                //window.location.reload();
               },
               err => console.error(err)
             )

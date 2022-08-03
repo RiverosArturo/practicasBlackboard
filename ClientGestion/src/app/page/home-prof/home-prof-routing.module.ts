@@ -52,10 +52,6 @@ const routes: Routes = [
     loadChildren: () => import('./actividades/alta-actividad/alta-actividad.module').then( m => m.AltaActividadPageModule)
   },
   {
-    path: 'consultar-actividad',
-    loadChildren: () => import('./actividades/consultar-actividad/consultar-actividad.module').then( m => m.ConsultarActividadPageModule)
-  },
-  {
     path: 'modificar-actividad',
     loadChildren: () => import('./actividades/modificar-actividad/modificar-actividad.module').then( m => m.ModificarActividadPageModule)
   },

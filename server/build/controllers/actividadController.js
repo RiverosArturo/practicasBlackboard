@@ -53,7 +53,7 @@ class ActividadController {
                 return res.json(actividad[0]);
             }
             else {
-                res.json({ id: "", nombre: "", descripcion: "", fecha: "", fechaEntrega: "", horaEntrega: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+                res.json({ id: "FALLO", nombre: "", descripcion: "", fecha: "", fechaEntrega: "", horaEntrega: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
             }
         });
     }
@@ -79,8 +79,15 @@ class ActividadController {
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('DELETE FROM actividad WHERE id = ?', [id]);
+            const { id, nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM actividad WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id, nrc, noTrabajador]);
+            res.json({ message: 'The Profesor was delated' });
+        });
+    }
+    deleteEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, id_equipo, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM actividad WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id, nrc, id_equipo, noTrabajador]);
             res.json({ message: 'The Profesor was delated' });
         });
     }

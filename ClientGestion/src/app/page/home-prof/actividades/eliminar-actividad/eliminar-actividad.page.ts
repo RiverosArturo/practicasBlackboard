@@ -9,17 +9,12 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./eliminar-actividad.page.scss'],
 })
 export class EliminarActividadPage implements OnInit {
-  user:string='Administrador';
 
-  courses:any = [];
-  equipos:any = [];
   activitys:any =[];
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
-    this.getCourse();
-    this.getEquipo();
     this.getActivity();
   }
 
@@ -31,49 +26,34 @@ export class EliminarActividadPage implements OnInit {
       err => console.error(err)
     );
   }
-  getEquipo(){
-    this.datosService.getEquipos().subscribe(
-      res => {
-        this.equipos = res;
-      },
-      err => console.error(err)
-    );
-  }
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
   }
-  getCourse(){
-    this.datosService.getCourses().subscribe(
-      res => {
-        this.courses = res;
-      },
-      err => console.error(err)
-    );
-  }
-  deleteCourse(nrc:number){
-    this.datosService.deleteCourse(nrc).subscribe(
+  deleteActividadEq(id:string, nrc:number, noTrabajador: number, id_equipo:number){
+    this.datosService.deleteActividadEq(id, nrc, noTrabajador, id_equipo).subscribe(
       res => {
         console.log(res);
-        this.getCourse();
+        window.location.reload();
       },
       err => console.error(err)
     )
   }
-  deleteAllCourses(){
-    this.datosService.deleteAllCourses().subscribe(
+  deleteActividad(id:string, nrc:number, noTrabajador: number){
+    this.datosService.deleteActividad(id, nrc, noTrabajador).subscribe(
       res => {
         console.log(res);
-        this.getCourse();
+        window.location.reload();
       },
       err => console.error(err)
     )
   }
-  async AlertOne(clave: number) {
+  async eliminar(id:string, nrc:number, noTrabajador:number, id_equipo?:number) {
+    console.log('Soy la funcion eliminar');
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ clave ,
+      message: 'Message <strong>Deseas eliminar </strong>!!! '+ id ,
       buttons: [
         {
           text: 'Cancel',
@@ -88,33 +68,11 @@ export class EliminarActividadPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteCourse(clave);
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllCourses();
+            if(id_equipo!=null){
+              this.deleteActividadEq(id, nrc, noTrabajador, id_equipo);
+            }else{
+              this.deleteActividad(id, nrc, noTrabajador);
+            }
           }
         }
       ]

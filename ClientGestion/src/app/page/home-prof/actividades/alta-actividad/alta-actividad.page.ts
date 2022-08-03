@@ -106,14 +106,15 @@ export class AltaActividadPage implements OnInit {
       this.datosService.getOneActividadEq(this.actividadCurso.id,this.actividadCurso.nrc, this.actividadCurso.id_equipo, this.actividadCurso.noTrabajador).subscribe(
         res => {
           this.getActividadE = res;
-          console.log("-----------------------");
-          console.log(this.studCourses[0]);
-          if( this.getActividadE.id == ""){
+          console.log(this.getActividadE)
+          if( this.getActividadE.id == "FALLO"){
             alert("Actividad agregada con exito!!!");
             this.datosService.getEquipoStud(this.actividadCurso.noTrabajador, this.actividadCurso.nrc, this.actividadCurso.id_equipo).subscribe(
               res => {
                 this.studCourses = res;   
+                console.log(this.studCourses[0].id);
                 for(let i=0; i<this.studCourses.length;i++){
+                  console.log("----------"+this.studCourses[i].matricula);
                   //console.log(this.actividadCurso.matricula + " = " + this.studCourses[i].matricula)
                   this.actividadCurso.matricula = this.studCourses[i].matricula;
                   //console.log(this.actividadCurso.matricula);
