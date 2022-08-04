@@ -67,6 +67,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.query = false;
   }
   addStudent(nombre:string){
+    this.notQuery();
     this.add = true;
     this.nomb =nombre;    
   }
