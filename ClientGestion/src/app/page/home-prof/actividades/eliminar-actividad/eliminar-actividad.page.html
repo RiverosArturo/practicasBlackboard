@@ -26,20 +26,60 @@
         (ionScrollStart)="logScrollStart()"
         (ionScroll)="logScrolling($event)"
         (ionScrollEnd)="logScrollEnd()">
-            
           <div slot="fixed">
+            <ion-label color="dark" *ngIf="boton2==true">Desea visualizar las actividades individuales o en equipo?</ion-label>
+            <ion-button (click)="condicion1()" *ngIf="boton2==true"> Individuales </ion-button>
+            <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button>
             <ion-list>
             <tr  *ngFor="let activity of activitys">
-              
+              <div *ngIf="activity.id_equipo!=null && boton==1">
+                <!-- <table>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Profesor</th>
+                    <th>Fecha</th>
+                  </tr>
+                  <tr>
+                    <th>{{activity.id}}</th>
+                    <th>{{activity.nombre}}</th>
+                    <th>{{activity.noTrabajador}}</th>
+                    <th>{{activity.fecha}}</th>
+                  </tr>
+                </table> -->
                 <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
-                <ion-button [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
                   actualizar
-                </ion-button>  
-                 {{ activity.id }}, {{ activity.nombre }}, {{ activity.descripcion}} {{activity.id_equipo}}
-              
-          </tr>
+                </ion-button> 
+                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+              </div>
+
+              <div *ngIf="activity.id_equipo==null && boton==2">
+                <!-- <table>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Profesor</th>
+                    <th>Fecha</th>
+                  </tr>
+                  <tr>
+                    <th>{{activity.id}}</th>
+                    <th>{{activity.nombre}}</th>
+                    <th>{{activity.noTrabajador}}</th>
+                    <th>{{activity.fecha}}</th>
+                  </tr>
+                </table> -->
+                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>                    
+                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+                  actualizar
+                </ion-button> 
+                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+              </div>
+            </tr>
         </ion-list>
         </div>
       </ion-content>

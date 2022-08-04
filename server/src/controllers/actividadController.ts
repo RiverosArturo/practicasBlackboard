@@ -4,7 +4,7 @@ import pool from '../database';
 class ActividadController {
 
     public async list (req: Request, res: Response){
-      const actividad = await pool.query('SELECT * FROM actividad');
+      const actividad = await pool.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
         res.json(actividad);
     }
     public async listAct (req: Request, res: Response){
@@ -13,7 +13,7 @@ class ActividadController {
           res.json(actividad);
       }
     public async getActivity (req: Request, res: Response){
-        const actividad = await pool.query('SELECT * FROM actividad');
+        const actividad = await pool.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
           res.json(actividad);
       }
     public async getOne (req:Request, res:Response): Promise<any>{
@@ -51,12 +51,12 @@ class ActividadController {
     public async delete (req:Request, res:Response): Promise <void>{
         const {id,nrc,noTrabajador} = req.params;
         await pool.query('DELETE FROM actividad WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id,nrc,noTrabajador]);
-        res.json({message: 'The Profesor was delated'});
+        res.json({message: 'The actividad was delated'});
     }
     public async deleteEq (req:Request, res:Response): Promise <void>{
         const {id,nrc,id_equipo,noTrabajador} = req.params;
-        await pool.query('DELETE FROM actividad WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id,nrc,id_equipo,noTrabajador]);
-        res.json({message: 'The Profesor was delated'});
+        await pool.query('DELETE FROM `actividad` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id,nrc,id_equipo,noTrabajador]);
+        res.json({message: 'The actividad was delated'});
     }
 }
 

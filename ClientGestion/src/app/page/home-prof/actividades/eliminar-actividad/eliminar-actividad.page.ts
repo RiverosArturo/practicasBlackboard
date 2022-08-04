@@ -11,6 +11,8 @@ import { MenuController } from '@ionic/angular';
 export class EliminarActividadPage implements OnInit {
 
   activitys:any =[];
+  boton:number=0;
+  boton2:boolean=true;
 
   constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
 
@@ -21,17 +23,23 @@ export class EliminarActividadPage implements OnInit {
   getActivity(){
     this.datosService.getActivity().subscribe(
       res => {
-        this.activitys = res;        
+        this.activitys = res;  
+        for(let i = 0; i<=this.activitys.length;i++){
+          const fecha = String(this.activitys[i].fecha);
+          this.activitys[i].fecha = fecha.substr(0,10);
+          const fecha2 = String(this.activitys[i].fechaEntrega);
+          this.activitys[i].fechaEntrega = fecha2.substr(0,10);
+        }      
       },
       err => console.error(err)
     );
   }
-  OpenMenuProf(){
-    this.menu.enable(true,'MenuProf');
-    this.menu.open('MenuProf')
-  }
-  deleteActividadEq(id:string, nrc:number, noTrabajador: number, id_equipo:number){
-    this.datosService.deleteActividadEq(id, nrc, noTrabajador, id_equipo).subscribe(
+  // OpenMenuProf(){
+  //   this.menu.enable(true,'MenuProf');
+  //   this.menu.open('MenuProf')
+  // }
+  deleteActividadEq(id:string, nrc:number, id_equipo:number, noTrabajador: number){
+    this.datosService.deleteActividadEq(id, nrc, id_equipo, noTrabajador).subscribe(
       res => {
         console.log(res);
         window.location.reload();
@@ -53,7 +61,7 @@ export class EliminarActividadPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ id ,
+      message: 'Message <strong>Deseas eliminar la actividad: </strong>'+ id + '!!!',
       buttons: [
         {
           text: 'Cancel',
@@ -68,16 +76,33 @@ export class EliminarActividadPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
+            console.log(id+"   "+id_equipo)
             if(id_equipo!=null){
-              this.deleteActividadEq(id, nrc, noTrabajador, id_equipo);
+              this.deleteActividadEq(id, nrc, id_equipo, noTrabajador);
+              this.boton = 0;
+              this.boton2 = true;
             }else{
               this.deleteActividad(id, nrc, noTrabajador);
+              this.boton = 0
+              this.boton2 = true;
             }
           }
         }
       ]
     });
     await alert.present();
+  }
+
+  actualizar(){
+    this.boton=0;
+  }
+  condicion1(){
+    this.boton2 = false;
+    this.boton = 2;
+  }
+  condicion2(){
+    this.boton2 = false;
+    this.boton = 1;
   }
 
 }

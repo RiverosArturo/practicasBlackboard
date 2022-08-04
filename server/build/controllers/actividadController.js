@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class ActividadController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const actividad = yield database_1.default.query('SELECT * FROM actividad');
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
             res.json(actividad);
         });
     }
@@ -29,7 +29,7 @@ class ActividadController {
     }
     getActivity(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const actividad = yield database_1.default.query('SELECT * FROM actividad');
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
             res.json(actividad);
         });
     }
@@ -81,14 +81,14 @@ class ActividadController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;
             yield database_1.default.query('DELETE FROM actividad WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id, nrc, noTrabajador]);
-            res.json({ message: 'The Profesor was delated' });
+            res.json({ message: 'The actividad was delated' });
         });
     }
     deleteEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, id_equipo, noTrabajador } = req.params;
-            yield database_1.default.query('DELETE FROM actividad WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id, nrc, id_equipo, noTrabajador]);
-            res.json({ message: 'The Profesor was delated' });
+            yield database_1.default.query('DELETE FROM `actividad` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id, nrc, id_equipo, noTrabajador]);
+            res.json({ message: 'The actividad was delated' });
         });
     }
 }

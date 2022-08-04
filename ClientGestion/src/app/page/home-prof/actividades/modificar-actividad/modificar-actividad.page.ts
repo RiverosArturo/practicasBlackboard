@@ -23,7 +23,6 @@ export class ModificarActividadPage implements OnInit {
     nrc: 0,
     id_equipo: 0,
   }
-
   condicionE:boolean = true;
 
   //actividad:any = [];
