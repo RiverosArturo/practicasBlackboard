@@ -84,8 +84,8 @@
               <div *ngIf="query == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
                 <ion-card>  
-                  <ion-title> Alumnos del  {{ equipo.nombre}}</ion-title><br>  
-                  <ion-label>id:: {{id}}</ion-label>                                                                 
+                  <ion-card><ion-title> Alumnos del  {{ equipo.nombre}}</ion-title><br></ion-card>                   
+                  <ion-card>                                                               
                       <tr  *ngFor="let oneEquipo of oneEquipos">
                         <ion-label>
                           <tr  *ngFor="let student of students">
@@ -97,10 +97,10 @@
                                 </ion-button>                                
                               </ion-title> 
                             </div>                            
-                          </tr>
-
+                          </tr>                        
                         </ion-label>                                                                        
-                      </tr><br>        
+                      </tr><br>                            
+                    </ion-card>       
                 </ion-card>
                 </ion-item>
               </div>
