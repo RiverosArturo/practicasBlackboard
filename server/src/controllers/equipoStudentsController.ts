@@ -33,10 +33,11 @@ public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
     await pool.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
     res.json({Message: 'Alumno agregado al equipo.'});
 }
-public async getEquipo (req: Request, res: Response){
+public async get1Equipo (req: Request, res: Response){
     const {id_equipo, nrc, nTrabajador} = req.params;
     const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
       res.json(equipo);
+      //res.json({Message: '.......hola..'});
   }
 
 }

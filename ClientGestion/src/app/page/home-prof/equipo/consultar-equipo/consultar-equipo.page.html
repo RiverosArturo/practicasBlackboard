@@ -84,20 +84,21 @@
               <div *ngIf="query == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
                 <ion-card>  
-                  <ion-title> Alumnos del  {{ equipo.nombre}}</ion-title><br>                                                                   
+                  <ion-title> Alumnos del  {{ equipo.nombre}}</ion-title><br>  
+                  <ion-label>id:: {{id}}</ion-label>                                                                 
                       <tr  *ngFor="let oneEquipo of oneEquipos">
                         <!--
                         <tr  *ngFor="let oneEquipo of oneEquipos">
                           
                         </tr>
-                        -->
+                        
                         <ion-title> {{id}} </ion-title>  
                         
                         <div *ngIf="id == oneEquipo.id_equipo ">
                           <ion-title> hola </ion-title>  
-                        </div>     
-                        
-                        <ion-title>{{ oneEquipo.id_equipo }}--{{ oneEquipo.matricula }}</ion-title>                                           
+                        </div>     -->
+                        <ion-label>--->hola</ion-label>
+                        <ion-title>{{ oneEquipo.id_equipo }}--{{ oneEquipo.matricula }}</ion-title> 
                       </tr><br>        
                 </ion-card>
                 </ion-item>

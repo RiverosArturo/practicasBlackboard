@@ -61,7 +61,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.query = true;
     this.nomb =nombre;   
     console.log('::>', id, this.nrc, this.nTrabajador);
-    this.getOneEquipo(id, this.nrc, this.nTrabajador); 
+    this.get1Equipo(id, this.nrc, this.nTrabajador); 
   }
   notQuery(){
     this.query = false;
@@ -80,7 +80,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.studentEquipo.nrc = this.nrc;
     this.studentEquipo.nTrabajador = this.nTrabajador;    
 
-    console.log('Equipo::> ',this.studentEquipo);
+    //console.log('Equipo::> ',this.studentEquipo);
     
     this.datosService.saveStudentEquipo(this.studentEquipo)
     .subscribe(
@@ -108,10 +108,11 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  getOneEquipo(id:number,nrc:number, nTrabajador:number){    
-    this.datosService.getOneEquipo(id, nrc, nTrabajador).subscribe(
+  get1Equipo(id:number,nrc:number, nTrabajador:number){    
+    this.datosService.get1Equipo(id, nrc, nTrabajador).subscribe(
       res => {
-        this.oneEquipos = res;        
+        this.oneEquipos = res;    
+        console.log('Equipo::> ',res);    
       },
       err => console.error(err)
     );

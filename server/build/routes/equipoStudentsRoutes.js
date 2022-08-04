@@ -7,7 +7,7 @@ const express_1 = require("express");
 const equipoStudentsController_1 = __importDefault(require("../controllers/equipoStudentsController"));
 class EquipoStudentsRoutes {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.config();
     }
     config() {
@@ -18,7 +18,7 @@ class EquipoStudentsRoutes {
         this.router.put('/:id', equipoStudentsController_1.default.updateEquipo);
         //------------------------------------------------------------------------------------        
         this.router.post('/', equipoStudentsController_1.default.saveStudentEquipo);
-        this.router.get('/:id_equipo/:nrc/:nTrabajador', equipoStudentsController_1.default.getEquipo);
+        this.router.get('/:id_equipo/:nrc/:nTrabajador', equipoStudentsController_1.default.get1Equipo);
     }
 }
 const equipoStudentsRoutes = new EquipoStudentsRoutes();

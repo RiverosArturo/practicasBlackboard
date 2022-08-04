@@ -57,11 +57,12 @@ class EquipoStudentsController {
             res.json({ Message: 'Alumno agregado al equipo.' });
         });
     }
-    getEquipo(req, res) {
+    get1Equipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_equipo, nrc, nTrabajador } = req.params;
             const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
             res.json(equipo);
+            //res.json({Message: '.......hola..'});
         });
     }
 }
