@@ -75,7 +75,7 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
 
 ////////////////////EQUIPOS ESTUDIANTES///////////////////////
 saveStudentEquipo(studentEquipo: Equipo){
-  return this.http.post(`${this.API_URI}/equipo/`,studentEquipo);
+  return this.http.post(`${this.API_URI}/equipoStudents/`,studentEquipo);
 }
 get1Equipo(id: number, nrc: number, nTrabajador: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${id}/${nrc}/${nTrabajador}`);
