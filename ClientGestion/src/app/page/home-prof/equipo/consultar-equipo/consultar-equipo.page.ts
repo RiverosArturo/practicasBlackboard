@@ -113,7 +113,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.datosService.get1Equipo(id, nrc, nTrabajador).subscribe(
       res => {
         this.oneEquipos = res;    
-        console.log('Equipo::> ',res);    
+        //console.log('Equipo::> ',res);    
       },
       err => console.error(err)
     );
@@ -138,11 +138,30 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
+  deleteStudentsEquipo(id:number, nrc:number, nTrabajador:number){       
+    this.datosService.deleteStudentsEquipo(id, nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res); 
+        //this.get1Equipo(id, nrc, nTrabajador);
+      },
+      err => console.error(err)
+    )
+  }
+  deleteStudentEquipo(matricula:number, id:number, nrc:number, nTrabajador:number){       
+    this.datosService.deleteStudentEquipo(matricula, id, nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res); 
+        this.get1Equipo(id, nrc, nTrabajador);
+      },
+      err => console.error(err)
+    )
+  }
   deleteEquipo(id:number, nombre:string, nrc:number, nTrabajador:number){        
+    console.log('dat::> ',id, nombre, nrc, nTrabajador);    
     this.datosService.deleteEquipo(id, nombre, nrc, nTrabajador).subscribe(
       res => {
         console.log(res); 
-        this.getEquipos1(this.nrc, nTrabajador);       
+        //this.getEquipos1(this.nrc, nTrabajador);       
       },
       err => console.error(err)
     )
@@ -155,6 +174,32 @@ export class ConsultarEquipoPage implements OnInit {
       },
       err => console.error(err)
     )
+  }
+  async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabajador:number) {    
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirma',
+      message: '<strong>Eliminar </strong>!!! '+ matricula ,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.deleteStudentEquipo(matricula, id, nrc, nTrabajador);            
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   async AlertDeleteEquipo(id: number,nombre:string, curso_nrc:number, nTrabajador:number) {    
     const alert = await this.alertController.create({
@@ -175,7 +220,9 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteEquipo(id, nombre, curso_nrc, nTrabajador);            
+            this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
+            this.deleteEquipo(id, nombre, curso_nrc, nTrabajador);  
+            this.getEquipos1(this.nrc, this.nTrabajador);
           }
         }
       ]

@@ -92,7 +92,7 @@
                             <div *ngIf="oneEquipo.matricula == student.matricula ">                              
                               <ion-title>
                                 id:{{ oneEquipo.id_equipo }},{{ oneEquipo.matricula }},{{ student.nombre }} 
-                                <ion-button color="danger" >                                          
+                                <ion-button color="danger" (click)="AlertDeleteStudentEquipo(oneEquipo.matricula, oneEquipo.id_equipo, nrc, nTrabajador)">                                          
                                   <ion-icon name="trash"></ion-icon>                
                                 </ion-button>                                
                               </ion-title> 

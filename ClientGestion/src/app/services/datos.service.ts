@@ -62,10 +62,10 @@ getEquipos() {//no tocar
 }
 saveEquipo(equipo: Equipo){
   return this.http.post(`${this.API_URI}/equipo/`,equipo);
-}
+}/*
 deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipo/${id}/${nombre}/${nrc}/${nTrabajador}`);
-}
+}*/
 deleteAllEquipos(nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
 }
@@ -83,8 +83,15 @@ get1Equipo(id: number, nrc: number, nTrabajador: number){
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
 }
-
-
+deleteStudentEquipo(matricula:number, id:number, nrc: number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipoStudents/${matricula}/${id}/${nrc}/${nTrabajador}`);
+}
+deleteStudentsEquipo(id:number, nrc: number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipoStudents/${id}/${nrc}/${nTrabajador}`);
+}
+deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipoStudents/${id}/${nombre}/${nrc}/${nTrabajador}`);
+}
 ///FUNCIONES ACTIVIDAD/////////////////////////////////
 getActivity(){
   return this.http.get(`${this.API_URI}/actividad`);
