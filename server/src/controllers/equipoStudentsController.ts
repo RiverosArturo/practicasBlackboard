@@ -34,7 +34,7 @@ public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
     res.json({Message: 'Alumno agregado al equipo.'});
 }
 public async get1Equipo (req: Request, res: Response){
-    const {id_equipo, nrc, nTrabajador} = req.params;
+    const {id_equipo} = req.params;
     const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);    
     res.json(equipo);      
   }

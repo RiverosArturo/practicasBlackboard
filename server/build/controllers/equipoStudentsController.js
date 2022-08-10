@@ -59,7 +59,7 @@ class EquipoStudentsController {
     }
     get1Equipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id_equipo, nrc, nTrabajador } = req.params;
+            const { id_equipo } = req.params;
             const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
             res.json(equipo);
         });
