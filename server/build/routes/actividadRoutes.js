@@ -11,10 +11,10 @@ class actividadRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', actividadController_1.default.getActivity);
+        //this.router.get('/', ActividadController.getActivity);
         this.router.get('/', actividadController_1.default.list);
         this.router.get('/:id/:nrc/:noTrabajador', actividadController_1.default.getOne);
-        this.router.get('/:listAct', actividadController_1.default.listAct);
+        //this.router.get('/:listAct', ActividadController.listAct);
         this.router.get('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_1.default.getOneEq);
         this.router.post('/', actividadController_1.default.create);
         this.router.put('/:id/:nrc/:noTrabajador', actividadController_1.default.updateAct);

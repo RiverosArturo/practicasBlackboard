@@ -11,6 +11,7 @@ import { MenuController } from '@ionic/angular';
 export class EliminarActividadPage implements OnInit {
 
   activitys:any =[];
+  activitysEq:any = [];
   boton:number=0;
   boton2:boolean=true;
 
@@ -29,6 +30,20 @@ export class EliminarActividadPage implements OnInit {
           this.activitys[i].fecha = fecha.substr(0,10);
           const fecha2 = String(this.activitys[i].fechaEntrega);
           this.activitys[i].fechaEntrega = fecha2.substr(0,10);
+        }      
+      },
+      err => console.error(err)
+    );
+  }
+  getActivityEq(id_equipo:number){
+    this.datosService.getActivityEq(id_equipo).subscribe(
+      res => {
+        this.activitysEq = res;  
+        for(let i = 0; i<=this.activitys.length;i++){
+          const fecha = String(this.activitys[i].fecha);
+          this.activitysEq[i].fecha = fecha.substr(0,10);
+          const fecha2 = String(this.activitys[i].fechaEntrega);
+          this.activitysEq[i].fechaEntrega = fecha2.substr(0,10);
         }      
       },
       err => console.error(err)
@@ -55,6 +70,7 @@ export class EliminarActividadPage implements OnInit {
       },
       err => console.error(err)
     )
+
   }
   async eliminar(id:string, nrc:number, noTrabajador:number, id_equipo?:number) {
     console.log('Soy la funcion eliminar');

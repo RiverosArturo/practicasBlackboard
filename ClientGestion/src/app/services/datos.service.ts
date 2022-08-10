@@ -96,21 +96,18 @@ deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
 getActivity(){
   return this.http.get(`${this.API_URI}/actividad`);
 }
-getAct(listAct:number){
-  return this.http.get(`${this.API_URI}/actividad/${listAct}`);
+getActivityEq(id_equipo:number){
+  return this.http.get(`${this.API_URI}/actividad/${id_equipo}`);
 }
 getOneActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
 }
-
 getOneActividadEq(id:string, nrc:number, id_equipo:number, noTrabajador:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
 }
-
 saveActividad(actividad: Actividad){
   return this.http.post(`${this.API_URI}/actividad/`,actividad);
 }
-
 actualizarAct(id:string,nrc:number,noTrabajador:number,updateAct:Actividad){
   return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`,updateAct);
 }

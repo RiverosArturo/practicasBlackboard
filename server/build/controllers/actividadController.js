@@ -20,19 +20,27 @@ class ActividadController {
             res.json(actividad);
         });
     }
-    listAct(req, res) {
+    listEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { listAct } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM actividad where id = ? ', [listAct]);
+            const { id_equipo } = req.params;
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad` WHERE id_equipo = ?', [id_equipo]);
             res.json(actividad);
         });
     }
-    getActivity(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const actividad = yield database_1.default.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
-            res.json(actividad);
-        });
-    }
+    // public async listAct (req: Request, res: Response){
+    //     const {listAct} = req.params;
+    //     const actividad = await pool.query('SELECT * FROM actividad where id = ? ', [listAct]);
+    //     res.json(actividad);
+    // }
+    // public async listActEq (req: Request, res: Response){
+    //     const {listAct} = req.params;
+    //     const actividad = await pool.query('SELECT * FROM actividad where id = ? ', [listAct]);
+    //       res.json(actividad);
+    // }
+    // public async getActivity (req: Request, res: Response){
+    //     const actividad = await pool.query('SELECT DISTINCT id, nombre, descripcion, fecha, fechaEntrega, horaEntrega, noTrabajador, nrc, id_equipo FROM `actividad`');
+    //       res.json(actividad);
+    //   }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;
