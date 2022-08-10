@@ -220,7 +220,7 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
+            //this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
             this.deleteEquipo(id, nombre, curso_nrc, nTrabajador);  
             this.getEquipos1(this.nrc, this.nTrabajador);
           }
