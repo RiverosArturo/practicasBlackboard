@@ -47,13 +47,13 @@
                     <th>{{activity.fecha}}</th>
                   </tr>
                 </table> -->
-                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
+                <!-- <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
                 <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
                   actualizar
                 </ion-button> 
-                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}} -->
               </div>
 
               <div *ngIf="activity.id_equipo==null && boton==2">
