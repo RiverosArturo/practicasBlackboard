@@ -110,7 +110,7 @@ export class ConsultarEquipoPage implements OnInit {
     );
   }
   get1Equipo(id:number){    
-    this.datosService.get1Equipo(id).subscribe(
+    this.datosService.getOneEquipo(id).subscribe(
       res => {
         this.oneEquipos = res;    
         //console.log('Equipo::> ',res);    
