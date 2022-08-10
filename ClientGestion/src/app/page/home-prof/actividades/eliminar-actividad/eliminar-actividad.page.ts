@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-eliminar-actividad',
@@ -12,13 +13,25 @@ export class EliminarActividadPage implements OnInit {
 
   activitys:any =[];
   activitysEq:any = [];
+  equipos:any = [];
+  equiposR:any = [];
   boton:number=0;
   boton2:boolean=true;
+  nTrabajador:number=0;
+  nrc:number=0;
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
+  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    const params = this.activedRoute.snapshot.params;  
+
+    this.nTrabajador = params.user;
+    this.nrc = params.nrc;
+    //console.log("Clicka: "+this.nTrabajador+"   "+this.nrc);
+
     this.getActivity();
+    this.getEquipos(this.nTrabajador,this.nrc);
+    //console.log(this.equiposR[0].nombre);
   }
 
   getActivity(){
@@ -30,7 +43,30 @@ export class EliminarActividadPage implements OnInit {
           this.activitys[i].fecha = fecha.substr(0,10);
           const fecha2 = String(this.activitys[i].fechaEntrega);
           this.activitys[i].fechaEntrega = fecha2.substr(0,10);
-        }      
+          if(this.activitys[i].id_equipo != null){
+            this.datosService.getid(this.activitys[i].id_equipo).subscribe(
+              res => {
+                this.equipos[i] = res; 
+                console.log(this.equipos[i].nombre);
+                this.equiposR = this.equipos.filter(function(x) {
+                  return x !== undefined;
+                });
+                //Si sirve
+                //console.log("Holi: "+this.equiposR[].nombre);
+              },
+              err => console.error(err)
+            );
+          }
+        }  
+      },
+      err => console.error(err)
+    );
+  }
+  
+  getEquipos(nrc:number,nTrabajador:number){
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
+      res => {
+        this.equipos = res; 
       },
       err => console.error(err)
     );

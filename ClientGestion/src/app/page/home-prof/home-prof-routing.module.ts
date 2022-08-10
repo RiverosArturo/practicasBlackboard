@@ -11,6 +11,7 @@ import { MenuProfPage } from './menu-prof/menu-prof.page';
 import { GenerarEquipoPage } from './equipo/generar-equipo/generar-equipo.page';
 import { SubirEstudiantePage } from './estudiante/subir-estudiante/subir-estudiante.page';
 import { ModificarActividadPage } from './actividades/modificar-actividad/modificar-actividad.page';
+import { EliminarActividadPage } from './actividades/eliminar-actividad/eliminar-actividad.page';
 
 
 const routes: Routes = [
@@ -110,6 +111,10 @@ const routes: Routes = [
   {
     path: 'modificar-actividad/:id/:id_equipo/:noTrabajador/:nrc',
     component: ModificarActividadPage
+  },
+  {
+    path: 'eliminar-actividad/:user/:nrc',
+    component: EliminarActividadPage
   }
   
 
