@@ -12,8 +12,8 @@ class EquipoStudentsController {
           res.json(equipo);
       }
     public async getOneEquipo (req:Request, res:Response): Promise<any>{
-        const  {id} = req.params;
-        const equipo = await pool.query('SELECT * FROM equipo_estudiantes WHERE id = ?', [id])
+        const  {id_equipo} = req.params;
+        const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
         if (equipo.length > 0 ){
             return res.json(equipo[0]);
         }
@@ -35,7 +35,7 @@ public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
 }
 public async get1Equipo (req: Request, res: Response){
     const {id_equipo} = req.params;
-    const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);    
+    const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
     res.json(equipo);      
   }
   public async deleteStudentEquipo (req:Request, res:Response): Promise <void>{

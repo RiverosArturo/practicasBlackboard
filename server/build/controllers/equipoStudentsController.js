@@ -29,8 +29,8 @@ class EquipoStudentsController {
     }
     getOneEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM equipo_estudiantes WHERE id = ?', [id]);
+            const { id_equipo } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
             if (equipo.length > 0) {
                 return res.json(equipo[0]);
             }
