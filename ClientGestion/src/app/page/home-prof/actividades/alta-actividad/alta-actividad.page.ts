@@ -108,6 +108,7 @@ export class AltaActividadPage implements OnInit {
           this.getActividadE = res;
           console.log(this.getActividadE)
           if( this.getActividadE.id == "FALLO"){
+            
             alert("Actividad agregada con exito!!!");
             this.datosService.getEquipoStud(this.actividadCurso.noTrabajador, this.actividadCurso.nrc, this.actividadCurso.id_equipo).subscribe(
               res => {
