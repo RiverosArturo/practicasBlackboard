@@ -13,7 +13,7 @@ class EquipoStudentsRoutes {
     config() {
         this.router.get('/', equipoStudentsController_1.default.getEquipos);
         this.router.get('/:id', equipoStudentsController_1.default.getOneEquipo);
-        //this.router.get('/:nTrabajador/:nrc/:id', equipoStudentsController.getEquiposBien);
+        this.router.get('/:nTrabajador/:nrc/:id', equipoStudentsController_1.default.getEquiposBien);
         this.router.post('/', equipoStudentsController_1.default.saveEquipo);
         this.router.put('/:id', equipoStudentsController_1.default.updateEquipo);
         //------------------------------------------------------------------------------------        
