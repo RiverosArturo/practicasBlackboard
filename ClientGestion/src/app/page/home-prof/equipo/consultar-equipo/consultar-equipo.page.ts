@@ -35,8 +35,10 @@ export class ConsultarEquipoPage implements OnInit {
 
   add:boolean = false;
   query:boolean = false;
-  nomb:string;
   equi:boolean = false;
+  edit:boolean = false;
+  nomb:string;
+  
 
   students:any = [];//Alumnos de la base para nombre del alumno  
   studCourses:any = [];//Alumnos del curso
@@ -56,8 +58,22 @@ export class ConsultarEquipoPage implements OnInit {
     this.getStudent();
 
   }
+  editEquipo(id:number, nombre:string){
+    this.add = false;
+    this.query = false;
+    this.edit = true;
+    this.nomb =nombre;
+   // this.get1Equipo(id);
+  }
+  editEquipoButton(){
+    console.log('Nombre del equipo actualizado');
+  }
+  notEdit(){
+    this.edit = false;
+  }
   queryEquipo(id:number, nombre:string){
     this.add = false;
+    this.edit = false;
     this.query = true;
     this.nomb =nombre;   
     console.log('::>', id, this.nrc, this.nTrabajador);
