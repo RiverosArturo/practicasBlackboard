@@ -32,22 +32,21 @@
           <div slot="fixed">
             <ion-list>
             <tr  *ngFor="let equipo of equipos">
-               
-              <ion-button>
-                <ion-button color="primary" (click)="addStudent(equipo.nombre)"><ion-icon name="add-outline"></ion-icon></ion-button>
-                <ion-button (click)="notAdd()"> <ion-icon name="chevron-up-outline"></ion-icon> </ion-button> 
-              </ion-button>
-
-              <ion-button color="primary">                
-                 {{ equipo.nombre }} 
-                <ion-button (click)="queryEquipo(equipo.id, equipo.nombre)"> <ion-icon name="chevron-down-outline"></ion-icon> </ion-button>  
-                <ion-button (click)="notQuery()"> <ion-icon name="chevron-up-outline"></ion-icon> </ion-button>
-              </ion-button>
-            
-              <ion-button color="primary">
-                <ion-button (click)="editEquipo(equipo.id, equipo.nombre)"> <ion-icon name="pencil-outline"></ion-icon> </ion-button>                
-                <ion-button (click)="notEdit()"> <ion-icon name="chevron-up-outline"></ion-icon> </ion-button>                 
-              </ion-button>
+                             
+              <ion-button color="primary" (click)="addStudent(equipo.nombre)">
+                agregar
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>                              
+                                 
+              <ion-button color="primary" (click)="queryEquipo(equipo.id, equipo.nombre)"> 
+                {{equipo.nombre}}                   
+              </ion-button>                  
+                                        
+              <ion-button color="primary" (click)="editEquipo(equipo.id, equipo.nombre)">
+                  editar 
+                  <ion-icon name="pencil-outline">                  
+              </ion-icon> </ion-button>                                
+              
               
               <ion-button color="danger" (click)="AlertDeleteEquipo(equipo.id, equipo.nombre, equipo.curso_nrc, equipo.nTrabajador)">                                          
                 <ion-icon name="trash"></ion-icon>                
@@ -55,11 +54,17 @@
 
               <div *ngIf="add == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
-                <ion-card>                  
+                <ion-card>
+                  <ion-toolbar>
+                    <ion-title> Agregar alumno al equipo {{equipo.nombre}} </ion-title>
+                    <ion-button color="danger" slot="end"  (click)="notAdd()">
+                      <ion-icon name="close-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-toolbar>                  
                   <form>      
                   <ion-card>      
                     <ion-header>
-                      <ion-label> Selecciona al alumno </ion-label>
+                      <ion-label> Selecciona un alumno </ion-label>
                     </ion-header>                  
                     <ion-item>          
                       <ion-label>Alumno</ion-label>
@@ -85,16 +90,16 @@
           <ion-item class="form-group">                  
           <ion-card>
             <ion-toolbar>
+              <ion-title>  Editar {{ equipo.nombre }} </ion-title>
               <ion-button color="danger" slot="end"  (click)="notEdit()">
-                <ion-label> X </ion-label>
+                <ion-icon name="close-sharp"></ion-icon>
               </ion-button>
-            </ion-toolbar>  
-            <ion-title>  Editar {{ equipo.nombre }} </ion-title><br>
+            </ion-toolbar>              
             <ion-card>
               <form>                 
                 <ion-item class="form-group">
                   <ion-label position="floating"> Nombre de equipo </ion-label>
-                  <ion-input [(ngModel)]="student.nombre" name="nombre" autofocus></ion-input>
+                  <ion-input [(ngModel)]="equipo.nombre" name="nombre"></ion-input>
                 </ion-item>                
                 <ion-item>
                   <ion-toolbar>
@@ -112,7 +117,12 @@
               <div *ngIf="query == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
                 <ion-card>  
-                  <ion-card><ion-title> Alumnos del  {{ equipo.nombre}}</ion-title><br></ion-card>                   
+                  <ion-toolbar>
+                    <ion-title> Alumnos del  {{ equipo.nombre}}</ion-title>
+                    <ion-button color="danger" slot="end"  (click)="notQuery()">
+                      <ion-icon name="close-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-toolbar>                  
                   <ion-card>                                                               
                       <tr  *ngFor="let oneEquipo of oneEquipos">
                         <ion-label>
