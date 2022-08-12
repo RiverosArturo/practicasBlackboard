@@ -45,10 +45,14 @@ export class SubirEstudiantePage implements OnInit {
     this.nrc = params.nrc;
     this.course = params.curso;
     this.nTrabajador = params.user; 
-       
     this.getCourse();
     this.getStudent();    
   }
+
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
+  }
+
   getMAT(user, matricula, nrc){
     this.nTrabajador = user;
     console.log('user:', this.nTrabajador,'alumno:',matricula,'nrc', nrc);  

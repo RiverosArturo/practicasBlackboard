@@ -39,9 +39,9 @@
     </ion-card>    
     <ion-card>
       <h1>Gestionar actividades</h1>
-      <ion-button [routerLink] = "'/home-prof/actividades/alta-actividad'">   Dar de alta actividad  </ion-button>
+      <ion-button [routerLink] = "['/home-prof/actividades/alta-actividad',user,nrc]">   Dar de alta actividad  </ion-button>
       <ion-button [routerLink] = "['/home-prof/actividades/eliminar-actividad',user,nrc]">   Consultar actividad   </ion-button>
-      <ion-button [routerLink] = "'/home-prof/actividades/evaluar-actividad'">   Evaluar actividad   </ion-button>
+      <ion-button [routerLink] = "['/home-prof/actividades/evaluar-actividad',user,nrc]">   Evaluar actividad   </ion-button>
     </ion-card>
     <ion-card>
       <h1>Gestionar comunicacion</h1>

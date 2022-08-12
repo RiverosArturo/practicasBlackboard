@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-back-button slot = "start"> </ion-back-button>
-    </ion-buttons>
+      <ion-button (click)="navProf()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario:{{nTrabajador}} </ion-label>      
+    </ion-buttons>  
   </ion-toolbar>
 </ion-header>
 

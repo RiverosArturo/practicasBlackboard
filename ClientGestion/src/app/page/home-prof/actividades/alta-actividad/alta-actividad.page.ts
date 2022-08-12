@@ -4,6 +4,7 @@ import { Actividad } from '../../../../models/Actividad';
 import { DatosService } from '../../../../services/datos.service';
 import { StudCourse } from '../../../../models/StudCourse';
 import { Equipo } from '../../../../models/Equipo';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-alta-actividad',
@@ -12,7 +13,7 @@ import { Equipo } from '../../../../models/Equipo';
 })
 export class AltaActividadPage implements OnInit {
 
-  constructor(private datosService:DatosService, private menu:MenuController) { }
+  constructor(private datosService:DatosService, private menu:MenuController, private activedRoute:ActivatedRoute, private router: Router) { }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -55,9 +56,16 @@ export class AltaActividadPage implements OnInit {
   }
   equipos:any = [];
   ngOnInit() {
+    const params = this.activedRoute.snapshot.params;
+    this.nrc = params.nrc;
+    this.nTrabajador = params.user;
     this.getEquipos();
   }
 
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
+  }
+  
   onSubmit(){
     this.condicionE = null;
     this.boton = true;

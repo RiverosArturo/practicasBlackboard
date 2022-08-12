@@ -12,6 +12,8 @@ import { GenerarEquipoPage } from './equipo/generar-equipo/generar-equipo.page';
 import { SubirEstudiantePage } from './estudiante/subir-estudiante/subir-estudiante.page';
 import { ModificarActividadPage } from './actividades/modificar-actividad/modificar-actividad.page';
 import { EliminarActividadPage } from './actividades/eliminar-actividad/eliminar-actividad.page';
+import { AltaActividadPage } from './actividades/alta-actividad/alta-actividad.page';
+import { EvaluarActividadPage } from './actividades/evaluar-actividad/evaluar-actividad.page';
 
 
 const routes: Routes = [
@@ -115,6 +117,14 @@ const routes: Routes = [
   {
     path: 'eliminar-actividad/:user/:nrc',
     component: EliminarActividadPage
+  },
+  {
+    path: 'alta-actividad/:user/:nrc',
+    component: AltaActividadPage
+  },
+  {
+    path: 'evaluar-actividad/:user/:nrc',
+    component: EvaluarActividadPage
   }
   
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
 import { Actividad } from '../../../../models/Actividad';
@@ -11,7 +12,7 @@ import { Actividad } from '../../../../models/Actividad';
 
 export class EvaluarActividadPage implements OnInit {
 
-  constructor(private datosService:DatosService, private menu:MenuController) { }
+  constructor(private datosService:DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
   actividad:Actividad = {
     id: '',
@@ -26,6 +27,8 @@ export class EvaluarActividadPage implements OnInit {
     calificacion: 0,
     matricula: 0
   }
+  nTrabajador: number = 1234;
+  nrc: number = 1234
   actividads:any= [];
   
   OpenMenuProf(){
@@ -35,6 +38,13 @@ export class EvaluarActividadPage implements OnInit {
 
   ngOnInit() {
     this.getStudCourse();
+    const params = this.activedRoute.snapshot.params;
+    this.nrc = params.nrc;
+    this.nTrabajador = params.user;
+  }
+
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
   }
 
   getStudCourse(){

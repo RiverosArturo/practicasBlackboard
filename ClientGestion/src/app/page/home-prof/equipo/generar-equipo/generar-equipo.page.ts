@@ -154,6 +154,9 @@ export class GenerarEquipoPage implements OnInit {
         err => console.error(err)
     );
   }  
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
+  }
 
 // Guarda los parametros del equipo creado  
   saveEquipo(){

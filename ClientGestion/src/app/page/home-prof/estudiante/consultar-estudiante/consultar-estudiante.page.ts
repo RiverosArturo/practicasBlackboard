@@ -51,6 +51,9 @@ export class ConsultarEstudiantePage implements OnInit {
     this.getStudent();
     this.getCourse();
   }
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
+  }
   deleteStudCourse(matricula:number, nrc:number, nTrabajador:number){
     console.log('user', nTrabajador, 'nrc:', nrc);
     this.datosService.deleteStudCourse(matricula, nrc, nTrabajador).subscribe(

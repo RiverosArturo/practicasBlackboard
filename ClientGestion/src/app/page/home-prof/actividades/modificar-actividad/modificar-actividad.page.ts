@@ -32,10 +32,16 @@ export class ModificarActividadPage implements OnInit {
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf')
+    //this.router.navigate(['/home-prof/home-prof/menu-prof',this.actividadCurso.noTrabajador,this.actividadCurso.nrc]);
+  }
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.actividadCurso.noTrabajador,this.actividadCurso.nrc]);
   }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;
+    this.actividadCurso.noTrabajador = params.noTrabajador;
+    this.actividadCurso.nrc = params.nrc;
     if(params.id_equipo > 0 && params.id_equipo != null){
       //se obtiene la actividad de equipo
       console.log("Soy params: kk" + params.id + params.id_equipo + params.nrc + params.noTrabajador);

@@ -20,7 +20,7 @@ export class EliminarActividadPage implements OnInit {
   nTrabajador:number=0;
   nrc:number=0;
 
-  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private activedRoute:ActivatedRoute) { }
+  constructor(private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private activedRoute:ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
@@ -56,6 +56,10 @@ export class EliminarActividadPage implements OnInit {
     //       console.log("Holi[2]: "+this.equiposR[2].nombre);
     //       console.log("Holi[3]: "+this.equiposR[3].nombre);
     // //console.log(this.equiposR[0].nombre);
+  }
+
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
   }
 
   getActivity(){

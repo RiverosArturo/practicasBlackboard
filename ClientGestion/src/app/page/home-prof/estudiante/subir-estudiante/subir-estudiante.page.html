@@ -1,21 +1,11 @@
-<!--
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-prof/menu-prof',user]">
+      <ion-button (click)="navProf()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
-      <ion-label >Usuario: {{user}} </ion-label>      
+      <ion-label >Usuario:{{user}} </ion-label>      
     </ion-buttons>  
-  </ion-toolbar>
-</ion-header>-->
-
-<ion-header>
-  <ion-toolbar color = "primary">
-    <ion-buttons>
-      <ion-back-button slot = "start"> </ion-back-button>
-      <ion-label>Profesor:{{ user}}</ion-label>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

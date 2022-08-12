@@ -43,7 +43,7 @@ export class ConsultarEquipoPage implements OnInit {
   students:any = [];//Alumnos de la base para nombre del alumno  
   studCourses:any = [];//Alumnos del curso
 
-  constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController) { }
+  constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;      
@@ -57,6 +57,9 @@ export class ConsultarEquipoPage implements OnInit {
     this.getStudCourse(this.nrc,this.nTrabajador); 
     this.getStudent();
 
+  }
+  navProf(){
+    this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
   }
   editEquipo(id:number, nombre:string){
     this.add = false;
