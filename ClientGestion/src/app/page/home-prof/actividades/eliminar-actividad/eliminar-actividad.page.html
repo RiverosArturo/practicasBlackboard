@@ -53,7 +53,7 @@
                 <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
                   actualizar
                 </ion-button> 
-                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}, {{equipos[2].nombre}}
+                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}, {{equipos[activity.id_equipo].nombre}}
               </div>
 
               <div *ngIf="activity.id_equipo==null && boton==2">

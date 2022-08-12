@@ -31,7 +31,31 @@ export class EliminarActividadPage implements OnInit {
 
     this.getActivity();
     this.getEquipos(this.nTrabajador,this.nrc);
-    //console.log(this.equiposR[0].nombre);
+
+    // let h = 0;
+    //       do{
+    //         for(h<=this.equiposR.length; h++;){
+    //           let j = 0;
+    //           if(this.equiposR[j].nombre == this.equiposR[h].nombre){
+    //             this.equiposR[h].nombre == undefined;
+    //             if(h == this.equiposR.length){
+    //               j = j+1;
+    //               h = 0;
+    //             }
+    //             //console.log(this.equi)
+    //           }
+    //         }
+    //       }while(h != this.equiposR.length)
+
+    //       this.equiposR = this.equipos.filter(function(x) {
+    //         return x !== undefined;
+    //       });
+
+    //       console.log("Holi[0]: "+this.equiposR[0].nombre);
+    //       console.log("Holi[1]: "+this.equiposR[1].nombre);
+    //       console.log("Holi[2]: "+this.equiposR[2].nombre);
+    //       console.log("Holi[3]: "+this.equiposR[3].nombre);
+    // //console.log(this.equiposR[0].nombre);
   }
 
   getActivity(){
@@ -46,13 +70,11 @@ export class EliminarActividadPage implements OnInit {
           if(this.activitys[i].id_equipo != null){
             this.datosService.getid(this.activitys[i].id_equipo).subscribe(
               res => {
-                this.equipos[i] = res; 
-                console.log(this.equipos[i].nombre);
-                this.equiposR = this.equipos.filter(function(x) {
-                  return x !== undefined;
-                });
-                //Si sirve
-                //console.log("Holi: "+this.equiposR[].nombre);
+                this.equipos[this.activitys[i].id_equipo] = res; 
+                //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
+                // this.equiposR = this.equipos.filter(function(x) {
+                //   return x !== undefined;
+                // });
               },
               err => console.error(err)
             );
@@ -85,10 +107,7 @@ export class EliminarActividadPage implements OnInit {
       err => console.error(err)
     );
   }
-  // OpenMenuProf(){
-  //   this.menu.enable(true,'MenuProf');
-  //   this.menu.open('MenuProf')
-  // }
+
   deleteActividadEq(id:string, nrc:number, id_equipo:number, noTrabajador: number){
     this.datosService.deleteActividadEq(id, nrc, id_equipo, noTrabajador).subscribe(
       res => {

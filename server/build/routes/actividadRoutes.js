@@ -13,6 +13,7 @@ class actividadRoutes {
     config() {
         //this.router.get('/', ActividadController.getActivity);
         this.router.get('/', actividadController_1.default.list);
+        this.router.get('/', actividadController_1.default.listEq);
         this.router.get('/:id/:nrc/:noTrabajador', actividadController_1.default.getOne);
         //this.router.get('/:listAct', ActividadController.listAct);
         this.router.get('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_1.default.getOneEq);
