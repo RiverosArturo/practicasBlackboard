@@ -34,25 +34,25 @@
           <div slot="fixed">
             <ion-list>
             <tr  *ngFor="let equipo of equipos">
-                             
+              <!-- button add student -->               
               <ion-button color="primary" (click)="addStudent(equipo.nombre)">
                 <ion-icon name="add-outline"></ion-icon>
                 <ion-label> Alumno </ion-label>                                
               </ion-button>                              
-                                 
+              <!-- button query student the equipo -->                   
               <ion-button color="primary" (click)="queryEquipo(equipo.id, equipo.nombre)"> 
                 <ion-label> {{equipo.nombre}} </ion-label>                    
               </ion-button>                  
-                                        
+              <!-- button edit nomber the equipo -->                          
               <ion-button color="primary" (click)="editEquipo(equipo.id, equipo.nombre)">
                   <ion-label> Editar </ion-label>
                   <ion-icon name="pencil-outline">                  
               </ion-icon> </ion-button>                                
-              
+              <!-- button delete equipo -->
               <ion-button color="danger" (click)="AlertDeleteEquipo(equipo.id, equipo.nombre, equipo.curso_nrc, equipo.nTrabajador)">                                          
                 <ion-icon name="trash"></ion-icon>                
               </ion-button>
-
+          <!-- Agrega alomnos al equipo -->
               <div *ngIf="add == true && equipo.nombre == nomb ;">
                 <ion-item class="form-group">                  
                 <ion-card>
@@ -77,7 +77,7 @@
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
-                    <ion-button slot="end"   (click)=" saveStudentEquipo(equipo.id)">
+                    <ion-button slot="end"   (click)=" saveStudentEquipo(equipo.id, studentEquipo.matricula, equipo.nombre)">
                       <ion-label> Agregar </ion-label>
                     </ion-button>            
                   </ion-toolbar>
@@ -143,10 +143,7 @@
                 </ion-card>
                 </ion-item>
               </div>
-
-                 <!--        
-                 {{ equipo.id }}, {{ equipo.nombre }}, {{ equipo.curso_nrc }}, {{equipo.nTrabajador}} 
-                -->
+                 
           </tr>
         </ion-list>
         </div>        

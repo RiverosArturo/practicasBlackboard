@@ -37,6 +37,8 @@ export class ConsultarEquipoPage implements OnInit {
   query:boolean = false;
   equi:boolean = false;
   edit:boolean = false;
+  deleteEqui:boolean = false;
+  delete2:boolean = false;
   nomb:string;
   
 
@@ -93,20 +95,18 @@ export class ConsultarEquipoPage implements OnInit {
   notAdd(){
     this.add = false;
   }
-  saveStudentEquipo(id:number){
+  saveStudentEquipo(id:number, matricula:number, nombre:string ){//funcion que agrega alumnos al equipo
     this.add = false;
     console.log(id);
     this.studentEquipo.id_equipo = id;
     this.studentEquipo.nrc = this.nrc;
-    this.studentEquipo.nTrabajador = this.nTrabajador;    
-
-    //console.log('Equipo::> ',this.studentEquipo);
-    
-    this.datosService.saveStudentEquipo(this.studentEquipo)
-    .subscribe(
+    this.studentEquipo.nTrabajador = this.nTrabajador;
+    console.log(matricula, nombre);    
+    this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
       res => {
         console.log(res);  
-        this.add = false;                     
+        this.add = false; 
+        this.AlertAdd(matricula, nombre);
       },
       err => console.error(err)
     )
@@ -128,11 +128,10 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  get1Equipo(id:number){    
+  get1Equipo(id:number){// Optiene datos de un solo equipo    
     this.datosService.getOneEquipo(id).subscribe(
       res => {
-        this.oneEquipos = res;    
-        //console.log('Equipo::> ',res);    
+        this.oneEquipos = res;            
       },
       err => console.error(err)
     );
@@ -157,16 +156,16 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteStudentsEquipo(id:number, nrc:number, nTrabajador:number){       
-    this.datosService.deleteStudentsEquipo(id, nrc, nTrabajador).subscribe(
+  deleteStudentsEquipo(id:number, nrc:number, nTrabajador:number){    
+    this.datosService.deleteStudentsEquipo(id, nrc, nTrabajador ).subscribe(
       res => {
-        console.log(res); 
-        //this.get1Equipo(id, nrc, nTrabajador);
+        console.log(res);  
+        //this.getEquipos1(this.nrc, this.nTrabajador);       
       },
       err => console.error(err)
     )
   }
-  deleteStudentEquipo(matricula:number, id:number, nrc:number, nTrabajador:number){       
+  deleteStudentEquipo(matricula:number, id:number, nrc:number, nTrabajador:number){        
     this.datosService.deleteStudentEquipo(matricula, id, nrc, nTrabajador).subscribe(
       res => {
         console.log(res); 
@@ -176,11 +175,11 @@ export class ConsultarEquipoPage implements OnInit {
     )
   }
   deleteEquipo(id:number, nombre:string, nrc:number, nTrabajador:number){        
-    console.log('dat::> ',id, nombre, nrc, nTrabajador);    
+    this.deleteEqui = true;
     this.datosService.deleteEquipo(id, nombre, nrc, nTrabajador).subscribe(
       res => {
-        console.log(res); 
-        //this.getEquipos1(this.nrc, nTrabajador);       
+        console.log(res);     
+        //this.getEquipos1(this.nrc, this.nTrabajador);            
       },
       err => console.error(err)
     )
@@ -189,11 +188,30 @@ export class ConsultarEquipoPage implements OnInit {
     this.datosService.deleteAllEquipos(nrc, nTrabajador).subscribe(
       res => {
         console.log(res);    
-        this.getEquipos1(this.nrc, nTrabajador);    
+        //this.getEquipos1(this.nrc, nTrabajador);    
       },
       err => console.error(err)
     )
   }
+
+  async AlertAdd(matricula:number, nombre:string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Alumno '+ matricula + ' agregado al ' + nombre,
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabajador:number) {    
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -239,8 +257,9 @@ export class ConsultarEquipoPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            //this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
-            this.deleteEquipo(id, nombre, curso_nrc, nTrabajador);  
+            this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
+            //this.deleteEquipo(id, nombre, curso_nrc, nTrabajador); 
+            this.query = false; 
             this.getEquipos1(this.nrc, this.nTrabajador);
           }
         }

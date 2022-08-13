@@ -27,16 +27,6 @@ class EquipoStudentsController {
             res.json(equipo);
         });
     }
-    getOneEquipo(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id_equipo } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
-            if (equipo.length > 0) {
-                return res.json(equipo[0]);
-            }
-            res.json({ id: 0, nombre: '', curso_nrc: 0 });
-        });
-    }
     saveEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
@@ -75,14 +65,23 @@ class EquipoStudentsController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_equipo, nrc, nTrabajador } = req.params;
             yield database_1.default.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo, nrc, nTrabajador]);
-            res.json({ message: 'The students the Equipo was deleted' });
+            const id = id_equipo;
+            const curso_nrc = nrc;
+            //await pool.query('DELETE FROM equipo WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [id,curso_nrc,nTrabajador]);         
+            res.json({ message: 'equipo was delated', id_equipo, curso_nrc, nTrabajador });
         });
     }
     deleteEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nombre, curso_nrc, nTrabajador } = req.params;
-            yield database_1.default.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id, nombre, curso_nrc, nTrabajador]);
-            res.json({ message: 'The Equipo was deleted' });
+            //res.json({message: '::>',id, nombre, curso_nrc, nTrabajador});
+            const id_equipo = id;
+            const nrc = curso_nrc;
+            res.json({ message: '::> ', id_equipo, nrc, nTrabajador });
+            yield database_1.default.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo, nrc, nTrabajador]);
+            res.json({ message: 'The students Equipo was deleted' });
+            //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
+            //res.json({message: 'equipo was delated'});
         });
     }
 }

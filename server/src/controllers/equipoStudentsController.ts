@@ -11,14 +11,6 @@ class EquipoStudentsController {
         const equipo = await pool.query('SELECT * FROM equipo_estudiantes WHERE nTrabajador=? AND nrc=? AND id_equipo=?', [nTrabajador,nrc,id]);
           res.json(equipo);
       }
-    public async getOneEquipo (req:Request, res:Response): Promise<any>{
-        const  {id_equipo} = req.params;
-        const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
-        if (equipo.length > 0 ){
-            return res.json(equipo[0]);
-        }
-        res.json({id: 0, nombre: '', curso_nrc: 0});
-    }
     public async saveEquipo (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
         res.json({Message: 'Equipo Saved'});
@@ -43,15 +35,30 @@ public async get1Equipo (req: Request, res: Response){
     await pool.query('DELETE FROM `equipo_estudiantes` WHERE matricula = ? AND id_equipo = ? AND nrc = ? AND nTrabajador = ?', [matricula,id_equipo,nrc,nTrabajador]);         
     res.json({message: 'The student the Equipo was deleted'});  
   }
+  
   public async deleteStudentsEquipo (req:Request, res:Response): Promise <void>{
     const {id_equipo, nrc, nTrabajador} = req.params;
-    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);         
-    res.json({message: 'The students the Equipo was deleted'});  
+
+    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);
+    
+    
+    const id = id_equipo; const curso_nrc = nrc; 
+
+    //await pool.query('DELETE FROM equipo WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [id,curso_nrc,nTrabajador]);         
+    res.json({message: 'equipo was delated',id_equipo, curso_nrc, nTrabajador});
   }
+
   public async deleteEquipo (req:Request, res:Response): Promise <void>{
     const {id, nombre, curso_nrc, nTrabajador} = req.params;
-    await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
-    res.json({message: 'The Equipo was deleted'});
+    //res.json({message: '::>',id, nombre, curso_nrc, nTrabajador});
+
+    const id_equipo = id; const nrc = curso_nrc; 
+    res.json({message: '::> ',id_equipo, nrc, nTrabajador});
+    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);
+    res.json({message: 'The students Equipo was deleted'});
+    
+    //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
+    //res.json({message: 'equipo was delated'});
 }
 }
 const equipoStudentsController = new EquipoStudentsController();
