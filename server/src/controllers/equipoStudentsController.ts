@@ -21,11 +21,21 @@ class EquipoStudentsController {
         res.json({message: 'The Equipo was UPDATE'});
     }
 //-------------------------------------------------------------------------------------------------    
-public async saveStudentEquipo (req:Request, res:Response): Promise<void> {
+public async saveStudentEquipo (req:Request, res:Response): Promise<void> {//
     await pool.query('INSERT INTO equipo_estudiantes set ?', [req.body]);
     res.json({Message: 'Alumno agregado al equipo.'});
 }
-public async get1Equipo (req: Request, res: Response){
+public async getStudentEquipo (req:Request, res:Response): Promise<any>{
+  const  { matricula } = req.params;
+  const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? ', [ matricula ])
+  if (equipo.length > 0 ){      
+      //return res.json(equipo[0]);
+      return res.json({ matricula: "100" });
+  }else{            
+      res.json({ matricula: "200" });
+  }
+}
+public async get1Equipo (req: Request, res: Response){//
     const {id_equipo} = req.params;
     const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
     res.json(equipo);      
@@ -39,8 +49,7 @@ public async get1Equipo (req: Request, res: Response){
   public async deleteStudentsEquipo (req:Request, res:Response): Promise <void>{
     const {id_equipo, nrc, nTrabajador} = req.params;
 
-    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);
-    
+    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);    
     
     const id = id_equipo; const curso_nrc = nrc; 
 

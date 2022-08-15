@@ -47,6 +47,19 @@ class EquipoStudentsController {
             res.json({ Message: 'Alumno agregado al equipo.' });
         });
     }
+    getStudentEquipo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? ', [matricula]);
+            if (equipo.length > 0) {
+                //return res.json(equipo[0]);
+                return res.json({ matricula: "100" });
+            }
+            else {
+                res.json({ matricula: "200" });
+            }
+        });
+    }
     get1Equipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_equipo } = req.params;

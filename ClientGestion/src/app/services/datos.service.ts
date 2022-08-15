@@ -46,7 +46,7 @@ export class DatosService {
     return this.http.put(`${this.API_URI}/studCourse/${matricula}`, updateStudent);
   }
 
-//Funciones equipo////////////////////////////////////////////////////////////////////////////////////
+//----------------------- Funciones equipo -----------------------------------------//
 getid(id:number) {
   return this.http.get(`${this.API_URI}/equipo/${id}`);
 }
@@ -73,12 +73,16 @@ updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
 }
 
-////////////////////EQUIPOS ESTUDIANTES///////////////////////
+//------------- EQUIPOS ESTUDIANTES ------------------//
+
 saveStudentEquipo(studentEquipo: Equipo){
   return this.http.post(`${this.API_URI}/equipoStudents/`,studentEquipo);
 }
 getOneEquipo(id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${id}`);
+}
+getStudentEquipo(matricula: number ){
+  return this.http.get(`${this.API_URI}/equipoStudents/${matricula}`);
 }
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
@@ -92,7 +96,7 @@ deleteStudentsEquipo(id:number, nrc: number, nTrabajador:number){
 deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipoStudents/${id}/${nombre}/${nrc}/${nTrabajador}`);
 }
-///FUNCIONES ACTIVIDAD/////////////////////////////////
+//----------------------FUNCIONES ACTIVIDAD -----------------------------------//
 getActivity(){
   return this.http.get(`${this.API_URI}/actividad`);
 }

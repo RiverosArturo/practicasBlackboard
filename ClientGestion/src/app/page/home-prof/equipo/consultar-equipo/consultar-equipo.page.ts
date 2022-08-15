@@ -96,12 +96,23 @@ export class ConsultarEquipoPage implements OnInit {
     this.add = false;
   }
   saveStudentEquipo(id:number, matricula:number, nombre:string ){//funcion que agrega alumnos al equipo
-    this.add = false;
-    console.log(id);
+    this.add = false;    
     this.studentEquipo.id_equipo = id;
     this.studentEquipo.nrc = this.nrc;
     this.studentEquipo.nTrabajador = this.nTrabajador;
-    console.log(matricula, nombre);    
+    // codigo comprueba si el alumno ya ha sido agregado a un equipo
+    //this.datosService.getOneNombreEquipo(this.studentEquipo).subscribe(      
+    
+    this.datosService.getStudentEquipo( matricula ).subscribe(
+      res => {
+        //this.equipos = res;
+        console.log('Alumno: ',res);
+        },
+        err => console.error(err)
+      );
+
+     //codigo agrega alumno al equipo funciona correcto.
+     /*
     this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
       res => {
         console.log(res);  
@@ -110,6 +121,7 @@ export class ConsultarEquipoPage implements OnInit {
       },
       err => console.error(err)
     )
+    */
   }
 
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
