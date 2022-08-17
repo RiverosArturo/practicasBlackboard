@@ -14,6 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class studCourseController {
+    lista(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const curso = yield database_1.default.query('SELECT * FROM estudiante_curso');
+            res.json(curso);
+        });
+    }
     getlist(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc, nTrabajador } = req.params;
@@ -38,6 +44,16 @@ class studCourseController {
             else {
                 res.json({ matricula: "0", nrc: "0", nTrabajador: "0" });
             }
+        });
+    }
+    getEstudianteCurso(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            const curso = yield database_1.default.query('SELECT * FROM estudiante_curso WHERE matricula = ?', [matricula]);
+            if (curso.length > 0) {
+                return res.json(curso[0]);
+            }
+            res.json({ Text: "El curso no existe" });
         });
     }
     create(req, res) {

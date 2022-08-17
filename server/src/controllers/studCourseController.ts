@@ -2,6 +2,10 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class studCourseController {
+    public async lista (req: Request, res: Response){
+        const curso = await pool.query('SELECT * FROM estudiante_curso');
+          res.json(curso);
+      }
     public async getlist (req: Request, res: Response){
         const {nrc, nTrabajador} = req.params;
         const studCourse = await pool.query('SELECT * FROM `estudiante_curso` WHERE nrc=? AND nTrabajador=?', [nrc, nTrabajador]);
@@ -18,6 +22,15 @@ class studCourseController {
         if (pCourse.length > 0 ){
             return res.json(pCourse[0]);
         }else{res.json({matricula:"0", nrc:"0", nTrabajador:"0"});}
+    }
+
+    public async getEstudianteCurso (req:Request, res:Response): Promise<any>{
+        const  {matricula} = req.params;
+        const curso = await pool.query('SELECT * FROM estudiante_curso WHERE matricula = ?', [matricula])
+        if (curso.length > 0 ){
+            return res.json(curso[0]);
+        }
+        res.json({Text:"El curso no existe"});
     }
 
     public async create (req:Request, res:Response): Promise<void> {

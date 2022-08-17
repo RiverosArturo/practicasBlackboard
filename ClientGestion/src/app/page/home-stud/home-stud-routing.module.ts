@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from 'src/app/home/home.page';
 
 import { HomeStudPage } from './home-stud.page';
+import { ConsultarActividadPage } from './actividades/consultar-actividad/consultar-actividad.page';
+import { ConsultarPage } from './curso/consultar/consultar.page';
 
 const routes: Routes = [
   {
@@ -10,7 +12,7 @@ const routes: Routes = [
     component: HomeStudPage
   },
   {
-    path: 'consultar',
+    path: 'consultar/:user',
     loadChildren: () => import('./curso/consultar/consultar.module').then( m => m.ConsultarPageModule)
   },
   {
@@ -52,6 +54,10 @@ const routes: Routes = [
   {
     path:'home',
     component: HomePage
+  },
+  {
+    path: 'consultar/:user',
+    component: ConsultarPage
   }
 ];
 

@@ -24,6 +24,9 @@ export class DatosService {
   constructor(private http: HttpClient) { }
 
 //  funciones sStudent course---------------------------------------------------
+  listaEstudianteCurso() {
+    return this.http.get(`${this.API_URI}/studCourse`);
+  }
   getOneCursoEst(nrc:number, nTrabajador:number, matricula:number) {
     return this.http.get(`${this.API_URI}/studCourse/${nrc}/${nTrabajador}/${matricula}`);
   }
