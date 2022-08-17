@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'consultar/:user',
     component: ConsultarPage
+  },  {
+    path: 'menu-student',
+    loadChildren: () => import('./menu-student/menu-student.module').then( m => m.MenuStudentPageModule)
   }
+
 ];
 
 @NgModule({
