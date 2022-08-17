@@ -21,14 +21,6 @@ export class ConsultarPage implements OnInit {
     materia:'',
     nrc:0,
   }
-  // course2: Curso = {
-  //   materia:'',
-  // }  
-  // pCourse: ProfCourse = {
-  //   nTrabajador:0,
-  //   nrc:0,     
-  // };
-
     
   courses:any = [];
   eCursos:any = [];
