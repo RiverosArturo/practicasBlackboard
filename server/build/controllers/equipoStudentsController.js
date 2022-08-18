@@ -59,6 +59,18 @@ class EquipoStudentsController {
             }
         });
     }
+    getNameEquipo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nombre, curso_nrc, nTrabajador } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM `equipo` WHERE id = ? AND nombre = ? AND curso_nrc ) ? AND nTrabajador = ?  ', [id, nombre, curso_nrc, nTrabajador]);
+            if (equipo.length > 0) {
+                return res.json(equipo[0]);
+            }
+            else {
+                res.json({ nombre: ' ' });
+            }
+        });
+    }
     get1Equipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_equipo } = req.params;

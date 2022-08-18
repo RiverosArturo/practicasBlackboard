@@ -63,15 +63,22 @@ export class ConsultarEquipoPage implements OnInit {
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
   }
-  editEquipo(id:number, nombre:string){
+  editEquipo(id:number, nombre:string){//muestra la interfaz de editar equipo
     this.add = false;
     this.query = false;
     this.edit = true;
-    this.nomb =nombre;
-   // this.get1Equipo(id);
+    this.nomb =nombre;        
   }
-  editEquipoButton(){
-    console.log('Nombre del equipo actualizado');
+  editEquipoButton(id, nombre, nrc, nTrabajador){//verifica si el nombre has si usado y actualiza el nombre del equipo
+    console.log(id, nombre, nrc, nTrabajador);    
+    this.datosService.getNameEquipo(id, nombre, nrc, nTrabajador).subscribe(
+      res => {
+        //this.equipos = res;              
+        console.log(res);
+      },
+      err => console.error(err)
+    );
+    //console.log(nombre,'Nuevo nombre actualizado');
   }
   notEdit(){
     this.edit = false;
