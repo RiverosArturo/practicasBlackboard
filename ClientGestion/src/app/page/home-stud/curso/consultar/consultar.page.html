@@ -27,7 +27,7 @@
           <ion-card color="medium">              
             <tr *ngFor="let course of courses">  
               <div *ngIf="course.nrc == cursoEs.nrc">
-                <ion-button color="tertiary"  [routerLink]="['../../menu-stud', user, cursoEs.nrc]" >ver curso                  
+                <ion-button color="tertiary"  [routerLink]="['../../menu-student', user, cursoEs.nrc]" >ver curso                  
                    &nbsp;<ion-icon name="eye-outline"></ion-icon>
                 </ion-button>                
                 <ion-label >&nbsp;
