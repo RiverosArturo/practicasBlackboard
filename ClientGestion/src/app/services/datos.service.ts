@@ -87,8 +87,8 @@ getOneEquipo(id: number){
 getStudentEquipo(matricula: number, nTrabajador:number ){
   return this.http.get(`${this.API_URI}/equipoStudents/${matricula}/${nTrabajador}`);
 }
-getNameEquipo( nombre:string, nrc:number ,nTrabajador:number ){
-  return this.http.get(`${this.API_URI}/equipoStudents/${nombre}/${nrc}/${nTrabajador}`);
+getNameEquipo(id:number, nombre:string, nrc:number ,nTrabajador:number ){
+  return this.http.get(`${this.API_URI}/equipoStudents/${id}/${nombre}/${nrc}/${nTrabajador}`);
 }
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);

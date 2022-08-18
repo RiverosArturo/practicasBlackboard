@@ -61,15 +61,17 @@ class EquipoStudentsController {
     }
     getNameEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nombre, curso_nrc, nTrabajador } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM `equipo` WHERE nombre = ? AND curso_nrc ) ? AND nTrabajador = ?  ', [nombre, curso_nrc, nTrabajador]);
-            if (equipo.length > 0) {
-                //return res.json(equipo[0]);      
+            const { id, nombre, curso_nrc, nTrabajador } = req.params;
+            res.json({ nombre: 'prueba' });
+            /*
+            const equipo = await pool.query('SELECT * FROM `equipo` WHERE nombre = ? AND curso_nrc ) = ? AND nTrabajador = ?  ', [ nombre, curso_nrc, nTrabajador ])
+            if (equipo.length > 0 ){
+                //return res.json(equipo[0]);
                 res.json({ nombre: 'A' });
-            }
-            else {
+            }else{
                 res.json({ nombre: 'B' });
             }
+            */
         });
     }
     get1Equipo(req, res) {
