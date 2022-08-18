@@ -26,13 +26,12 @@ public async saveStudentEquipo (req:Request, res:Response): Promise<void> {//
     res.json({Message: 'Alumno agregado al equipo.'});
 }
 public async getStudentEquipo (req:Request, res:Response): Promise<any>{
-  const  { matricula } = req.params;
-  const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? ', [ matricula ])
+  const  { matricula, nTrabajador } = req.params;
+  const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? AND nTrabajador = ? ', [ matricula, nTrabajador ])
   if (equipo.length > 0 ){      
-      //return res.json(equipo[0]);
-      return res.json({ matricula: "100" });
+      return res.json(equipo[0]);      
   }else{            
-      res.json({ matricula: "200" });
+      res.json({ matricula: 0 });
   }
 }
 public async get1Equipo (req: Request, res: Response){//

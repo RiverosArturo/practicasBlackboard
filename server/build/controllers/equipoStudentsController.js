@@ -49,14 +49,13 @@ class EquipoStudentsController {
     }
     getStudentEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { matricula } = req.params;
-            const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? ', [matricula]);
+            const { matricula, nTrabajador } = req.params;
+            const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE matricula = ? AND nTrabajador = ? ', [matricula, nTrabajador]);
             if (equipo.length > 0) {
-                //return res.json(equipo[0]);
-                return res.json({ matricula: "100" });
+                return res.json(equipo[0]);
             }
             else {
-                res.json({ matricula: "200" });
+                res.json({ matricula: 0 });
             }
         });
     }

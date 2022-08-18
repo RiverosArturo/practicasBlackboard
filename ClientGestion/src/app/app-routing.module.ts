@@ -51,13 +51,8 @@ const routes: Routes = [
   {
     path: 'login-Student/:accessS',
     component: LoginPage
-  },  {
-    path: 'menu-student',
-    loadChildren: () => import('./app/home-stud/menu-student/menu-student.module').then( m => m.MenuStudentPageModule)
   },
-
   
-
   
 
 ];

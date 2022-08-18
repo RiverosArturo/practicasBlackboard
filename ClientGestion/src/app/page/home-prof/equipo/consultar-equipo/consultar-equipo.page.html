@@ -77,7 +77,7 @@
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
-                    <ion-button slot="end"   (click)=" saveStudentEquipo(equipo.id, studentEquipo.matricula, equipo.nombre)">
+                    <ion-button slot="end"   (click)=" saveStudentEquipo(equipo.id, studentEquipo.matricula, equipo.nombre, nTrabajador)">
                       <ion-label> Agregar </ion-label>
                     </ion-button>            
                   </ion-toolbar>
@@ -103,8 +103,7 @@
                   <ion-input [(ngModel)]="equipo.nombre" name="nombre"></ion-input>
                 </ion-item>                
                 <ion-item>
-                  <ion-toolbar>
-                    {{equipo.nombre}}
+                  <ion-toolbar>                    
                     <ion-button slot="end"  (click)="editEquipoButton()">
                       <ion-label> Guardar </ion-label>
                     </ion-button>

@@ -95,33 +95,35 @@ export class ConsultarEquipoPage implements OnInit {
   notAdd(){
     this.add = false;
   }
-  saveStudentEquipo(id:number, matricula:number, nombre:string ){//funcion que agrega alumnos al equipo
+  saveStudentEquipo(id:number, matricula:number, nombre:string, nTrabajador:number ){//funcion que agrega alumnos al equipo
     this.add = false;    
     this.studentEquipo.id_equipo = id;
     this.studentEquipo.nrc = this.nrc;
     this.studentEquipo.nTrabajador = this.nTrabajador;
-    // codigo comprueba si el alumno ya ha sido agregado a un equipo
-    //this.datosService.getOneNombreEquipo(this.studentEquipo).subscribe(      
-    
-    this.datosService.getStudentEquipo( matricula ).subscribe(
-      res => {
-        //this.equipos = res;
-        console.log('Alumno: ',res);
+    // codigo comprueba si el alumno ya ha sido agregado a un equipo             
+    this.datosService.getStudentEquipo( matricula , nTrabajador).subscribe(
+      res => {        
+        this.oneEquipos = res;
+        console.log( this.oneEquipos );
+
+        if(this.oneEquipos.matricula == 0 ){
+          //codigo agrega alumno al equipo funciona correcto.   
+          console.log('Alumno agregado.');  
+          this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
+            res => {
+              console.log(res);  
+              this.add = false; 
+              this.AlertAdd(matricula, nombre);
+            },
+            err => console.error(err)
+          )          
+        }else{
+          console.log('Alumno ya existe en un equipo.');
+          this.AlertYaExiste(matricula);
+        }
         },
         err => console.error(err)
-      );
-
-     //codigo agrega alumno al equipo funciona correcto.
-     /*
-    this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
-      res => {
-        console.log(res);  
-        this.add = false; 
-        this.AlertAdd(matricula, nombre);
-      },
-      err => console.error(err)
-    )
-    */
+      ); 
   }
 
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
@@ -204,8 +206,26 @@ export class ConsultarEquipoPage implements OnInit {
       },
       err => console.error(err)
     )
-  }
+  }  
 
+  async AlertYaExiste(matricula:number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Alumno '+ matricula + ' ya existe en un equipo ',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  
   async AlertAdd(matricula:number, nombre:string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

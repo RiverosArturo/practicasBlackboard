@@ -84,8 +84,8 @@ saveStudentEquipo(studentEquipo: Equipo){
 getOneEquipo(id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${id}`);
 }
-getStudentEquipo(matricula: number ){
-  return this.http.get(`${this.API_URI}/equipoStudents/${matricula}`);
+getStudentEquipo(matricula: number, nTrabajador:number ){
+  return this.http.get(`${this.API_URI}/equipoStudents/${matricula}/${nTrabajador}`);
 }
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
