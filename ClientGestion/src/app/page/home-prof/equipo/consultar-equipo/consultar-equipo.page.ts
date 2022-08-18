@@ -71,7 +71,7 @@ export class ConsultarEquipoPage implements OnInit {
   }
   editEquipoButton(id, nombre, nrc, nTrabajador){//verifica si el nombre has si usado y actualiza el nombre del equipo
     console.log(id, nombre, nrc, nTrabajador);    
-    this.datosService.getNameEquipo(id, nombre, nrc, nTrabajador).subscribe(
+    this.datosService.getNameEquipo(nombre, nrc, nTrabajador).subscribe(
       res => {
         //this.equipos = res;              
         console.log(res);

@@ -35,12 +35,13 @@ public async getStudentEquipo (req:Request, res:Response): Promise<any>{
   }
 }
 public async getNameEquipo (req:Request, res:Response): Promise<any>{
-  const  { id, nombre, curso_nrc, nTrabajador } = req.params;
-  const equipo = await pool.query('SELECT * FROM `equipo` WHERE id = ? AND nombre = ? AND curso_nrc ) ? AND nTrabajador = ?  ', [ id, nombre, curso_nrc, nTrabajador ])
+  const  { nombre, curso_nrc, nTrabajador } = req.params;
+  const equipo = await pool.query('SELECT * FROM `equipo` WHERE nombre = ? AND curso_nrc ) ? AND nTrabajador = ?  ', [ nombre, curso_nrc, nTrabajador ])
   if (equipo.length > 0 ){      
-      return res.json(equipo[0]);      
+      //return res.json(equipo[0]);      
+      res.json({ nombre: 'A' });
   }else{            
-      res.json({ nombre: ' ' });
+      res.json({ nombre: 'B' });
   }
 }
 public async get1Equipo (req: Request, res: Response){//
