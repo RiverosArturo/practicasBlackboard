@@ -36,22 +36,25 @@ public async getStudentEquipo (req:Request, res:Response): Promise<any>{
 }
 public async getNameEquipo (req:Request, res:Response): Promise<any>{
   const  {id, nombre, curso_nrc, nTrabajador } = req.params;
-  res.json({ nombre: 'prueba' });
-  /*
-  const equipo = await pool.query('SELECT * FROM `equipo` WHERE nombre = ? AND curso_nrc ) = ? AND nTrabajador = ?  ', [ nombre, curso_nrc, nTrabajador ])
+  //res.json({ nombre: 'prueba ' + nombre });
+  
+  const equipo = await pool.query('SELECT * FROM equipo WHERE nombre = ? AND curso_nrc = ? AND nTrabajador = ?  ', [ nombre, curso_nrc, nTrabajador ])
   if (equipo.length > 0 ){      
-      //return res.json(equipo[0]);      
-      res.json({ nombre: 'A' });
+      return res.json(equipo[0]);            
   }else{            
-      res.json({ nombre: 'B' });
-  }
-  */
+      res.json({ nombre: '...' });
+  }  
 }
 public async get1Equipo (req: Request, res: Response){//
     const {id_equipo} = req.params;
     const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
     res.json(equipo);      
   }
+  public async updateNameEquipo (req:Request, res:Response): Promise<void>{
+    const { nombre } = req.params;
+    await pool.query('UPDATE equipo set ? WHERE nombre = ?', [req.body, nombre]);
+    res.json({message: 'The name equipo was UPDATE. '+ nombre});
+}
   public async deleteStudentEquipo (req:Request, res:Response): Promise <void>{
     const {matricula, id_equipo, nrc, nTrabajador} = req.params;
     await pool.query('DELETE FROM `equipo_estudiantes` WHERE matricula = ? AND id_equipo = ? AND nrc = ? AND nTrabajador = ?', [matricula,id_equipo,nrc,nTrabajador]);         

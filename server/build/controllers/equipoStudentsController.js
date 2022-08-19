@@ -62,16 +62,14 @@ class EquipoStudentsController {
     getNameEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nombre, curso_nrc, nTrabajador } = req.params;
-            res.json({ nombre: 'prueba' });
-            /*
-            const equipo = await pool.query('SELECT * FROM `equipo` WHERE nombre = ? AND curso_nrc ) = ? AND nTrabajador = ?  ', [ nombre, curso_nrc, nTrabajador ])
-            if (equipo.length > 0 ){
-                //return res.json(equipo[0]);
-                res.json({ nombre: 'A' });
-            }else{
-                res.json({ nombre: 'B' });
+            //res.json({ nombre: 'prueba ' + nombre });
+            const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE nombre = ? AND curso_nrc = ? AND nTrabajador = ?  ', [nombre, curso_nrc, nTrabajador]);
+            if (equipo.length > 0) {
+                return res.json(equipo[0]);
             }
-            */
+            else {
+                res.json({ nombre: '...' });
+            }
         });
     }
     get1Equipo(req, res) {
@@ -79,6 +77,13 @@ class EquipoStudentsController {
             const { id_equipo } = req.params;
             const equipo = yield database_1.default.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
             res.json(equipo);
+        });
+    }
+    updateNameEquipo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nombre } = req.params;
+            yield database_1.default.query('UPDATE equipo set ? WHERE nombre = ?', [req.body, nombre]);
+            res.json({ message: 'The name equipo was UPDATE. ' + nombre });
         });
     }
     deleteStudentEquipo(req, res) {

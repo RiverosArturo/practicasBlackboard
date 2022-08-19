@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute} from '@angular/router';
 import { Student } from 'src/app/models/Student';
-import {  } from 'src/app/models/StudentEquipo';
+import { Equipo } from 'src/app/models/Equipo';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -17,9 +17,11 @@ export class ConsultarEquipoPage implements OnInit {
     matricula:0,
   } 
 
-  courses:any = [];
+  courses:any = [];  
   equipos:any = [];
   oneEquipos:any = [];//Alumnos integrantes del equipo
+
+  equipo:Equipo ={};
 
   studentEquipo:any = {// estructura del alumno integrante del equipo
     matricula:0,
@@ -70,16 +72,34 @@ export class ConsultarEquipoPage implements OnInit {
     this.nomb =nombre;        
   }
   editEquipoButton(id, nombre, nrc, nTrabajador){//verifica si el nombre has si usado y edita el nombre del equipo
-    console.log(id, nombre, nrc, nTrabajador);    
+    //console.log(id, nombre, nrc, nTrabajador);    
     this.datosService.getNameEquipo(id,nombre, nrc, nTrabajador).subscribe(
       res => {
-        //this.equipos = res;              
-        console.log(res);
+        this.oneEquipos = res;                 
+        if(this.oneEquipos.nombre == '...'){  
+          this.equipo.id = id;  this.equipo.curso_nrc = nrc;  this.equipo.nTrabajador = nTrabajador;          
+          this.equipo.nombre = nombre;
+          console.log('::> ',this.equipo);
+          this.datosService.updateNameEquipo(this.equipo.nombre, this.equipo)
+          .subscribe(
+            res =>{
+            console.log(res);                
+            this.edit = false;
+            this.getEquipos1(nrc,nTrabajador);
+            this.AlerteditOKEquipo(nombre);
+          },
+          err => console.error(err)
+          )          
+        }else{
+          console.log('El nombre '+ nombre + ' ya ha sido usado. ');
+          this.AlertYaExisteEquipo(nombre);
+        }
       },
       err => console.error(err)
     );
     //console.log(nombre,'Nuevo nombre actualizado');
   }
+  
   notEdit(){
     this.edit = false;
   }
@@ -213,6 +233,41 @@ export class ConsultarEquipoPage implements OnInit {
       },
       err => console.error(err)
     )
+  }
+//---- funciones de alert-------  
+async AlerteditOKEquipo( nombre:string ) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: ' ',
+    message: 'Nombre del equipo ha sido cambiado por '+ nombre,      
+    buttons: [
+      {
+        text: 'Ok',
+        id: 'confirm-button',
+        handler: () => {
+          console.log('Confirm Okay');            
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+  async AlertYaExisteEquipo( nombre:string ) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Nombre '+ nombre + ' ya existe en un equipo, intenta con otro nombre. ',      
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
   }  
 
   async AlertYaExiste(matricula:number) {

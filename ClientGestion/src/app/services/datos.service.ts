@@ -93,6 +93,9 @@ getNameEquipo(id:number, nombre:string, nrc:number ,nTrabajador:number ){
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
 }
+updateNameEquipo(nombre:string, updateNameEquipo){
+  return this.http.put(`${this.API_URI}/equipoStudents/${nombre}`, updateNameEquipo);
+}
 deleteStudentEquipo(matricula:number, id:number, nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipoStudents/${matricula}/${id}/${nrc}/${nTrabajador}`);
 }
@@ -138,7 +141,7 @@ deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
   getOneAdmi(id:string) {
     return this.http.get(`${this.API_URI}/login/${id}`);
   }
-  //Funciones Student////////////////////////////////////////////////////////////////////////////////////
+  //----------------------------Funciones Student////////////////////////////////////////////////////////////////////////////////////
   getStudents() {
     return this.http.get(`${this.API_URI}/student`);
   }
@@ -157,7 +160,7 @@ deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
   updateStudent(matricula: number, updateStudent: Student):Observable<Student> {
     return this.http.put(`${this.API_URI}/student/${matricula}`, updateStudent);
   }
-  // Funciones profs ////////////////////////////////////////////////////////////////////////////
+  // ---------------------Funciones profs ////////////////////////////////////////////////////////////////////////////
   getProfs(){
     return this.http.get(`${this.API_URI}/prof`);
   }
