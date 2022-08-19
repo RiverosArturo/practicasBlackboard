@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertController, MenuController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
 
 @Component({
-  selector: 'app-avisos',
-  templateUrl: './avisos.page.html',
-  styleUrls: ['./avisos.page.scss'],
+  selector: 'app-chat',
+  templateUrl: './chat.page.html',
+  styleUrls: ['./chat.page.scss'],
 })
-export class AvisosPage implements OnInit {
+export class ChatPage implements OnInit {
+
   menu: any;
-  avisos:any=[];
 
   constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
 

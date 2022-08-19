@@ -15,6 +15,7 @@ import { EliminarActividadPage } from './actividades/eliminar-actividad/eliminar
 import { AltaActividadPage } from './actividades/alta-actividad/alta-actividad.page';
 import { EvaluarActividadPage } from './actividades/evaluar-actividad/evaluar-actividad.page';
 import { AvisosPage } from './comunicacion/avisos/avisos.page';
+import { ChatPage } from './comunicacion/chat/chat.page';
 
 
 const routes: Routes = [
@@ -130,7 +131,16 @@ const routes: Routes = [
   {
     path: 'avisos/:user/:nrc',
     component: AvisosPage
+  },
+  {
+    path: 'chat/:user/:nrc',
+    loadChildren: () => import('./comunicacion/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'chat/:user/:nrc',
+    component: ChatPage
   }
+
 
 ];
 
