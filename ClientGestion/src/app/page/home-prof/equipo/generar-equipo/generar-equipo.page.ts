@@ -28,6 +28,7 @@ export class GenerarEquipoPage implements OnInit {
 
   equipos:any = [];
   oneEquipos:any = [];
+  id:number = 3; max:number = 10000;
 
   constructor( public alertController:AlertController,private activedRoute:ActivatedRoute,private menu:MenuController, private datosService:DatosService, private router:Router, private activated:ActivatedRoute) { }
 
@@ -41,8 +42,11 @@ export class GenerarEquipoPage implements OnInit {
     this.equipo.curso_nrc = this.nrc;
     this.equipo.nTrabajador = this.nTrabajador;
     this.getEquipos();
+    this.random(this.id, this.max);
   }
-
+  random( id, max ){    
+    id = Math.floor(Math.random() * max) + 1;
+  }
   Save(id:number, nombre:string, nrc:number, nTrabajador:number){  
     this.datosService.getid(id).subscribe(
       res => {              

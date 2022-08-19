@@ -86,7 +86,8 @@ export class ConsultarEquipoPage implements OnInit {
             console.log(res);                
             this.edit = false;
             this.getEquipos1(nrc,nTrabajador);
-            this.AlerteditOKEquipo(nombre);
+            console.log('Nombre cambiado.');
+            //this.AlerteditOKEquipo(nombre);
           },
           err => console.error(err)
           )          
@@ -99,7 +100,9 @@ export class ConsultarEquipoPage implements OnInit {
     );
     //console.log(nombre,'Nuevo nombre actualizado');
   }
-  
+  random(id=0, max=10000){
+    id = Math.floor(Math.random() * max) + 1;
+  }
   notEdit(){
     this.edit = false;
   }
