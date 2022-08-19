@@ -14,6 +14,7 @@ import { ModificarActividadPage } from './actividades/modificar-actividad/modifi
 import { EliminarActividadPage } from './actividades/eliminar-actividad/eliminar-actividad.page';
 import { AltaActividadPage } from './actividades/alta-actividad/alta-actividad.page';
 import { EvaluarActividadPage } from './actividades/evaluar-actividad/evaluar-actividad.page';
+import { AvisosPage } from './comunicacion/avisos/avisos.page';
 
 
 const routes: Routes = [
@@ -67,7 +68,7 @@ const routes: Routes = [
     loadChildren: () => import('./actividades/evaluar-actividad/evaluar-actividad.module').then( m => m.EvaluarActividadPageModule)
   },
   {
-    path: 'avisos',
+    path: 'avisos/:user/:nrc',
     loadChildren: () => import('./comunicacion/avisos/avisos.module').then( m => m.AvisosPageModule)
   },
   {
@@ -125,8 +126,11 @@ const routes: Routes = [
   {
     path: 'evaluar-actividad/:user/:nrc',
     component: EvaluarActividadPage
+  },
+  {
+    path: 'avisos/:user/:nrc',
+    component: AvisosPage
   }
-  
 
 ];
 
