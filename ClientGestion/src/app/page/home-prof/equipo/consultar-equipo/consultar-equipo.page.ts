@@ -99,10 +99,7 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
     //console.log(nombre,'Nuevo nombre actualizado');
-  }
-  random(id=0, max=10000){
-    id = Math.floor(Math.random() * max) + 1;
-  }
+  }  
   notEdit(){
     this.edit = false;
   }

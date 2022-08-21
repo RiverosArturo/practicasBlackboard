@@ -28,11 +28,19 @@
 
       <ion-card>
         <form>
-          
-        <ion-item class="form-group">
-          <ion-label position="floating"> id del Equipo </ion-label>
-          <ion-input [(ngModel)]="equipo.id" name="id" autofocus></ion-input>
-        </ion-item> 
+          <ion-toolbar>
+
+            <ion-item class="form-group">   
+            <ion-button   (click)="random(id, max)">
+              <ion-label> Generar id </ion-label>
+            </ion-button>   
+          </ion-item>  
+          <ion-item>
+            <ion-label position="floating">id del Equipo:</ion-label>
+            <ion-input [(ngModel)]=" equipo.id" name=" id"></ion-input>    
+          </ion-item>
+
+          </ion-toolbar>          
 
         <ion-item class="form-group">
           <ion-label position="floating"> Nombre </ion-label>
