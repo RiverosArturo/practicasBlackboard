@@ -36,7 +36,7 @@ class ActividadController {
     }
     public async updateAct (req:Request, res:Response): Promise<void>{
         const {id,nrc,noTrabajador} = req.params;
-        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=?', [req.body,id,nrc,noTrabajador]);
+        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [req.body,id,nrc,noTrabajador]);
         res.json({message: 'The actividad was UPDATE'});
     }
     public async updateActEq (req:Request, res:Response): Promise<void>{

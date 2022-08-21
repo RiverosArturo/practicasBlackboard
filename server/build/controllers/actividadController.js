@@ -60,7 +60,7 @@ class ActividadController {
     updateAct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;
-            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=?', [req.body, id, nrc, noTrabajador]);
+            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [req.body, id, nrc, noTrabajador]);
             res.json({ message: 'The actividad was UPDATE' });
         });
     }

@@ -34,10 +34,15 @@ class AvisoController {
         await pool.query('INSERT INTO aviso set ?', [req.body]);
         res.json({Message: 'aviso Saved'});
     }
-    public async update (req:Request, res:Response): Promise<void>{
-        const { clave } = req.params;
-        await pool.query('UPDATE aviso set ? WHERE id = ?', [req.body, clave]);
-        res.json({message: 'The aviso was UPDATE'});
+    public async updateAv (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador} = req.params;
+        await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [req.body,id,nrc,noTrabajador]);
+        res.json({message: 'The actividad was UPDATE'});
+    }
+    public async updateAvEq (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador,id_equipo} = req.params;
+        await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
+        res.json({message: 'The actividad was UPDATE'});
     }
     public async delete (req:Request, res:Response): Promise <void>{
         const {id,nrc,noTrabajador} = req.params;

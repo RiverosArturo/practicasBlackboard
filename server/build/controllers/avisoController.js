@@ -57,11 +57,18 @@ class AvisoController {
             res.json({ Message: 'aviso Saved' });
         });
     }
-    update(req, res) {
+    updateAv(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { clave } = req.params;
-            yield database_1.default.query('UPDATE aviso set ? WHERE id = ?', [req.body, clave]);
-            res.json({ message: 'The aviso was UPDATE' });
+            const { id, nrc, noTrabajador } = req.params;
+            yield database_1.default.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [req.body, id, nrc, noTrabajador]);
+            res.json({ message: 'The actividad was UPDATE' });
+        });
+    }
+    updateAvEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, noTrabajador, id_equipo } = req.params;
+            yield database_1.default.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body, id, nrc, noTrabajador, id_equipo]);
+            res.json({ message: 'The actividad was UPDATE' });
         });
     }
     delete(req, res) {
