@@ -50,29 +50,24 @@ public async get1Equipo (req: Request, res: Response){//
     const equipo = await pool.query('SELECT * FROM `equipo_estudiantes` WHERE id_equipo = ?', [id_equipo]);
     res.json(equipo);      
   }
-  public async updateNameEquipo (req:Request, res:Response): Promise<void>{
+public async updateNameEquipo (req:Request, res:Response): Promise<void>{
     const { nombre } = req.params;
     await pool.query('UPDATE equipo set ? WHERE nombre = ?', [req.body, nombre]);
     res.json({message: 'The name equipo was UPDATE. '+ nombre});
 }
-  public async deleteStudentEquipo (req:Request, res:Response): Promise <void>{
+public async deleteStudentEquipo (req:Request, res:Response): Promise <void>{
     const {matricula, id_equipo, nrc, nTrabajador} = req.params;
     await pool.query('DELETE FROM `equipo_estudiantes` WHERE matricula = ? AND id_equipo = ? AND nrc = ? AND nTrabajador = ?', [matricula,id_equipo,nrc,nTrabajador]);         
     res.json({message: 'The student the Equipo was deleted'});  
-  }
-  
-  public async deleteStudentsEquipo (req:Request, res:Response): Promise <void>{
+}  
+public async deleteStudentsEquipo (req:Request, res:Response): Promise <void>{
     const {id_equipo, nrc, nTrabajador} = req.params;
-
-    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);    
-    
+    await pool.query('DELETE FROM `equipo_estudiantes` WHERE id_equipo = ? AND nrc = ? AND nTrabajador = ?', [id_equipo,nrc,nTrabajador]);        
     const id = id_equipo; const curso_nrc = nrc; 
-
     //await pool.query('DELETE FROM equipo WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [id,curso_nrc,nTrabajador]);         
     res.json({message: 'equipo was delated',id_equipo, curso_nrc, nTrabajador});
-  }
-
-  public async deleteEquipo (req:Request, res:Response): Promise <void>{
+}
+public async deleteEquipo (req:Request, res:Response): Promise <void>{
     const {id, nombre, curso_nrc, nTrabajador} = req.params;
     //res.json({message: '::>',id, nombre, curso_nrc, nTrabajador});
 
