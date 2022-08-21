@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button (click)="navProf()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario:{{actividadCurso.noTrabajador}} </ion-label>      
+    </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Modificar aviso </ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+
+    <ion-card>
+      <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAct="ngForm">
+        <!-- <ion-label for="id" color="dark">Id actividad:</ion-label>
+        <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" ></ion-input> -->
+    
+        <ion-label for="nombre" color="dark">Nombre:</ion-label>
+        <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="actividadCurso.nombre" color="primary" placeholder="Nombre de la actividad"></ion-input>
+    
+        <ion-label for="descripcion" color="dark">Descripcion:</ion-label>
+        <ion-input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="actividadCurso.descripcion" color="primary" placeholder="Agrega una descripcion para la actividad"></ion-input>
+    
+        <ion-label for="fechaI" color="dark">Fecha de inicio:</ion-label>
+        <ion-input type="date" name="fechaI" #fechaI="ngModel" [(ngModel)]="actividadCurso.fecha" color="primary"></ion-input>
+  
+        <ion-label for="fechaE" color="dark">Fecha de entrega:</ion-label>
+        <ion-input type="date" name="fechaE" #fechaE="ngModel" [(ngModel)]="actividadCurso.fechaEntrega" color="primary"></ion-input>
+  
+        <ion-label for="hora" color="dark">Hora de entrega:</ion-label>
+        <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="actividadCurso.horaEntrega" color="primary"></ion-input>
+        
+        <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
+        <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
+  
+        <ion-label for="curso" color="dark">Curso:</ion-label>
+        <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input> -->
+        
+        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
+      </form>
+  
+      <form *ngIf="condicionE==false" (ngSubmit)="onSubmit()" #crearAct="ngForm">
+        <!-- <ion-label for="id" color="dark">Id actividad:</ion-label>
+        <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" placeholder="Id actividad Ej: ACT1/123456"></ion-input> -->
+    
+        <ion-label for="nombre" color="dark">Nombre:</ion-label>
+        <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="actividadCurso.nombre" color="primary" placeholder="Nombre de la actividad"></ion-input>
+    
+        <ion-label for="descripcion" color="dark">Descripcion:</ion-label>
+        <ion-input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="actividadCurso.descripcion" color="primary" placeholder="Agrega una descripcion para la actividad"></ion-input>
+    
+        <ion-label for="fechaI" color="dark">Fecha de inicio:</ion-label>
+        <ion-input type="date" name="fechaI" #fechaI="ngModel" [(ngModel)]="actividadCurso.fecha" color="primary"></ion-input>
+  
+        <ion-label for="fechaE" color="dark">Fecha de entrega:</ion-label>
+        <ion-input type="date" name="fechaE" #fechaE="ngModel" [(ngModel)]="actividadCurso.fechaEntrega" color="primary"></ion-input>
+  
+        <ion-label for="hora" color="dark">Hora de entrega:</ion-label>
+        <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="actividadCurso.horaEntrega" color="primary"></ion-input>
+        
+        <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
+        <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
+  
+        <ion-label for="curso" color="dark">Curso:</ion-label>
+        <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
+        
+        <ion-label for="equipo" color="dark">Equipo  </ion-label>
+        <ion-input type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789"></ion-input><br> -->
+      
+        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
+      </form>
+    </ion-card>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

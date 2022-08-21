@@ -16,6 +16,8 @@ import { AltaActividadPage } from './actividades/alta-actividad/alta-actividad.p
 import { EvaluarActividadPage } from './actividades/evaluar-actividad/evaluar-actividad.page';
 import { AvisosPage } from './comunicacion/avisos/avisos.page';
 import { ChatPage } from './comunicacion/chat/chat.page';
+import { CrearAvisoPage } from './comunicacion/crear-aviso/crear-aviso.page';
+import { ModificarAvisoPage } from './comunicacion/modificar-aviso/modificar-aviso.page';
 
 
 const routes: Routes = [
@@ -139,7 +141,24 @@ const routes: Routes = [
   {
     path: 'chat/:user/:nrc',
     component: ChatPage
+  },
+  {
+    path: 'crear-aviso/:user/:nrc',
+    loadChildren: () => import('./comunicacion/crear-aviso/crear-aviso.module').then( m => m.CrearAvisoPageModule)
+  },
+  {
+    path: 'crear-aviso/:user/:nrc',
+    component: CrearAvisoPage
+  },
+  {
+    path: 'modificar-aviso/:id/:id_equipo/:noTrabajador/:nrc',
+    loadChildren: () => import('./comunicacion/modificar-aviso/modificar-aviso.module').then( m => m.ModificarAvisoPageModule)
+  },
+  {
+    path: 'modificar-aviso/:id/:id_equipo/:noTrabajador/:nrc',
+    component: ModificarAvisoPage
   }
+
 
 
 ];

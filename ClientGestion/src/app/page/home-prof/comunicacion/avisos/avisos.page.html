@@ -2,22 +2,21 @@
   <ion-toolbar color = "primary">
     <ion-buttons>
       <ion-button (click)="navProf()">
-        <ion-icon name="arrow-undo-outline"></ion-icon>
-      </ion-button>      
-      <ion-label >Usuario: {{user}}</ion-label>
-    </ion-buttons>
-  </ion-toolbar>  
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario:{{user}} </ion-label>      
+    </ion-buttons>  
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+
 
     <ion-card>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Avisos </ion-title><br>
+            <ion-title> Consultar avisos </ion-title><br>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -31,38 +30,53 @@
         (ionScroll)="logScrolling($event)"
         (ionScrollEnd)="logScrollEnd()">
           <div slot="fixed">
-            <!-- <ion-label color="dark" *ngIf="boton2==true">Desea visualizar las actividades individuales o en equipo?</ion-label>
+            <ion-label color="dark" *ngIf="boton2==true">Desea visualizar las actividades individuales o en equipo?</ion-label>
             <ion-button (click)="condicion1()" *ngIf="boton2==true"> Individuales </ion-button>
-            <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button> -->
-            <ion-list>
-            <tr  *ngFor="let activity of activitys">
-              <div *ngIf="activity.id_equipo!=null && boton==1">
-                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
-                  <ion-icon name="trash-outline"></ion-icon>
-                </ion-button>                    
-                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
-                  actualizar
-                </ion-button> 
-                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}, {{equipos[activity.id_equipo].nombre}}
-              </div>
-
-              <div *ngIf="activity.id_equipo==null && boton==2">
-                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
-                  <ion-icon name="trash-outline"></ion-icon>
-                </ion-button>                    
-                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
-                  actualizar
-                </ion-button> 
-                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
-              </div>
-            </tr>
-        </ion-list>
+            <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button>
+            <!-- <div *ngIf="avisos.length < 1 && boton == 2 || avisos.length < 1 && boton == 1">
+              <ion-label>{{alerta}}</ion-label>
+              <ion-button [routerLink] = "['/home-prof/comunicacion/crear-aviso',user,nrc]">   Crear Aviso  </ion-button>
+            </div> -->
+            <div *ngIf="avisos.length >= 1 && boton == 2 || avisos.length >= 1 && boton == 1">
+              <ion-list>
+                <tr  *ngFor="let aviso of avisos">
+                  <div *ngIf="aviso.id_equipo!=null && boton==1">
+                    <ion-button color="danger" (click)="eliminar(aviso.id,aviso.nrc,aviso.noTrabajador,aviso.id_equipo)">                  
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </ion-button>                    
+                    <ion-button (click)="actualizar()" [routerLink]="['/home-prof/comunicacion/modificar-aviso',aviso.id,aviso.id_equipo,aviso.noTrabajador,aviso.nrc]" color="primary" >                  
+                      actualizar
+                    </ion-button> 
+                      {{ aviso.id }}, {{ aviso.aviso}}, {{aviso.fecha}}, {{aviso.hora}}, {{equipos[aviso.id_equipo].nombre}}
+                  </div>
+    
+                  <div *ngIf="aviso.id_equipo==null && boton==2">
+                    <ion-button color="danger" (click)="eliminar(aviso.id,aviso.nrc,aviso.noTrabajador,aviso.id_equipo)">                  
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </ion-button>                    
+                    <ion-button (click)="actualizar()" [routerLink]="['/home-prof/comunicacion/modificar-aviso',aviso.id,aviso.id_equipo,aviso.noTrabajador,aviso.nrc]" color="primary" >                  
+                      actualizar
+                    </ion-button> 
+                      {{ aviso.id }}, {{ aviso.aviso}}, {{aviso.fecha}}, {{aviso.hora}}
+                  </div>
+                </tr>
+              </ion-list>
+            </div>
+            <ion-label *ngIf="boton==1 || boton==2">{{alerta}}</ion-label>
+            <ion-button *ngIf="boton==1 || boton==2" [routerLink] = "['/home-prof/comunicacion/crear-aviso',user,nrc]">   Crear Aviso  </ion-button>
         </div>
       </ion-content>
       </ion-content>
 
-  </ion-card>
-</ion-content>
+
+      <ion-footer>
+        <ion-toolbar>    
+          <ion-button slot="end" color="danger" > Eliminar todo 
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>    
+        </ion-toolbar>  
+      </ion-footer>
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

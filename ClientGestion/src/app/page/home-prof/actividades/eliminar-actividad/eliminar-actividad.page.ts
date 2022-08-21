@@ -63,6 +63,7 @@ export class EliminarActividadPage implements OnInit {
   }
 
   getActivity(){
+    console.log(this.boton);
     this.datosService.getActivity().subscribe(
       res => {
         this.activitys = res;  

@@ -12,6 +12,7 @@ import { Equipo } from '../models/Equipo';
 import { Observable } from 'rxjs';
 import { cursoEstudiante } from '../models/cursoEstudiante';
 import { Actividad } from '../models/Actividad';
+import { Aviso } from '../models/Aviso';
 
 @Injectable({
   providedIn: 'root'
@@ -133,6 +134,29 @@ deleteActividad(id:string,nrc:number,noTrabajador:number){
 deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
 }
+/////////FUNCIONES EQUIPO///////////////////////////////////////////////////////////////////////////
+getAviso(){
+  return this.http.get(`${this.API_URI}/aviso`);
+}
+getAvisoEq(id_equipo:number){
+  return this.http.get(`${this.API_URI}/aviso/${id_equipo}`);
+}
+deleteAviso(id:string,nrc:number,noTrabajador:number){
+  return this.http.delete(`${this.API_URI}/aviso/${id}/${nrc}/${noTrabajador}`);
+}
+deleteAvisoEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
+  return this.http.delete(`${this.API_URI}/aviso/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
+}
+getOneAviso(id:string,nrc:number,noTrabajador:number){
+  return this.http.get(`${this.API_URI}/aviso/${id}/${nrc}/${noTrabajador}`);
+}
+getOneAvisoEq(id:string, nrc:number, id_equipo:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/aviso/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
+}
+saveAviso(aviso: Aviso){
+  return this.http.post(`${this.API_URI}/aviso/`,aviso);
+}
+
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
   getAdmis() {
     return this.http.get(`${this.API_URI}/admi`);

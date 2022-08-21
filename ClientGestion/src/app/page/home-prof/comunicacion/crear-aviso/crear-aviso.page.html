@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button (click)="navProf()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-label >Usuario:{{user}} </ion-label>      
+    </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Crear Aviso</ion-title><br>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+
+  <ion-card-content>
+    <ion-label for="pregunta" color="dark" *ngIf="boton==true">Agregara un aviso para todo el curso o para un equipo?:</ion-label>
+    <ion-button (click)="condicion1()" *ngIf="boton==true"> Todo el curso </ion-button>
+    <ion-button (click)="condicion2()" *ngIf="boton==true"> Para un equipo </ion-button>
+    
+    <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAvi="ngForm">
+      <ion-label for="id" color="dark">Id aviso:</ion-label>
+      <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="avisoCurso.id" color="primary" placeholder="Id aviso Ej: ACT1/123456"></ion-input>
+  
+      <ion-label for="aviso" color="dark">Aviso:</ion-label>
+      <ion-input type="text" name="aviso" #aviso="ngModel" [(ngModel)]="avisoCurso.aviso" color="primary" placeholder="Escriba el aviso"></ion-input>
+  
+      <ion-label for="fecha" color="dark">Fecha:</ion-label>
+      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary"></ion-input>
+
+      <ion-label for="hora" color="dark">Hora:</ion-label>
+      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
+      
+      <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
+      <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
+
+      <ion-label for="curso" color="dark">Curso:</ion-label>
+      <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
+       -->
+      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
+    </form>
+
+    <form *ngIf="condicionE==false" (ngSubmit)="onSubmit()" #crearAvi="ngForm">
+      <ion-label for="id" color="dark">Id aviso:</ion-label>
+      <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="avisoCurso.id" color="primary" placeholder="Id aviso Ej: ACT1/123456"></ion-input>
+  
+      <ion-label for="aviso" color="dark">Aviso:</ion-label>
+      <ion-input type="text" name="aviso" #aviso="ngModel" [(ngModel)]="avisoCurso.aviso" color="primary" placeholder="Escriba el aviso"></ion-input>
+  
+      <ion-label for="fecha" color="dark">Fecha:</ion-label>
+      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary"></ion-input>
+
+      <ion-label for="hora" color="dark">Hora:</ion-label>
+      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
+      
+      <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
+      <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
+
+      <ion-label for="curso" color="dark">Curso:</ion-label>
+      <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
+      -->
+      <ion-label for="equipo" color="dark">Equipo:  </ion-label>
+      <select type="number" name="equipo" #equipo="ngModel" [(ngModel)]="avisoCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789">
+        <option [value]="equipo.id" *ngFor="let equipo of equipos">{{equipo.id}},{{ equipo.nombre}}</option>
+      </select><br>
+    
+      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
+    </form>
+  </ion-card-content>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

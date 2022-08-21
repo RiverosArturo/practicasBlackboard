@@ -16,18 +16,41 @@ const database_1 = __importDefault(require("../database"));
 class AvisoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const curso = yield database_1.default.query('SELECT * FROM aviso');
-            res.json(curso);
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso`');
+            res.json(actividad);
         });
     }
-    // public async getOneCourse (req:Request, res:Response): Promise<any>{
-    //     const  {nrc} = req.params;
-    //     const curso = await pool.query('SELECT * FROM curso WHERE nrc = ?', [nrc])
-    //     if (curso.length > 0 ){
-    //         return res.json(curso[0]);
-    //     }
-    //     res.json({Text:"El aviso no existe"});
-    // }
+    listEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_equipo } = req.params;
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE id_equipo = ?', [id_equipo]);
+            res.json(actividad);
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `aviso` WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [id, nrc, noTrabajador]);
+            if (actividad.length > 0) {
+                return res.json(actividad[0]);
+            }
+            else {
+                res.json({ id: "", aviso: "", fecha: "", hora: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+            }
+        });
+    }
+    getOneEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, id_equipo, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [id, nrc, id_equipo, noTrabajador]);
+            if (actividad.length > 0) {
+                return res.json(actividad[0]);
+            }
+            else {
+                res.json({ id: "FALLO", aviso: "", fecha: "", hora: "", noTrabajador: 0, nrc: 0, id_equipo: 0 });
+            }
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO aviso set ?', [req.body]);
@@ -43,9 +66,16 @@ class AvisoController {
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('DELETE FROM aviso WHERE id = ?', [nrc]);
-            res.json({ message: 'The aviso was deleted' });
+            const { id, nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id, nrc, noTrabajador]);
+            res.json({ message: 'The aviso was delated' });
+        });
+    }
+    deleteEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, id_equipo, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id, nrc, id_equipo, noTrabajador]);
+            res.json({ message: 'The aviso was delated' });
         });
     }
     deleteAllAvisos(req, res) {
