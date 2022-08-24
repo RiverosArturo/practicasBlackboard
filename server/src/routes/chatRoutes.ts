@@ -11,11 +11,14 @@ class ChatRoutes {
 
     config(): void { 
         this.router.get('/', chatController.list);
-        //this.router.get('/:nrc', avisoController.getOneCourse);
+        this.router.get('/id_equipo', chatController.listEq);
+        this.router.get('/:matricula/:nrc/:noTrabajador', chatController.getOne);
+        this.router.get('/:nrc/:id_equipo/:noTrabajador/:x', chatController.getOneEq);
         this.router.post('/', chatController.create);
-        this.router.put('/:id', chatController.update); 
-        this.router.delete('/:id', chatController.delete); 
-        this.router.delete('/', chatController.deleteAllAvisos);
+        // this.router.put('/:id/:nrc/:noTrabajador', ActividadController.updateAct);
+        // this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', ActividadController.updateActEq);
+        this.router.delete('/:matricula/:nrc/:noTrabajador', chatController.delete);
+        this.router.delete('/:nrc/:id_equipo/:noTrabajador/:x', chatController.deleteEq);
     }
 
 }

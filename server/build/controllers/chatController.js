@@ -16,42 +16,69 @@ const database_1 = __importDefault(require("../database"));
 class ChatController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const curso = yield database_1.default.query('SELECT * FROM chat');
-            res.json(curso);
+            const actividad = yield database_1.default.query('SELECT DISTINCT mensaje, noTrabajador, nrc, id_equipo, matricula FROM `chat` AND id_equipo IS NULL LIMIT1 ');
+            res.json(actividad);
         });
     }
-    // public async getOneCourse (req:Request, res:Response): Promise<any>{
-    //     const  {nrc} = req.params;
-    //     const curso = await pool.query('SELECT * FROM curso WHERE nrc = ?', [nrc])
-    //     if (curso.length > 0 ){
-    //         return res.json(curso[0]);
-    //     }
-    //     res.json({Text:"El aviso no existe"});
-    // }
+    listEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_equipo } = req.params;
+            const actividad = yield database_1.default.query('SELECT DISTINCT mensaje, noTrabajador, nrc, id_equipo, matricula FROM `chat` WHERE id_equipo = ?', [id_equipo]);
+            res.json(actividad);
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula, nrc, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE matricula=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [matricula, nrc, noTrabajador]);
+            if (actividad.length > 0) {
+                return res.json(actividad[0]);
+            }
+            else {
+                res.json({ mensaje: "", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
+            }
+        });
+    }
+    getOneEq(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, id_equipo, noTrabajador, x } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [nrc, id_equipo, noTrabajador, x]);
+            if (actividad.length > 0) {
+                return res.json(actividad[0]);
+            }
+            else {
+                res.json({ mensaje: "FALLO", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
+            }
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO chat set ?', [req.body]);
-            res.json({ Message: 'chat Saved' });
+            res.json({ Message: 'msj Saved' });
         });
     }
-    update(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { clave } = req.params;
-            yield database_1.default.query('UPDATE chat set ? WHERE id = ?', [req.body, clave]);
-            res.json({ message: 'The chat was UPDATE' });
-        });
-    }
+    // public async updateCh (req:Request, res:Response): Promise<void>{
+    //     const {id,nrc,noTrabajador} = req.params;
+    //     await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [req.body,id,nrc,noTrabajador]);
+    //     res.json({message: 'The actividad was UPDATE'});
+    // }
+    // public async updateAvEq (req:Request, res:Response): Promise<void>{
+    //     const {id,nrc,noTrabajador,id_equipo} = req.params;
+    //     await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
+    //     res.json({message: 'The actividad was UPDATE'});
+    // }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc } = req.params;
-            yield database_1.default.query('DELETE FROM chat WHERE id = ?', [nrc]);
-            res.json({ message: 'The chat was deleted' });
+            const { matricula, nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [matricula, nrc, noTrabajador]);
+            res.json({ message: 'The msj was delated' });
         });
     }
-    deleteAllAvisos(req, res) {
+    deleteEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM chat');
-            res.json({ message: 'The chats was deleted' });
+            const { nrc, id_equipo, noTrabajador, x } = req.params;
+            yield database_1.default.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc, id_equipo, noTrabajador, x]);
+            res.json({ message: 'The msj was delated' });
         });
     }
 }
