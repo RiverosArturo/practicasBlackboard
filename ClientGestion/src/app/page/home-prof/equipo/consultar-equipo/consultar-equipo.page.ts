@@ -215,12 +215,21 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     )
   }
-  deleteEquipo(id:number, nombre:string, nrc:number, nTrabajador:number){        
+  deleteEquipo(id:number, nrc:number, nTrabajador:number){        
     this.deleteEqui = true;
-    this.datosService.deleteEquipo(id, nombre, nrc, nTrabajador).subscribe(
+    this.datosService.deleteEquipo(id, nrc, nTrabajador).subscribe(
       res => {
         console.log(res);     
         //this.getEquipos1(this.nrc, this.nTrabajador);            
+      },
+      err => console.error(err)
+    )
+  }
+  deleteActsEq(id_equipo:number, nrc:number, nTrabajador:number){        
+    this.deleteEqui = true;
+    this.datosService.deleteActividadEqs(id_equipo, nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res);               
       },
       err => console.error(err)
     )
@@ -351,8 +360,9 @@ async AlerteditOKEquipo( nombre:string ) {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteStudentsEquipo(id, this.nrc, nTrabajador);            
-            //this.deleteEquipo(id, nombre, curso_nrc, nTrabajador); 
+            this.deleteActsEq(id,curso_nrc,nTrabajador);
+            this.deleteStudentsEquipo(id, curso_nrc, nTrabajador);            
+            this.deleteEquipo(id, curso_nrc, nTrabajador); 
             this.query = false; 
             this.getEquipos1(this.nrc, this.nTrabajador);
           }

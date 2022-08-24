@@ -39,8 +39,8 @@ class EquipoController {
         res.json({message: 'The Equipo was UPDATE'});
     }
     public async deleteEquipo (req:Request, res:Response): Promise <void>{
-        const {id, nombre, curso_nrc, nTrabajador} = req.params;
-        await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
+        const {id, curso_nrc, nTrabajador} = req.params;
+        await pool.query('DELETE FROM equipo WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [id,curso_nrc,nTrabajador]);         
         res.json({message: 'The Equipo was deleted'});
     }
     public async deleteAllEquipos (req:Request, res:Response): Promise <void>{

@@ -103,8 +103,8 @@ deleteStudentEquipo(matricula:number, id:number, nrc: number, nTrabajador:number
 deleteStudentsEquipo(id:number, nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipoStudents/${id}/${nrc}/${nTrabajador}`);
 }
-deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
-  return this.http.delete(`${this.API_URI}/equipoStudents/${id}/${nombre}/${nrc}/${nTrabajador}`);
+deleteEquipo(id: number, nrc:number, nTrabajador:number){
+  return this.http.delete(`${this.API_URI}/equipo/${id}/${nrc}/${nTrabajador}`);
 }
 //----------------------FUNCIONES ACTIVIDAD -----------------------------------//
 getActivity(){
@@ -130,6 +130,9 @@ actualizarActEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,update
 }
 deleteActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
+}
+deleteActividadEqs(id_equipo:number,nrc:number,noTrabajador:number){
+  return this.http.delete(`${this.API_URI}/comodin/${id_equipo}/${nrc}/${noTrabajador}`);
 }
 deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);

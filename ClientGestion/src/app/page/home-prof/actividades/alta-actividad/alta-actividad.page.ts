@@ -117,22 +117,26 @@ export class AltaActividadPage implements OnInit {
           console.log(this.getActividadE)
           if( this.getActividadE.id == "FALLO"){
             
-            alert("Actividad agregada con exito!!!");
             this.datosService.getEquipoStud(this.actividadCurso.noTrabajador, this.actividadCurso.nrc, this.actividadCurso.id_equipo).subscribe(
               res => {
                 this.studCourses = res;   
-                console.log(this.studCourses[0].id);
-                for(let i=0; i<this.studCourses.length;i++){
-                  console.log("----------"+this.studCourses[i].matricula);
-                  //console.log(this.actividadCurso.matricula + " = " + this.studCourses[i].matricula)
-                  this.actividadCurso.matricula = this.studCourses[i].matricula;
-                  //console.log(this.actividadCurso.matricula);
-                  this.datosService.saveActividad(this.actividadCurso).subscribe(
-                    res => {
-                      console.log(res);
-                    },
-                    err => console.error(err)
-                  );
+                //console.log(this.studCourses[0].id);
+                if(this.studCourses.length < 1){
+                  alert("El equipo al que quiere asignar la actividad aun no tiene integrantes!!!");
+                }else{
+                  alert("Actividad agregada con exito!!!");
+                  for(let i=0; i<this.studCourses.length;i++){
+                    console.log("----------"+this.studCourses[i].matricula);
+                    //console.log(this.actividadCurso.matricula + " = " + this.studCourses[i].matricula)
+                    this.actividadCurso.matricula = this.studCourses[i].matricula;
+                    //console.log(this.actividadCurso.matricula);
+                    this.datosService.saveActividad(this.actividadCurso).subscribe(
+                      res => {
+                        console.log(res);
+                      },
+                      err => console.error(err)
+                    );
+                  }
                 }
               }
             );

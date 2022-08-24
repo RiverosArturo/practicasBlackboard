@@ -19,6 +19,7 @@ const actividadRoutes_1 = __importDefault(require("./routes/actividadRoutes"));
 const equipoStudentsRoutes_1 = __importDefault(require("./routes/equipoStudentsRoutes"));
 const avisoRoutes_1 = __importDefault(require("./routes/avisoRoutes"));
 const chatRoutes_1 = __importDefault(require("./routes/chatRoutes"));
+const comodinRoutes_1 = __importDefault(require("./routes/comodinRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -46,6 +47,7 @@ class Server {
         this.app.use('/api/equipoStudents', equipoStudentsRoutes_1.default);
         this.app.use('/api/aviso', avisoRoutes_1.default);
         this.app.use('/api/chat', chatRoutes_1.default);
+        this.app.use('/api/comodin', comodinRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

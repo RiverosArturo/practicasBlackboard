@@ -66,8 +66,8 @@ class EquipoController {
     }
     deleteEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, nombre, curso_nrc, nTrabajador } = req.params;
-            yield database_1.default.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id, nombre, curso_nrc, nTrabajador]);
+            const { id, curso_nrc, nTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM equipo WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [id, curso_nrc, nTrabajador]);
             res.json({ message: 'The Equipo was deleted' });
         });
     }
