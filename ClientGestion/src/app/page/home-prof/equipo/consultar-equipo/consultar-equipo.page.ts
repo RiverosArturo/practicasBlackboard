@@ -21,8 +21,14 @@ export class ConsultarEquipoPage implements OnInit {
   equipos:any = [];
   oneEquipos:any = [];//Alumnos integrantes del equipo
 
-  equipo:Equipo ={};
+  equipo:Equipo ={
+    id: 0,
+    nombre:'',
+    curso_nrc:0,
+    nTrabajador:0
 
+  };
+  
   studentEquipo:any = {// estructura del alumno integrante del equipo
     matricula:0,
     id_equipo:0,
@@ -34,6 +40,7 @@ export class ConsultarEquipoPage implements OnInit {
   nrc:number = 0;
   nTrabajador:number=0;
   curso:string='cur';
+  check:boolean=true;
 
   add:boolean = false;
   query:boolean = false;
@@ -71,30 +78,66 @@ export class ConsultarEquipoPage implements OnInit {
     this.edit = true;
     this.nomb =nombre;        
   }
-  editEquipoButton(id, nombre, nrc, nTrabajador){//verifica si el nombre has si usado y edita el nombre del equipo
-    //console.log(id, nombre, nrc, nTrabajador);    
-    this.datosService.getNameEquipo(id,nombre, nrc, nTrabajador).subscribe(
+  editEquipoButton(id:number, nombre:string, nrc:number, nTrabajador:number){//verifica si el nombre has si usado y edita el nombre del equipo
+    console.log("Inicia funcion");    
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
-        this.oneEquipos = res;                 
-        if(this.oneEquipos.nombre == '...'){  
-          this.equipo.id = id;  this.equipo.curso_nrc = nrc;  this.equipo.nTrabajador = nTrabajador;          
-          this.equipo.nombre = nombre;
-          console.log('::> ',this.equipo);
-          this.datosService.updateNameEquipo(this.equipo.nombre, this.equipo)
-          .subscribe(
-            res =>{
-            console.log(res);                
-            this.edit = false;
-            this.getEquipos1(nrc,nTrabajador);
-            console.log('Nombre cambiado.');
-            //this.AlerteditOKEquipo(nombre);
-          },
-          err => console.error(err)
-          )          
-        }else{
-          console.log('El nombre '+ nombre + ' ya ha sido usado. ');
-          this.AlertYaExisteEquipo(nombre);
-        }
+        this.oneEquipos = res;
+        //console.log(this.oneEquipos[0].nombre);
+        // console.log("nombre repetido o no?")
+        for(let i=0;i<this.oneEquipos.length;i++){
+          //console.log(this.oneEquipos[i].nombre);
+          if(this.oneEquipos[i].nombre == nombre){
+            //console.log('El nombre '+ nombre + ' ya ha sido usado. ');
+            this.check = false;
+          }
+          else if(i==this.oneEquipos.length-1 && this.check==false){
+            this.AlertYaExisteEquipo(nombre);
+            this.edit = true;
+            this.check = true;
+          }
+          else if(i==this.oneEquipos.length-1 && this.check==true){
+            //console.log("actualizando");
+            //console.log('::> ',this.equipo);
+            this.equipo.id = id;
+            this.equipo.curso_nrc = nrc;
+            this.equipo.nTrabajador = this.nTrabajador;
+            this.equipo.nombre = nombre;
+            //console.log(this.equipo);
+
+            this.datosService.updateEquipo(this.equipo.id, this.equipo.curso_nrc, this.equipo.nTrabajador, this.equipo)
+            .subscribe(
+              res =>{
+              console.log(res);                
+              this.edit = true;
+              this.check = true;
+              this.getEquipos1(nrc,nTrabajador);
+              console.log('Nombre cambiado.');
+              //this.AlerteditOKEquipo(nombre);
+            },
+            err => console.error(err)
+            )
+          }
+        }                 
+        // if(this.oneEquipos.nombre == '...'){  
+        //   this.equipo.id = id;  this.equipo.curso_nrc = nrc;  this.equipo.nTrabajador = nTrabajador;          
+        //   this.equipo.nombre = nombre;
+        //   console.log('::> ',this.equipo);
+        //   this.datosService.updateEquipo(this.equipo.id, this.equipo.curso_nrc, this.equipo.nTrabajador, this.equipo)
+        //   .subscribe(
+        //     res =>{
+        //     console.log(res);                
+        //     this.edit = false;
+        //     this.getEquipos1(nrc,nTrabajador);
+        //     console.log('Nombre cambiado.');
+        //     //this.AlerteditOKEquipo(nombre);
+        //   },
+        //   err => console.error(err)
+        //   )          
+        // }else{
+        //   console.log('El nombre '+ nombre + ' ya ha sido usado. ');
+        //   this.AlertYaExisteEquipo(nombre);
+        // }
       },
       err => console.error(err)
     );

@@ -51,6 +51,16 @@ class EquipoController {
             res.json(equipo);
         });
     }
+    // public async getNameEquipo (req:Request, res:Response): Promise<any>{
+    //     const  {curso_nrc, nTrabajador } = req.params;
+    //     //res.json({ nombre: 'prueba ' + nombre });
+    //     const equipo = await pool.query('SELECT * FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?  ', [ id, curso_nrc, nTrabajador ])
+    //     if (equipo.length > 0 ){      
+    //         return res.json(equipo[0]);            
+    //     }else{            
+    //         res.json({ nombre: '...' });
+    //     }  
+    // }
     saveEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO equipo set ?', [req.body]);
@@ -59,9 +69,9 @@ class EquipoController {
     }
     updateEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('UPDATE equipo set ? WHERE id = ?', [req.body, id]);
-            res.json({ message: 'The Equipo was UPDATE' });
+            const { id, nrc, nTrabajador } = req.params;
+            yield database_1.default.query('UPDATE equipo set ? WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [req.body, id, nrc, nTrabajador]);
+            res.json({ message: 'The Equipo was UPDATE !!!!!!!!!!' });
         });
     }
     deleteEquipo(req, res) {

@@ -73,9 +73,9 @@ deleteEquipo(id: number, nombre:string, nrc:number, nTrabajador:number){
 deleteAllEquipos(nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
 }
-updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
-  return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
-}
+// updateEquipo(matricula: number, updateStudent: Student):Observable<Student> {
+//   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
+// }
 
 //------------- EQUIPOS ESTUDIANTES ------------------//
 
@@ -88,14 +88,14 @@ getOneEquipo(id: number){
 getStudentEquipo(matricula: number, nTrabajador:number ){
   return this.http.get(`${this.API_URI}/equipoStudents/${matricula}/${nTrabajador}`);
 }
-getNameEquipo(id:number, nombre:string, nrc:number ,nTrabajador:number ){
-  return this.http.get(`${this.API_URI}/equipoStudents/${id}/${nombre}/${nrc}/${nTrabajador}`);
-}
+// getNameEquipo(id:number, nrc:number ,nTrabajador:number ){
+//   return this.http.get(`${this.API_URI}/equipo/${id}/${nrc}/${nTrabajador}`);
+// }
 getEquipoStud(nTrabajador: number, nrc: number, id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${nTrabajador}/${nrc}/${id}`);
 }
-updateNameEquipo(nombre:string, updateNameEquipo){
-  return this.http.put(`${this.API_URI}/equipoStudents/${nombre}`, updateNameEquipo);
+updateEquipo(id:number,nrc:number,nTrabajador:number, updateNameEquipo:Equipo){
+  return this.http.put(`${this.API_URI}/equipo/${id}/${nrc}/${nTrabajador}`, updateNameEquipo);
 }
 deleteStudentEquipo(matricula:number, id:number, nrc: number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipoStudents/${matricula}/${id}/${nrc}/${nTrabajador}`);

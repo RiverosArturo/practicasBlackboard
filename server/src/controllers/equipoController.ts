@@ -29,14 +29,25 @@ class EquipoController {
         const equipo = await pool.query('SELECT * FROM equipo');
         res.json(equipo);
     }
+    // public async getNameEquipo (req:Request, res:Response): Promise<any>{
+    //     const  {curso_nrc, nTrabajador } = req.params;
+    //     //res.json({ nombre: 'prueba ' + nombre });
+        
+    //     const equipo = await pool.query('SELECT * FROM equipo WHERE curso_nrc = ? AND nTrabajador = ?  ', [ id, curso_nrc, nTrabajador ])
+    //     if (equipo.length > 0 ){      
+    //         return res.json(equipo[0]);            
+    //     }else{            
+    //         res.json({ nombre: '...' });
+    //     }  
+    // }
     public async saveEquipo (req:Request, res:Response): Promise<void> {
         await pool.query('INSERT INTO equipo set ?', [req.body]);
         res.json({Message: 'Equipo Saved'});
     }
     public async updateEquipo (req:Request, res:Response): Promise<void>{
-        const { id } = req.params;
-        await pool.query('UPDATE equipo set ? WHERE id = ?', [req.body, id]);
-        res.json({message: 'The Equipo was UPDATE'});
+        const { id, nrc, nTrabajador } = req.params;
+        await pool.query('UPDATE equipo set ? WHERE id = ? AND curso_nrc = ? AND nTrabajador = ?', [req.body, id,nrc,nTrabajador]);
+        res.json({message: 'The Equipo was UPDATE !!!!!!!!!!'});
     }
     public async deleteEquipo (req:Request, res:Response): Promise <void>{
         const {id, curso_nrc, nTrabajador} = req.params;
