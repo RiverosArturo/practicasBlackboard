@@ -12,6 +12,7 @@ export class ConsultarEquipoPage implements OnInit {
 
   user:string;
   nrc:number;
+  materia:string;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -19,6 +20,7 @@ export class ConsultarEquipoPage implements OnInit {
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
+    this.materia = params.materia;
   }
 
   OpenMenuStud(){

@@ -13,18 +13,18 @@
   <ion-card>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
           <ion-title> Consultar Equipo </ion-title><br>
+          <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
   </ion-card>
 
-   <ion-card-content>
-    <ion-button > Consular </ion-button><br><br>
-   </ion-card-content>
-
+<ion-content>
+   <ion-card> <ion-title>Equipos</ion-title> </ion-card>
+   
 </ion-content>
 
 <ion-footer>

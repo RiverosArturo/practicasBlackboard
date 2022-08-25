@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./calificacion-promedio/calificacion-promedio.module').then( m => m.CalificacionPromedioPageModule)
   },
   {
-    path: 'consultar-equipo/:user/:nrc',
+    path: 'consultar-equipo/:user/:nrc/:materia',
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {
@@ -68,7 +68,7 @@ const routes: Routes = [
     component: ConsultarPage
   },
   {
-    path: 'menu-student/:user/:nrc',
+    path: 'menu-student/:user/:nrc/:materia',
     loadChildren: () => import('./menu-student/menu-student.module').then( m => m.MenuStudentPageModule)
   },
   {

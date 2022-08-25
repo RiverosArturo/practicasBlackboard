@@ -14,17 +14,17 @@
     <ion-card>
       <ion-header>
         <ion-toolbar>
-          <ion-buttons slot="start">
+          <ion-buttons>
             <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
             <ion-title> Menu Estudiante </ion-title><br>
-            <ion-title > NRC: {{nrc}} , CURSO: {{course.materia}}</ion-title> <br>
-          </ion-buttons>
+            <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
+          </ion-buttons>          
         </ion-toolbar>
       </ion-header>
     </ion-card>
     <ion-card>
         <h1> Gestionar equipo </h1> <br>
-        <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc]">   Consultar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia]">   Consultar equipo </ion-button>
         <ion-button [routerLink] = "['/home-stud/equipo/modificar-equipo',user,nrc]">   Modificar equipo </ion-button>
         <ion-button [routerLink] = "['/home-stud/reporte/reporte',user,nrc]">   Generar reporte  </ion-button>
         <br><br>

@@ -24,15 +24,15 @@
       
       <tr  *ngFor="let cursoEs of eCursos" >           
         <div *ngIf="cursoEs.matricula == user;">     
-          <ion-card color="medium">              
+          <ion-card>              
             <tr *ngFor="let course of courses">  
               <div *ngIf="course.nrc == cursoEs.nrc">
-                <ion-button color="tertiary"  [routerLink]="['../../menu-student', user, cursoEs.nrc]" >ver curso                  
-                   &nbsp;<ion-icon name="eye-outline"></ion-icon>
-                </ion-button>                
-                <ion-label >&nbsp;
-                  NRC:[{{cursoEs.nrc}}], Materia:[{{course.materia}}]    
-                </ion-label>
+                <ion-item>
+                  <ion-button  [routerLink]="['../../menu-student', user, cursoEs.nrc, course.materia]" > curso                  
+                    &nbsp;<ion-icon name="eye-outline"></ion-icon>
+                 </ion-button>
+                  <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }} </ion-title>
+                </ion-item>                 
               </div> 
             </tr>               
           </ion-card>          

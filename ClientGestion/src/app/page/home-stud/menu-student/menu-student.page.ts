@@ -17,6 +17,7 @@ export class MenuStudentPage implements OnInit {
     materia:'IA',
     nrc:0,    
   }
+  materia:string = 'Materia';
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -24,7 +25,8 @@ export class MenuStudentPage implements OnInit {
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
-    this.getCurso();
+    this.materia = params.materia; 
+    this.getCurso();       
   }
 
   OpenMenuStud(){
