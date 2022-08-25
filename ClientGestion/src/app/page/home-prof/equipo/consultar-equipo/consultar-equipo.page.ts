@@ -82,13 +82,9 @@ export class ConsultarEquipoPage implements OnInit {
     console.log("Inicia funcion");    
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
-        this.oneEquipos = res;
-        //console.log(this.oneEquipos[0].nombre);
-        // console.log("nombre repetido o no?")
-        for(let i=0;i<this.oneEquipos.length;i++){
-          //console.log(this.oneEquipos[i].nombre);
-          if(this.oneEquipos[i].nombre == nombre){
-            //console.log('El nombre '+ nombre + ' ya ha sido usado. ');
+        this.oneEquipos = res;        
+        for(let i=0;i<this.oneEquipos.length;i++){          
+          if(this.oneEquipos[i].nombre == nombre){            
             this.check = false;
           }
           else if(i==this.oneEquipos.length-1 && this.check==false){
@@ -96,14 +92,11 @@ export class ConsultarEquipoPage implements OnInit {
             this.edit = true;
             this.check = true;
           }
-          else if(i==this.oneEquipos.length-1 && this.check==true){
-            //console.log("actualizando");
-            //console.log('::> ',this.equipo);
+          else if(i==this.oneEquipos.length-1 && this.check==true){            
             this.equipo.id = id;
             this.equipo.curso_nrc = nrc;
             this.equipo.nTrabajador = this.nTrabajador;
-            this.equipo.nombre = nombre;
-            //console.log(this.equipo);
+            this.equipo.nombre = nombre;            
 
             this.datosService.updateEquipo(this.equipo.id, this.equipo.curso_nrc, this.equipo.nTrabajador, this.equipo)
             .subscribe(
