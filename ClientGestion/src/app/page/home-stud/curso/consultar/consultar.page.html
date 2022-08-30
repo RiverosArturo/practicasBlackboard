@@ -31,10 +31,10 @@
             <tr *ngFor="let course of courses">  
               <div *ngIf="course.nrc == cursoEs.nrc">
                 <ion-item>
-                  <ion-button  [routerLink]="['../../menu-student', user, cursoEs.nrc, course.materia]" > curso                  
+                  <ion-button  [routerLink]="['../../menu-student', user, cursoEs.nrc, course.materia,cursoEs.nTrabajador]" > curso                  
                     &nbsp;<ion-icon name="eye-outline"></ion-icon>
                  </ion-button>
-                  <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }} </ion-title>
+                  <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }}</ion-title>
                 </ion-item>                 
               </div> 
             </tr>               
