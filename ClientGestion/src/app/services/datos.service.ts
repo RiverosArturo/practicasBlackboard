@@ -24,7 +24,15 @@ export class DatosService {
   API_URI = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
+///////////////////////////////////////////////////////////////////////
+//-- Funcions Equipo, perfil estudiante.
+getEquipoAlumno(nrc:number, nTrabajador:number) {
+  return this.http.get(`${this.API_URI}/equipo/${nrc}/${nTrabajador}`);
+}
 
+
+///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 //  funciones sStudent course---------------------------------------------------
   listaEstudianteCurso() {
     return this.http.get(`${this.API_URI}/studCourse`);
@@ -51,7 +59,7 @@ export class DatosService {
     return this.http.put(`${this.API_URI}/studCourse/${matricula}`, updateStudent);
   }
 
-//----------------------- Funciones equipo -----------------------------------------//
+//----------------------- Funciones equipo desde perfil profesor -----------------------------------------//
 getid(id:number) {
   return this.http.get(`${this.API_URI}/equipo/${id}`);
 }
@@ -78,7 +86,7 @@ deleteAllEquipos(nrc: number, nTrabajador:number){
 //   return this.http.put(`${this.API_URI}/equipo/${matricula}`, updateStudent);
 // }
 
-//------------- EQUIPOS ESTUDIANTES ------------------//
+//------------- EQUIPOS ESTUDIANTES DESDE EL PERFIL PROFESOR ------------------//
 
 saveStudentEquipo(studentEquipo: Equipo){//
   return this.http.post(`${this.API_URI}/equipoStudents/`,studentEquipo);
@@ -221,7 +229,7 @@ obtenerMsjsCurso(nrc:number,noTrabajador:number){
   updateProf(nTrabajador, updateProf){
     return this.http.put(`${this.API_URI}/prof/${nTrabajador}`, updateProf);
   }
-  // Funciones curso  /////////////////////////////////////////////////////////////////////////////////////////////
+  // Funciones curso desde profesor  /////////////////////////////////////////////////////////////////////////////////////////////
   getCourses() {
     return this.http.get(`${this.API_URI}/curso`);
   }

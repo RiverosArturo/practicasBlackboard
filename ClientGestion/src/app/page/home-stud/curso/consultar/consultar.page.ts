@@ -40,7 +40,7 @@ export class ConsultarPage implements OnInit {
     this.user = params.user; 
     this.cursoEs.matricula = this.user;    
   }
-  getCourse(){
+  getCourse(){// Optiene los datos curso
     this.datosService.getCourses().subscribe(
       res => {
         this.courses = res;
@@ -48,7 +48,7 @@ export class ConsultarPage implements OnInit {
       err => console.error(err)
     );
   }
-  estudiantesCursos(){
+  estudiantesCursos(){// datos relacion curso alumno
     this.datosService.listaEstudianteCurso().subscribe(
       res => {
         this.eCursos = res;

@@ -3,6 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatosService } from 'src/app/services/datos.service';
 import { Curso } from 'src/app/models/Curso';
+import { cursoEstudiante } from 'src/app/models/cursoEstudiante';
 
 @Component({
   selector: 'app-menu-student',
@@ -11,14 +12,22 @@ import { Curso } from 'src/app/models/Curso';
 })
 export class MenuStudentPage implements OnInit {
 
-  user:string;
-  nrc:number;
-  nTrabajador:number;
+  cursoEs: cursoEstudiante = {  
+    matricula: 0,
+    nrc: 0,
+    nTrabajador:0
+  };
   course: Curso = {
     materia:'IA',
     nrc:0,    
   }
+
+  user:string;
+  nrc:number;
+  nTrabajador:number;
   materia:string = 'Materia';
+
+  equipo:any = [];
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
