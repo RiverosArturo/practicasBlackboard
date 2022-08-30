@@ -13,7 +13,6 @@ import { User } from '../../../../models/User';
 })
 export class ChatPage implements OnInit {
 
-  private _refresh$ = new Subject<void>();
   user:string;
   nrc:number;
   nTrabajador:number;
@@ -61,10 +60,6 @@ export class ChatPage implements OnInit {
     this.menu.open('end')
   }
 
-  get refresh$(){
-    return this._refresh$;
-  }
-
   obtenerMensajesCurso(){
     this.datosService.obtenerMsjsCurso(this.nrc,this.nTrabajador).subscribe(
       res => {
@@ -74,7 +69,7 @@ export class ChatPage implements OnInit {
           for(let i = 0; i<=this.messengers.length;i++){
             
             if(this.messengers[i].matricula != null){
-              //cambiar ppor una que obtenga el nombre del alumno!!!!
+              
               this.datosService.getStudent(this.messengers[i].matricula).subscribe(
                 res => {
                   this.alumnos[this.messengers[i].matricula] = res; 
@@ -82,7 +77,7 @@ export class ChatPage implements OnInit {
                 err => console.error(err)
               );
             }else if(this.messengers[i].noTrabajador != null){
-              //cambiar ppor una que obtenga el nombre del profesor!!!!
+              
               this.datosService.getProf(this.messengers[i].noTrabajador).subscribe(
                 res => {
                   this.profesores[this.messengers[i].noTrabajador] = res; 
@@ -105,14 +100,16 @@ export class ChatPage implements OnInit {
     this.datosService.saveChat(this.chat).subscribe(
       res => {
         console.log(res);
+        this.datosService.obtenerMsjsCurso(this.nrc,this.nTrabajador).subscribe(
+          res => {
+            this.messengers = res; 
+          },
+          err => console.error(err)
+        );
       },
       err => console.error(err)
     )
-    // .pipe(
-    //   tap(() => {
-    //     this._refresh$.next();
-    //   })
-    // );
+    
     this.obtenerMensajesCurso();
     this.chat.mensaje = '';
     console.log(this.chat)

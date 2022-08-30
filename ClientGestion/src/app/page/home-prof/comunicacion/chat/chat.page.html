@@ -30,11 +30,13 @@
    <ion-card-content>
     <div class="chatContainer">
       <tr *ngFor="let messenger of messengers">
-        <!-- <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} </p>
-        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} </p> -->
       
-        <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - {{profesores[messenger.noTrabajador].nombre}}</p>
-        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - {{alumnos[messenger.matricula].nombre}}</p>
+        <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - PROFESOR</p>
+        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - ALUMNO</p>
+          
+        <!-- <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - {{profesores[messenger.noTrabajador].nombre}}</p>
+        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - {{alumnos[messenger.matricula].nombre}}</p> -->
+      
       </tr>
     </div>
 

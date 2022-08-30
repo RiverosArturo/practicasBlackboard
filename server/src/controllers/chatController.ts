@@ -12,6 +12,7 @@ class ChatController {
         const actividad = await pool.query('SELECT DISTINCT mensaje, noTrabajador, nrc, id_equipo, matricula FROM `chat` WHERE id_equipo = ?',[id_equipo]);
         res.json(actividad);
     }
+
     public async getOne (req:Request, res:Response): Promise<any>{
         const  {nrc,noTrabajador} = req.params;
         const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc,noTrabajador])
