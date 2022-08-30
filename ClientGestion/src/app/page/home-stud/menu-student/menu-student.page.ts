@@ -17,15 +17,17 @@ export class MenuStudentPage implements OnInit {
     nrc: 0,
     nTrabajador:0
   };
-
-  user:string;
-  nrc:number;
-  nTrabajador:number;
   course: Curso = {
     materia:'IA',
     nrc:0,    
   }
+
+  user:string;
+  nrc:number;
+  nTrabajador:number;
   materia:string = 'Materia';
+
+  equipo:any = [];
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
