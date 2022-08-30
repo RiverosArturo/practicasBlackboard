@@ -13,10 +13,10 @@ class ChatController {
         res.json(actividad);
     }
     public async getOne (req:Request, res:Response): Promise<any>{
-        const  {matricula,nrc,noTrabajador} = req.params;
-        const actividad = await pool.query('SELECT * FROM `chat` WHERE matricula=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [matricula,nrc,noTrabajador])
+        const  {nrc,noTrabajador} = req.params;
+        const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc,noTrabajador])
         if (actividad.length > 0 ){
-            return res.json(actividad[0]);
+            return res.json(actividad);
         }else{
             res.json({mensaje: "", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
         }
@@ -25,7 +25,7 @@ class ChatController {
         const  {nrc,id_equipo,noTrabajador,x} = req.params;
         const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [nrc,id_equipo,noTrabajador, x])
         if (actividad.length > 0 ){
-            return res.json(actividad[0]);
+            res.json(actividad);
         }else{
             res.json({mensaje:"FALLO", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
         }

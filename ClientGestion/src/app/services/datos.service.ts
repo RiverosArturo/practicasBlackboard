@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { cursoEstudiante } from '../models/cursoEstudiante';
 import { Actividad } from '../models/Actividad';
 import { Aviso } from '../models/Aviso';
+import { Chat } from '../models/chat';
 
 @Injectable({
   providedIn: 'root'
@@ -164,6 +165,14 @@ actualizarAv(id:string,nrc:number,noTrabajador:number,updateAv:Aviso){
 }
 actualizarAvEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateAv:Aviso){
   return this.http.put(`${this.API_URI}/aviso/${id}/${nrc}/${noTrabajador}/${id_equipo}`,updateAv);
+}
+
+//////////////// Funciones chat///////////////////////////////////////////////////////
+saveChat(chat: Chat){
+  return this.http.post(`${this.API_URI}/chat/`,chat);
+}
+obtenerMsjsCurso(nrc:number,noTrabajador:number){
+  return this.http.get(`${this.API_URI}/chat/${nrc}/${noTrabajador}`);
 }
 
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
