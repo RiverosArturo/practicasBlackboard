@@ -4,6 +4,9 @@
       <ion-button [routerLink]="['/home-stud/curso/consultar',user]">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
       <ion-label >Usuario: {{user}}</ion-label>      
     </ion-buttons>  
     <ion-label slot="end"> Profesor:{{ cursoEs.nTrabajador}}</ion-label>   
@@ -44,7 +47,7 @@
 <ion-card>
   <h1> Gestionar comunicacion </h1> <br>
   <ion-button [routerLink] = "['/home-stud/comunicacion/avisos',user,nrc]">   Avisos </ion-button>
-  <ion-button [routerLink] = "['/home-stud/comunicacion/chat',user,nrc]">   Chat </ion-button>
+  <ion-button [routerLink] = "['/home-stud/comunicacion/chat',user,nrc,nTrabajador]">   Chat </ion-button>
   <br><br>
 </ion-card>
 <ion-card>

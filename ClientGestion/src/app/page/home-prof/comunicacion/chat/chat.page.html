@@ -4,6 +4,9 @@
       <ion-button (click)="navProf()">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>      
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
       <ion-label >Usuario: {{user}}</ion-label>
     </ion-buttons>
   </ion-toolbar>  
@@ -25,7 +28,23 @@
 
 
    <ion-card-content>
-      <ion-button > Enviar </ion-button><br><br>
+    <div class="chatContainer">
+      <tr *ngFor="let messenger of messengers">
+        <!-- <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} </p>
+        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} </p> -->
+      
+        <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - {{profesores[messenger.noTrabajador].nombre}}</p>
+        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - {{alumnos[messenger.matricula].nombre}}</p>
+      </tr>
+    </div>
+
+    <div class="InputContainer">
+      <form (submit)="enviarMensaje()">
+        <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="string" placeholder="Ingresa un mensaje!!!">
+      </form>
+    </div>
+
+    <!-- <ion-button > Enviar </ion-button><br><br> -->
    </ion-card-content>
 
   </ion-card>

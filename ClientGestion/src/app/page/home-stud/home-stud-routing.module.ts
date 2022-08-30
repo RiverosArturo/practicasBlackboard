@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./comunicacion/avisos/avisos.module').then( m => m.AvisosPageModule)
   },
   {
-    path: 'chat/:user/:nrc',
+    path: 'chat/:user/:nrc/:nTrabajador',
     loadChildren: () => import('./comunicacion/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./calificacion-promedio/calificacion-promedio.module').then( m => m.CalificacionPromedioPageModule)
   },
   {
-    path: 'consultar-equipo/:user/:nrc/:materia',
+    path: 'consultar-equipo/:user/:nrc/:materia/:nTrabajador',
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {
@@ -68,7 +68,7 @@ const routes: Routes = [
     component: ConsultarPage
   },
   {
-    path: 'menu-student/:user/:nrc/:materia',
+    path: 'menu-student/:user/:nrc/:materia/:nTrabajador',
     loadChildren: () => import('./menu-student/menu-student.module').then( m => m.MenuStudentPageModule)
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
     component: AvisosPage
   },
   {
-    path: 'chat/:user/:nrc',
+    path: 'chat/:user/:nrc/:nTrabajador',
     component: ChatPage
   },
   {

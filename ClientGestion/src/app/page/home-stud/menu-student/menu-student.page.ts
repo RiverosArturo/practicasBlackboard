@@ -20,6 +20,7 @@ export class MenuStudentPage implements OnInit {
 
   user:string;
   nrc:number;
+  nTrabajador:number;
   course: Curso = {
     materia:'IA',
     nrc:0,    
@@ -33,6 +34,7 @@ export class MenuStudentPage implements OnInit {
     this.user = params.user;  
     this.nrc = params.nrc;
     this.materia = params.materia; 
+    this.nTrabajador = params.nTrabajador;
     this.getCurso();       
   }
 
