@@ -189,5 +189,9 @@ export class CrearAvisoPage implements OnInit {
       err => console.error(err)
     );
   }
+  actualizar(){
+    this.boton=true;
+    this.condicionE=null;
+  }
 
 }

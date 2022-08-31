@@ -155,12 +155,42 @@ export class EliminarActividadPage implements OnInit {
             console.log(id+"   "+id_equipo)
             if(id_equipo!=null){
               this.deleteActividadEq(id, nrc, id_equipo, noTrabajador);
-              this.boton = 0;
-              this.boton2 = true;
+              // this.boton = 0;
+              // this.boton2 = true;
+              this.datosService.getActivityEq(id_equipo).subscribe(
+                res => {
+                  this.activitysEq = res;  
+                },
+                err => console.error(err)
+              );
             }else{
               this.deleteActividad(id, nrc, noTrabajador);
-              this.boton = 0
-              this.boton2 = true;
+              // this.boton = 0
+              // this.boton2 = true;
+              this.datosService.getActivity().subscribe(
+                res => {
+                  this.activitys = res;  
+                  for(let i = 0; i<=this.activitys.length;i++){
+                    const fecha = String(this.activitys[i].fecha);
+                    this.activitys[i].fecha = fecha.substr(0,10);
+                    const fecha2 = String(this.activitys[i].fechaEntrega);
+                    this.activitys[i].fechaEntrega = fecha2.substr(0,10);
+                    if(this.activitys[i].id_equipo != null){
+                      this.datosService.getid(this.activitys[i].id_equipo).subscribe(
+                        res => {
+                          this.equipos[this.activitys[i].id_equipo] = res; 
+                          //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
+                          // this.equiposR = this.equipos.filter(function(x) {
+                          //   return x !== undefined;
+                          // });
+                        },
+                        err => console.error(err)
+                      );
+                    }
+                  }  
+                },
+                err => console.error(err)
+              );
             }
           }
         }
@@ -171,6 +201,7 @@ export class EliminarActividadPage implements OnInit {
 
   actualizar(){
     this.boton=0;
+    this.boton2=true;
   }
   condicion1(){
     this.boton2 = false;

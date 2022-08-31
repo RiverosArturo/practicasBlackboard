@@ -196,5 +196,9 @@ export class AltaActividadPage implements OnInit {
       err => console.error(err)
     );
   }
+  actualizar(){
+    this.condicionE=null;
+    this.boton=true;
+  }
 
 }

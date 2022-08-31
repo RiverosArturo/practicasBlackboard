@@ -151,6 +151,7 @@ export class AvisosPage implements OnInit {
 
   actualizar(){
     this.boton=0;
+    this.boton2=true;
   }
   condicion1(){
     this.boton2 = false;

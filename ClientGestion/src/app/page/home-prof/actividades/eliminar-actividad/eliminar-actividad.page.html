@@ -58,6 +58,10 @@
                   {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
               </div>
             </tr>
+            <ion-button *ngIf="boton==1 || boton==2"(click)="actualizar()">
+              <ion-icon name="arrow-undo"></ion-icon>
+            </ion-button>
+
         </ion-list>
         </div>
       </ion-content>

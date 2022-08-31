@@ -57,6 +57,9 @@
       <ion-label for="curso" color="dark">Curso:</ion-label>
       <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
        -->
+       <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
       <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
     </form>
 
@@ -90,6 +93,9 @@
         <option [value]="equipo.id" *ngFor="let equipo of equipos">{{equipo.id}},{{ equipo.nombre}}</option>
       </select><br>
     
+      <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
       <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
     </form>
   </ion-card-content>

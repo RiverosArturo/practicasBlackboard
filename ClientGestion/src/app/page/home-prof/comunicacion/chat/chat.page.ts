@@ -49,13 +49,6 @@ export class ChatPage implements OnInit {
       matricula: null
     }
     this.obtenerMensajesCurso();
-    for(let i = 0; i<=10; i++){
-      if(i>0 && i<10){
-        this.obtenerMensajesCurso();
-      }else{
-        i=0;
-      }
-    }
     this.date = new Date();
     this.output = String(this.date.getDate()).padStart(2, '0') + '/' + String(this.date.getMonth() + 1).padStart(2, '0') + '/' + this.date.getFullYear();
     console.log(this.output); 
