@@ -21,6 +21,7 @@ import comodinRoutes from "./routes/comodinRoutes";
 
 class Server {
     public app : Application;
+
     constructor(){
         this.app = express();
         this.config();
