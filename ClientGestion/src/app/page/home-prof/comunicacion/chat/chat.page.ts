@@ -17,6 +17,7 @@ export class ChatPage implements OnInit {
   user:number;
   nrc:number;
   alert:string;
+  messengers:any=[];
   alumnos:any=[];
   profesores:any=[];
   date:Date;
@@ -54,7 +55,7 @@ export class ChatPage implements OnInit {
     console.log(this.output); 
   }
 
-  messengers:any=[];
+
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
   }
