@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const studRoutes_1 = __importDefault(require("./routes/studRoutes"));
 const cursoRoutes_1 = __importDefault(require("./routes/cursoRoutes"));
 const profRoutes_1 = __importDefault(require("./routes/profRoutes"));
@@ -21,20 +20,25 @@ const avisoRoutes_1 = __importDefault(require("./routes/avisoRoutes"));
 const chatRoutes_1 = __importDefault(require("./routes/chatRoutes"));
 const comodinRoutes_1 = __importDefault(require("./routes/comodinRoutes"));
 class Server {
+    // public server: any;
+    // public io: any;
     constructor() {
         this.app = (0, express_1.default)();
         this.config();
         this.routes();
+        // this.server = require('http').Server(this.app);
+        // this.io = require('socket.io')(this.server);
     }
     config() {
+        //se establece puerto
         this.app.set('port', process.env.PORT || 3000);
+        // this.server.set('port', process.env.PORT || 3000);
         this.app.use((0, morgan_1.default)('dev'));
         this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/student', studRoutes_1.default);
         this.app.use('/api/curso', cursoRoutes_1.default);
         this.app.use('/api/prof', profRoutes_1.default);
@@ -53,6 +57,9 @@ class Server {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
         });
+        // this.server.listen(this.server.get('port'), () => {
+        //     console.log("Servidor corriendo en", this.server.get('port'));
+        // })
     }
 }
 const server = new Server();

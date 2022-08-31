@@ -8,8 +8,8 @@
         <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
       </ion-avatar>
       <ion-label >Usuario: {{user}}</ion-label>      
-    </ion-buttons>  
-    <ion-label slot="end"> Profesor:{{ cursoEs.nTrabajador}}</ion-label>   
+    </ion-buttons>          
+      <ion-label slot="end"> Profesor: {{nTrabajador}}</ion-label>       
   </ion-toolbar>
 </ion-header>
 
@@ -28,7 +28,7 @@
     </ion-card>
     <ion-card>
         <h1> Gestionar equipo </h1> <br>
-        <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia]">   Consultar equipo </ion-button>
+        <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia]">{{equipo.nombre}}</ion-button>
         <ion-button [routerLink] = "['/home-stud/equipo/modificar-equipo',user,nrc]">   Modificar equipo </ion-button>
         <ion-button [routerLink] = "['/home-stud/reporte/reporte',user,nrc]">   Generar reporte  </ion-button>
         <br><br>
@@ -41,7 +41,7 @@
   </ion-card>
   <ion-card>
     <h1> Gestionar actividades </h1> <br>
-    <ion-button [routerLink] = "['/home-stud/actividades/consultar-actividad',user,nrc]">   Consultar actividad </ion-button>
+    <ion-button [routerLink] = "['/home-stud/actividades/consultar-actividad',user,nrc]">   Consultar actividades </ion-button>
     <br><br>
 </ion-card>
 <ion-card>

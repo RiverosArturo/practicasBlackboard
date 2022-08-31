@@ -22,12 +22,14 @@ export class MenuStudentPage implements OnInit {
     nrc:0,    
   }
 
-  user:string;
+  user:number;
   nrc:number;
   nTrabajador:number;
   materia:string = 'Materia';
+  id:number;
 
   equipo:any = [];
+  profesor:any = [];
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -37,8 +39,39 @@ export class MenuStudentPage implements OnInit {
     this.nrc = params.nrc;
     this.materia = params.materia; 
     this.nTrabajador = params.nTrabajador;
-    this.getCurso();       
+    this.getCurso();     
+    this.getequipoAlumno();  
   }
+//////////////////////////////////////////////////////////////////
+
+getequipoAlumno(){
+  this.datosService.getStudentEquipo(this.user , this.nTrabajador)
+    .subscribe(
+      res =>{       
+        this.equipo = res;           
+        this.id = this.equipo.id_equipo;
+        this.datosService.getid(this.id)
+        .subscribe(
+          res =>{       
+          this.equipo = res;  
+          console.log(this.equipo);                 
+        },
+        err => console.error(err)
+        ) 
+      },
+      err => console.error(err)
+    )
+}
+getCurso(){
+  this.datosService.getCourse(this.nrc)
+    .subscribe(
+      res =>{       
+        this.course = res;                   
+      },
+      err => console.error(err)
+    )
+}
+////////////////////////////////////////////////////////////////
 
   OpenMenuStud(){
     this.menu.enable(true,'MenuStud');
@@ -49,14 +82,6 @@ export class MenuStudentPage implements OnInit {
     this.menu.open('end')
   }
 
-  getCurso(){
-    this.datosService.getCourse(this.nrc)
-      .subscribe(
-        res =>{       
-          this.course = res;                   
-        },
-        err => console.error(err)
-      )
-  }
+  
 
 }
