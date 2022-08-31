@@ -8,7 +8,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { DatosService } from './services/datos.service';
 
 
@@ -16,7 +15,7 @@ import { DatosService } from './services/datos.service';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },DatosService,  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },DatosService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
