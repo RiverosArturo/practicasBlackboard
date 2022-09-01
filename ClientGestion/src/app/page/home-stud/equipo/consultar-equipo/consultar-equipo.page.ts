@@ -17,9 +17,13 @@ export class ConsultarEquipoPage implements OnInit {
     nTrabajador:0
   };
 
+  equipos:any = [];
+
   user:string;
   nrc:number;
   materia:string;
+  id:number;
+  nTrabajador:number;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -28,16 +32,21 @@ export class ConsultarEquipoPage implements OnInit {
     this.user = params.user;  
     this.nrc = params.nrc;
     this.materia = params.materia;
+    this.id = params.id;
+    this.getequipoAlumno();
   }
-  /*
-  estudiantesCursos(){// datos relacion curso alumno
-    this.datosService.listaEstudianteCurso().subscribe(
-      res => {
-        this.eCursos = res;
-      },
-      err => console.error(err)
-    );
-  }*/
+  getequipoAlumno(){
+    this.datosService.getOneEquipo(this.id)
+      .subscribe(
+        res =>{       
+          this.equipos = res;           
+          console.log(this.equipos.nTrabajador);
+          this.nTrabajador = this.equipos.nTrabajador;
+          //console.log(this.nTrabajador);
+        },
+        err => console.error(err)
+      )
+  }
 
   OpenMenuStud(){
     this.menu.enable(true,'MenuStud');
