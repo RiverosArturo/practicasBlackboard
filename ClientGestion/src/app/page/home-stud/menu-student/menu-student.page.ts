@@ -53,8 +53,8 @@ getequipoAlumno(){
         this.datosService.getid(this.id)
         .subscribe(
           res =>{       
-          this.equipo = res;  
-          console.log(this.equipo);                 
+          this.equipo = res;   
+          console.log(this.equipo.id);  
         },
         err => console.error(err)
         ) 

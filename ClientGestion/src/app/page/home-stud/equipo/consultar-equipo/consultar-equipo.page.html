@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc]">
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, nTrabajador]">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>      
       <ion-avatar>
@@ -19,7 +19,7 @@
       <ion-toolbar>
         <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-          <ion-title> Consultar Equipo </ion-title><br>
+          <ion-title> Equipo {{id}} </ion-title><br>
           <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
         </ion-buttons>
       </ion-toolbar>
@@ -27,8 +27,26 @@
   </ion-card>
 
 <ion-content>
-   <ion-card> <ion-title>Equipos</ion-title> </ion-card>
-   
+  <ion-content
+  [scrollEvents]="true"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+      
+    <div slot="fixed">
+      <ion-list>
+      <tr  *ngFor="let equipo of equipos">
+        
+        <ion-buttons>
+          <ion-button color="danger" >                                          
+            <ion-icon name="trash"></ion-icon>                
+          </ion-button>
+            {{equipo.matricula}}, {{equipo.nrc}}, {{equipo.nTrabajador}}
+        </ion-buttons>
+
+      </tr>
+      </ion-list>
+    </div>
 </ion-content>
 
 <ion-footer>
