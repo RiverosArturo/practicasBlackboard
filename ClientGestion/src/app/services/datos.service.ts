@@ -9,11 +9,12 @@ import { ProfCourse } from '../models/ProfCourse';
 import { StudCourse } from '../models/StudCourse';
 import { Equipo } from '../models/Equipo';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import { cursoEstudiante } from '../models/cursoEstudiante';
 import { Actividad } from '../models/Actividad';
 import { Aviso } from '../models/Aviso';
 import { Chat } from '../models/chat';
+import { tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,10 @@ import { Chat } from '../models/chat';
 export class DatosService {
   nTrabajdor:number;
 
-  API_URI = 'http://localhost:3000/api';
+  API_URI = 'http://localhost:3000/api'; 
 
   constructor(private http: HttpClient) { }
+  
 ///////////////////////////////////////////////////////////////////////
 //-- Funcions Equipo, perfil estudiante.
 
@@ -174,8 +176,19 @@ actualizarAvEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateA
 }
 
 //////////////// Funciones chat///////////////////////////////////////////////////////
+private _refresh$ = new Subject<void>();
+
+    get refresh$(){
+      return this._refresh$;
+    }
+
 saveChat(chat: Chat){
-  return this.http.post(`${this.API_URI}/chat/`,chat);
+  return this.http.post(`${this.API_URI}/chat/`,chat)
+  .pipe(
+    tap(()=>{
+      this._refresh$.next();
+    })
+  );
 }
 obtenerMsjsCurso(nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/chat/${nrc}/${noTrabajador}`);

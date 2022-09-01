@@ -5,15 +5,19 @@ import { Subject, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Chat } from 'src/app/models/chat';
 import { DatosService } from 'src/app/services/datos.service';
+import { WebsocketService } from 'src/app/services/websocket.service';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
+  providers: [ WebsocketService, ChatService]
 })
 export class ChatPage implements OnInit {
 
   menu: any;
+  subscription:Subscription;
   user:number;
   nrc:number;
   alert:string;
@@ -30,12 +34,27 @@ export class ChatPage implements OnInit {
     matricula: null
   }
 
-  constructor( private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor( private chatService: ChatService, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { 
+    // chatService.messages.subscribe(msg => {         
+    //   console.log("Response from websocket: " + msg);
+    // });
+  }
 
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
     this.menu.open('MenuProf');
   }
+
+  // private message = {
+  //   author: 'tutorialedge',
+  //   message: 'this is a test message'
+  // }
+
+  // sendMsg() {
+  //     console.log('new message from client to websocket: ', this.message);
+  //     this.chatService.messages.next(this.message);
+  //     this.message.message = '';
+  // }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
@@ -48,6 +67,9 @@ export class ChatPage implements OnInit {
       id_equipo: null,
       matricula: null
     }
+    this.subscription = this.datosService.refresh$.subscribe(()=>{
+      this.obtenerMensajesCurso();
+    })
     this.obtenerMensajesCurso();
     this.date = new Date();
     this.output = String(this.date.getDate()).padStart(2, '0') + '/' + String(this.date.getMonth() + 1).padStart(2, '0') + '/' + this.date.getFullYear();
@@ -100,12 +122,12 @@ export class ChatPage implements OnInit {
       res => {
         console.log(res);
         
-        this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
-          res => {
-            this.messengers = res; 
-          },
-          err => console.error(err)
-        );
+        // this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
+        //   res => {
+        //     this.messengers = res; 
+        //   },
+        //   err => console.error(err)
+        // );
       },
       err => console.error(err)
     )

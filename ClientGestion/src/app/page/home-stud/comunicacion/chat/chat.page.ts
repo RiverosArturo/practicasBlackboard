@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
 import { DatosService } from 'src/app/services/datos.service';
 import { User } from '../../../../models/User';
@@ -11,9 +11,10 @@ import { User } from '../../../../models/User';
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
 })
-export class ChatPage implements OnInit {
+export class ChatPage implements OnInit, OnDestroy{
 
   user:string;
+  subscription:Subscription;
   nrc:number;
   nTrabajador:number;
   alert:string;
@@ -44,11 +45,19 @@ export class ChatPage implements OnInit {
       id_equipo: null,
       matricula: params.user
     }
+    this.subscription = this.datosService.refresh$.subscribe(()=>{
+      this.obtenerMensajesCurso();
+    })
     this.obtenerMensajesCurso();
 
     this.date = new Date();
     this.output = String(this.date.getDate()).padStart(2, '0') + '/' + String(this.date.getMonth() + 1).padStart(2, '0') + '/' + this.date.getFullYear();
     console.log(this.output); 
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+    console.log('Observable cerrado');
   }
 
   OpenMenuStud(){
@@ -100,17 +109,17 @@ export class ChatPage implements OnInit {
     this.datosService.saveChat(this.chat).subscribe(
       res => {
         console.log(res);
-        this.datosService.obtenerMsjsCurso(this.nrc,this.nTrabajador).subscribe(
-          res => {
-            this.messengers = res; 
-          },
-          err => console.error(err)
-        );
+        // this.datosService.obtenerMsjsCurso(this.nrc,this.nTrabajador).subscribe(
+        //   res => {
+        //     this.messengers = res; 
+        //   },
+        //   err => console.error(err)
+        // );
       },
       err => console.error(err)
     )
     
-    this.obtenerMensajesCurso();
+    // this.obtenerMensajesCurso();
     this.chat.mensaje = '';
     console.log(this.chat)
 

@@ -28,6 +28,10 @@
 
 
    <ion-card-content>
+    <h1>
+      Angular 2 WebSockets Tutorial
+    </h1>
+    <ion-button (click)="sendMsg()">Send Message</ion-button>
     <div class="chatContainer">
       <tr *ngFor="let messenger of messengers">
       
@@ -41,7 +45,7 @@
     </div>
 
     <div class="InputContainer">
-      <form (submit)="enviarMensaje()">
+      <form (submit)="enviarMensaje()" (submit)="sendMsg()">
         <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="string" placeholder="Ingresa un mensaje!!!">
       </form>
     </div>
