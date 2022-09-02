@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {Subject, Observer, Observable} from 'rxjs';
-import * as Rx from 'rxjs/Rx';
-import { Chat } from '../models/chat';
+import { io } from 'socket.io-client';
+// import { HttpClient } from '@angular/common/http';
+// import {Subject, Observer, Observable} from 'rxjs';
+// import * as Rx from 'rxjs/Rx';
+// import { Chat } from '../models/chat';
 
 
 @Injectable()
 export class WebsocketService {
+
+  io = io("http://localhost:3000/", {
+    withCredentials: true,
+    autoConnect: true
+  });
+
+  constructor() {
+    
+  }
 
   // webSocket: WebSocket; 
   // chatMessages: Chat[] = [];

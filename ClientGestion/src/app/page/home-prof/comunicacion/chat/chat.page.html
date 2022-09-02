@@ -28,26 +28,40 @@
 
 
    <ion-card-content>
-    <h1>
+    <!-- <h1>
       Angular 2 WebSockets Tutorial
     </h1>
-    <ion-button (click)="sendMsg()">Send Message</ion-button>
-    <div class="chatContainer">
+    <ion-button (click)="sendMsg()">Send Message</ion-button> -->
+    <!-- <div class="chatContainer">
       <tr *ngFor="let messenger of messengers">
       
         <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - PROFESOR</p>
-        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - ALUMNO</p>
+        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - ALUMNO</p> -->
           
         <!-- <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - {{profesores[messenger.noTrabajador].nombre}}</p>
         <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - {{alumnos[messenger.matricula].nombre}}</p> -->
       
-      </tr>
-    </div>
+      <!-- </tr>
+    </div> -->
 
-    <div class="InputContainer">
+    <!-- <div class="InputContainer">
       <form (submit)="enviarMensaje()" (submit)="sendMsg()">
         <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="string" placeholder="Ingresa un mensaje!!!">
       </form>
+    </div> -->
+
+    <div class="chatContainer">
+      <p [ngClass]="{'local': message.type === 1, 'remoto': message.type === 2}" 
+          *ngFor="let message of chatService.chats">{{message.text}}</p>
+      <!-- //<p class="remoto">Mensaje remoto</p> -->
+    </div>
+    
+    <div class="inputContainer">
+        <!-- <form (submit)="sendMessage()" (submit)="mensajeRecibido()" > -->
+        <form (submit)="sendMessage()" >
+            <input [(ngModel)]="text" [ngModelOptions]="{standalone:true}" type="text">
+            <!-- <button (click)="sendMessage()"></button> -->
+        </form>
     </div>
 
     <!-- <ion-button > Enviar </ion-button><br><br> -->
