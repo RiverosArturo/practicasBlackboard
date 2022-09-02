@@ -42,7 +42,7 @@ export class ConsultarEquipoPage implements OnInit {
           this.equipos = res;           
           console.log(this.equipos.nTrabajador);
           this.nTrabajador = this.equipos.nTrabajador;
-          //console.log(this.nTrabajador);
+          console.log('>>',this.nTrabajador);
         },
         err => console.error(err)
       )
