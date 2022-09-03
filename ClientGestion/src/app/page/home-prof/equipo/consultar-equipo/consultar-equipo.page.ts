@@ -112,30 +112,11 @@ export class ConsultarEquipoPage implements OnInit {
             )
           }
         }                 
-        // if(this.oneEquipos.nombre == '...'){  
-        //   this.equipo.id = id;  this.equipo.curso_nrc = nrc;  this.equipo.nTrabajador = nTrabajador;          
-        //   this.equipo.nombre = nombre;
-        //   console.log('::> ',this.equipo);
-        //   this.datosService.updateEquipo(this.equipo.id, this.equipo.curso_nrc, this.equipo.nTrabajador, this.equipo)
-        //   .subscribe(
-        //     res =>{
-        //     console.log(res);                
-        //     this.edit = false;
-        //     this.getEquipos1(nrc,nTrabajador);
-        //     console.log('Nombre cambiado.');
-        //     //this.AlerteditOKEquipo(nombre);
-        //   },
-        //   err => console.error(err)
-        //   )          
-        // }else{
-        //   console.log('El nombre '+ nombre + ' ya ha sido usado. ');
-        //   this.AlertYaExisteEquipo(nombre);
-        // }
+        
       },
       err => console.error(err)
     );
-    //console.log(nombre,'Nuevo nombre actualizado');
-  }  
+  }
   notEdit(){
     this.edit = false;
   }

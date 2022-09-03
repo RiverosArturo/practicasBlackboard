@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./calificacion-promedio/calificacion-promedio.module').then( m => m.CalificacionPromedioPageModule)
   },
   {
-    path: 'consultar-equipo/:user/:nrc/:materia/:id',
+    path: 'consultar-equipo/:user/:nrc/:materia/:id/:nTrabajador',
     loadChildren: () => import('./equipo/consultar-equipo/consultar-equipo.module').then( m => m.ConsultarEquipoPageModule)
   },
   {

@@ -4,6 +4,9 @@ import { MenuController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
 import { cursoEstudiante } from 'src/app/models/cursoEstudiante';
 import { Equipo } from 'src/app/models/Equipo';
+import { Student } from 'src/app/models/Student';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -17,16 +20,52 @@ export class ConsultarEquipoPage implements OnInit {
     nrc: 0,
     nTrabajador:0
   };
-  equipo:Equipo = {
-    nTrabajador:0
-  }
-  equipos:any = [];
 
   user:string;
   nrc:number;
   materia:string;
   id:number;
   nTrabajador:number;
+
+  edit:boolean = false;
+//-------------------------------------------------------------------
+student: Student = {
+  matricula:0,
+} 
+
+courses:any = [];  
+equipos:any = [];
+oneEquipos:any = [];//Alumnos integrantes del equipo
+
+equipo:Equipo ={
+  id: 0,
+  nombre:'',
+  curso_nrc:0,
+  nTrabajador:0
+
+};
+
+studentEquipo:any = {// estructura del alumno integrante del equipo
+  matricula:0,
+  id_equipo:0,
+  nrc:0,
+  nTrabajador:0,
+};
+
+curso:string='cur';
+check:boolean=true;
+
+add:boolean = false;
+query:boolean = false;
+equi:boolean = false;
+
+deleteEqui:boolean = false;
+delete2:boolean = false;
+nomb:string;
+
+
+students:any = [];//Alumnos de la base para nombre del alumno  
+studCourses:any = [];//Alumnos del curso
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -36,23 +75,155 @@ export class ConsultarEquipoPage implements OnInit {
     this.nrc = params.nrc;
     this.materia = params.materia;
     this.id = params.id;
+    this.nTrabajador = params.nTrabajador;
     this.getequipoAlumno();
+    this.getStudent();
+    
   }
-  getequipoAlumno(){
+  editar(){
+    this.edit = true;
+  }
+  close(){
+    this.edit = false;
+  }
+  getequipoAlumno(){// Optiene alumnos integrantes del equipo
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res;    
-          console.log(this.equipos);
-          this.equipo = res;    
-          console.log(this.equipos.nTrabajador);
-          //this.nTrabajador = this.equipos.nTrabajador;
-          //console.log('>>',this.nTrabajador);
+          this.equipos = res; 
         },
         err => console.error(err)
       )
   }
+  
+  editEquipoButton(id:number, nombre:string, nrc:number, nTrabajador:number){//verifica si el nombre has si usado y edita el nombre del equipo
+    console.log("Inicia funcion");    
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
+      res => {
+        this.oneEquipos = res;        
+        for(let i=0;i<this.oneEquipos.length;i++){          
+          if(this.oneEquipos[i].nombre == nombre){            
+            this.check = false;
+          }
+          else if(i==this.oneEquipos.length-1 && this.check==false){
+            //this.AlertYaExisteEquipo(nombre);
+            this.edit = true;
+            this.check = true;
+          }
+          else if(i==this.oneEquipos.length-1 && this.check==true){            
+            this.equipo.id = id;
+            this.equipo.curso_nrc = nrc;
+            this.equipo.nTrabajador = this.nTrabajador;
+            this.equipo.nombre = nombre;            
 
+            this.datosService.updateEquipo(this.equipo.id, this.equipo.curso_nrc, this.equipo.nTrabajador, this.equipo)
+            .subscribe(
+              res =>{
+              console.log(res);                
+              this.edit = true;
+              this.check = true;
+              this.getEquipos1(nrc,nTrabajador);
+              console.log('Nombre cambiado.');
+              //this.AlerteditOKEquipo(nombre);
+            },
+            err => console.error(err)
+            )
+          }
+        }                 
+        
+      },
+      err => console.error(err)
+    );
+  }
+  getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
+    this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
+      res => {
+        this.studCourses = res;              
+      },
+      err => console.error(err)
+    );
+  }
+  getStudent(){//optiene los alumnos inscritos en el sistema
+    this.datosService.getStudents().subscribe(
+      res => {
+        this.students = res;   
+        //console.log('--->',res);  
+      },
+      err => console.error(err)
+    );
+  }
+  get1Equipo(id:number){// Optiene datos de un solo equipo    
+    this.datosService.getOneEquipo(id).subscribe(
+      res => {
+        this.oneEquipos = res;            
+      },
+      err => console.error(err)
+    );
+  }
+  getEquipos1(nrc:number, nTrabajador:number){    
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
+      res => {
+        this.equipos = res;
+      },
+      err => console.error(err)
+    );
+  }
+//---- funciones de alert-------  
+/*
+async AlerteditOKEquipo( nombre:string ) {
+  const alert = await this.alertcontroller.create({
+    cssClass: 'my-custom-class',
+    header: ' ',
+    message: 'Nombre del equipo ha sido cambiado por '+ nombre,      
+    buttons: [
+      {
+        text: 'Ok',
+        id: 'confirm-button',
+        handler: () => {
+          console.log('Confirm Okay');            
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+  async AlertYaExisteEquipo( nombre:string ) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Nombre '+ nombre + ' ya existe en un equipo, intenta con otro nombre. ',      
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }  
+
+  async AlertYaExiste(matricula:number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Alumno '+ matricula + ' ya existe en un equipo ',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  */
+ //------------------------------------------------------------------------------- 
   OpenMenuStud(){
     this.menu.enable(true,'MenuStud');
     this.menu.open('MenuStud');
