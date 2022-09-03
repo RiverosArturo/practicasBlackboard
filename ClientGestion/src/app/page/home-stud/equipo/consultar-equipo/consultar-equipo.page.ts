@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
 import { cursoEstudiante } from 'src/app/models/cursoEstudiante';
+import { Equipo } from 'src/app/models/Equipo';
 
 @Component({
   selector: 'app-consultar-equipo',
@@ -16,7 +17,9 @@ export class ConsultarEquipoPage implements OnInit {
     nrc: 0,
     nTrabajador:0
   };
-
+  equipo:Equipo = {
+    nTrabajador:0
+  }
   equipos:any = [];
 
   user:string;
@@ -39,10 +42,12 @@ export class ConsultarEquipoPage implements OnInit {
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res;           
+          this.equipos = res;    
+          console.log(this.equipos);
+          this.equipo = res;    
           console.log(this.equipos.nTrabajador);
-          this.nTrabajador = this.equipos.nTrabajador;
-          console.log('>>',this.nTrabajador);
+          //this.nTrabajador = this.equipos.nTrabajador;
+          //console.log('>>',this.nTrabajador);
         },
         err => console.error(err)
       )

@@ -26,21 +26,35 @@
     </ion-header>
   </ion-card>
 
-<ion-content>
+  <ion-header>
+    <ion-title> Equipo </ion-title>
+  </ion-header>
+
+  
+    <ion-item>
+      <ion-button color = "primary"> Equipo </ion-button>
+      <ion-button color = "primary"> Editar  </ion-button>
+      <ion-button color = "primary"> Salir del Equipo </ion-button>
+      <ion-button color = "danger"><ion-icon name="trash"></ion-icon></ion-button>
+    </ion-item>
+  
+
+  <ion-content>
   <ion-content
   [scrollEvents]="true"
   (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)"
-  (ionScrollEnd)="logScrollEnd()">
+  (ionScrollEnd)="logScrollEnd()">  
       
     <div slot="fixed">
       <ion-list>
       <tr  *ngFor="let equipo of equipos">
+
         
         <ion-buttons>
           <ion-button color="danger" >                                          
             <ion-icon name="trash"></ion-icon>                
-          </ion-button>
+        </ion-button>
             {{equipo.matricula}}, {{equipo.nrc}}, {{equipo.nTrabajador}}
         </ion-buttons>
 
