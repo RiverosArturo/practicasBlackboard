@@ -67,7 +67,7 @@ nomb:string;
 students:any = [];//Alumnos de la base para nombre del alumno  
 studCourses:any = [];//Alumnos del curso
 
-  constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
+  constructor(public alertController:AlertController, private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;     
@@ -124,7 +124,7 @@ studCourses:any = [];//Alumnos del curso
               this.check = true;
               this.getEquipos1(nrc,nTrabajador);
               console.log('Nombre cambiado.');
-              //this.AlerteditOKEquipo(nombre);
+              this.AlerteditOKEquipo(nombre);
             },
             err => console.error(err)
             )
@@ -169,9 +169,9 @@ studCourses:any = [];//Alumnos del curso
     );
   }
 //---- funciones de alert-------  
-/*
+
 async AlerteditOKEquipo( nombre:string ) {
-  const alert = await this.alertcontroller.create({
+  const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: ' ',
     message: 'Nombre del equipo ha sido cambiado por '+ nombre,      
@@ -222,7 +222,7 @@ async AlerteditOKEquipo( nombre:string ) {
     });
     await alert.present();
   }
-  */
+  
  //------------------------------------------------------------------------------- 
   OpenMenuStud(){
     this.menu.enable(true,'MenuStud');
