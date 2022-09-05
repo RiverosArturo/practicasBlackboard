@@ -20,7 +20,7 @@
         <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
           <ion-title> Equipo {{id}} </ion-title><br>
-          <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}} , {{nTrabajador}}</ion-title> <br>
+          <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -30,13 +30,41 @@
     <ion-title> Equipo </ion-title>
   </ion-header>
 
-  
+  <!-- opciones -->
     <ion-item>
-      <ion-button color = "primary"> Equipo </ion-button>
-      <ion-button color = "primary"> Editar  </ion-button>
-      <ion-button color = "primary"> Salir del Equipo </ion-button>
-      <ion-button color = "danger"><ion-icon name="trash"></ion-icon></ion-button>
+      <ion-button color = "primary"> Equipo {{id}} </ion-button>
+      <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
+      <ion-button color = "primary"> Salir del Equipo </ion-button>      
     </ion-item>
+    <!-- Edita el nombre del equipo -->
+    <div *ngIf="edit == true ">
+      <ion-item class="form-group">                  
+      <ion-card>
+        <ion-toolbar>
+          <ion-title>  Editar {{ equipo.nombre }} </ion-title>
+          <ion-button color="danger" slot="end"  (click)="close()">
+            <ion-icon name="close-sharp"></ion-icon>
+          </ion-button>
+        </ion-toolbar>              
+        <ion-card>
+          <form>                 
+            <ion-item class="form-group">
+              <ion-label position="floating"> Nombre de equipo </ion-label>
+              <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>              
+            </ion-item>                
+            <ion-item>
+              <ion-toolbar>                    
+                <ion-button slot="end"  (click)="editEquipoButton(equipo.id, nombre, nrc, nTrabajador)">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>
+              </ion-toolbar>
+            </ion-item>
+            </form>                                            
+        </ion-card>       
+      </ion-card>
+      </ion-item>
+    </div>
+
   
 
   <ion-content>
@@ -49,13 +77,17 @@
     <div slot="fixed">
       <ion-list>
       <tr  *ngFor="let equipo of equipos">
-
         
         <ion-buttons>
+          <tr *ngFor="let student of students">
+            <div *ngIf="user == student.matricula ">
+              {{equipo.matricula}}, {{student.nombre}}, {{student.correo}}
+
+            </div>
+          </tr>          
           <ion-button color="danger" >                                          
             <ion-icon name="trash"></ion-icon>                
-        </ion-button>
-            {{equipo.matricula}}, {{equipo.nrc}}, {{equipo.nTrabajador}}
+          </ion-button>            
         </ion-buttons>
 
       </tr>
