@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const socket_io_1 = require("socket.io");
+const http_1 = __importDefault(require("http"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const studRoutes_1 = __importDefault(require("./routes/studRoutes"));
@@ -20,23 +22,28 @@ const avisoRoutes_1 = __importDefault(require("./routes/avisoRoutes"));
 const chatRoutes_1 = __importDefault(require("./routes/chatRoutes"));
 const comodinRoutes_1 = __importDefault(require("./routes/comodinRoutes"));
 class Server {
-    // public server: any;
-    // public io: any;
     constructor() {
         this.app = (0, express_1.default)();
         this.config();
         this.routes();
-        // this.server = require('http').Server(this.app);
-        // this.io = require('socket.io')(this.server);
     }
     config() {
         //se establece puerto
         this.app.set('port', process.env.PORT || 3000);
         // this.server.set('port', process.env.PORT || 3000);
         this.app.use((0, morgan_1.default)('dev'));
-        this.app.use((0, cors_1.default)());
+        this.app.use((0, cors_1.default)({
+            origin: "*",
+            credentials: true
+        }));
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
+        this.server = http_1.default.createServer(this.app);
+        this.io = new socket_io_1.Server(this.server, {
+            cors: {
+                origin: '*'
+            }
+        });
     }
     routes() {
         this.app.use('/api/student', studRoutes_1.default);
@@ -54,12 +61,30 @@ class Server {
         this.app.use('/api/comodin', comodinRoutes_1.default);
     }
     start() {
-        this.app.listen(this.app.get('port'), () => {
-            console.log('Server on port', this.app.get('port'));
+        this.io.sockets.on('connection', (socket) => {
+            console.log("Nuevo usuario conectado!!!");
+            socket.on("sendMessage", (messageInfo) => {
+                console.log("Enviando un msj");
+                // console.log("HEY: " + messageInfo.text);
+                // console.log("HEY: " + messageInfo.type);
+                socket.broadcast.emit("reveiceMessage", messageInfo);
+                // console.log("Ya pase el broadcast.emit!!!!");
+                // console.log("//////////Saliendo de sendMessage y entrando a reveiceMessage////////////");
+            });
+            // this.io.on('connection', () => {
+            //     console.log("Nueva conexion!!!");
+            // });
         });
-        // this.server.listen(this.server.get('port'), () => {
-        //     console.log("Servidor corriendo en", this.server.get('port'));
-        // })
+        // this.io.sockets.on('connection',(socket:any)=>{
+        //         console.log("Nuevo usuario conectado!!!");
+        //         socket.emit('test event','here is some data');
+        // });
+        this.server.listen(3000, () => {
+            console.log('Server on port', 3000);
+        });
+        // this.server.listen(this.app.get('port'), () => {
+        //     console.log('Server on port', this.app.get('port'));
+        // });
     }
 }
 const server = new Server();

@@ -1,4 +1,6 @@
 import  express, {Application}  from "express";
+import {Server as WebsocketServer } from "socket.io";
+import http from 'http';
 
 import morgan from "morgan";
 import cors from "cors";
@@ -18,15 +20,14 @@ import comodinRoutes from "./routes/comodinRoutes";
 
 class Server {
     public app : Application;
-    // public server: any;
-    // public io: any;
+    public server: any;
+    public io: any;
+    public httpServer: any;
 
     constructor(){
         this.app = express();
         this.config();
         this.routes();
-        // this.server = require('http').Server(this.app);
-        // this.io = require('socket.io')(this.server);
     }
     config(): void{
         //se establece puerto
@@ -34,9 +35,18 @@ class Server {
         // this.server.set('port', process.env.PORT || 3000);
         
         this.app.use(morgan('dev'));
-        this.app.use(cors());
+        this.app.use(cors({
+            origin:"*",
+            credentials: true
+        }));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
+        this.server = http.createServer(this.app);
+        this.io = new WebsocketServer(this.server,{
+            cors:{
+                origin: '*'
+            }
+        });
     }
     routes(): void{      
         this.app.use('/api/student', studRoutes);
@@ -54,12 +64,39 @@ class Server {
         this.app.use('/api/comodin',comodinRoutes);   
     }
     start(): void{
-        this.app.listen(this.app.get('port'), () => {
-            console.log('Server on port', this.app.get('port'));
+
+        this.io.sockets.on('connection',(socket:any)=>{
+            console.log("Nuevo usuario conectado!!!");
+        
+            socket.on("sendMessage", (messageInfo:any)=>{
+                console.log("Enviando un msj");
+                // console.log("HEY: " + messageInfo.text);
+                // console.log("HEY: " + messageInfo.type);
+                
+                socket.broadcast.emit("reveiceMessage", messageInfo);
+                // console.log("Ya pase el broadcast.emit!!!!");
+                // console.log("//////////Saliendo de sendMessage y entrando a reveiceMessage////////////");
+            });
+
+            // this.io.on('connection', () => {
+            //     console.log("Nueva conexion!!!");
+            // });
+        
+            
         });
-        // this.server.listen(this.server.get('port'), () => {
-        //     console.log("Servidor corriendo en", this.server.get('port'));
-        // })
+
+        // this.io.sockets.on('connection',(socket:any)=>{
+        //         console.log("Nuevo usuario conectado!!!");
+
+        //         socket.emit('test event','here is some data');
+        // });
+
+        this.server.listen(3000, () => {
+            console.log('Server on port', 3000);
+        });
+        // this.server.listen(this.app.get('port'), () => {
+        //     console.log('Server on port', this.app.get('port'));
+        // });
     }
 }
 const server = new Server();

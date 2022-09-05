@@ -1,84 +1,56 @@
 import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
-// import { HttpClient } from '@angular/common/http';
-// import {Subject, Observer, Observable} from 'rxjs';
-// import * as Rx from 'rxjs/Rx';
-// import { Chat } from '../models/chat';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class WebsocketService {
 
-  io = io("http://localhost:3000/", {
-    withCredentials: true,
-    autoConnect: true
-  });
+  // io = io("http://localhost:5000/", {
+  //   withCredentials: true,
+  //   autoConnect: true,
+  // });
 
+  chats=[] as any;
+  socket:any;
+  readonly url: string = "ws://localhost:3000/"
   constructor() {
-    
+    this.socket = io(this.url);
+    this.onReceiveMessage();
   }
 
-  // webSocket: WebSocket; 
-  // chatMessages: Chat[] = [];
-  // constructor() { }
+  //Metodo escucha el socket
+  listen(eventName:string){
+    return new Observable((subscriber)=>{
+      this.socket.on(eventName,(data)=>{
+        subscriber.next(data);
+      })
+    })
+  }
 
-  // public openWebSocket(){
-  //   this.webSocket = new WebSocket('ws://localhost:3000/api/chat', 'echo-protocol');
+  emit(eventName, data){
+    this.socket.emit(eventName, data);
+  }
 
-  //   this.webSocket.onopen = (event) => {
-  //     console.log('Open: ', event);
-  //   }
+  sendMessage(messageInfo){
+    //Ingresamos nuestro mensaje al arreglo
+    this.chats.push(messageInfo);
+    //Emitimos nuestro evento sendMessage mandando el messageInfo
+    this.socket.emit("sendMessage", messageInfo);
+    //alert("FIN");
+  }
 
-  //   this.webSocket.onmessage = (event) => {
-  //     const chat = JSON.parse(event.data);
-  //     this.chatMessages.push(chat);
-  //   }
-
-  //   this.webSocket.onclose = (event) => {
-  //     console.log('Close: ', event);
-  //   }
-  // }
-
-  // public sendMessage(chatMessage: Chat){
-  //   this.webSocket.send(JSON.stringify(chatMessage));
-
-  // }
-
-  // public closeWebSocket(){
-  //   this.webSocket.close();
-  // }
-
-  ////////////////////////////////////////////////////////////////
-
-  // private subject: Rx.Subject<MessageEvent>;
-
-  // public connect(url): Rx.Subject<MessageEvent> {
-  //   if (!this.subject) {
-  //     this.subject = this.create(url);
-  //     console.log("Successfully connected: " + url);
-  //   } 
-  //   return this.subject;
-  // }
-
-  // private create(url): Rx.Subject<MessageEvent> {
-  //   //let url = 'ws://localhost:3000/api';
-  //   let ws = new WebSocket(url);
-
-  //   let observable = Rx.Observable.create(
-  //     (obs: Rx.Observer<MessageEvent>) => {
-  //         ws.onmessage = obs.next.bind(obs);
-  //         ws.onerror = obs.error.bind(obs);
-  //         ws.onclose = obs.complete.bind(obs);
-  //         return ws.close.bind(ws);
-  //   })
-  //   let observer = {
-  //     next: (data: Object) => {
-  //         if (ws.readyState === WebSocket.OPEN) {
-  //             ws.send(JSON.stringify(data));
-  //         }
-  //     }
-  //   }
-  //   return Rx.Subject.create(observer, observable);
-  // }
+  onReceiveMessage(){
+    //escuchamos cuando recibo un msj/evento
+    //alert("Entrando a funcion onReceiveMessage");
+    //creamos evento reveiceMessage
+    this.socket.on("reveiceMessage",(messageInfo)=>{
+      messageInfo.type = 2;
+      // console.log(messageInfo.text);
+      // console.log(messageInfo.type);
+      this.chats.push(messageInfo);
+      //alert("nuevo msj");
+    });
+  }
 
 }

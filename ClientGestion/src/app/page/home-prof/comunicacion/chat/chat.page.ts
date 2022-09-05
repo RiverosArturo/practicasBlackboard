@@ -6,13 +6,11 @@ import { tap } from 'rxjs/operators';
 import { Chat } from 'src/app/models/chat';
 import { DatosService } from 'src/app/services/datos.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
-import { ChatService } from 'src/app/services/chat.service';
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
-  providers: [ WebsocketService, ChatService]
+  providers: [ WebsocketService ]
 })
 export class ChatPage implements OnInit {
 
@@ -35,7 +33,12 @@ export class ChatPage implements OnInit {
   }
   text='';
 
-  constructor( private chatService: ChatService, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { 
+  //Para hacer conexion en el ngOnInit()
+  // this.webSocketService.listen("test event").subscribe((data)=>{
+  //   console.log(data);
+  // });
+
+  constructor( private webSocketService: WebsocketService, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { 
     // chatService.messages.subscribe(msg => {         
     //   console.log("Response from websocket: " + msg);
     // });
@@ -54,7 +57,7 @@ export class ChatPage implements OnInit {
       text: this.text,
       type: 1
     } 
-    this.chatService.sendMessage(messageInfo);
+    this.webSocketService.sendMessage(messageInfo);
     this.text = '';
   }
 

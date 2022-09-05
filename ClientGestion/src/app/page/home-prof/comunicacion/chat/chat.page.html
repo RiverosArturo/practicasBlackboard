@@ -52,7 +52,7 @@
 
     <div class="chatContainer">
       <p [ngClass]="{'local': message.type === 1, 'remoto': message.type === 2}" 
-          *ngFor="let message of chatService.chats">{{message.text}}</p>
+          *ngFor="let message of webSocketService.chats">{{message.text}}</p>
       <!-- //<p class="remoto">Mensaje remoto</p> -->
     </div>
     
