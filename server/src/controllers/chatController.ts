@@ -19,16 +19,16 @@ class ChatController {
         if (actividad.length > 0 ){
             return res.json(actividad);
         }else{
-            res.json({mensaje: "", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
+            return res.json({mensaje: "NO HAY MENSAJES!!!", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
         }
     }
     public async getOneEq (req:Request, res:Response): Promise<any>{
         const  {nrc,id_equipo,noTrabajador,x} = req.params;
-        const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [nrc,id_equipo,noTrabajador, x])
+        const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador, x])
         if (actividad.length > 0 ){
             res.json(actividad);
         }else{
-            res.json({mensaje:"FALLO", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
+            res.json({mensaje:"NO HAY MENSAJES", noTrabajador:0, nrc:0,id_equipo:0,matricula:0});
         }
     }
     public async create (req:Request, res:Response): Promise<void> {

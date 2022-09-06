@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Subject, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { Chat } from 'src/app/models/chat';
 import { DatosService } from 'src/app/services/datos.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
@@ -15,23 +13,36 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 export class ChatPage implements OnInit {
 
   menu: any;
-  subscription:Subscription;
+  course:any=[];
+  curso:string='';
   user:number;
   nrc:number;
-  alert:string;
   messengers:any=[];
+  messengersEquipo:any=[];
+  equipos:any=[];
   alumnos:any=[];
   profesores:any=[];
-  date:Date;
-  output:string;
   chat:Chat = {
     mensaje: '',
     noTrabajador: 0,
     nrc: 0,
     id_equipo: null,
-    matricula: null
+    matricula: null,
+    nombre: ''
   }
-  text='';
+  chatE:Chat = {
+    mensaje: '',
+    noTrabajador: 0,
+    nrc: 0,
+    id_equipo: null,
+    matricula: null,
+    nombre: ''
+  }
+
+  //botones curso
+  boton:number = 0;
+  //botones equipo
+  boton2:number = 0;
 
   //Para hacer conexion en el ngOnInit()
   // this.webSocketService.listen("test event").subscribe((data)=>{
@@ -39,9 +50,6 @@ export class ChatPage implements OnInit {
   // });
 
   constructor( private webSocketService: WebsocketService, private datosService: DatosService, public alertController:AlertController, private router: Router, private activedRoute:ActivatedRoute) { 
-    // chatService.messages.subscribe(msg => {         
-    //   console.log("Response from websocket: " + msg);
-    // });
   }
 
   OpenMenuProf(){
@@ -50,102 +58,168 @@ export class ChatPage implements OnInit {
   }
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.user,this.nrc]);
+    this.boton = 0;
+    this.boton2 = 0;
+    this.webSocketService.chatsEquipo = [];
   }
-
-  sendMessage(){
-    let messageInfo = {
-      text: this.text,
-      type: 1
-    } 
-    this.webSocketService.sendMessage(messageInfo);
-    this.text = '';
-  }
-
-  // private message = {
-  //   author: 'tutorialedge',
-  //   message: 'this is a test message'
-  // }
-
-  // sendMsg() {
-  //     console.log('new message from client to websocket: ', this.message);
-  //     this.chatService.messages.next(this.message);
-  //     this.message.message = '';
-  // }
 
   ngOnInit() {
-    // const params = this.activedRoute.snapshot.params;  
-    // this.user = params.user; 
-    // this.nrc = params.nrc;  
-    // this.chat = {
-    //   mensaje: '',
-    //   noTrabajador: this.user,
-    //   nrc: this.nrc,
-    //   id_equipo: null,
-    //   matricula: null
-    // }
-    // this.subscription = this.datosService.refresh$.subscribe(()=>{
-    //   this.obtenerMensajesCurso();
-    // })
-    // this.obtenerMensajesCurso();
-    // this.date = new Date();
-    // this.output = String(this.date.getDate()).padStart(2, '0') + '/' + String(this.date.getMonth() + 1).padStart(2, '0') + '/' + this.date.getFullYear();
-    // console.log(this.output); 
+    const params = this.activedRoute.snapshot.params;  
+    this.user = params.user; 
+    this.nrc = params.nrc;  
+    this.obtenerCurso();
+    this.chat = {
+      mensaje: '',
+      noTrabajador: this.user,
+      nrc: this.nrc,
+      id_equipo: null,
+      matricula: null,
+      nombre:''
+    }
+    this.obtenerMensajesCurso();
+
+    this.chatE = {
+      mensaje: '',
+      noTrabajador: this.user,
+      nrc: this.nrc,
+      id_equipo: null,
+      matricula: null,
+      nombre:''
+    }
+    this.getEquipos1(this.chatE.nrc,this.chatE.noTrabajador);
+    this.obtenerMensajesCursoEquipo(this.chatE.id_equipo);
   }
 
-  // obtenerMensajesCurso(){
-  //   this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
-  //     res => {
-  //       this.messengers = res; 
-  //       if(this.messengers.length > 0){
-  //         console.log("si hay mensajes para mostrar!!!");
-  //         for(let i = 0; i<=this.messengers.length;i++){
-            
-  //           if(this.messengers[i].matricula != null){
-              
-  //             this.datosService.getStudent(this.messengers[i].matricula).subscribe(
-  //               res => {
-  //                 this.alumnos[this.messengers[i].matricula] = res; 
-  //               },
-  //               err => console.error(err)
-  //             );
-  //           }else if(this.messengers[i].noTrabajador != null){
-              
-  //             this.datosService.getProf(this.messengers[i].noTrabajador).subscribe(
-  //               res => {
-  //                 this.profesores[this.messengers[i].noTrabajador] = res; 
-  //               },
-  //               err => console.error(err)
-  //             );
-  //           }
-  //         }
-  //       }else{
-  //         this.alert = 'Aun nadie ha enviado mensajes para mostrar!!!';
-  //       }
+  atras2(){
+    this.boton = 0;
+    this.boton2 = 0;
+    this.webSocketService.chatsEquipo = [];
+  }
+  chatCurso(){
+    this.boton=2;
+    this.boton2=1;
+  }
 
-  //     },
-  //     err => console.error(err)
-  //   );
-  // }
-  // enviarMensaje(){
-  //   ///// query que inserta msj en la bd/////////////
-  //   console.log(this.chat);
-  //   this.datosService.saveChat(this.chat).subscribe(
-  //     res => {
-  //       console.log(res);
+  obtenerCurso(){
+    this.datosService.getCourse(this.nrc)
+      .subscribe(
+        res =>{       
+          this.course = res;               
+          this.curso = this.course.materia;     
+        },
+        err => console.error(err)
+      )
+  }
+
+  getEquipos1(nrc:number, nTrabajador:number){    
+    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
+      res => {
+        this.equipos = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  obtenerMensajesCurso(){
+    this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
+      res => {
+        this.messengers = res;
+        if(this.messengers.length > 0){
+          this.webSocketService.chats = this.messengers;
+        }else{
+          console.log("No hay mensajes para mostrar!!!");
+        }
+      },
+      err => console.error(err)
+    );
+  }
+
+  obtenerMensajesCursoEquipo(id_equipo:number){
+    this.chatE.id_equipo = id_equipo;
+    console.log("HOLAAAAAAAAAA: " + this.chatE.id_equipo);
+    this.boton2 = 2;
+    this.boton = 1
+    this.datosService.obtenerMsjsCursoEquipo(this.nrc,id_equipo,this.user).subscribe(
+      res => {
+        this.messengersEquipo = res;
+        if(this.messengersEquipo.length > 0){
+          this.webSocketService.chatsEquipo = this.messengersEquipo;
+        }else{
+          console.log("No hay mensajes para mostrar!!!");
+        }
+      },
+      err => console.error(err)
+    );
+  }
+
+
+  sendMessage(){
+    this.datosService.getProf(this.chat.noTrabajador).subscribe(
+      res => {
+        this.profesores[this.chat.noTrabajador] = res; 
+        this.chat.nombre = this.profesores[this.chat.noTrabajador].nombre;
+        //Insertamos el mensaje a nuestra BD
+        this.datosService.saveChat(this.chat).subscribe(
+          res => {
+            console.log(res);
+          },
+          err => console.error(err)
+        )
+        //console.log(this.chat)
+        //creamos nuestra variable para interactuar con los sockets
+        let messageInfo = {
+          id_equipo: this.chat.id_equipo,
+          matricula: this.chat.matricula,
+          mensaje: this.chat.mensaje,
+          noTrabajador: this.chat.noTrabajador,
+          nrc: this.chat.nrc,
+          type: 1,
+          nombre: this.chat.nombre
+        }
+
+        console.log(messageInfo);
         
-  //       // this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
-  //       //   res => {
-  //       //     this.messengers = res; 
-  //       //   },
-  //       //   err => console.error(err)
-  //       // );
-  //     },
-  //     err => console.error(err)
-  //   )
-  //   this.obtenerMensajesCurso();
-  //   this.chat.mensaje = '';
-  //   console.log(this.chat)
+        //Insertamos nuestra variable a la data de los sockets
+        this.webSocketService.sendMessage(messageInfo);
+        this.chat.mensaje = '';
+      },
+      err => console.error(err)
+    );
+  }
 
-  // }
+  sendMessageEquipo(){
+    this.datosService.getProf(this.chatE.noTrabajador).subscribe(
+      res => {
+        this.profesores[this.chatE.noTrabajador] = res; 
+        this.chatE.nombre = this.profesores[this.chatE.noTrabajador].nombre;
+        //Insertamos el mensaje a nuestra BD
+        this.datosService.saveChat(this.chatE).subscribe(
+          res => {
+            console.log(res);
+          },
+          err => console.error(err)
+        )
+        //console.log(this.chat)
+        //creamos nuestra variable para interactuar con los sockets
+        console.log("ChatE: " + this.chatE.id_equipo);
+        let messageInfo = {
+          id_equipo: this.chatE.id_equipo,
+          matricula: this.chatE.matricula,
+          mensaje: this.chatE.mensaje,
+          noTrabajador: this.chatE.noTrabajador,
+          nrc: this.chatE.nrc,
+          type: 1,
+          nombre: this.chatE.nombre
+        }
+
+        console.log("messgeI: " + messageInfo.id_equipo);
+        
+        //Insertamos nuestra variable a la data de los sockets
+        this.webSocketService.sendMessageEquipo(messageInfo);
+        this.chatE.mensaje = '';
+      },
+      err => console.error(err)
+    );
+  }
 
 }

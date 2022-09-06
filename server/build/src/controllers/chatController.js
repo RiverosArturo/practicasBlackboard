@@ -35,19 +35,19 @@ class ChatController {
                 return res.json(actividad);
             }
             else {
-                return res.json({ mensaje: "NO HAY MENSAJES!!!", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
+                res.json({ mensaje: "", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
             }
         });
     }
     getOneEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc, id_equipo, noTrabajador, x } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc, id_equipo, noTrabajador, x]);
+            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=? LIMIT 1', [nrc, id_equipo, noTrabajador, x]);
             if (actividad.length > 0) {
                 res.json(actividad);
             }
             else {
-                res.json({ mensaje: "NO HAY MENSAJES", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
+                res.json({ mensaje: "FALLO", noTrabajador: 0, nrc: 0, id_equipo: 0, matricula: 0 });
             }
         });
     }

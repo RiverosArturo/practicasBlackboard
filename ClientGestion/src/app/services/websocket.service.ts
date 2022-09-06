@@ -12,25 +12,27 @@ export class WebsocketService {
   // });
 
   chats=[] as any;
+  chatsEquipo=[] as any;
   socket:any;
   readonly url: string = "ws://localhost:3000/"
   constructor() {
     this.socket = io(this.url);
     this.onReceiveMessage();
+    this.onReceiveMessageEquipo();
   }
 
   //Metodo escucha el socket
-  listen(eventName:string){
-    return new Observable((subscriber)=>{
-      this.socket.on(eventName,(data)=>{
-        subscriber.next(data);
-      })
-    })
-  }
+  // listen(eventName:string){
+  //   return new Observable((subscriber)=>{
+  //     this.socket.on(eventName,(data)=>{
+  //       subscriber.next(data);
+  //     })
+  //   })
+  // }
 
-  emit(eventName, data){
-    this.socket.emit(eventName, data);
-  }
+  // emit(eventName, data){
+  //   this.socket.emit(eventName, data);
+  // }
 
   sendMessage(messageInfo){
     //Ingresamos nuestro mensaje al arreglo
@@ -39,6 +41,12 @@ export class WebsocketService {
     this.socket.emit("sendMessage", messageInfo);
     //alert("FIN");
   }
+
+  sendMessageEquipo(messageInfo){
+    this.chatsEquipo.push(messageInfo);
+    this.socket.emit("sendMessage", messageInfo);
+  }
+
 
   onReceiveMessage(){
     //escuchamos cuando recibo un msj/evento
@@ -50,6 +58,13 @@ export class WebsocketService {
       // console.log(messageInfo.type);
       this.chats.push(messageInfo);
       //alert("nuevo msj");
+    });
+  }
+
+  onReceiveMessageEquipo(){
+    this.socket.on("reveiceMessage",(messageInfo)=>{
+      messageInfo.type = 2;
+      this.chatsEquipo.push(messageInfo);
     });
   }
 

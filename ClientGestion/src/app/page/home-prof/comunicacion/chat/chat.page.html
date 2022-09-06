@@ -25,47 +25,51 @@
         </ion-toolbar>
       </ion-header>
     </ion-card>
-
-
    <ion-card-content>
-    <!-- <h1>
-      Angular 2 WebSockets Tutorial
-    </h1>
-    <ion-button (click)="sendMsg()">Send Message</ion-button> -->
-    <!-- <div class="chatContainer">
-      <tr *ngFor="let messenger of messengers">
-      
-        <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - PROFESOR</p>
-        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - ALUMNO</p> -->
-          
-        <!-- <p class="local" *ngIf="messenger.matricula==null">{{messenger.mensaje}} - {{profesores[messenger.noTrabajador].nombre}}</p>
-        <p class="remoto" *ngIf="messenger.matricula!=null">{{messenger.mensaje}} - {{alumnos[messenger.matricula].nombre}}</p> -->
-      
-      <!-- </tr>
-    </div> -->
+    <!-- CHAT GRUPO -->
+    <ion-title *ngIf="boton==0"> CHAT GRUPAL </ion-title>
+    <ion-button *ngIf="boton==0" color="primary" (click)="chatCurso()"> 
+      <ion-icon name="chatbox-outline"></ion-icon>
+      <ion-label> {{curso}} </ion-label>                                
+    </ion-button>
 
-    <!-- <div class="InputContainer">
-      <form (submit)="enviarMensaje()" (submit)="sendMsg()">
-        <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="string" placeholder="Ingresa un mensaje!!!">
-      </form>
-    </div> -->
-
-    <div class="chatContainer">
-      <p [ngClass]="{'local': message.type === 1, 'remoto': message.type === 2}" 
-          *ngFor="let message of webSocketService.chats">{{message.text}}</p>
-      <!-- //<p class="remoto">Mensaje remoto</p> -->
+    <div class="chatContainer" *ngIf="boton > 1">
+      <p [ngClass]="{'local': message.noTrabajador == user, 'remoto': message.matricula != null }" 
+          *ngFor="let message of webSocketService.chats">{{message.mensaje}} - {{message.nombre}}</p>
     </div>
     
-    <div class="inputContainer">
-        <!-- <form (submit)="sendMessage()" (submit)="mensajeRecibido()" > -->
+    <div class="inputContainer" *ngIf="boton > 1">
         <form (submit)="sendMessage()" >
-            <input [(ngModel)]="text" [ngModelOptions]="{standalone:true}" type="text">
-            <!-- <button (click)="sendMessage()"></button> -->
+            <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="text">
         </form>
     </div>
 
-    <!-- <ion-button > Enviar </ion-button><br><br> -->
+
+    <!-- Chat equipos -->
+    <ion-title *ngIf="boton2==0"> CHAT POR EQUIPOS </ion-title>
+    <tr  *ngFor="let equipo of equipos">
+      <!-- button add student -->               
+      <ion-button *ngIf="boton2==0" color="primary" (click)="obtenerMensajesCursoEquipo(equipo.id)">
+        <ion-icon name="chatbox-outline"></ion-icon>
+        <ion-label> {{equipo.nombre}} </ion-label>                                
+      </ion-button>   
+    </tr>
+
+    <div class="chatContainer" *ngIf="boton2 > 1">
+      <p [ngClass]="{'local': message.noTrabajador == user, 'remoto': message.matricula != null }" 
+          *ngFor="let message of webSocketService.chatsEquipo">{{message.mensaje}} - {{message.nombre}}</p>
+    </div>
+    
+    <div class="inputContainer" *ngIf="boton2 > 1">
+        <form (submit)="sendMessageEquipo()" >
+            <input [(ngModel)]="chatE.mensaje" [ngModelOptions]="{standalone:true}" type="text">
+        </form>
+    </div>
    </ion-card-content>
+
+   <ion-button (click)="atras2()" *ngIf="boton2 > 1 || boton > 1">
+    <ion-icon name="arrow-undo-outline"></ion-icon>
+  </ion-button> 
 
   </ion-card>
 </ion-content>

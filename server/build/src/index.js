@@ -62,14 +62,10 @@ class Server {
     }
     start() {
         this.io.sockets.on('connection', (socket) => {
-            console.log("Nuevo usuario conectado: " + socket.id);
-            //const { nameRoom } = socket.handshake.query;
-            // console.log(nameRoom);
-            // socket.join(nameRoom);
+            console.log("Nuevo usuario conectado!!!");
             socket.on("sendMessage", (messageInfo) => {
                 console.log("Enviando un msj");
-                console.log("HEY: " + messageInfo.mensaje);
-                console.log("Objeto: " + messageInfo.nombre);
+                // console.log("HEY: " + messageInfo.text);
                 // console.log("HEY: " + messageInfo.type);
                 socket.broadcast.emit("reveiceMessage", messageInfo);
                 // console.log("Ya pase el broadcast.emit!!!!");

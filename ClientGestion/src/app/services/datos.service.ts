@@ -194,6 +194,10 @@ obtenerMsjsCurso(nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/chat/${nrc}/${noTrabajador}`);
 }
 
+obtenerMsjsCursoEquipo(nrc:number,id_equipo:number,noTrabajador:number){
+  return this.http.get(`${this.API_URI}/chat/${nrc}/${id_equipo}/${noTrabajador}`);
+}
+
 // administrador ///////////////////////////////////////////////////////////////////////////////////////////////////////
   getAdmis() {
     return this.http.get(`${this.API_URI}/admi`);
