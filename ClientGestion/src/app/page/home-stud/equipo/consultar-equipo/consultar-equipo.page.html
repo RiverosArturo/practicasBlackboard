@@ -82,11 +82,10 @@
           <tr *ngFor="let student of students">
             <div *ngIf="user == student.matricula ">
               {{equipo.matricula}}, {{student.nombre}}, {{student.correo}}
-
             </div>
           </tr>          
-          <ion-button color="danger" >                                          
-            <ion-icon name="trash"></ion-icon>                
+          <ion-button color="danger" >                                                     
+            <ion-icon name="trash" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)"></ion-icon> 
           </ion-button>            
         </ion-buttons>
 

@@ -168,7 +168,45 @@ studCourses:any = [];//Alumnos del curso
       err => console.error(err)
     );
   }
-//---- funciones de alert-------  
+  deleteStudentEquipo(matricula:number, id:number, nrc:number, nTrabajador:number){        
+    this.datosService.deleteStudentEquipo(matricula, id, nrc, nTrabajador).subscribe(
+      res => {
+        console.log(res); 
+        this.get1Equipo(id);
+      },
+      err => console.error(err)
+    )
+  }
+//--------------------------------------------------------------------------  
+//                          funciones de alert
+//--------------------------------------------------------------------------
+      
+async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabajador:number) {    
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Confirma',
+    message: '<strong>Eliminar </strong>!!! '+ matricula ,
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        id: 'cancel-button',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Ok',
+        id: 'confirm-button',
+        handler: () => {
+          console.log('Confirm Okay');
+          //this.deleteStudentEquipo(matricula, id, nrc, nTrabajador);            
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
 
 async AlerteditOKEquipo( nombre:string ) {
   const alert = await this.alertController.create({
