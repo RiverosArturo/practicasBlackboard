@@ -71,13 +71,23 @@ class Server {
                 console.log("HEY: " + messageInfo.mensaje);
                 console.log("Objeto: " + messageInfo.nombre);
                 // console.log("HEY: " + messageInfo.type);
-                socket.broadcast.emit("reveiceMessage", messageInfo);
+                //Usuario se une a la sala
+                console.log("SALA: " + messageInfo.sala);
+                socket.join(messageInfo.sala);
+                console.log("Conectado en sala " + messageInfo.sala);
+                //Mandamos msj a la sala
+                socket.broadcast.to(messageInfo.sala).emit("reveiceMessage", messageInfo);
                 // console.log("Ya pase el broadcast.emit!!!!");
                 // console.log("//////////Saliendo de sendMessage y entrando a reveiceMessage////////////");
             });
-            // this.io.on('connection', () => {
-            //     console.log("Nueva conexion!!!");
-            // });
+            socket.on("unirSala", (sala) => {
+                socket.join(sala);
+                console.log(socket.id + " unido a la sala " + sala);
+            });
+            socket.on("desconectarSala", (sala) => {
+                socket.leave(sala);
+                console.log("Abandono la sala: " + sala);
+            });
         });
         // this.io.sockets.on('connection',(socket:any)=>{
         //         console.log("Nuevo usuario conectado!!!");
@@ -86,9 +96,6 @@ class Server {
         this.server.listen(3000, () => {
             console.log('Server on port', 3000);
         });
-        // this.server.listen(this.app.get('port'), () => {
-        //     console.log('Server on port', this.app.get('port'));
-        // });
     }
 }
 const server = new Server();

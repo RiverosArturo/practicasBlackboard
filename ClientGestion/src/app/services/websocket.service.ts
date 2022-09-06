@@ -15,10 +15,12 @@ export class WebsocketService {
   chatsEquipo=[] as any;
   socket:any;
   readonly url: string = "ws://localhost:3000/"
+  //personas:any = [];
   constructor() {
     this.socket = io(this.url);
     this.onReceiveMessage();
     this.onReceiveMessageEquipo();
+    //this.personas = [];
   }
 
   //Metodo escucha el socket
@@ -33,6 +35,48 @@ export class WebsocketService {
   // emit(eventName, data){
   //   this.socket.emit(eventName, data);
   // }
+
+  // agregarPersona(id:number, nombre:string){
+
+  //   let persona = { id, nombre};
+  //   this.personas.push(persona);
+  //   return this.personas;
+
+  // }
+
+  // obtenerPersona(id:number){
+  //   let persona = this.personas.find( persona => {
+  //     return persona.id == id;
+  //   })[0];
+  //   return persona;
+  // }
+
+  // obtenerPersonas(){
+  //   return this.personas;
+  // }
+
+  // obtenerPersonasPorSala(){
+
+  // }
+
+  // borrarPersona(id:number){
+
+  //   let personaBorrada = this.obtenerPersona(id);
+
+  //   this.personas = this.personas.find( persona => {
+  //     return persona.id != id;
+  //   });
+
+  //   return personaBorrada;
+  // }
+
+  unirSala(sala:string){
+    this.socket.emit("unirSala", sala);
+  }
+
+  desconectarSala(sala:string){
+    this.socket.emit("desconectarSala", sala);
+  }
 
   sendMessage(messageInfo){
     //Ingresamos nuestro mensaje al arreglo
@@ -53,18 +97,16 @@ export class WebsocketService {
     //alert("Entrando a funcion onReceiveMessage");
     //creamos evento reveiceMessage
     this.socket.on("reveiceMessage",(messageInfo)=>{
-      messageInfo.type = 2;
       // console.log(messageInfo.text);
       // console.log(messageInfo.type);
-      this.chats.push(messageInfo);
+        this.chats.push(messageInfo);
       //alert("nuevo msj");
     });
   }
 
   onReceiveMessageEquipo(){
     this.socket.on("reveiceMessage",(messageInfo)=>{
-      messageInfo.type = 2;
-      this.chatsEquipo.push(messageInfo);
+        this.chatsEquipo.push(messageInfo);
     });
   }
 

@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./comunicacion/avisos/avisos.module').then( m => m.AvisosPageModule)
   },
   {
-    path: 'chat/:user/:nrc/:nTrabajador',
+    path: 'chat/:user/:nrc/:nTrabajador/:id/:curso',
     loadChildren: () => import('./comunicacion/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
     component: AvisosPage
   },
   {
-    path: 'chat/:user/:nrc/:nTrabajador',
+    path: 'chat/:user/:nrc/:nTrabajador/:id/:curso',
     component: ChatPage
   },
   {

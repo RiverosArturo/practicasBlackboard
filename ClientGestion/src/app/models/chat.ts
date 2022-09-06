@@ -5,4 +5,5 @@ export interface Chat {
     id_equipo?: number;
     matricula?: number;
     nombre?: string;
+    sala?: string;
 }

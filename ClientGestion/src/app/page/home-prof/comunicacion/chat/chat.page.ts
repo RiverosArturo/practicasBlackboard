@@ -28,7 +28,8 @@ export class ChatPage implements OnInit {
     nrc: 0,
     id_equipo: null,
     matricula: null,
-    nombre: ''
+    nombre: '',
+    sala: ''
   }
   chatE:Chat = {
     mensaje: '',
@@ -36,7 +37,8 @@ export class ChatPage implements OnInit {
     nrc: 0,
     id_equipo: null,
     matricula: null,
-    nombre: ''
+    nombre: '',
+    sala: ''
   }
 
   //botones curso
@@ -61,7 +63,13 @@ export class ChatPage implements OnInit {
     this.boton = 0;
     this.boton2 = 0;
     this.webSocketService.chatsEquipo = [];
+    this.webSocketService.chats = [];
+    let sala = this.chat.sala;
+    this.webSocketService.desconectarSala(sala);
+    sala = this.chatE.sala;
+    this.webSocketService.desconectarSala(sala);
   }
+
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
@@ -74,7 +82,8 @@ export class ChatPage implements OnInit {
       nrc: this.nrc,
       id_equipo: null,
       matricula: null,
-      nombre:''
+      nombre:'',
+      sala: ''
     }
     this.obtenerMensajesCurso();
 
@@ -84,7 +93,8 @@ export class ChatPage implements OnInit {
       nrc: this.nrc,
       id_equipo: null,
       matricula: null,
-      nombre:''
+      nombre:'',
+      sala: ''
     }
     this.getEquipos1(this.chatE.nrc,this.chatE.noTrabajador);
     this.obtenerMensajesCursoEquipo(this.chatE.id_equipo);
@@ -94,8 +104,15 @@ export class ChatPage implements OnInit {
     this.boton = 0;
     this.boton2 = 0;
     this.webSocketService.chatsEquipo = [];
+    this.webSocketService.chats = [];
+    let sala = this.chat.sala;
+    this.webSocketService.desconectarSala(sala);
+    sala = this.chatE.sala;
+    this.webSocketService.desconectarSala(sala);
   }
   chatCurso(){
+    let sala= this.chat.sala;
+    this.webSocketService.unirSala(sala);
     this.boton=2;
     this.boton2=1;
   }
@@ -106,6 +123,7 @@ export class ChatPage implements OnInit {
         res =>{       
           this.course = res;               
           this.curso = this.course.materia;     
+          this.chat.sala = this.course.materia;
         },
         err => console.error(err)
       )
@@ -134,9 +152,13 @@ export class ChatPage implements OnInit {
     );
   }
 
-  obtenerMensajesCursoEquipo(id_equipo:number){
+  obtenerMensajesCursoEquipo(id_equipo:number, nombre?:string){
     this.chatE.id_equipo = id_equipo;
-    console.log("HOLAAAAAAAAAA: " + this.chatE.id_equipo);
+    this.chatE.sala = nombre;
+    let sala = nombre;
+    this.webSocketService.unirSala(sala);
+    //console.log(this.chatE);
+    console.log("HOLAAAAAAAAAA: " + this.chatE.sala);
     this.boton2 = 2;
     this.boton = 1
     this.datosService.obtenerMsjsCursoEquipo(this.nrc,id_equipo,this.user).subscribe(
@@ -159,6 +181,7 @@ export class ChatPage implements OnInit {
         this.profesores[this.chat.noTrabajador] = res; 
         this.chat.nombre = this.profesores[this.chat.noTrabajador].nombre;
         //Insertamos el mensaje a nuestra BD
+        console.log("Soy salaaaa: " + this.chat.sala);
         this.datosService.saveChat(this.chat).subscribe(
           res => {
             console.log(res);
@@ -174,7 +197,8 @@ export class ChatPage implements OnInit {
           noTrabajador: this.chat.noTrabajador,
           nrc: this.chat.nrc,
           type: 1,
-          nombre: this.chat.nombre
+          nombre: this.chat.nombre,
+          sala: this.chat.sala
         }
 
         console.log(messageInfo);
@@ -209,7 +233,8 @@ export class ChatPage implements OnInit {
           noTrabajador: this.chatE.noTrabajador,
           nrc: this.chatE.nrc,
           type: 1,
-          nombre: this.chatE.nombre
+          nombre: this.chatE.nombre,
+          sala: this.chatE.sala
         }
 
         console.log("messgeI: " + messageInfo.id_equipo);
