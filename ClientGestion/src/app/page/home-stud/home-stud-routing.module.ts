@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/consultar-estudiante/consultar-estudiante.module').then( m => m.ConsultarEstudiantePageModule)
   },
   {
-    path: 'perfil/:user/:nrc',
+    path: 'modificar-estudiante/:user/:nrc',
     loadChildren: () => import('./estudiante/modificar-estudiante/modificar-estudiante.module').then( m => m.ModificarEstudiantePageModule)
   },
   {
@@ -111,7 +111,12 @@ const routes: Routes = [
   {
     path: 'modificar-estudiante/:user/:nrc',
     component: ModificarEstudiantePage
+  },
+  {
+    path: 'perfil/:user/:nrc',
+    loadChildren: () => import('./estudiante/perfil/perfil.module').then( m => m.PerfilPageModule)
   }
+
 
 ];
 
