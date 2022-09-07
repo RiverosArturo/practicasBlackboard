@@ -171,7 +171,8 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.deleteStudentEquipo(matricula, id, nrc, nTrabajador).subscribe(
       res => {
         console.log(res); 
-        this.getequipoAlumno();        
+        this.getequipoAlumno();  
+        this.getStudent();      
       },
       err => console.error(err)
     )
@@ -185,7 +186,7 @@ async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabaj
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: 'Confirma',
-    message: '<strong>Eliminar </strong>!!! '+ matricula ,
+    message: '<strong>Eliminar </strong>!!! '+ matricula + ' del equipo?' ,
     buttons: [
       {
         text: 'Cancel',

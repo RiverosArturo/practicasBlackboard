@@ -28,7 +28,7 @@
   <!-- opciones -->
     <ion-item>      
       <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
-      <ion-button color = "primary"> Salir del Equipo </ion-button>      
+      <ion-button color = "primary" (click)="AlertDeleteStudentEquipo(user, id, nrc, nTrabajador)"> Salir del Equipo </ion-button>      
     </ion-item>
     <!-- Edita el nombre del equipo -->
     <div *ngIf="edit == true ">
@@ -70,19 +70,19 @@
       
     <div slot="fixed">
       <ion-list>
-      <tr  *ngFor="let equipo of equipos">
-        
+      <tr  *ngFor="let equipo of equipos">        
         <ion-buttons>
           <tr *ngFor="let student of students">
-            <div *ngIf="user == student.matricula ">
+            <div *ngIf="equipo.matricula == student.matricula ">
               {{equipo.matricula}}, {{student.nombre}}, {{student.correo}}
-            </div>
-          </tr>          
-          <ion-button color="danger" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)" >                                                                 
-            <ion-icon name="trash"></ion-icon> 
-          </ion-button>            
-        </ion-buttons>
 
+              <ion-button color="danger" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)" >                                                                 
+                <ion-icon name="trash"></ion-icon> 
+              </ion-button>
+
+            </div>
+          </tr>                          
+        </ion-buttons>
       </tr>
       </ion-list>
     </div>
