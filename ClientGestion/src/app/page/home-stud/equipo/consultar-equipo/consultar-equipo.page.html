@@ -7,13 +7,12 @@
       <ion-avatar>
         <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
       </ion-avatar>
-      <ion-label >Usuario: {{user}}</ion-label>
-      
+      <ion-label >Usuario: {{user}}</ion-label>      
     </ion-buttons>
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
+
   <ion-card>
     <ion-header>
       <ion-toolbar>
@@ -26,13 +25,8 @@
     </ion-header>
   </ion-card>
 
-  <ion-header>
-    <ion-title> Equipo </ion-title>
-  </ion-header>
-
   <!-- opciones -->
-    <ion-item>
-      <ion-button color = "primary"> Equipo {{id}} </ion-button>
+    <ion-item>      
       <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
       <ion-button color = "primary"> Salir del Equipo </ion-button>      
     </ion-item>
@@ -84,8 +78,8 @@
               {{equipo.matricula}}, {{student.nombre}}, {{student.correo}}
             </div>
           </tr>          
-          <ion-button color="danger" >                                                     
-            <ion-icon name="trash" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)"></ion-icon> 
+          <ion-button color="danger" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)" >                                                                 
+            <ion-icon name="trash"></ion-icon> 
           </ion-button>            
         </ion-buttons>
 
@@ -93,6 +87,8 @@
       </ion-list>
     </div>
 </ion-content>
+</ion-content>
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

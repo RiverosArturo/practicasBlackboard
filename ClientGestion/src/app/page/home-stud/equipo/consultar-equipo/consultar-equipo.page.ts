@@ -106,7 +106,7 @@ studCourses:any = [];//Alumnos del curso
             this.check = false;
           }
           else if(i==this.oneEquipos.length-1 && this.check==false){
-            //this.AlertYaExisteEquipo(nombre);
+            this.AlertYaExisteEquipo(nombre);
             this.edit = true;
             this.check = true;
           }
@@ -146,8 +146,7 @@ studCourses:any = [];//Alumnos del curso
   getStudent(){//optiene los alumnos inscritos en el sistema
     this.datosService.getStudents().subscribe(
       res => {
-        this.students = res;   
-        //console.log('--->',res);  
+        this.students = res;           
       },
       err => console.error(err)
     );
@@ -172,7 +171,7 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.deleteStudentEquipo(matricula, id, nrc, nTrabajador).subscribe(
       res => {
         console.log(res); 
-        this.get1Equipo(id);
+        this.getequipoAlumno();        
       },
       err => console.error(err)
     )
@@ -181,7 +180,8 @@ studCourses:any = [];//Alumnos del curso
 //                          funciones de alert
 //--------------------------------------------------------------------------
       
-async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabajador:number) {    
+async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabajador:number) {  
+  console.log(matricula, id, nrc, nTrabajador);  
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: 'Confirma',
@@ -200,7 +200,7 @@ async AlertDeleteStudentEquipo(matricula: number, id:number, nrc:number, nTrabaj
         id: 'confirm-button',
         handler: () => {
           console.log('Confirm Okay');
-          //this.deleteStudentEquipo(matricula, id, nrc, nTrabajador);            
+          this.deleteStudentEquipo(matricula, id, nrc, nTrabajador);            
         }
       }
     ]
