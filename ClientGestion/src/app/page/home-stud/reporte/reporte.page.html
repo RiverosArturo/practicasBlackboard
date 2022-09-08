@@ -12,25 +12,67 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
 
   <ion-card>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-          <ion-title> Reporte </ion-title><br>
+          <ion-title> Reportes </ion-title><br>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-  </ion-card>
-   
-   <ion-card-content>
-    <ion-button > Generar  </ion-button><br><br>
-   </ion-card-content>
+  </ion-card> 
+<!------------------------------------------------------------------------------------------------------->
+  <ion-content>
 
-</ion-content>
+    <div *ngIf="reporte == true;"> <!-- Interfaz para ver reporte-->
+      <ionb-card>
+        <ion-toolbar>
+          <ion-item>
+            <ion-title>  Reporte de actividades </ion-title>
+            <ion-button color="danger" slot="end"  (click)="close()">
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-toolbar>
+      </ionb-card>
 
+      <ion-card>
+        <ion-label>Contenido </ion-label> <br><br><br><br><br><br><br><br><br><br><br>
+      </ion-card>
+    </div>
+    
+    <div *ngIf="lista == true"> <!-- Liste de cursos -->
+    <ion-content
+      [scrollEvents]="true"
+      (ionScrollStart)="logScrollStart()"
+      (ionScroll)="logScrolling($event)"
+      (ionScrollEnd)="logScrollEnd()">
+          
+      <div slot="fixed">
+        <ion-list>
+          <tr  *ngFor="let cursoEs of eCursos" >           
+            <div *ngIf="cursoEs.matricula == user;">                   
+                <tr *ngFor="let course of courses">  
+                  <div *ngIf="course.nrc == cursoEs.nrc">
+                    <ion-item>
+                      <ion-button (click)="report()"> Generar reporte                  
+                        <ion-icon name="document-text-sharp"></ion-icon>
+                     </ion-button>    
+                      <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }}, Profesor:{{ cursoEs.nTrabajador }}  </ion-title>       
+                    </ion-item>                 
+                  </div> 
+                </tr>                
+            </div>     
+          </tr>
+        </ion-list>
+      </div>
+    </ion-content>
+    </div>    
+
+  </ion-content>
+<!-------------------------------------------------------------------------------------------------------->
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
 </ion-footer>
