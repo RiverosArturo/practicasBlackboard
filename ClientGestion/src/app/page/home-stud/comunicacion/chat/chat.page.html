@@ -29,7 +29,7 @@
   <ion-card-content>
     <!-- CHAT GRUPO -->
     <ion-title *ngIf="boton==0"> CHAT GRUPAL </ion-title>
-    <ion-button *ngIf="boton==0" color="primary" (click)="chatCurso()"> 
+    <ion-button *ngIf="boton==0" color="primary" (click)="obtenerMensajesCurso()"> 
       <ion-icon name="chatbox-outline"></ion-icon>
       <ion-label> {{curso}} </ion-label>                                
     </ion-button>
@@ -38,7 +38,13 @@
       <p [ngClass]="{'local': message.matricula == user, 'remoto': message.noTrabajador != user && message.matricula != user}" 
           *ngFor="let message of webSocketService.chats">{{message.matricula}} {{message.mensaje}} - {{message.nombre}}</p>
     </div>
-    
+
+    <!-- <div class="chatContainer" *ngIf="boton > 1">
+      <tr *ngFor="let message of webSocketService.chats">
+        {{message.mensaje}}
+      </tr>
+    </div>
+     -->
     <div class="inputContainer" *ngIf="boton > 1">
         <form (submit)="sendMessage()" >
             <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="text">

@@ -23,8 +23,8 @@ class ChatController {
         }
     }
     public async getOneEq (req:Request, res:Response): Promise<any>{
-        const  {nrc,id_equipo,noTrabajador,x} = req.params;
-        const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador, x])
+        const  {nrc,id_equipo,noTrabajador} = req.params;
+        const actividad = await pool.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador])
         if (actividad.length > 0 ){
             res.json(actividad);
         }else{

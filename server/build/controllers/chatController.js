@@ -41,8 +41,8 @@ class ChatController {
     }
     getOneEq(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc, id_equipo, noTrabajador, x } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc, id_equipo, noTrabajador, x]);
+            const { nrc, id_equipo, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `chat` WHERE nrc=? AND id_equipo=? AND noTrabajador=?', [nrc, id_equipo, noTrabajador]);
             if (actividad.length > 0) {
                 res.json(actividad);
             }

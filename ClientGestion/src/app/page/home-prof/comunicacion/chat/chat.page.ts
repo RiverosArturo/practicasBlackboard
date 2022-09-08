@@ -85,7 +85,7 @@ export class ChatPage implements OnInit {
       nombre:'',
       sala: ''
     }
-    this.obtenerMensajesCurso();
+    //this.obtenerMensajesCurso();
 
     this.chatE = {
       mensaje: '',
@@ -97,7 +97,7 @@ export class ChatPage implements OnInit {
       sala: ''
     }
     this.getEquipos1(this.chatE.nrc,this.chatE.noTrabajador);
-    this.obtenerMensajesCursoEquipo(this.chatE.id_equipo);
+    //this.obtenerMensajesCursoEquipo(this.chatE.id_equipo);
   }
 
   atras2(){
@@ -109,12 +109,6 @@ export class ChatPage implements OnInit {
     this.webSocketService.desconectarSala(sala);
     sala = this.chatE.sala;
     this.webSocketService.desconectarSala(sala);
-  }
-  chatCurso(){
-    let sala= this.chat.sala;
-    this.webSocketService.unirSala(sala);
-    this.boton=2;
-    this.boton2=1;
   }
 
   obtenerCurso(){
@@ -139,6 +133,10 @@ export class ChatPage implements OnInit {
   }
 
   obtenerMensajesCurso(){
+    let sala= this.chat.sala;
+    this.webSocketService.unirSala(sala);
+    this.boton=2;
+    this.boton2=1;
     this.datosService.obtenerMsjsCurso(this.nrc,this.user).subscribe(
       res => {
         this.messengers = res;

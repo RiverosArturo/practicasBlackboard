@@ -95,7 +95,7 @@ class Server {
             socket.on("desconectarSala", (sala:any) => {
                 socket.leave(sala);
                 console.log("Abandono la sala: " + sala);
-              });
+            });
         
             
         });

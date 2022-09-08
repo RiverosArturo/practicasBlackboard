@@ -26,6 +26,21 @@
 
    <ion-card-content>
     <ion-button > Consular </ion-button><br><br>
+
+    <div>
+      <input (change)="capturarFile($event)" type="file">
+    </div>
+    <div>
+      <button type="button" [disabled]="loading" (click)="subirArchivo()">
+        {{(loading) ? 'Cargando...' : 'Subir Archivo'}}
+      </button>
+    </div>
+    <!-- Preview archivo -->
+    <div *ngIF="previsualizacion">
+      <iframe 
+        width="100px"  [src]="previsualizacion" alt="">
+      </iframe>
+    </div>
    </ion-card-content>
 
 </ion-content>
