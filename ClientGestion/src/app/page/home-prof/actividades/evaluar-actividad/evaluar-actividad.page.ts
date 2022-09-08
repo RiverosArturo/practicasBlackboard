@@ -48,20 +48,20 @@ export class EvaluarActividadPage implements OnInit {
   }
 
   getStudCourse(){
-    this.datosService.getActivity().subscribe(
-      res => {
-        this.actividads = res;        
-      },
-      err => console.error(err)
-    );
+    // this.datosService.getActivity().subscribe(
+    //   res => {
+    //     this.actividads = res;        
+    //   },
+    //   err => console.error(err)
+    // );
   }
 
   getStudCourse2(){
-    this.datosService.getActivity().subscribe(
-      res => {
-        this.actividads = res;        
-      },
-      err => console.error(err)
-    );
+    // this.datosService.getActivity().subscribe(
+    //   res => {
+    //     this.actividads = res;        
+    //   },
+    //   err => console.error(err)
+    // );
   }
 }

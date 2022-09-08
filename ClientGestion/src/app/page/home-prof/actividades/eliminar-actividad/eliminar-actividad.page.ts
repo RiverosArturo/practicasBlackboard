@@ -30,8 +30,8 @@ export class EliminarActividadPage implements OnInit {
     //console.log("Clicka: "+this.nTrabajador+"   "+this.nrc);
 
     this.getActivity();
-    this.getEquipos(this.nTrabajador,this.nrc);
-
+    this.getActivityEq();
+    this.getEquipos();
     // let h = 0;
     //       do{
     //         for(h<=this.equiposR.length; h++;){
@@ -64,7 +64,7 @@ export class EliminarActividadPage implements OnInit {
 
   getActivity(){
     console.log(this.boton);
-    this.datosService.getActivity().subscribe(
+    this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.activitys = res;  
         for(let i = 0; i<=this.activitys.length;i++){
@@ -72,10 +72,36 @@ export class EliminarActividadPage implements OnInit {
           this.activitys[i].fecha = fecha.substr(0,10);
           const fecha2 = String(this.activitys[i].fechaEntrega);
           this.activitys[i].fechaEntrega = fecha2.substr(0,10);
-          if(this.activitys[i].id_equipo != null){
-            this.datosService.getid(this.activitys[i].id_equipo).subscribe(
+        }  
+      },
+      err => console.error(err)
+    );
+  }
+  
+  getEquipos(){
+    this.datosService.getEquipos1(this.nrc, this.nTrabajador).subscribe(
+      res => {
+        this.equipos = res; 
+        console.log(this.equipos)
+      },
+      err => console.error(err)
+    );
+  }
+  getActivityEq(){
+    console.log(this.nrc, this.nTrabajador)
+    this.datosService.getActivityEq(this.nrc, this.nTrabajador).subscribe(
+      res => {
+        this.activitysEq = res;  
+        console.log(this.activitysEq);
+        for(let i = 0; i<=this.activitysEq.length;i++){
+          const fecha = String(this.activitysEq[i].fecha);
+          this.activitysEq[i].fecha = fecha.substr(0,10);
+          const fecha2 = String(this.activitysEq[i].fechaEntrega);
+          this.activitysEq[i].fechaEntrega = fecha2.substr(0,10);
+          if(this.activitysEq[i].id_equipo != null){
+            this.datosService.getid(this.activitysEq[i].id_equipo).subscribe(
               res => {
-                this.equipos[this.activitys[i].id_equipo] = res; 
+                this.equipos[this.activitysEq[i].id_equipo] = res; 
                 //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
                 // this.equiposR = this.equipos.filter(function(x) {
                 //   return x !== undefined;
@@ -84,29 +110,6 @@ export class EliminarActividadPage implements OnInit {
               err => console.error(err)
             );
           }
-        }  
-      },
-      err => console.error(err)
-    );
-  }
-  
-  getEquipos(nrc:number,nTrabajador:number){
-    this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
-      res => {
-        this.equipos = res; 
-      },
-      err => console.error(err)
-    );
-  }
-  getActivityEq(id_equipo:number){
-    this.datosService.getActivityEq(id_equipo).subscribe(
-      res => {
-        this.activitysEq = res;  
-        for(let i = 0; i<=this.activitys.length;i++){
-          const fecha = String(this.activitys[i].fecha);
-          this.activitysEq[i].fecha = fecha.substr(0,10);
-          const fecha2 = String(this.activitys[i].fechaEntrega);
-          this.activitysEq[i].fechaEntrega = fecha2.substr(0,10);
         }      
       },
       err => console.error(err)
@@ -157,7 +160,7 @@ export class EliminarActividadPage implements OnInit {
               this.deleteActividadEq(id, nrc, id_equipo, noTrabajador);
               // this.boton = 0;
               // this.boton2 = true;
-              this.datosService.getActivityEq(id_equipo).subscribe(
+              this.datosService.getActivityEq(nrc, noTrabajador).subscribe(
                 res => {
                   this.activitysEq = res;  
                 },
@@ -167,7 +170,7 @@ export class EliminarActividadPage implements OnInit {
               this.deleteActividad(id, nrc, noTrabajador);
               // this.boton = 0
               // this.boton2 = true;
-              this.datosService.getActivity().subscribe(
+              this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
                 res => {
                   this.activitys = res;  
                   for(let i = 0; i<=this.activitys.length;i++){

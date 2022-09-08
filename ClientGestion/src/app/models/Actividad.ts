@@ -11,5 +11,8 @@ export interface Actividad {
     id_equipo?: number;
     calificacion?: number;
     matricula?: number;
-
+    urlProfesor?: string;
+    urlEstudiante?: string;
+    fechaEstudiante?: string;
+    comentarioProfesor?: string;
 }

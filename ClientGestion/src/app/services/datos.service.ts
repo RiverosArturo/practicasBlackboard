@@ -116,11 +116,17 @@ deleteEquipo(id: number, nrc:number, nTrabajador:number){
   return this.http.delete(`${this.API_URI}/equipo/${id}/${nrc}/${nTrabajador}`);
 }
 //----------------------FUNCIONES ACTIVIDAD -----------------------------------//
-getActivity(){
-  return this.http.get(`${this.API_URI}/actividad`);
+getActivity(nrc:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/actividad/${nrc}/${noTrabajador}`);
 }
-getActivityEq(id_equipo:number){
-  return this.http.get(`${this.API_URI}/actividad/${id_equipo}`);
+getActivityEq(nrc:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/comodin/${nrc}/${noTrabajador}`);
+}
+getActivityEs(nrc:number, noTrabajador:number, matricula:number){
+  return this.http.get(`${this.API_URI}/comodin/${nrc}/${noTrabajador}/${matricula}`);
+}
+getActivityEqEs(nrc:number, noTrabajador:number, matricula:number, id_equipo:number){
+  return this.http.get(`${this.API_URI}/comodin/${nrc}/${noTrabajador}/${matricula}/${id_equipo}`);
 }
 getOneActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);

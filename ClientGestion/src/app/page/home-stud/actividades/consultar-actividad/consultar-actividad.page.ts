@@ -11,9 +11,13 @@ import { DatosService } from 'src/app/services/datos.service';
 })
 export class ConsultarActividadPage implements OnInit {
 
-  user:string;
+  user:number;
   nrc:number;
-  archivos: any = [];
+  nTrabajador:number;
+  id_equipo:number;
+  actividades: any = [];
+  actividadesE: any = [];
+  equipos: any = [];
   previsualizacion:string;
   loading:boolean;
 
@@ -23,63 +27,56 @@ export class ConsultarActividadPage implements OnInit {
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
+    this.nTrabajador = params.nTrabajador;
+    this.id_equipo = params.id_equipo;
+    this.obtenerActividades();
+    this.obtenerActividadesE();
+
+
   }
 
-  capturarFile(event){
-    const archivoCapturado = event.target.files[0];
-    this.extraerBase64(archivoCapturado).then(imagen => {
-      //this.previsualizacion = imagen.base;
-      console.log(imagen);
-    })
-    this.archivos.push(archivoCapturado);
-    //console.log(event.target.files);
+  obtenerActividades(){
+    this.datosService.getActivityEs(this.nrc, this.nTrabajador, this.user).subscribe(
+      res => {
+          this.actividades = res;     
+          for(let i = 0; i<=this.actividades.length;i++){
+            const fecha = String(this.actividades[i].fecha);
+            this.actividades[i].fecha = fecha.substr(0,10);
+            const fecha2 = String(this.actividades[i].fechaEntrega);
+            this.actividades[i].fechaEntrega = fecha2.substr(0,10);
+          }
+      },
+      err => console.error(err)
+    );
   }
 
-  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-          base: reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve({
-          base: null
-        });
-      };
-
-    } catch (e) {
-      return null;
-    }
-  })
-
-  subirArchivo(){
-    try {
-      this.loading = true;
-      const formularioDeDatos = new FormData();
-      this.archivos.forEach(archivo => {
-        formularioDeDatos.append('files', archivo)
-      })
-      // formularioDeDatos.append('_id', 'MY_ID_123')
-      // this.rest.post(`http://localhost:3001/upload`, formularioDeDatos)
-      //   .subscribe(res => {
-      //     this.loading = false;
-      //     console.log('Respuesta del servidor', res);
-
-      //   }, () => {
-      //     this.loading = false;
-      //     alert('Error');
-      //   })
-    } catch (e) {
-      this.loading = false;
-      console.log('ERROR', e);
-
-    }
+  obtenerActividadesE(){
+    this.datosService.getActivityEqEs(this.nrc, this.nTrabajador, this.user, this.id_equipo).subscribe(
+      res => {
+          this.actividadesE = res;  
+          for(let i = 0; i<=this.actividadesE.length;i++){
+            const fecha = String(this.actividadesE[i].fecha);
+            this.actividadesE[i].fecha = fecha.substr(0,10);
+            const fecha2 = String(this.actividadesE[i].fechaEntrega);
+            this.actividadesE[i].fechaEntrega = fecha2.substr(0,10);
+            if(this.actividadesE[i].id_equipo != null){
+              this.datosService.getid(this.actividadesE[i].id_equipo).subscribe(
+                res => {
+                  this.equipos[this.actividadesE[i].id_equipo] = res; 
+                  //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
+                  // this.equiposR = this.equipos.filter(function(x) {
+                  //   return x !== undefined;
+                  // });
+                },
+                err => console.error(err)
+              );
+            }
+          }
+      },
+      err => console.error(err)
+    );
   }
+  
 
   OpenMenuStud(){
     this.menu.enable(true,'MenuStud');

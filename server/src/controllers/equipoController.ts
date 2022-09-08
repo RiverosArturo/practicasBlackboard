@@ -12,7 +12,7 @@ class EquipoController {
         }
     }
     public async getOneEquipo (req:Request, res:Response): Promise<any>{
-        const  {id,nombre,curso_nrc,nTrabajador} = req.params;
+        const  {nombre,curso_nrc,nTrabajador} = req.params;
         const equipo = await pool.query('SELECT * FROM equipo WHERE nombre=? AND curso_nrc=? AND nTrabajador=?', [nombre,curso_nrc,nTrabajador])
         if (equipo.length > 0 ){
             return res.json(equipo[0]);

@@ -28,7 +28,7 @@ class EquipoController {
     }
     getOneEquipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, nombre, curso_nrc, nTrabajador } = req.params;
+            const { nombre, curso_nrc, nTrabajador } = req.params;
             const equipo = yield database_1.default.query('SELECT * FROM equipo WHERE nombre=? AND curso_nrc=? AND nTrabajador=?', [nombre, curso_nrc, nTrabajador]);
             if (equipo.length > 0) {
                 return res.json(equipo[0]);

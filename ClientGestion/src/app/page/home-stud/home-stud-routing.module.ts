@@ -56,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/modificar-estudiante/modificar-estudiante.module').then( m => m.ModificarEstudiantePageModule)
   },
   {
-    path: 'consultar-actividad/:user/:nrc',
+    path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador',
     loadChildren: () => import('./actividades/consultar-actividad/consultar-actividad.module').then( m => m.ConsultarActividadPageModule)
   },
   {

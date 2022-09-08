@@ -22,6 +22,10 @@ export class ModificarActividadPage implements OnInit {
     noTrabajador: 0,
     nrc: 0,
     id_equipo: 0,
+    urlProfesor: '',
+    urlEstudiante: '',
+    fechaEstudiante: '',
+    comentarioProfesor: ''
   }
   condicionE:boolean = true;
 

@@ -46,7 +46,11 @@ export class AltaActividadPage implements OnInit {
     nrc: this.nrc,
     id_equipo: null,
     calificacion: 0,
-    matricula: 0
+    matricula: 0,
+    urlProfesor: '',
+    urlEstudiante: '',
+    fechaEstudiante: '',
+    comentarioProfesor: ''
   }
 
   equipo:Equipo = {
@@ -106,6 +110,7 @@ export class AltaActividadPage implements OnInit {
             this.actividadCurso.nrc = this.nrc;
             this.actividadCurso.id_equipo = null;
             this.actividadCurso.matricula = 0;
+            this.actividadCurso.urlProfesor = '';
             this.getActividad = [];
           }
         });
@@ -151,6 +156,7 @@ export class AltaActividadPage implements OnInit {
             this.actividadCurso.nrc = this.nrc;
             this.actividadCurso.id_equipo = null;
             this.actividadCurso.matricula = 0;
+            this.actividadCurso.urlProfesor = '';
             this.getActividadE = [];
           }
       });
@@ -169,6 +175,7 @@ export class AltaActividadPage implements OnInit {
     this.actividadCurso.nrc = this.nrc;
     this.actividadCurso.id_equipo = null;
     this.actividadCurso.matricula = 0;
+    this.actividadCurso.urlProfesor = '';
     this.getActividad = [];
     this.studCourses = [];
   }
@@ -184,14 +191,21 @@ export class AltaActividadPage implements OnInit {
     this.actividadCurso.nrc = this.nrc;
     this.actividadCurso.id_equipo = null;
     this.actividadCurso.matricula = 0;
+    this.actividadCurso.urlProfesor = '';
     this.getActividad = [];
     this.studCourses = [];
   }
 
   getEquipos(){
-    this.datosService.getEquipos().subscribe(
+    this.datosService.getEquipos1(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.equipos = res;
+        if(this.equipos.length > 0){
+          this.equipos = res;
+        }else{
+          console.log("no hay equipos")
+          this.equipos = [];
+        }
       },
       err => console.error(err)
     );

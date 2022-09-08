@@ -10,6 +10,9 @@ class comodinRoutes {
     }  
 
     config(): void { 
+        this.router.get('/:nrc/:noTrabajador', ComodinController.listActEq);
+        this.router.get('/:nrc/:noTrabajador/:matricula', ComodinController.listActEs);
+        this.router.get('/:nrc/:noTrabajador/:matricula/:id_equipo', ComodinController.listActEqEs);
         this.router.delete('/:id_equipo/:nrc/:noTrabajador', ComodinController.deleteActsEq);
     }
 

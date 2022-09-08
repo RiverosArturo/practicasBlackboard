@@ -25,22 +25,20 @@
   </ion-card>
 
    <ion-card-content>
-    <ion-button > Consular </ion-button><br><br>
-
-    <div>
-      <input (change)="capturarFile($event)" type="file">
-    </div>
-    <div>
-      <button type="button" [disabled]="loading" (click)="subirArchivo()">
-        {{(loading) ? 'Cargando...' : 'Subir Archivo'}}
-      </button>
-    </div>
-    <!-- Preview archivo -->
-    <div *ngIF="previsualizacion">
-      <iframe 
-        width="100px"  [src]="previsualizacion" alt="">
-      </iframe>
-    </div>
+    <ion-title>Actividades individuales</ion-title>
+    <tr  *ngFor="let activity of actividades">                   
+      <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+        ver
+      </ion-button> 
+        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+    </tr>
+    <ion-title>Actividades por equipo</ion-title>
+    <tr  *ngFor="let activity of actividadesE">                   
+      <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+        ver
+      </ion-button> 
+        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+    </tr>
    </ion-card-content>
 
 </ion-content>
