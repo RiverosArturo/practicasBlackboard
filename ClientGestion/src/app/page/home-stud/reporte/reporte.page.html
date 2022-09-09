@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc]">
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, nTrabajador]">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>     
       <ion-avatar>
@@ -27,7 +27,7 @@
   <ion-content>
 
     <div *ngIf="reporte == true;"> <!-- Interfaz para ver reporte-->
-      <ionb-card>
+      <ion-card>
         <ion-toolbar>
           <ion-item>
             <ion-title>  Reporte de actividades </ion-title>
@@ -36,7 +36,7 @@
             </ion-button>
           </ion-item>
         </ion-toolbar>
-      </ionb-card>
+      </ion-card>
 
       <ion-card>
         <ion-label>Contenido </ion-label> <br><br><br><br><br><br><br><br><br><br><br>

@@ -1,3 +1,71 @@
+
+
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, nTrabajador]">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
+      <ion-label >Usuario:{{user}} </ion-label>      
+    </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+
+
+    <ion-card>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons>
+            <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+            <ion-title> Alumnos Inscritos en el curso </ion-title><br>
+            <ion-item slot="end">
+              <ion-label>Curso:{{ nrc}},{{ curso}} </ion-label>   
+            </ion-item>            
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    </ion-card>
+
+<!----------------------------------------------------------------------------->
+
+<ion-content>
+  <ion-content
+    [scrollEvents]="true"
+    (ionScrollStart)="logScrollStart()"
+    (ionScroll)="logScrolling($event)"
+    (ionScrollEnd)="logScrollEnd()">
+        
+    <div slot="fixed">        
+        
+        <tr  *ngFor="let studCourse of studCourses" >            
+              <ion-button color="light">&nbsp;                              
+                    <tr *ngFor="let student of students">
+                      <div *ngIf="studCourse.matricula == student.matricula">
+                        <tr *ngFor="let course of courses">
+                          <div *ngIf=" studCourse.nrc == course.nrc">                            
+                            {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
+                          </div>
+                        </tr>                                                
+                      </div>
+                    </tr>                                      
+              </ion-button>                                                                 
+        </tr> 
+
+    </div>
+  </ion-content>
+  </ion-content>
+   
+<!----------------------------------------------------------------------------->   
+
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>
+
+<!--
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
@@ -12,24 +80,54 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
-  <ion-card>
+
+  
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
           <ion-title> Alumnos Inscritos en el curso </ion-title><br>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-  </ion-card>
 
-   <ion-card-content>
-    <ion-button > Consular </ion-button><br><br>
-   </ion-card-content>
 
-</ion-content>
+  <ion-content>
+    <ion-content
+      [scrollEvents]="true"
+      (ionScrollStart)="logScrollStart()"
+      (ionScroll)="logScrolling($event)"
+      (ionScrollEnd)="logScrollEnd()">
+          
+      <div slot="fixed">        
+          
+          <tr  *ngFor="let studCourse of studCourses" >            
+                <ion-button color="light">&nbsp;        
+                        
+                      <tr *ngFor="let student of students">
+                        <div *ngIf="studCourse.matricula == student.matricula">
+                          <tr *ngFor="let course of courses">
+                            <div *ngIf=" studCourse.nrc == course.nrc">
+  
+                              <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
+                                <ion-icon name="trash"></ion-icon>
+                              </ion-button>
+                              {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
+                            </div>
+                          </tr>                                                
+                        </div>
+                      </tr>                                      
+                </ion-button>&nbsp;                                                                     
+          </tr> 
+  
+      </div>
+    </ion-content>
+    </ion-content>
+
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
 </ion-footer>
+
+-->

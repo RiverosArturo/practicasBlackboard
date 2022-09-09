@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 import { Student } from 'src/app/models/Student';
 import { NgForOfContext } from '@angular/common';
 
-
+    
 @Component({
   selector: 'app-consultar-estudiante',
   templateUrl: './consultar-estudiante.page.html',
