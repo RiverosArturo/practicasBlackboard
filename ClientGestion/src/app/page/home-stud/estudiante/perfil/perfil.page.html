@@ -12,22 +12,25 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
+
   <ion-card>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-          <ion-title> Perfil </ion-title><br>
+          <ion-title> Perfil </ion-title>
+          <ion-item slot="end">
+            <ion-label>Curso:{{ nrc}},{{ curso}} </ion-label>   
+          </ion-item>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
   </ion-card>
 
-   <ion-card-content>
-    <ion-button > Consular </ion-button><br><br>
-   </ion-card-content>
 
+<ion-content>
+  <ion-button > Editar </ion-button>
+  <ion-button > Cambiar contraseña </ion-button>
 </ion-content>
 
 <ion-footer>
