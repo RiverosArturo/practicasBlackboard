@@ -29,9 +29,105 @@
 
 
 <ion-content>
-  <ion-button > Editar </ion-button>
-  <ion-button > Cambiar contraseña </ion-button>
+
+  <ion-card>
+    <div> <!-- Datos del perfil -->
+      <ion-item >
+        <ion-label position="floating"> Matricula:&nbsp;{{student.matricula}} </ion-label>
+        <ion-label position="floating"> Nombre:&nbsp;&nbsp;&nbsp;{{student.nombre}} </ion-label>
+        <ion-label position="floating"> Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{student.correo}} </ion-label>        
+        <ion-label position="floating"> Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}},{{ curso}} </ion-label>
+        <br><br>
+        <br>
+      </ion-item>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-button (click)="editPerfil()"> Editar perfil </ion-button>
+      <ion-button (click)="editPassword()"> Cambiar contraseña </ion-button>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-card>
+
+    <div *ngIf="EditPerfil == true"> <!--  Editar perfil   -->
+      <ion-item class="form-group">
+        <ion-card>
+          <ion-item>
+            <ion-title>Editar perfil </ion-title>
+            <ion-button color="danger" slot="end"  (click)="close()">
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-card>
+            <form>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Matricula </ion-label>
+              <ion-input [(ngModel)]="student.matricula" name="matricula" autofocus></ion-input>
+            </ion-item> 
+            <ion-item class="form-group">
+              <ion-label position="floating"> Nombre </ion-label>
+              <ion-input [(ngModel)]="student.nombre" name="nombre" autofocus></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Correo </ion-label>
+              <ion-input [(ngModel)]="student.correo" name="correo" autofocus></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Contraseña</ion-label>
+              <ion-input type="password" [(ngModel)]="student.password" name="password" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-toolbar>
+                <ion-button  (click)="updateStudent()">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>
+              </ion-toolbar>
+            </ion-item>
+            </form>
+          </ion-card>
+        </ion-card>
+      </ion-item>      
+    </div>
+
+    <div *ngIf="EditPassword == true"> <!--  Editar contraseña-->
+      <ion-item class="form-group">
+        <ion-card>
+        <form>
+          <ion-item>
+            <ion-title>Cambiar contraseña</ion-title>
+            <ion-button color="danger" slot="end"  (click)="close()">
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"> Nueva contraseña </ion-label>
+            <ion-input type="password" name="password"></ion-input>      
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"> Confirma contraseña </ion-label>
+            <ion-input type="password" name="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-toolbar>
+              <ion-button slot="end"  (click)="updateStudent()">
+                <ion-label> Guardar </ion-label>
+              </ion-button>
+            </ion-toolbar>
+          </ion-item>   
+        </form>     
+        </ion-card>        
+      </ion-item>                
+    </div>        
+
+  </ion-card>     
+        
+  
 </ion-content>
+
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
