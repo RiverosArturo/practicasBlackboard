@@ -19,8 +19,7 @@
         <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
           <ion-title> Perfil </ion-title>
-          <ion-item slot="end">
-            <ion-label>Curso:{{ nrc}},{{ curso}} </ion-label>   
+          <ion-item slot="end">            
           </ion-item>
         </ion-buttons>
       </ion-toolbar>
@@ -36,7 +35,7 @@
         <ion-label position="floating"> Matricula:&nbsp;{{student.matricula}} </ion-label>
         <ion-label position="floating"> Nombre:&nbsp;&nbsp;&nbsp;{{student.nombre}} </ion-label>
         <ion-label position="floating"> Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{student.correo}} </ion-label>        
-        <ion-label position="floating"> Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}},{{ curso}} </ion-label>
+        <ion-label position="floating"> Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}}, {{ curso}} </ion-label>
         <br><br>
         <br>
       </ion-item>
@@ -56,7 +55,7 @@
     <div *ngIf="EditPerfil == true"> <!--  Editar perfil   -->
       <ion-item class="form-group">
         <ion-card>
-          <ion-item>
+          <ion-item color="primary">
             <ion-title>Editar perfil </ion-title>
             <ion-button color="danger" slot="end"  (click)="close()">
               <ion-icon name="close-sharp"></ion-icon>
@@ -75,11 +74,7 @@
             <ion-item class="form-group">
               <ion-label position="floating"> Correo </ion-label>
               <ion-input [(ngModel)]="student.correo" name="correo" autofocus></ion-input>
-            </ion-item>
-            <ion-item class="form-group">
-              <ion-label position="floating"> Contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="student.password" name="password" ></ion-input>
-            </ion-item>
+            </ion-item>            
             <ion-item>
               <ion-toolbar>
                 <ion-button  (click)="updateStudent()">
@@ -97,27 +92,41 @@
       <ion-item class="form-group">
         <ion-card>
         <form>
-          <ion-item>
+          <ion-item color="primary">
             <ion-title>Cambiar contraseña</ion-title>
             <ion-button color="danger" slot="end"  (click)="close()">
               <ion-icon name="close-sharp"></ion-icon>
             </ion-button>
           </ion-item>
-          <ion-item>
-            <ion-label position="floating"> Nueva contraseña </ion-label>
-            <ion-input type="password" name="password"></ion-input>      
+          <ion-item class="form-group">
+            <ion-label position="floating"> Cambiar Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" ></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label position="floating"> Confirma contraseña </ion-label>
-            <ion-input type="password" name="password"></ion-input>
+          <ion-item class="form-group">
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password2" name="password2" ></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-toolbar>
-              <ion-button slot="end"  (click)="updateStudent()">
-                <ion-label> Guardar </ion-label>
-              </ion-button>
-            </ion-toolbar>
-          </ion-item>   
+
+          <div *ngIf="(password == null || password2 == null) || (password != password2)"> 
+            <ion-item>
+              <ion-toolbar>
+                <ion-button color="medium" (click)="AlertPassword()">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>  
+              </ion-toolbar>  
+            </ion-item>            
+          </div>
+          <!-- button cambiar contraseña -->
+          <div *ngIf="(password != null && password2 != null) && (password == password2)"> 
+            <ion-item>
+              <ion-toolbar>
+                <ion-button color="primary" (click)="AlertPassword2()">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>  
+              </ion-toolbar>  
+            </ion-item>
+          </div>
+
         </form>     
         </ion-card>        
       </ion-item>                
