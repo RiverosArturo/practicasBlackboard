@@ -3,6 +3,10 @@ import pool from '../database';
 
 class ActividadController {
 
+    public async getActividad (req: Request, res: Response){
+        const activ = await pool.query('SELECT * FROM actividad');
+          res.json(activ);
+      }
     public async list (req: Request, res: Response){
         const {nrc, noTrabajador} = req.params;
         const actividad = await pool.query('SELECT DISTINCT `id`, `nombre`, `descripcion`, `fecha`, `fechaEntrega`, `horaEntrega`, `noTrabajador`, `nrc`, `id_equipo`, `calificacion`, `urlProfesor`, `urlEstudiante`, `fechaEstudiante`, `comentarioProfesor` FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL',[nrc, noTrabajador]);

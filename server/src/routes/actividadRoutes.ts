@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import actividadController from '../controllers/actividadController';
 import ActividadController from '../controllers/actividadController';
 
 class actividadRoutes {
@@ -10,6 +11,7 @@ class actividadRoutes {
     }  
 
     config(): void { 
+        this.router.get('/', actividadController.getActividad);
         this.router.get('/:nrc/:noTrabajador', ActividadController.list);
         this.router.get('/:id/:nrc/:noTrabajador', ActividadController.getOne);
         this.router.get('/:id/:nrc/:id_equipo/:noTrabajador', ActividadController.getOneEq);

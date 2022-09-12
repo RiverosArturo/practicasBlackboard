@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./curso/consultar/consultar.module').then( m => m.ConsultarPageModule)
   },
   {
-    path: 'reporte/:user/:nrc',
+    path: 'reporte/:user/:nrc/:materia',
     loadChildren: () => import('./reporte/reporte.module').then( m => m.ReportePageModule)
   },
   {
@@ -48,7 +48,7 @@ const routes: Routes = [
     loadChildren: () => import('./equipo/modificar-equipo/modificar-equipo.module').then( m => m.ModificarEquipoPageModule)
   },
   {
-    path: 'consultar-estudiante/:user/:nrc',
+    path: 'consultar-estudiante/:user/:nrc/:materia/:nTrabajador',
     loadChildren: () => import('./estudiante/consultar-estudiante/consultar-estudiante.module').then( m => m.ConsultarEstudiantePageModule)
   },
   {
