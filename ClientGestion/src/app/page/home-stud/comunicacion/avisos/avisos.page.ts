@@ -34,6 +34,7 @@ export class AvisosPage implements OnInit {
     this.getAviso();
     this.getAvisoEq();
     this.getEquipos(this.user,this.nrc); 
+    console.log("nTrabajador: " + this.nTrabajador);
   }
 
   navStud(){

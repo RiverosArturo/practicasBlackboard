@@ -41,6 +41,7 @@ export class MenuStudentPage implements OnInit {
     this.nTrabajador = params.nTrabajador;
     this.getCurso();     
     this.getequipoAlumno();  
+    console.log(this.nTrabajador);
   }
 //////////////////////////////////////////////////////////////////
 
