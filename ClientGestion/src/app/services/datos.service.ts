@@ -27,7 +27,10 @@ export class DatosService {
   constructor(private http: HttpClient) { }
   
 ///////////////////////////////////////////////////////////////////////
-//-- Funcions Equipo, perfil estudiante.
+//-- Funcions Actividad, perfil estudiante.
+getActividad() {
+  return this.http.get(`${this.API_URI}/actividad`);
+}
 
 
 

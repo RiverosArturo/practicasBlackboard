@@ -28,14 +28,14 @@
 
   <ion-card>
     <h1> Administar perfil  </h1> <br>
-    <ion-button [routerLink] = "['/home-stud/estudiante/consultar-estudiante',user, nrc, nTrabajador]">   Alumnos </ion-button>
-    <ion-button [routerLink] = "['/home-stud/estudiante/perfil',user,nrc]">   Perfil </ion-button> 
+    <ion-button [routerLink] = "['/home-stud/estudiante/consultar-estudiante',user, nrc, materia, nTrabajador]">   Alumnos </ion-button>
+    <ion-button [routerLink] = "['/home-stud/estudiante/perfil',user,nrc,materia]">   Perfil </ion-button> 
     <br><br>
   </ion-card>
   <ion-card>
       <h1> Gestionar equipo </h1> <br>
       <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia,equipo.id,nTrabajador]">Consultar {{equipo.nombre}}</ion-button>    
-      <ion-button [routerLink] = "['/home-stud/reporte/reporte',user,nrc]">   Generar reporte  </ion-button>
+      <ion-button [routerLink] = "['/home-stud/reporte/reporte',user,nrc, materia]">   Generar reporte  </ion-button>
         <br><br>
   </ion-card>    
   <ion-card>

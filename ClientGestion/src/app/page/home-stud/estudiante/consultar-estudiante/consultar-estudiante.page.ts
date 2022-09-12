@@ -34,6 +34,7 @@ export class ConsultarEstudiantePage implements OnInit {
     this.nrc = params.nrc;
     this.user = params.user;
     this.nrc = params.nrc;
+    this.curso = params.materia;
     this.nTrabajador = params.nTrabajador;  
     
     this.getStudCourse(this.nrc,this.nTrabajador); 

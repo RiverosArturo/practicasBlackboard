@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, nTrabajador]">
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, curso, nTrabajador]">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>     
       <ion-avatar>
@@ -24,23 +24,56 @@
     </ion-header>
   </ion-card> 
 <!------------------------------------------------------------------------------------------------------->
-  <ion-content>
+  <ion-content>    
 
     <div *ngIf="reporte == true;"> <!-- Interfaz para ver reporte-->
-      <ion-card>
-        <ion-toolbar>
-          <ion-item>
-            <ion-title>  Reporte de actividades </ion-title>
-            <ion-button color="danger" slot="end"  (click)="close()">
-              <ion-icon name="close-sharp"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ion-toolbar>
-      </ion-card>
+              
+      <ion-content
+        [scrollEvents]="true"
+        (ionScrollStart)="logScrollStart()"
+        (ionScroll)="logScrolling($event)"
+        (ionScrollEnd)="logScrollEnd()">
+        
+            
+          <div slot="fixed">
+            <ion-list>
 
-      <ion-card>
-        <ion-label>Contenido </ion-label> <br><br><br><br><br><br><br><br><br><br><br>
-      </ion-card>
+              <ion-item>
+                <ion-title>  Reporte de actividades </ion-title>
+                <ion-button color="danger"(click)="close()">
+                  <ion-icon name="close-sharp"></ion-icon>
+                </ion-button>
+              </ion-item>
+
+              <tr  *ngFor="let actividad of actividads">                
+                <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador">                    
+                  
+                    <ion-card>
+                      <ion-item color="primary">         
+                        <ion-title>{{actividad.nombre}}</ion-title>           
+                        <ion-label>{{curso}}</ion-label>
+                      </ion-item>
+                      <ion-item>
+                        {{actividad.id}}<br>
+                        {{actividad.nombre}}<br>
+                        {{actividad.descripcion}}<br>
+                        fecha de actividad: {{ actividad.fecha}}<br>
+                        fecha de entrega: {{ actividad.fechaEntrega}}<br>
+                        Hora de entrega: {{ actividad.horaEntrega}}<br>
+                        Profesor: {{actividad.noTrabajador}}<br>
+                        nrc: {{ actividad.nrc}}<br>
+                        id Equipo: {{actividad.id_equipo}}<br>
+                        calificacion: {{actividad.calificacion}}<br>
+                        matricula: {{actividad.matricula}}<br>                                            
+                      </ion-item>                                   
+                      <br><br>
+                    </ion-card>
+                                               
+                </div>                               
+              </tr>
+            </ion-list>    
+          </div>
+      </ion-content>                      
     </div>
     
     <div *ngIf="lista == true"> <!-- Liste de cursos -->
@@ -57,7 +90,7 @@
                 <tr *ngFor="let course of courses">  
                   <div *ngIf="course.nrc == cursoEs.nrc">
                     <ion-item>
-                      <ion-button (click)="report()"> Generar reporte                  
+                      <ion-button (click)="report(cursoEs.nrc,course.materia,cursoEs.nTrabajador)"> Generar reporte                  
                         <ion-icon name="document-text-sharp"></ion-icon>
                      </ion-button>    
                       <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }}, Profesor:{{ cursoEs.nTrabajador }}  </ion-title>       

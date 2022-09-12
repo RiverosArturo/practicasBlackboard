@@ -24,12 +24,15 @@ export class ReportePage implements OnInit {
     
   courses:any = [];
   eCursos:any = [];
+  actividads:any =[];
   
 
   user:string;
   nrc:number;
+  nTrabajador:number;
   lista:boolean = true;
   reporte:boolean = false;
+  curso:string;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -37,21 +40,33 @@ export class ReportePage implements OnInit {
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
+    this.curso = params.materia;
     this.getCourse();
     this.estudiantesCursos();
+    this.getAtividad();
   }
 //-------------------------------------------------------------------
 //         funciones
 //-------------------------------------------------------------------
-report(){
+report(x:number,m:string,y:number){
   this.reporte = true;
   this.lista =false;
+  this.nrc = x;
+  this.curso = m;
+  this.nTrabajador = y;
 }
 close(){
   this.reporte = false;
   this.lista = true;
 }
-
+getAtividad(){
+  this.datosService.getActividad().subscribe(
+    res => {
+      this.actividads = res;
+    },
+    err => console.error(err)
+  );
+}
 getCourse(){// Optiene los datos curso
   this.datosService.getCourses().subscribe(
     res => {

@@ -3,7 +3,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, nTrabajador]">
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, curso, nTrabajador]">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
       <ion-avatar>
@@ -48,7 +48,7 @@
                           <div *ngIf=" studCourse.nrc == course.nrc">       
                             <ion-button color="light">
                               <ion-icon name="person-sharp"></ion-icon>&nbsp;
-                              {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
+                              {{studCourse.matricula}}, {{student.nombre}}, {{student.correo}}, {{studCourse.nrc}}, {{course.materia}}   
                             </ion-button>                                                 
                           </div>
                         </tr>                                                
