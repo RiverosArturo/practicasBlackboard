@@ -49,10 +49,12 @@
                 <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador">                    
                   
                     <ion-card>
+
                       <ion-item color="primary">         
                         <ion-title>{{actividad.nombre}}</ion-title>           
                         <ion-label>{{curso}}</ion-label>
                       </ion-item>
+
                       <ion-item>
                         {{actividad.id}}<br>
                         {{actividad.nombre}}<br>
@@ -64,9 +66,29 @@
                         nrc: {{ actividad.nrc}}<br>
                         id Equipo: {{actividad.id_equipo}}<br>
                         calificacion: {{actividad.calificacion}}<br>
-                        matricula: {{actividad.matricula}}<br>                                            
-                      </ion-item>                                   
-                      <br><br>
+                        matricula: {{actividad.matricula}}<br>    
+                        actividad del profesor: {{actividad.urlProfesor}}<br>                         
+                        actividad entregada: no  <br>                        
+                        actividad entregada: {{actividad.urlEstudiante}}<br>                        
+                        fecha de actividad entregada: {{actividad.fechaEstudiante}}<br>
+                        comentarios del profesor: {{actividad.comentarioProfesor}}<br>
+                      </ion-item><br><br>
+
+                      <ion-lits>
+                        actividad en proceso: <br>
+                        <div *ngIf="actividad.urlEstudiante == ''">
+                          actividad entregada: no.
+                        </div>
+                        <div *ngIf="actividad.calificacion <= 5 ">
+                          calificacion: {{actividad.calificacion}} no aprovatoria.
+                        </div>
+                        <div *ngIf="actividad.calificacion >= 5 ">
+                          calificacion: {{actividad.calificacion}} aprovatoria.
+                        </div>
+                        <br>
+                      </ion-lits>
+
+                      <br>
                     </ion-card>
                                                
                 </div>                               
