@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./reporte/reporte.module').then( m => m.ReportePageModule)
   },
   {
-    path: 'avisos/:user/:nrc',
+    path: 'avisos/:user/:nrc/:nTrabajador/:curso/:id_equipo',
     loadChildren: () => import('./comunicacion/avisos/avisos.module').then( m => m.AvisosPageModule)
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/modificar-estudiante/modificar-estudiante.module').then( m => m.ModificarEstudiantePageModule)
   },
   {
-    path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador',
+    path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador/:curso',
     loadChildren: () => import('./actividades/consultar-actividad/consultar-actividad.module').then( m => m.ConsultarActividadPageModule)
   },
   {
@@ -88,11 +88,11 @@ const routes: Routes = [
     component: ReportePage
   },
   {
-    path: 'consultar-actividad/:user/:nrc',
+    path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador/:curso',
     component: ConsultarActividadPage
   },
   {
-    path: 'avisos/:user/:nrc',
+    path: 'avisos/:user/:nrc/:nTrabajador/:curso/:id_equipo',
     component: AvisosPage
   },
   {

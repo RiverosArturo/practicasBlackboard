@@ -23,6 +23,11 @@ export class DatosService {
   nTrabajdor:number;
 
   API_URI = 'http://localhost:3000/api'; 
+  private _refresh$ = new Subject<void>();
+
+  get refresh$(){
+    return this._refresh$;
+  }
 
   constructor(private http: HttpClient) { }
   
@@ -128,6 +133,7 @@ getActivityEs(nrc:number, noTrabajador:number, matricula:number){
 getActivityEqEs(nrc:number, noTrabajador:number, matricula:number, id_equipo:number){
   return this.http.get(`${this.API_URI}/comodin/${nrc}/${noTrabajador}/${matricula}/${id_equipo}`);
 }
+
 getOneActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
 }
@@ -153,11 +159,14 @@ deleteActividadEq(id:string,nrc:number,id_equipo:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${id_equipo}/${noTrabajador}`);
 }
 /////////FUNCIONES AVISO///////////////////////////////////////////////////////////////////////////
-getAviso(){
-  return this.http.get(`${this.API_URI}/aviso`);
+getAviso(nrc:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/aviso/${nrc}/${noTrabajador}`);
 }
-getAvisoEq(id_equipo:number){
-  return this.http.get(`${this.API_URI}/aviso/${id_equipo}`);
+getAvisoEq(nrc:number, noTrabajador:number){
+  return this.http.get(`${this.API_URI}/comodin2/${nrc}/${noTrabajador}`);
+}
+getAvisoEqAl(nrc:number, noTrabajador:number,id_equipo:number){
+  return this.http.get(`${this.API_URI}/comodin2/${nrc}/${noTrabajador}/${id_equipo}`);
 }
 deleteAviso(id:string,nrc:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/aviso/${id}/${nrc}/${noTrabajador}`);
@@ -182,19 +191,9 @@ actualizarAvEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateA
 }
 
 //////////////// Funciones chat///////////////////////////////////////////////////////
-private _refresh$ = new Subject<void>();
-
-    get refresh$(){
-      return this._refresh$;
-    }
 
 saveChat(chat: Chat){
-  return this.http.post(`${this.API_URI}/chat/`,chat)
-  .pipe(
-    tap(()=>{
-      this._refresh$.next();
-    })
-  );
+  return this.http.post(`${this.API_URI}/chat/`,chat);
 }
 obtenerMsjsCurso(nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/chat/${nrc}/${noTrabajador}`);

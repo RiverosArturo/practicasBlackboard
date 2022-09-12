@@ -34,18 +34,18 @@
   </ion-card>
   <ion-card>
       <h1> Gestionar equipo </h1> <br>
-      <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia,equipo.id,nTrabajador]">Consultar {{equipo.nombre}}</ion-button>    
+      <ion-button [routerLink] = "['/home-stud/equipo/consultar-equipo',user,nrc,materia,equipo.id,nTrabajador,materia]">Consultar {{equipo.nombre}}</ion-button>    
       <ion-button [routerLink] = "['/home-stud/reporte/reporte',user,nrc]">   Generar reporte  </ion-button>
         <br><br>
   </ion-card>    
   <ion-card>
     <h1> Gestionar actividades </h1> <br>
-    <ion-button [routerLink] = "['/home-stud/actividades/consultar-actividad',user,nrc,equipo.id,nTrabajador]">   Consultar actividades </ion-button>
+    <ion-button [routerLink] = "['/home-stud/actividades/consultar-actividad',user,nrc,equipo.id,nTrabajador,materia]">   Consultar actividades </ion-button>
     <br><br>
 </ion-card>
 <ion-card>
   <h1> Gestionar comunicacion </h1> <br>
-  <ion-button [routerLink] = "['/home-stud/comunicacion/avisos',user,nrc]">   Avisos </ion-button>
+  <ion-button [routerLink] = "['/home-stud/comunicacion/avisos',user,nrc,nTrabajador,materia,equipo.id]">   Avisos </ion-button>
   <ion-button [routerLink] = "['/home-stud/comunicacion/chat',user,nrc,nTrabajador,equipo.id,materia]">   Chat </ion-button>
   <br><br>
 </ion-card>

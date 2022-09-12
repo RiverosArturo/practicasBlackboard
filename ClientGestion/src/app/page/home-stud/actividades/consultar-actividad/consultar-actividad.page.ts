@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-consultar-actividad',
   templateUrl: './consultar-actividad.page.html',
   styleUrls: ['./consultar-actividad.page.scss'],
 })
-export class ConsultarActividadPage implements OnInit {
+export class ConsultarActividadPage implements OnInit{
 
   user:number;
   nrc:number;
   nTrabajador:number;
   id_equipo:number;
+  curso:string;
   actividades: any = [];
   actividadesE: any = [];
   equipos: any = [];
   previsualizacion:string;
   loading:boolean;
+  boton:number=0;
 
   constructor( private sanitizer: DomSanitizer ,private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -28,11 +31,28 @@ export class ConsultarActividadPage implements OnInit {
     this.user = params.user;  
     this.nrc = params.nrc;
     this.nTrabajador = params.nTrabajador;
+    this.curso = params.curso;
     this.id_equipo = params.id_equipo;
+
+    console.log(params);
+    
     this.obtenerActividades();
     this.obtenerActividadesE();
 
 
+  }
+  navStud(){
+    this.router.navigate(['/home-stud/menu-student/menu-student',this.user,this.nrc, this.curso, this.nTrabajador]);
+    this.boton = 0;
+  }
+  condicion1(){
+    this.boton=1;
+  }
+  condicion2(){
+    this.boton=2;
+  }
+  regresar(){
+    this.boton=0;
   }
 
   obtenerActividades(){

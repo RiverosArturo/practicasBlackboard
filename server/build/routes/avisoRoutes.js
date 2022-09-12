@@ -11,8 +11,8 @@ class AvisoRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', avisoController_1.default.list);
-        this.router.get('/:id_equipo', avisoController_1.default.listEq);
+        this.router.get('/:nrc/:noTrabajador', avisoController_1.default.list);
+        //this.router.get('/:id_equipo', avisoController.listEq);
         this.router.get('/:id/:nrc/:noTrabajador', avisoController_1.default.getOne);
         this.router.get('/:id/:nrc/:id_equipo/:noTrabajador', avisoController_1.default.getOneEq);
         this.router.post('/', avisoController_1.default.create);

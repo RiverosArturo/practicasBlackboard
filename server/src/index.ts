@@ -17,6 +17,7 @@ import equipoStudentsRoutes from './routes/equipoStudentsRoutes';
 import avisoRoutes from "./routes/avisoRoutes";
 import chatRoutes from "./routes/chatRoutes";
 import comodinRoutes from "./routes/comodinRoutes";
+import comodin2Routes from "./routes/comodin2Routes";
 
 class Server {
     public app : Application;
@@ -62,6 +63,7 @@ class Server {
         this.app.use('/api/aviso', avisoRoutes);  
         this.app.use('/api/chat', chatRoutes);  
         this.app.use('/api/comodin',comodinRoutes);   
+        this.app.use('/api/comodin2',comodin2Routes);   
     }
     start(): void{
 

@@ -16,17 +16,16 @@ const database_1 = __importDefault(require("../database"));
 class AvisoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const actividad = yield database_1.default.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso`');
+            const { nrc, noTrabajador } = req.params;
+            const actividad = yield database_1.default.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc, noTrabajador]);
             res.json(actividad);
         });
     }
-    listEq(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id_equipo } = req.params;
-            const actividad = yield database_1.default.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE id_equipo = ?', [id_equipo]);
-            res.json(actividad);
-        });
-    }
+    // public async listEq (req: Request, res: Response){
+    //     const {nrc, noid_equipo} = req.params;
+    //     const actividad = await pool.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE id_equipo = ?',[id_equipo]);
+    //     res.json(actividad);
+    // }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;

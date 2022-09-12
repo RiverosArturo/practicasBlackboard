@@ -30,6 +30,7 @@ export class AvisosPage implements OnInit {
     this.user = params.user; 
     this.nrc = params.nrc;   
     this.getAviso();
+    this.getAvisoEq();
     this.getEquipos(this.user,this.nrc); 
   }
 
@@ -40,27 +41,16 @@ export class AvisosPage implements OnInit {
 
   getAviso(){
     //console.log(this.boton)
-    this.datosService.getAviso().subscribe(
+    this.datosService.getAviso(this.nrc, this.user).subscribe(
       res => {
         this.avisos = res;  
-        //console.log(this.avisos[1]);
+        //console.log(this.avisos);
         if(this.avisos.length > 0){
           console.log("si hay avisos para mostrar!!!");
           for(let i = 0; i<=this.avisos.length;i++){
             const fecha = String(this.avisos[i].fecha);
             this.avisos[i].fecha = fecha.substr(0,10);
             //console.log(this.avisos[i])
-            if(this.avisos[i].id_equipo != null){
-              //console.log(this.avisos[i]);
-              this.datosService.getid(this.avisos[i].id_equipo).subscribe(
-                res => {
-                  this.equipos[this.avisos[i].id_equipo] = res; 
-                },
-                err => console.error(err)
-              );
-            }else{
-              console.log("Es aviso para curso");
-            }
           }
         }else{
           //console.log("No hay avisos para mostrar");
@@ -80,14 +70,27 @@ export class AvisosPage implements OnInit {
     );
   }
 
-  getAvisoEq(id_equipo:number){
-    this.datosService.getAvisoEq(id_equipo).subscribe(
+  getAvisoEq(){
+    this.datosService.getAvisoEq(this.nrc, this.user).subscribe(
       res => {
-        this.avisosEq = res;  
-        for(let i = 0; i<=this.avisos.length;i++){
-          // const fecha = String(this.avisos[i].fecha);
-          // this.avisosEq[i].fecha = fecha.substr(0,10);
-        }      
+        this.avisosEq = res;
+        //console.log(this.avisosEq);  
+        for(let i = 0; i<=this.avisosEq.length;i++){
+          const fecha = String(this.avisosEq[i].fecha);
+          this.avisosEq[i].fecha = fecha.substr(0,10);
+          //console.log(this.avisos[i])
+          if(this.avisosEq[i].id_equipo != null){
+            //console.log(this.avisos[i]);
+            this.datosService.getid(this.avisosEq[i].id_equipo).subscribe(
+              res => {
+                this.equipos[this.avisosEq[i].id_equipo] = res; 
+              },
+              err => console.error(err)
+            );
+          }else{
+            console.log("Es aviso para curso");
+          }
+        } 
       },
       err => console.error(err)
     );

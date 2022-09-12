@@ -4,14 +4,15 @@ import pool from '../database';
 class AvisoController {
 
     public async list (req: Request, res: Response){
-        const actividad = await pool.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso`');
+        const {nrc, noTrabajador} = req.params;
+        const actividad = await pool.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL',[nrc, noTrabajador]);
         res.json(actividad);
     }
-    public async listEq (req: Request, res: Response){
-        const {id_equipo} = req.params;
-        const actividad = await pool.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE id_equipo = ?',[id_equipo]);
-        res.json(actividad);
-    }
+    // public async listEq (req: Request, res: Response){
+    //     const {nrc, noid_equipo} = req.params;
+    //     const actividad = await pool.query('SELECT DISTINCT id, aviso, fecha, hora, noTrabajador, nrc, id_equipo FROM `aviso` WHERE id_equipo = ?',[id_equipo]);
+    //     res.json(actividad);
+    // }
     public async getOne (req:Request, res:Response): Promise<any>{
         const  {id,nrc,noTrabajador} = req.params;
         const actividad = await pool.query('SELECT * FROM `aviso` WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL LIMIT 1', [id,nrc,noTrabajador])

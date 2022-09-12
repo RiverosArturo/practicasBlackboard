@@ -26,19 +26,14 @@
     </ion-card>
 
 
-    <ion-content>
-      <ion-content
-        [scrollEvents]="true"
-        (ionScrollStart)="logScrollStart()"
-        (ionScroll)="logScrolling($event)"
-        (ionScrollEnd)="logScrollEnd()">
-          <div slot="fixed">
+    <ion-card-content>
+
             <ion-label color="dark" *ngIf="boton2==true">Desea visualizar las actividades individuales o en equipo?</ion-label>
             <ion-button (click)="condicion1()" *ngIf="boton2==true"> Individuales </ion-button>
             <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button>
-            <ion-list>
+            
             <tr  *ngFor="let activity of activitys">
-              <div *ngIf="activity.id_equipo==null && boton==2">
+              <!-- <div *ngIf="activity.id_equipo==null && boton==2">
                 <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
@@ -46,10 +41,26 @@
                   actualizar
                 </ion-button> 
                   {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+              </div> -->
+
+              <div class="container" *ngIf="activity.id_equipo==null && boton==2">
+                <div class="card">
+                  <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                  <div class="contenido">
+                    <h3>{{activity.id}} : {{activity.nombre}}</h3>
+                    <p>{{activity.descripcion}}</p><br>
+                    <p>Publicado el: {{activity.fecha}}</p>
+                    <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+                    <a (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]">actualizar</a>
+                    <a class="eliminar" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </div>
               </div>
             </tr>
+
+
             <tr *ngFor="let activity of activitysEq">
-              <div *ngIf="activity.id_equipo!=null && boton==1">
+              <!-- <div *ngIf="activity.id_equipo!=null && boton==1">
                 <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>                    
@@ -57,25 +68,36 @@
                   actualizar
                 </ion-button> 
                   {{ activity.id }}, {{activity.fecha}}, {{activity.fechaEntrega}}, {{equipos[activity.id_equipo].nombre}}
+              </div> -->
+
+              <div class="container" *ngIf="activity.id_equipo!=null && boton==1">
+                <div class="card">
+                  <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                  <div class="contenido">
+                    <p>Equipo: {{equipos[activity.id_equipo].nombre}}</p>
+                    <h3>{{activity.id}} : {{activity.nombre}}</h3>
+                    <p>{{activity.descripcion}}</p><br>
+                    <p>Publicado el: {{activity.fecha}}</p>
+                    <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+                    <a (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]">actualizar</a>
+                    <a class="eliminar" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </div>
               </div>
             </tr>
             <ion-button *ngIf="boton==1 || boton==2"(click)="actualizar()">
               <ion-icon name="arrow-undo"></ion-icon>
             </ion-button>
-
-        </ion-list>
-        </div>
-      </ion-content>
-      </ion-content>
+      </ion-card-content>
 
 
-      <ion-footer>
+      <!-- <ion-footer>
         <ion-toolbar>    
           <ion-button slot="end" color="danger" > Eliminar todo 
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>    
         </ion-toolbar>  
-      </ion-footer>
+      </ion-footer> -->
 
 
 <ion-footer>

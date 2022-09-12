@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc]">
+      <ion-button (click)="navStud()">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>      
       <ion-avatar>
@@ -24,22 +24,60 @@
     </ion-header>
   </ion-card>
 
-   <ion-card-content>
-    <ion-title>Actividades individuales</ion-title>
+  <ion-card-content>
+    <!-- <div class="title">
+      <ion-title>Actividades individuales</ion-title>
+    </div> -->
+    <ion-label color="dark" *ngIf="boton==0">Desea visualizar las actividades individuales o en equipo?</ion-label>
+    <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
+    <ion-button (click)="condicion2()" *ngIf="boton==0"> Equipos </ion-button>
+  
     <tr  *ngFor="let activity of actividades">                   
-      <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+      <!-- <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
         ver
-      </ion-button> 
-        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
+      </ion-button>  -->
+      <div class="container" *ngIf="boton==1">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+          <div class="contenido">
+            <h3>{{activity.id}} : {{activity.nombre}}</h3>
+            <p>{{activity.descripcion}}</p><br>
+            <!-- <p>Subido el: {{activity.fecha}}</p> -->
+            <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+            <a href="#">Entregar Actividad</a>
+          </div>
+        </div>
+      </div>
+        <!-- {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}} -->
     </tr>
-    <ion-title>Actividades por equipo</ion-title>
+
+    <!-- <div class="title">
+      <ion-title>Actividades por equipos</ion-title>
+    </div> -->
     <tr  *ngFor="let activity of actividadesE">                   
-      <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
+      <!-- <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >
         ver
       </ion-button> 
-        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
-    </tr>
-   </ion-card-content>
+        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}} -->
+        <div class="container" *ngIf="boton==2">
+          <div class="card">
+            <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+
+            <div class="contenido">
+              <p>Equipo: {{equipos[activity.id_equipo].nombre}}</p>
+              <h3>{{activity.id}} : {{activity.nombre}}</h3>
+              <p>{{activity.descripcion}}</p><br>
+              <!-- <p>Subido el: {{activity.fecha}}</p> -->
+              <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+              <a href="#">Entregar Actividad</a>
+            </div>
+          </div>
+        </div>
+      </tr>
+      <ion-button (click)="regresar()" *ngIf="boton == 1 || boton==2">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>  
+  </ion-card-content>
 
 </ion-content>
 
