@@ -50,7 +50,7 @@ export class AvisosPage implements OnInit {
         //console.log(this.avisos[1]);
         if(this.avisos.length > 0){
           console.log("si hay avisos para mostrar!!!");
-          for(let i = 0; i<=this.avisos.length;i++){
+          for(let i = 0; i<this.avisos.length;i++){
             const fecha = String(this.avisos[i].fecha);
             this.avisos[i].fecha = fecha.substr(0,10);
             //console.log(this.avisos[i])
@@ -81,7 +81,7 @@ export class AvisosPage implements OnInit {
         if(this.avisosEq.length > 0){
           console.log("si hay avisos para mostrar!!!");
           //console.log(this.avisosEq);
-          for(let i = 0; i<=this.avisosEq.length;i++){
+          for(let i = 0; i<this.avisosEq.length;i++){
             const fecha = String(this.avisosEq[i].fecha);
             this.avisosEq[i].fecha = fecha.substr(0,10);
             //console.log(this.avisos[i])
