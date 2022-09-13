@@ -14,6 +14,7 @@ class comodinRoutes {
         this.router.get('/:nrc/:noTrabajador', comodinController_1.default.listActEq);
         this.router.get('/:nrc/:noTrabajador/:matricula', comodinController_1.default.listActEs);
         this.router.get('/:nrc/:noTrabajador/:matricula/:id_equipo', comodinController_1.default.listActEqEs);
+        this.router.put('/:id/:nrc/:noTrabajador/:matricula', comodinController_1.default.updateActAl);
         this.router.delete('/:id_equipo/:nrc/:noTrabajador', comodinController_1.default.deleteActsEq);
     }
 }

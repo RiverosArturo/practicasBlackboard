@@ -149,8 +149,14 @@ saveActividad(actividad: Actividad){
 actualizarAct(id:string,nrc:number,noTrabajador:number,updateAct:Actividad){
   return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`,updateAct);
 }
+actualizarActAl(id:string,nrc:number,noTrabajador:number,matricula:number,updateAct:Actividad){
+  return this.http.put(`${this.API_URI}/comodin/${id}/${nrc}/${noTrabajador}/${matricula}`,updateAct);
+}
 actualizarActEq(id:string,nrc:number,noTrabajador:number,id_equipo:number,updateAct:Actividad){
   return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}/${id_equipo}`,updateAct);
+}
+actualizarActEqAl(id:string,nrc:number,noTrabajador:number,id_equipo:number,matricula:number,updateAct:Actividad){
+  return this.http.put(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}/${id_equipo}/${matricula}`,updateAct);
 }
 deleteActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.delete(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);

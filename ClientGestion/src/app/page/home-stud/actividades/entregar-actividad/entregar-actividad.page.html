@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button (click)="navStud()">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>      
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
+      <ion-label >Usuario: {{user}}</ion-label>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+          <ion-title> Actividad {{actividad.nombre}}</ion-title><br>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </ion-card>
+
+  <ion-card-content>
+    <form (ngSubmit)="onSubmit()" #entregarAct="ngForm">
+
+      <ion-label for="fecha" color="dark">Actividad subida el:</ion-label>
+      <ion-input type="text" name="fecha" #fecha="ngModel" [(ngModel)]="actividad.fecha" color="primary" readonly="true"></ion-input>
+  
+      <ion-label for="descripcion" color="dark">Descripción:</ion-label>
+      <ion-input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="actividad.descripcion" color="primary" readonly="true"></ion-input>
+      
+      <ion-label for="urlProfesor" color="dark" *ngIf="actividad.urlProfesor">Material:</ion-label>
+      <ion-input type="url" name="urlProfesor" #urlProfesor="ngModel" [(ngModel)]="actividad.urlProfesor" color="primary" readonly="true" *ngIf="actividad.urlProfesor"></ion-input>
+      
+      <ion-label for="fechaE" color="dark">Fecha de entrega:</ion-label>
+      <ion-input type="text" name="fechaE" #fechaE="ngModel" [(ngModel)]="actividad.fechaEntrega" color="primary" readonly="true"></ion-input>
+
+      <ion-label for="horaE" color="dark">Hora de entrega:</ion-label>
+      <ion-input type="text" name="horaE" #fechaE="ngModel" [(ngModel)]="actividad.horaEntrega" color="primary" readonly="true"></ion-input>
+
+      <ion-label for="urlEstudiante" color="dark">Url de tu trabajo:</ion-label>
+      <ion-input *ngIf="actividad.calificacion==0" type="url" name="urlEstudiante" #urlEstudiante="ngModel" [(ngModel)]="actividad.urlEstudiante" color="primary" placeholder="Agrega la url de tu trabajo..."></ion-input>
+      <ion-input *ngIf="actividad.calificacion>0" type="url" name="urlEstudiante" #urlEstudiante="ngModel" [(ngModel)]="actividad.urlEstudiante" color="primary" readonly="true"></ion-input>
+      
+      <ion-label for="califiacion" color="dark">Calificación:</ion-label>
+      <ion-input type="text" name="calificacion" #calificacion="ngModel" [(ngModel)]="actividad.calificacion" color="primary" readonly="true"></ion-input>
+      <ion-button type="submit" value="Enviar"> Entregar Actividad </ion-button><br><br>
+    </form>
+  </ion-card-content>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

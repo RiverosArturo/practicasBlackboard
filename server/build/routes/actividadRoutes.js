@@ -19,6 +19,7 @@ class actividadRoutes {
         this.router.post('/', actividadController_2.default.create);
         this.router.put('/:id/:nrc/:noTrabajador', actividadController_2.default.updateAct);
         this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', actividadController_2.default.updateActEq);
+        this.router.put('/:id/:nrc/:noTrabajador/:id_equipo/:matricula', actividadController_2.default.updateActEqAl);
         this.router.delete('/:id/:nrc/:noTrabajador', actividadController_2.default.delete);
         this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_2.default.deleteEq);
     }

@@ -47,7 +47,7 @@ export class AvisosPage implements OnInit {
         //console.log(this.avisos);
         if(this.avisos.length > 0){
           console.log("si hay avisos para mostrar!!!");
-          for(let i = 0; i<=this.avisos.length;i++){
+          for(let i = 0; i<this.avisos.length;i++){
             const fecha = String(this.avisos[i].fecha);
             this.avisos[i].fecha = fecha.substr(0,10);
             //console.log(this.avisos[i])
@@ -75,7 +75,7 @@ export class AvisosPage implements OnInit {
       res => {
         this.avisosEq = res;
         //console.log(this.avisosEq);  
-        for(let i = 0; i<=this.avisosEq.length;i++){
+        for(let i = 0; i<this.avisosEq.length;i++){
           const fecha = String(this.avisosEq[i].fecha);
           this.avisosEq[i].fecha = fecha.substr(0,10);
           //console.log(this.avisos[i])
@@ -157,10 +157,12 @@ export class AvisosPage implements OnInit {
     this.boton2=true;
   }
   condicion1(){
+    this.getAviso();
     this.boton2 = false;
     this.boton = 2;
   }
   condicion2(){
+    this.getAvisoEq();
     this.boton2 = false;
     this.boton = 1;
   }

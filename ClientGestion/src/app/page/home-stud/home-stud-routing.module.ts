@@ -13,6 +13,7 @@ import { ChatPage } from './comunicacion/chat/chat.page';
 import { CalificacionPromedioPage } from './calificacion-promedio/calificacion-promedio.page';
 import { ConsultarEstudiantePage } from '../home-prof/estudiante/consultar-estudiante/consultar-estudiante.page';
 import { ModificarEstudiantePage } from './estudiante/modificar-estudiante/modificar-estudiante.page';
+import { EntregarActividadPage } from './actividades/entregar-actividad/entregar-actividad.page';
 
 const routes: Routes = [
   {
@@ -115,9 +116,15 @@ const routes: Routes = [
   {
     path: 'perfil/:user/:nrc',
     loadChildren: () => import('./estudiante/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso',
+    loadChildren: () => import('./actividades/entregar-actividad/entregar-actividad.module').then( m => m.EntregarActividadPageModule)
+  },
+  {
+    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso',
+    component: EntregarActividadPage
   }
-
-
 ];
 
 @NgModule({

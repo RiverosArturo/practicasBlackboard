@@ -46,9 +46,11 @@ export class ConsultarActividadPage implements OnInit{
     this.boton = 0;
   }
   condicion1(){
+    this.obtenerActividades();
     this.boton=1;
   }
   condicion2(){
+    this.obtenerActividadesE();
     this.boton=2;
   }
   regresar(){
