@@ -15,6 +15,18 @@ class AdmiController {
         }
         res.json({Text:"El Admistrador no existe"});
     }
+
+    public async actividades (req: Request, res: Response){
+        const {nrc, noTrabajador, id} = req.params;
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NULL',[nrc, noTrabajador,id]);
+        res.json(actividad);
+    }
+
+    public async actividadesE (req: Request, res: Response){
+        const {nrc, noTrabajador, id, id_equipo} = req.params;
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NOT NULL',[nrc, noTrabajador,id,id_equipo]);
+        res.json(actividad);
+    }
 }
 
 

@@ -14,22 +14,13 @@ export class EvaluarActividadPage implements OnInit {
 
   constructor(private datosService:DatosService, private menu:MenuController, private router: Router, private activedRoute:ActivatedRoute) { }
 
-  actividad:Actividad = {
-    id: '',
-    nombre: '',
-    descripcion: '',
-    fecha: '',
-    fechaEntrega: '',
-    horaEntrega: '',
-    noTrabajador: 0,
-    nrc: 0,
-    id_equipo: null,
-    calificacion: 0,
-    matricula: 0
-  }
+  boton:number = 3;
   nTrabajador: number = 1234;
   nrc: number = 1234
-  actividads:any= [];
+  actividades:any= [];
+  actividadesE:any= [];
+  actividades2:any=[];
+  actividades2E:any=[];
   
   OpenMenuProf(){
     this.menu.enable(true,'MenuProf');
@@ -37,31 +28,75 @@ export class EvaluarActividadPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getStudCourse();
     const params = this.activedRoute.snapshot.params;
     this.nrc = params.nrc;
     this.nTrabajador = params.user;
+    this.getActividad();
+    this.getActividadE();
   }
 
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
+    this.boton = 0;
   }
 
-  getStudCourse(){
-    // this.datosService.getActivity().subscribe(
-    //   res => {
-    //     this.actividads = res;        
-    //   },
-    //   err => console.error(err)
-    // );
+  condicion1(){
+    this.boton=1;
+    this.getActividad();
   }
 
-  getStudCourse2(){
-    // this.datosService.getActivity().subscribe(
-    //   res => {
-    //     this.actividads = res;        
-    //   },
-    //   err => console.error(err)
-    // );
+  condicion2(){
+    this.boton=3;
+    this.getActividadE();
+  }
+
+  atras(){
+    this.boton = 0;
+  }
+
+  atras2(){
+    this.boton = 1;
+  }
+
+  atras3(){
+    this.boton = 3;
+  }
+
+  getActividad(){
+    this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
+      res => {
+        this.actividades = res;   
+        console.log(this.actividades[0].id)     
+      },
+      err => console.error(err)
+    );
+  }
+
+  getActividadE(){
+    this.datosService.getActivityEq(this.nrc, this.nTrabajador).subscribe(
+      res => {
+        this.actividadesE = res;        
+      },
+      err => console.error(err)
+    );
+  }
+
+  act(nrc:number, noTrabajador:number, id:string){
+    this.boton=2;
+    this.datosService.act(nrc, noTrabajador, id).subscribe(
+      res => {
+        this.actividades2 = res;        
+      },
+      err => console.error(err)
+    );
+  }
+  actE(nrc:number, noTrabajador:number, id:string, id_equipo:number){
+    this.boton=4;
+    this.datosService.actE(nrc, noTrabajador, id, id_equipo).subscribe(
+      res => {
+        this.actividades2E = res;        
+      },
+      err => console.error(err)
+    );
   }
 }

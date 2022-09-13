@@ -13,6 +13,8 @@ class AdmiRoutes {
     config() {
         this.router.get('/', admiController_1.default.list);
         this.router.get('/:id', admiController_1.default.getOne);
+        this.router.get('/:nrc/:noTrabajador/:id', admiController_1.default.actividades);
+        this.router.get('/:nrc/:noTrabajador/:id/:id_equipo', admiController_1.default.actividadesE);
     }
 }
 const admiRoutes = new AdmiRoutes();

@@ -137,6 +137,14 @@ getActivityEqEs(nrc:number, noTrabajador:number, matricula:number, id_equipo:num
   return this.http.get(`${this.API_URI}/comodin/${nrc}/${noTrabajador}/${matricula}/${id_equipo}`);
 }
 
+///Evaluar actividad
+act(nrc:number, noTrabajador:number,id:string){
+  return this.http.get(`${this.API_URI}/admi/${nrc}/${noTrabajador}/${id}`);
+}
+actE(nrc:number, noTrabajador:number,id:string, id_equipo:number){
+  return this.http.get(`${this.API_URI}/admi/${nrc}/${noTrabajador}/${id}/${id_equipo}`);
+}
+////////////////////////////////
 getOneActividad(id:string,nrc:number,noTrabajador:number){
   return this.http.get(`${this.API_URI}/actividad/${id}/${nrc}/${noTrabajador}`);
 }

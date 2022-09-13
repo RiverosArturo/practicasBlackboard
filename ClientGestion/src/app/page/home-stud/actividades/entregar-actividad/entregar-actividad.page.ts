@@ -38,17 +38,32 @@ export class EntregarActividadPage implements OnInit {
       urlProfesor: params.urlProfesor,
       urlEstudiante: params.urlEstudiante,
       fechaEstudiante: params.fechaEstudiante,
-      comentarioProfesor: params.comentarioProfesor
+      comentarioProfesor: params.comentarioProfesor,
+      horaEstudiante: params.horaEstudiante
     }
     this.actividadE = {
       id_equipo: params.id_equipo
     }
-    console.log(this.actividad.id_equipo);
-    console.log(this.actividadE.id_equipo);
+    // console.log(this.actividad.id_equipo);
+    // console.log(this.actividadE.id_equipo);
   }
 
   onSubmit(){
     if(this.actividad.id_equipo > 0 && this.actividad.id_equipo != null){
+      let hoy = new Date();
+      let dia = hoy.getDate();
+      let mes = hoy.getMonth() + 1;
+      let agnio = hoy.getFullYear();
+      let dia2 = ('0' + dia).slice(-2);
+      let mes2 = ('0' + mes).slice(-2);
+      let horas = hoy.getHours();
+      let minutos = hoy.getMinutes();
+
+      console.log("Fecha: " + `${agnio}-${mes2}-${dia2}`);
+      console.log("Hora: " + `${horas}:${minutos}`);
+
+      this.actividad.fechaEntrega = `${dia2}-${mes2}-${agnio}`;
+      this.actividad.horaEstudiante = `${horas}:${minutos}`;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarActEqAl(this.actividad.id, this.actividad.nrc, this.actividad.noTrabajador, this.actividadE.id_equipo, this.user, this.actividad)
             .subscribe(
@@ -58,8 +73,10 @@ export class EntregarActividadPage implements OnInit {
                 // window.location.reload();
               },
               err => console.error(err)
-            )
+            );
     }else{
+      this.actividadE.fechaEntrega = 'x';
+      this.actividadE.horaEstudiante = 'x';
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarActAl(this.actividad.id, this.actividad.nrc, this.actividad.noTrabajador, this.user, this.actividad)
             .subscribe(
@@ -69,7 +86,7 @@ export class EntregarActividadPage implements OnInit {
                 //window.location.reload();
               },
               err => console.error(err)
-            )
+            );
     }
   }
 

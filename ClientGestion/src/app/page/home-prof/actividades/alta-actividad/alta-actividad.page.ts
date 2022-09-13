@@ -50,7 +50,8 @@ export class AltaActividadPage implements OnInit {
     urlProfesor: '',
     urlEstudiante: '',
     fechaEstudiante: '',
-    comentarioProfesor: ''
+    comentarioProfesor: '',
+    horaEstudiante: ''
   }
 
   equipo:Equipo = {
@@ -111,6 +112,7 @@ export class AltaActividadPage implements OnInit {
             this.actividadCurso.id_equipo = null;
             this.actividadCurso.matricula = 0;
             this.actividadCurso.urlProfesor = '';
+            this.actividadCurso.horaEstudiante = '';
             this.getActividad = [];
           }
         });
@@ -157,6 +159,7 @@ export class AltaActividadPage implements OnInit {
             this.actividadCurso.id_equipo = null;
             this.actividadCurso.matricula = 0;
             this.actividadCurso.urlProfesor = '';
+            this.actividadCurso.horaEstudiante = '';
             this.getActividadE = [];
           }
       });
@@ -176,6 +179,7 @@ export class AltaActividadPage implements OnInit {
     this.actividadCurso.id_equipo = null;
     this.actividadCurso.matricula = 0;
     this.actividadCurso.urlProfesor = '';
+    this.actividadCurso.horaEstudiante = '';
     this.getActividad = [];
     this.studCourses = [];
   }
@@ -192,6 +196,7 @@ export class AltaActividadPage implements OnInit {
     this.actividadCurso.id_equipo = null;
     this.actividadCurso.matricula = 0;
     this.actividadCurso.urlProfesor = '';
+    this.actividadCurso.horaEstudiante = '';
     this.getActividad = [];
     this.studCourses = [];
   }

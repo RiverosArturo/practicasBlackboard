@@ -30,6 +30,20 @@ class AdmiController {
             res.json({ Text: "El Admistrador no existe" });
         });
     }
+    actividades(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, noTrabajador, id } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NULL', [nrc, noTrabajador, id]);
+            res.json(actividad);
+        });
+    }
+    actividadesE(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, noTrabajador, id, id_equipo } = req.params;
+            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NOT NULL', [nrc, noTrabajador, id, id_equipo]);
+            res.json(actividad);
+        });
+    }
 }
 const admiController = new AdmiController();
 exports.default = admiController;
