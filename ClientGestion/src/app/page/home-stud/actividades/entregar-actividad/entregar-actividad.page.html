@@ -46,9 +46,13 @@
       <ion-input *ngIf="actividad.calificacion==0" type="url" name="urlEstudiante" #urlEstudiante="ngModel" [(ngModel)]="actividad.urlEstudiante" color="primary" placeholder="Agrega la url de tu trabajo..."></ion-input>
       <ion-input *ngIf="actividad.calificacion>0" type="url" name="urlEstudiante" #urlEstudiante="ngModel" [(ngModel)]="actividad.urlEstudiante" color="primary" readonly="true"></ion-input>
       
+      <ion-input *ngIf="actividad.urlEstudiante != '' && actividad.horaEstudiante != ''" type="url" color="primary" readonly="true">Actividad entregada el {{actividad.fechaEstudiante}} a las {{actividad.horaEstudiante}} horas.</ion-input>
+      
       <ion-label for="califiacion" color="dark">Calificación:</ion-label>
       <ion-input type="text" name="calificacion" #calificacion="ngModel" [(ngModel)]="actividad.calificacion" color="primary" readonly="true"></ion-input>
-      <ion-button type="submit" value="Enviar"> Entregar Actividad </ion-button><br><br>
+      <ion-button type="submit" value="Enviar" *ngIf="actividad.horaEstudiante == '' "> Entregar Actividad </ion-button><br><br>
+      <ion-button type="submit" value="Enviar" *ngIf="actividad.urlEstudiante != '' && actividad.horaEstudiante != '' "> Modificar Actividad </ion-button><br><br>
+    
     </form>
   </ion-card-content>
 
