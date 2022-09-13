@@ -71,6 +71,13 @@ class ActividadController {
             res.json({ message: 'The actividad was UPDATE' });
         });
     }
+    updateActEqAl(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, noTrabajador, id_equipo, matricula } = req.params;
+            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=? AND matricula=?', [req.body, id, nrc, noTrabajador, id_equipo, matricula]);
+            res.json({ message: 'The actividad was UPDATE' });
+        });
+    }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;

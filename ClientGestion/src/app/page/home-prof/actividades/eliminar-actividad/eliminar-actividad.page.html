@@ -33,15 +33,6 @@
             <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button>
             
             <tr  *ngFor="let activity of activitys">
-              <!-- <div *ngIf="activity.id_equipo==null && boton==2">
-                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
-                  <ion-icon name="trash-outline"></ion-icon>
-                </ion-button>                    
-                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
-                  actualizar
-                </ion-button> 
-                  {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}}
-              </div> -->
 
               <div class="container" *ngIf="activity.id_equipo==null && boton==2">
                 <div class="card">
@@ -60,15 +51,6 @@
 
 
             <tr *ngFor="let activity of activitysEq">
-              <!-- <div *ngIf="activity.id_equipo!=null && boton==1">
-                <ion-button color="danger" (click)="eliminar(activity.id,activity.nrc,activity.noTrabajador,activity.id_equipo)">                  
-                  <ion-icon name="trash-outline"></ion-icon>
-                </ion-button>                    
-                <ion-button (click)="actualizar()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
-                  actualizar
-                </ion-button> 
-                  {{ activity.id }}, {{activity.fecha}}, {{activity.fechaEntrega}}, {{equipos[activity.id_equipo].nombre}}
-              </div> -->
 
               <div class="container" *ngIf="activity.id_equipo!=null && boton==1">
                 <div class="card">
@@ -89,16 +71,6 @@
               <ion-icon name="arrow-undo"></ion-icon>
             </ion-button>
       </ion-card-content>
-
-
-      <!-- <ion-footer>
-        <ion-toolbar>    
-          <ion-button slot="end" color="danger" > Eliminar todo 
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>    
-        </ion-toolbar>  
-      </ion-footer> -->
-
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

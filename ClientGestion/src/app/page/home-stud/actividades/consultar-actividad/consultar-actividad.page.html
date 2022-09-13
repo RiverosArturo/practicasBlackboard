@@ -44,7 +44,18 @@
             <p>{{activity.descripcion}}</p><br>
             <!-- <p>Subido el: {{activity.fecha}}</p> -->
             <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
-            <a href="#">Entregar Actividad</a>
+            <a *ngIf="activity.urlEstudiante == '' " [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                activity.fechaEstudiante, activity.comentarioProfesor, curso]" (click)="regresar()">Consultar Actividad</a>
+            <a *ngIf="activity.urlEstudiante != '' && activity.calificacion == 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                activity.fechaEstudiante, activity.comentarioProfesor, curso]" (click)="regresar()">Editar Entrega Actividad</a>
+            <a *ngIf="activity.calificacion > 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                activity.fechaEstudiante, activity.comentarioProfesor, curso]" (click)="regresar()">Calificación: {{activity.calificacion}}</a>
           </div>
         </div>
       </div>
@@ -69,7 +80,10 @@
               <p>{{activity.descripcion}}</p><br>
               <!-- <p>Subido el: {{activity.fecha}}</p> -->
               <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
-              <a href="#">Entregar Actividad</a>
+              <a [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                activity.fechaEstudiante, activity.comentarioProfesor, curso]" (click)="regresar()">Consultar Actividad</a>
             </div>
           </div>
         </div>

@@ -18,6 +18,7 @@ class actividadRoutes {
         this.router.post('/', ActividadController.create);
         this.router.put('/:id/:nrc/:noTrabajador', ActividadController.updateAct);
         this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', ActividadController.updateActEq);
+        this.router.put('/:id/:nrc/:noTrabajador/:id_equipo/:matricula', ActividadController.updateActEqAl);
         this.router.delete('/:id/:nrc/:noTrabajador', ActividadController.delete);
         this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', ActividadController.deleteEq);
     }

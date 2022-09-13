@@ -45,12 +45,6 @@
       <ion-label for="hora" color="dark">Hora:</ion-label>
       <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
       
-      <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
-      <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
-
-      <ion-label for="curso" color="dark">Curso:</ion-label>
-      <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
-       -->
        <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
@@ -70,12 +64,6 @@
       <ion-label for="hora" color="dark">Hora:</ion-label>
       <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
       
-      <!-- <ion-label for="profesor" color="dark">Profesor:</ion-label>
-      <ion-input type="number" name="profesor" #profesor="ngModel" [(ngModel)]="actividadCurso.noTrabajador" color="primary" readonly="true"></ion-input>
-
-      <ion-label for="curso" color="dark">Curso:</ion-label>
-      <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input>
-      -->
       <ion-label for="equipo" color="dark">Equipo:  </ion-label>
       <select type="number" name="equipo" #equipo="ngModel" [(ngModel)]="avisoCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789">
         <option [value]="equipo.id" *ngFor="let equipo of equipos">{{equipo.id}},{{ equipo.nombre}}</option>

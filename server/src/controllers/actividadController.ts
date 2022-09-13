@@ -44,6 +44,11 @@ class ActividadController {
         await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
         res.json({message: 'The actividad was UPDATE'});
     }
+    public async updateActEqAl (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador,id_equipo,matricula} = req.params;
+        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=? AND matricula=?', [req.body,id,nrc,noTrabajador,id_equipo,matricula]);
+        res.json({message: 'The actividad was UPDATE'});
+    }
     public async delete (req:Request, res:Response): Promise <void>{
         const {id,nrc,noTrabajador} = req.params;
         await pool.query('DELETE FROM actividad WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id,nrc,noTrabajador]);

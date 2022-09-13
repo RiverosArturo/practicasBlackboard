@@ -26,6 +26,12 @@ class ComodinController {
         await pool.query('DELETE FROM actividad WHERE id_equipo=? AND nrc=? AND noTrabajador=?', [id_equipo,nrc,noTrabajador]);
         res.json({message: 'The actividad teams was delated'});
     }
+
+    public async updateActAl (req:Request, res:Response): Promise<void>{
+        const {id,nrc,noTrabajador,matricula} = req.params;
+        await pool.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND matricula=? AND id_equipo IS NULL', [req.body,id,nrc,noTrabajador,matricula]);
+        res.json({message: 'The actividad was UPDATE'});
+    }
 }
 
 

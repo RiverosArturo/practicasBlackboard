@@ -24,38 +24,12 @@ export class EliminarActividadPage implements OnInit {
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;  
-
     this.nTrabajador = params.user;
     this.nrc = params.nrc;
-    //console.log("Clicka: "+this.nTrabajador+"   "+this.nrc);
 
     this.getActivity();
     this.getActivityEq();
     this.getEquipos();
-    // let h = 0;
-    //       do{
-    //         for(h<=this.equiposR.length; h++;){
-    //           let j = 0;
-    //           if(this.equiposR[j].nombre == this.equiposR[h].nombre){
-    //             this.equiposR[h].nombre == undefined;
-    //             if(h == this.equiposR.length){
-    //               j = j+1;
-    //               h = 0;
-    //             }
-    //             //console.log(this.equi)
-    //           }
-    //         }
-    //       }while(h != this.equiposR.length)
-
-    //       this.equiposR = this.equipos.filter(function(x) {
-    //         return x !== undefined;
-    //       });
-
-    //       console.log("Holi[0]: "+this.equiposR[0].nombre);
-    //       console.log("Holi[1]: "+this.equiposR[1].nombre);
-    //       console.log("Holi[2]: "+this.equiposR[2].nombre);
-    //       console.log("Holi[3]: "+this.equiposR[3].nombre);
-    // //console.log(this.equiposR[0].nombre);
   }
 
   navProf(){
@@ -63,11 +37,10 @@ export class EliminarActividadPage implements OnInit {
   }
 
   getActivity(){
-    console.log(this.boton);
     this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.activitys = res;  
-        for(let i = 0; i<=this.activitys.length;i++){
+        for(let i = 0; i<this.activitys.length;i++){
           const fecha = String(this.activitys[i].fecha);
           this.activitys[i].fecha = fecha.substr(0,10);
           const fecha2 = String(this.activitys[i].fechaEntrega);
@@ -82,18 +55,16 @@ export class EliminarActividadPage implements OnInit {
     this.datosService.getEquipos1(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.equipos = res; 
-        console.log(this.equipos)
       },
       err => console.error(err)
     );
   }
   getActivityEq(){
-    console.log(this.nrc, this.nTrabajador)
     this.datosService.getActivityEq(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.activitysEq = res;  
-        console.log(this.activitysEq);
-        for(let i = 0; i<=this.activitysEq.length;i++){
+        
+        for(let i = 0; i<this.activitysEq.length;i++){
           const fecha = String(this.activitysEq[i].fecha);
           this.activitysEq[i].fecha = fecha.substr(0,10);
           const fecha2 = String(this.activitysEq[i].fechaEntrega);
@@ -102,10 +73,6 @@ export class EliminarActividadPage implements OnInit {
             this.datosService.getid(this.activitysEq[i].id_equipo).subscribe(
               res => {
                 this.equipos[this.activitysEq[i].id_equipo] = res; 
-                //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
-                // this.equiposR = this.equipos.filter(function(x) {
-                //   return x !== undefined;
-                // });
               },
               err => console.error(err)
             );
@@ -148,18 +115,16 @@ export class EliminarActividadPage implements OnInit {
           cssClass: 'secondary',
           id: 'cancel-button',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            //console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Ok',
           id: 'confirm-button',
           handler: () => {
-            console.log('Confirm Okay');
-            console.log(id+"   "+id_equipo)
+            // console.log('Confirm Okay');
+            // console.log(id+"   "+id_equipo)
             if(id_equipo!=null){
               this.deleteActividadEq(id, nrc, id_equipo, noTrabajador);
-              // this.boton = 0;
-              // this.boton2 = true;
               this.datosService.getActivityEq(nrc, noTrabajador).subscribe(
                 res => {
                   this.activitysEq = res;  
@@ -168,8 +133,6 @@ export class EliminarActividadPage implements OnInit {
               );
             }else{
               this.deleteActividad(id, nrc, noTrabajador);
-              // this.boton = 0
-              // this.boton2 = true;
               this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
                 res => {
                   this.activitys = res;  
@@ -182,10 +145,6 @@ export class EliminarActividadPage implements OnInit {
                       this.datosService.getid(this.activitys[i].id_equipo).subscribe(
                         res => {
                           this.equipos[this.activitys[i].id_equipo] = res; 
-                          //console.log(this.equipos[this.activitys[i].id_equipo].nombre);
-                          // this.equiposR = this.equipos.filter(function(x) {
-                          //   return x !== undefined;
-                          // });
                         },
                         err => console.error(err)
                       );
@@ -207,10 +166,12 @@ export class EliminarActividadPage implements OnInit {
     this.boton2=true;
   }
   condicion1(){
+    this.getActivity();
     this.boton2 = false;
     this.boton = 2;
   }
   condicion2(){
+    this.getActivityEq();
     this.boton2 = false;
     this.boton = 1;
   }

@@ -42,6 +42,13 @@ class ComodinController {
             res.json({ message: 'The actividad teams was delated' });
         });
     }
+    updateActAl(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id, nrc, noTrabajador, matricula } = req.params;
+            yield database_1.default.query('UPDATE actividad set ? WHERE id=? AND nrc=? AND noTrabajador=? AND matricula=? AND id_equipo IS NULL', [req.body, id, nrc, noTrabajador, matricula]);
+            res.json({ message: 'The actividad was UPDATE' });
+        });
+    }
 }
 const comodinController = new ComodinController();
 exports.default = comodinController;

@@ -46,9 +46,11 @@ export class ConsultarActividadPage implements OnInit{
     this.boton = 0;
   }
   condicion1(){
+    this.obtenerActividades();
     this.boton=1;
   }
   condicion2(){
+    this.obtenerActividadesE();
     this.boton=2;
   }
   regresar(){
@@ -59,7 +61,7 @@ export class ConsultarActividadPage implements OnInit{
     this.datosService.getActivityEs(this.nrc, this.nTrabajador, this.user).subscribe(
       res => {
           this.actividades = res;     
-          for(let i = 0; i<=this.actividades.length;i++){
+          for(let i = 0; i<this.actividades.length;i++){
             const fecha = String(this.actividades[i].fecha);
             this.actividades[i].fecha = fecha.substr(0,10);
             const fecha2 = String(this.actividades[i].fechaEntrega);
@@ -74,7 +76,7 @@ export class ConsultarActividadPage implements OnInit{
     this.datosService.getActivityEqEs(this.nrc, this.nTrabajador, this.user, this.id_equipo).subscribe(
       res => {
           this.actividadesE = res;  
-          for(let i = 0; i<=this.actividadesE.length;i++){
+          for(let i = 0; i<this.actividadesE.length;i++){
             const fecha = String(this.actividadesE[i].fecha);
             this.actividadesE[i].fecha = fecha.substr(0,10);
             const fecha2 = String(this.actividadesE[i].fechaEntrega);
