@@ -33,6 +33,9 @@ export class ReportePage implements OnInit {
   lista:boolean = true;
   reporte:boolean = false;
   curso:string;
+  fech:Date;
+  prom:number = 0;
+  num:number = 1;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -44,10 +47,15 @@ export class ReportePage implements OnInit {
     this.getCourse();
     this.estudiantesCursos();
     this.getAtividad();
+    this.date();
   }
 //-------------------------------------------------------------------
 //         funciones
 //-------------------------------------------------------------------
+date(){
+
+}
+
 report(x:number,m:string,y:number){
   this.reporte = true;
   this.lista =false;
@@ -70,7 +78,7 @@ getAtividad(){
 getCourse(){// Optiene los datos curso
   this.datosService.getCourses().subscribe(
     res => {
-      this.courses = res;
+      this.courses = res;      
     },
     err => console.error(err)
   );
@@ -78,13 +86,11 @@ getCourse(){// Optiene los datos curso
 estudiantesCursos(){// datos relacion curso alumno
   this.datosService.listaEstudianteCurso().subscribe(
     res => {
-      this.eCursos = res;
+      this.eCursos = res;      
     },
     err => console.error(err)
   );
 }
-
-
 
 //-------------------------------------------------------------------
 //         funcion menu

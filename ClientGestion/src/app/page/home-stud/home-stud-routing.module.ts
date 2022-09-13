@@ -113,7 +113,7 @@ const routes: Routes = [
     component: ModificarEstudiantePage
   },
   {
-    path: 'perfil/:user/:nrc',
+    path: 'perfil/:user/:nrc/:materia',
     loadChildren: () => import('./estudiante/perfil/perfil.module').then( m => m.PerfilPageModule)
   }
 

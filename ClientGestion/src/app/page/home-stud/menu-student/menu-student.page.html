@@ -12,19 +12,20 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons>
+        <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+        <ion-title> Menu Estudiante </ion-title><br>
+        <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
+      </ion-buttons>          
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
+
 <ion-content>
-  <ion-card>
-    <ion-card>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons>
-            <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-            <ion-title> Menu Estudiante </ion-title><br>
-            <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br>
-          </ion-buttons>          
-        </ion-toolbar>
-      </ion-header>
-    </ion-card>
+  <ion-card>    
 
   <ion-card>
     <h1> Administar perfil  </h1> <br>
