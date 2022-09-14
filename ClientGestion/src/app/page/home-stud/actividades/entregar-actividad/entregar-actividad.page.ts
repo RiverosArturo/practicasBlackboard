@@ -53,7 +53,8 @@ export class EntregarActividadPage implements OnInit {
   }
 
   onSubmit(){
-    if(this.actividadE.id_equipo != null && this.actividad.id_equipo == null){
+    if(this.actividadE.id_equipo > 0 && this.actividadE.id_equipo != null){
+      console.log("actualizando en actividadE");
       let hoy = new Date();
       let dia = hoy.getDate();
       let mes = hoy.getMonth() + 1;
@@ -65,6 +66,7 @@ export class EntregarActividadPage implements OnInit {
 
       this.actividad.fechaEstudiante = `${agnio}-${mes2}-${dia2}`;
       this.actividad.horaEstudiante = `${horas}:${minutos}`;
+      this.actividad.id_equipo = this.actividadE.id_equipo;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarActEqAl(this.actividad.id, this.actividad.nrc, this.actividad.noTrabajador, this.actividadE.id_equipo, this.user, this.actividad)
             .subscribe(
@@ -76,6 +78,7 @@ export class EntregarActividadPage implements OnInit {
               err => console.error(err)
             );
     }else{
+      console.log("Actualizando en actividad!!!")
       let hoy = new Date();
       let dia = hoy.getDate();
       let mes = hoy.getMonth() + 1;
