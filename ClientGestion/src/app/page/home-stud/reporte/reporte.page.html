@@ -19,7 +19,7 @@
         <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
           <ion-title>Reportes </ion-title><br>    
-          <ion-label slot="end">Equipo: {{id}}, {{NombreEquipo}}</ion-label>      
+          <ion-label slot="end">Equipo: {{id}}, {{equipo.nombre}}</ion-label>      
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -43,15 +43,7 @@
         (ionScrollEnd)="logScrollEnd()">                    
           <div slot="fixed">                 
 
-              <tr  *ngFor="let actividad of actividads">      
-                <!--
-                {{nrc}} - {{nTrabajador}}<br>
-                {{actividad.nrc}} - {{actividad.noTrabajador}}<br><br>
-                {{user}}, {{actividad.matricula}}                
-                {{actividad.id_equipo}}
-                <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador && user == actividad.matricula && id == actividad.id_equipo">
-                  <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">  
-                -->
+              <tr  *ngFor="let actividad of actividads">                      
                                 
                 <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">  
                     <ion-card>
@@ -62,6 +54,7 @@
 
                       <ion-card>  
                         <ion-title>Detalles de la actividad.</ion-title><br>
+                        <ion-list>
                         {{actividad.id}}<br>
                         {{actividad.nombre}}<br>
                         {{actividad.descripcion}}<br>
@@ -77,6 +70,7 @@
                         actividad entregada: {{actividad.urlEstudiante}}<br>                        
                         fecha de actividad entregada: {{actividad.fechaEstudiante}}<br>
                         comentarios del profesor: {{actividad.comentarioProfesor}}<br>
+                      </ion-list>
                       </ion-card><br>
 
                       <ion-list>
@@ -84,13 +78,15 @@
                         
                         <div *ngIf="actividad.urlEstudiante == ''">
                           Actividad entregada: no.
+                        </div><div *ngIf="actividad.urlEstudiante != ''">
+                          Actividad entregada: si.
                         </div>
                         <div *ngIf="actividad.calificacion <= 5 ">
                           calificacion: {{actividad.calificacion}} no aprovatoria.
                         </div>
                         <div *ngIf="actividad.calificacion >= 5 ">
                           calificacion: {{actividad.calificacion}} aprovatoria.
-                        </div>
+                        </div><br><br>
                         <br>
                       </ion-list>
 
@@ -100,16 +96,16 @@
                 </div>                               
               </tr>
               
-              <ion-card>
-                
+              <ion-card>                
                 <div *ngIf="promedio < 0">
                   <ion-label>  Sin actividades</ion-label>
                 </div>
-                <div *ngIf="promedio >= 0">                  
+                <div *ngIf="promedio >= 0">             
+                  <ion-title>Actividades y promedio final.</ion-title><br>             
+                  <ion-label>Actividades: {{num}}</ion-label>
                   <ion-title>Calificación promedio: {{promedio}}</ion-title>
-                </div>                
-              </ion-card>
-
+                </div><br>             
+              </ion-card><br>
           </div>          
       </ion-content>                           
     </div>
