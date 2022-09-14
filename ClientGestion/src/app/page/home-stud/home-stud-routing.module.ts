@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./comunicacion/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
-    path: 'calificacion-promedio/:user/:nrc',
+    path: 'calificacion-promedio/:user/:nrc/:materia/:id',
     loadChildren: () => import('./calificacion-promedio/calificacion-promedio.module').then( m => m.CalificacionPromedioPageModule)
   },
   {
@@ -100,10 +100,11 @@ const routes: Routes = [
     path: 'chat/:user/:nrc/:nTrabajador/:id/:curso',
     component: ChatPage
   },
+  /*
   {
-    path: 'calificacion-promedio/:user/:nrc',
+    path: 'calificacion-promedio/:user/:nrc/:materia/:id',
     component: CalificacionPromedioPage
-  },
+  },*/
   ///////////////Posiblemente estos dos componentes se tengan que borrar////////
   {
     path: 'consultar-estudiante/:user/:nrc',

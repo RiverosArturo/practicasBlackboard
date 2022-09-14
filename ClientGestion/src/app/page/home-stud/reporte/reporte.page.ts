@@ -36,11 +36,11 @@ export class ReportePage implements OnInit {
   curso:string;
   fech:Date;
   prom:number = 0;
-  num:number = 1;
+  num:number = 0;
   id:number;
   NombreEquipo:string = 'IA'; 
   suma:number = 0;
-  promedio:number = 0;
+  promedio:number = -1;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -79,12 +79,17 @@ getAtividad(){
     res => {
       this.actividads = res;
       for(let i=0;i<this.actividads.length;i++){   
-        if(this.user == this.actividads[i].matricula){
-          console.log(i,this.actividads[i].matricula, this.actividads[i].calificacion);  
+        if(this.user == this.actividads[i].matricula && this.id == this.actividads[i].id_equipo){
+          //console.log(i,this.actividads[i].matricula, this.actividads[i].calificacion);  
           this.suma = this.suma + this.actividads[i].calificacion;
-        }                   
+          this.num = this.num + 1;
+        }                  
+      }      
+      if(this.num == 0){
+        this.promedio = 0;
+      }else{
+        this.promedio = this.suma / this.num;
       }
-      console.log('Suma: ',this.suma);
     },
     err => console.error(err)
   );
@@ -93,7 +98,7 @@ getequipoAlumno(id:number){
     this.datosService.getid(this.id)
     .subscribe(
         res =>{       
-        this.equipo = res;           
+        this.equipo = res;                          
      },
       err => console.error(err)
     ) 
@@ -101,7 +106,8 @@ getequipoAlumno(id:number){
 getCourse(){// Optiene los datos curso
   this.datosService.getCourses().subscribe(
     res => {
-      this.courses = res;      
+      this.courses = res;    
+        
     },
     err => console.error(err)
   );

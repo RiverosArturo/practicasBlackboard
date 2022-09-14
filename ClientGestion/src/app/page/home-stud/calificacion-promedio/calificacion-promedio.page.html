@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc]">
+      <ion-button [routerLink]="['/home-stud/menu-student/menu-student', user, nrc, curso, nTrabajador]">
         <ion-icon name="arrow-undo-outline"></ion-icon>
       </ion-button>      
       <ion-avatar>
@@ -12,24 +12,60 @@
   </ion-toolbar>  
 </ion-header>
 
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+        <ion-title> Calificacion y promedio </ion-title><br><br>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
 
 <ion-content>
-  <ion-card>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-          <ion-title> Calificacion y promedio </ion-title><br><br>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-  </ion-card>
+  <ion-content
+    [scrollEvents]="true"
+    (ionScrollStart)="logScrollStart()"
+    (ionScroll)="logScrolling($event)"
+    (ionScrollEnd)="logScrollEnd()">                    
+      <div slot="fixed"> 
+        <ion-title>Detalles</ion-title><br>  
 
-   <ion-card>
-     <br>
-    <ion-button > Generar </ion-button><br><br>
-   </ion-card>
+        <ion-item>
+          <ion-card>          
+        <tr  *ngFor="let actividad of actividads">                                                      
+          <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">              
+              <ion-label>Actividad: {{actividad.nombre}}</ion-label>
+              <ion-label>Calificacion: {{actividad.calificacion}}</ion-label>
+              <div *ngIf="actividad.urlEstudiante == ''">
+              Actividad entregada: no.
+            </div><div *ngIf="actividad.urlEstudiante != ''">
+              Actividad entregada: si.
+            </div><br>                     
+            
+          </div>
+        </tr><br>
+      </ion-card>
+      </ion-item><br>
 
+      <ion-card>                
+        <div *ngIf="promedio < 0">
+          <ion-label>  Sin actividades</ion-label>
+        </div>
+        <div *ngIf="promedio >= 0">             
+          <ion-title>Actividades y promedio final.</ion-title><br>             
+          <ion-label>Actividades: {{num}}</ion-label>
+          <ion-title>Calificación promedio: {{promedio}}</ion-title>
+        </div><br>             
+      </ion-card><br>
+
+
+      </div>
+
+      
+
+  </ion-content> 
 </ion-content>
 
 <ion-footer>
