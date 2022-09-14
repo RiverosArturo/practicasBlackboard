@@ -41,7 +41,7 @@
         (ionScrollStart)="logScrollStart()"
         (ionScroll)="logScrolling($event)"
         (ionScrollEnd)="logScrollEnd()">                    
-          <div slot="fixed">                                                       
+          <div slot="fixed">                 
 
               <tr  *ngFor="let actividad of actividads">      
                 <!--
@@ -50,6 +50,7 @@
                 {{user}}, {{actividad.matricula}}                
                 {{actividad.id_equipo}}
                 <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador && user == actividad.matricula && id == actividad.id_equipo">
+                  <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">  
                 -->
                                 
                 <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">  
@@ -100,7 +101,13 @@
               </tr>
               
               <ion-card>
-                <ion-title>Calificación promedio: {{promedio}}</ion-title>
+                
+                <div *ngIf="promedio < 0">
+                  <ion-label>  Sin actividades</ion-label>
+                </div>
+                <div *ngIf="promedio >= 0">                  
+                  <ion-title>Calificación promedio: {{promedio}}</ion-title>
+                </div>                
               </ion-card>
 
           </div>          

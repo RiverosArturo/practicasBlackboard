@@ -40,7 +40,7 @@ export class ReportePage implements OnInit {
   id:number;
   NombreEquipo:string = 'IA'; 
   suma:number = 0;
-  promedio:number = 0;
+  promedio:number = -1;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -82,9 +82,16 @@ getAtividad(){
         if(this.user == this.actividads[i].matricula){
           console.log(i,this.actividads[i].matricula, this.actividads[i].calificacion);  
           this.suma = this.suma + this.actividads[i].calificacion;
+          this.num = this.num + 1;
         }                   
+      }      
+      if(this.num == 0){
+        this.promedio = 0;
+      }else{
+        this.promedio = this.suma / this.num;
       }
       console.log('Suma: ',this.suma);
+      console.log('promedio: ',this.promedio);
     },
     err => console.error(err)
   );
