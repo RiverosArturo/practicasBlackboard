@@ -28,18 +28,46 @@
 
 
    <ion-card-content>
-    <ion-item>          
+    <!-- <ion-item>          
       <ion-label>Actividad:</ion-label>
       <select name="actividad" [(ngModel)]="actividad.nrc" name="nrc" >            
           <option [value]="actividad.id" *ngFor="let actividad of actividads">{{actividad.id}},{{ actividad.nombre}}</option>
       </select>                
-    </ion-item> <br>
-    <tr  *ngFor="let actividad of actividads" >            
-      <ion-button color="light">&nbsp;        
-        {{actividad.id}}, {{actividad.nombre}}, {{actividad.matricula}}, {{actividad.calificacion}}                                       
-      </ion-button>&nbsp;                                                                     
+    </ion-item> <br> -->
+    <ion-label for="pregunta" color="dark" *ngIf="boton==0">Desea calificar las actividades de equipo o individuales?</ion-label>
+    <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
+    <ion-button (click)="condicion2()" *ngIf="boton==0"> Por Equipo </ion-button>
+    <tr  *ngFor="let actividad of actividades" >            
+      <ion-button color="light" *ngIf="boton==1" (click)="act(actividad.nrc, actividad.noTrabajador, actividad.id)">       
+        {{actividad.nombre}}                                        
+      </ion-button>                                                                  
     </tr> 
-      <ion-button > Evaluar </ion-button><br><br>
+    <tr *ngFor="let act of actividades2">
+      <div *ngIf="boton==2">
+        {{act.nombre}} {{act.matricula}}
+      </div>
+    </tr>
+
+    <tr  *ngFor="let actividad of actividadesE" >            
+      <ion-button color="light" *ngIf="boton==3" (click)="actE(actividad.nrc, actividad.noTrabajador, actividad.id, actividad.id_equipo)">      
+        {{actividad.nombre}}                                     
+      </ion-button>                                                                   
+    </tr> 
+    <tr *ngFor="let act of actividades2E">
+        <div *ngIf="boton==4">
+          {{act.nombre}} {{act.id_equipo}}
+        </div>
+    </tr>  
+    <ion-button (click)="atras()" *ngIf="boton == 1 || boton == 3">
+      <ion-icon name="arrow-undo"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="boton == 2" name="arrow-undo" (click)="atras2()">
+      <ion-icon name="arrow-undo"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="boton == 4" name="arrow-undo" (click)="atras3()">
+      <ion-icon name="arrow-undo"></ion-icon>
+    </ion-button>
+      <!-- <ion-button > Evaluar </ion-button><br><br> -->
    </ion-card-content>
 
   </ion-card>

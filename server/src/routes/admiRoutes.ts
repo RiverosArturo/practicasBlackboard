@@ -12,6 +12,8 @@ class AdmiRoutes {
     config(): void { 
         this.router.get('/', admiController.list);
         this.router.get('/:id', admiController.getOne);
+        this.router.get('/:nrc/:noTrabajador/:id', admiController.actividades);
+        this.router.get('/:nrc/:noTrabajador/:id/:id_equipo', admiController.actividadesE);
     }
 
 }

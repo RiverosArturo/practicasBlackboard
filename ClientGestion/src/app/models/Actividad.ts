@@ -15,4 +15,5 @@ export interface Actividad {
     urlEstudiante?: string;
     fechaEstudiante?: string;
     comentarioProfesor?: string;
+    horaEstudiante?: string;
 }

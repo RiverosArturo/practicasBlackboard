@@ -23,6 +23,10 @@ export class EntregarActividadPage implements OnInit {
     const params = this.activedRoute.snapshot.params;
     this.user = params.user;
     this.curso = params.curso;
+
+    let fechaEstudiante = String(params.fechaEstudiante);
+    fechaEstudiante = fechaEstudiante.substr(0,10);
+    
     this.actividad = {
       id: params.id,
       nombre: params.nombre,
@@ -37,18 +41,30 @@ export class EntregarActividadPage implements OnInit {
       matricula: params.user,
       urlProfesor: params.urlProfesor,
       urlEstudiante: params.urlEstudiante,
-      fechaEstudiante: params.fechaEstudiante,
-      comentarioProfesor: params.comentarioProfesor
+      fechaEstudiante: fechaEstudiante,
+      comentarioProfesor: params.comentarioProfesor,
+      horaEstudiante: params.horaEstudiante
     }
     this.actividadE = {
       id_equipo: params.id_equipo
     }
-    console.log(this.actividad.id_equipo);
-    console.log(this.actividadE.id_equipo);
+    // console.log(this.actividad.id_equipo);
+    // console.log(this.actividadE.id_equipo);
   }
 
   onSubmit(){
-    if(this.actividad.id_equipo > 0 && this.actividad.id_equipo != null){
+    if(this.actividadE.id_equipo != null && this.actividad.id_equipo == null){
+      let hoy = new Date();
+      let dia = hoy.getDate();
+      let mes = hoy.getMonth() + 1;
+      let agnio = hoy.getFullYear();
+      let dia2 = ('0' + dia).slice(-2);
+      let mes2 = ('0' + mes).slice(-2);
+      let horas = hoy.getHours();
+      let minutos = hoy.getMinutes();
+
+      this.actividad.fechaEstudiante = `${agnio}-${mes2}-${dia2}`;
+      this.actividad.horaEstudiante = `${horas}:${minutos}`;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarActEqAl(this.actividad.id, this.actividad.nrc, this.actividad.noTrabajador, this.actividadE.id_equipo, this.user, this.actividad)
             .subscribe(
@@ -58,8 +74,19 @@ export class EntregarActividadPage implements OnInit {
                 // window.location.reload();
               },
               err => console.error(err)
-            )
+            );
     }else{
+      let hoy = new Date();
+      let dia = hoy.getDate();
+      let mes = hoy.getMonth() + 1;
+      let agnio = hoy.getFullYear();
+      let dia2 = ('0' + dia).slice(-2);
+      let mes2 = ('0' + mes).slice(-2);
+      let horas = hoy.getHours();
+      let minutos = hoy.getMinutes();
+
+      this.actividad.fechaEstudiante = `${agnio}-${mes2}-${dia2}`;
+      this.actividad.horaEstudiante = `${horas}:${minutos}`;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarActAl(this.actividad.id, this.actividad.nrc, this.actividad.noTrabajador, this.user, this.actividad)
             .subscribe(
@@ -69,7 +96,7 @@ export class EntregarActividadPage implements OnInit {
                 //window.location.reload();
               },
               err => console.error(err)
-            )
+            );
     }
   }
 

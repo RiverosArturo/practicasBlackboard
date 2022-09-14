@@ -118,11 +118,11 @@ const routes: Routes = [
     loadChildren: () => import('./estudiante/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
-    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso',
+    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso/:horaEstudiante',
     loadChildren: () => import('./actividades/entregar-actividad/entregar-actividad.module').then( m => m.EntregarActividadPageModule)
   },
   {
-    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso',
+    path: 'entregar-actividad/:user/:nrc/:nTrabajador/:id_equipo/:id/:nombre/:descripcion/:fecha/:fechaEntrega/:horaEntrega/:calificacion/:urlProfesor/:urlEstudiante/:fechaEstudiante/:comentarioProfesor/:curso/:horaEstudiante',
     component: EntregarActividadPage
   }
 ];
