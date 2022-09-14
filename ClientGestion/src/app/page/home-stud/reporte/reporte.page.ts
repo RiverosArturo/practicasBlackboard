@@ -25,6 +25,7 @@ export class ReportePage implements OnInit {
   courses:any = [];
   eCursos:any = [];
   actividads:any =[];
+  equipo:any = [];
   
 
   user:string;
@@ -36,6 +37,10 @@ export class ReportePage implements OnInit {
   fech:Date;
   prom:number = 0;
   num:number = 1;
+  id:number;
+  NombreEquipo:string = 'IA'; 
+  suma:number = 0;
+  promedio:number = 0;
 
   constructor( private menu:MenuController, private datosService: DatosService,private router: Router, private activedRoute:ActivatedRoute ) { }
 
@@ -44,9 +49,11 @@ export class ReportePage implements OnInit {
     this.user = params.user;  
     this.nrc = params.nrc;
     this.curso = params.materia;
+    this.id = params.id;
     this.getCourse();
     this.estudiantesCursos();
-    this.getAtividad();
+    this.getAtividad();    
+    this.getequipoAlumno(this.id);
     this.date();
   }
 //-------------------------------------------------------------------
@@ -71,9 +78,25 @@ getAtividad(){
   this.datosService.getActividad().subscribe(
     res => {
       this.actividads = res;
+      for(let i=0;i<this.actividads.length;i++){   
+        if(this.user == this.actividads[i].matricula){
+          console.log(i,this.actividads[i].matricula, this.actividads[i].calificacion);  
+          this.suma = this.suma + this.actividads[i].calificacion;
+        }                   
+      }
+      console.log('Suma: ',this.suma);
     },
     err => console.error(err)
   );
+}
+getequipoAlumno(id:number){  
+    this.datosService.getid(this.id)
+    .subscribe(
+        res =>{       
+        this.equipo = res;           
+     },
+      err => console.error(err)
+    ) 
 }
 getCourse(){// Optiene los datos curso
   this.datosService.getCourses().subscribe(

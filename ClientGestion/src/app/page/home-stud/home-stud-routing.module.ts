@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./curso/consultar/consultar.module').then( m => m.ConsultarPageModule)
   },
   {
-    path: 'reporte/:user/:nrc/:materia',
+    path: 'reporte/:user/:nrc/:materia/:id',
     loadChildren: () => import('./reporte/reporte.module').then( m => m.ReportePageModule)
   },
   {
@@ -84,10 +84,10 @@ const routes: Routes = [
     path: 'modificar-equipo/:user/:nrc',
     component: ConsultarEquipoPage
   },
-  {
+  /*{
     path: 'reporte/:user/:nrc',
     component: ReportePage
-  },
+  },*/
   {
     path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador/:curso',
     component: ConsultarActividadPage

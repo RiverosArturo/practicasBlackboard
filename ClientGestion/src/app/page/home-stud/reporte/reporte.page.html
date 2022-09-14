@@ -16,42 +16,47 @@
   <ion-card>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons>
           <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-          <ion-title> Reportes </ion-title><br>          
+          <ion-title>Reportes </ion-title><br>    
+          <ion-label slot="end">Equipo: {{id}}, {{NombreEquipo}}</ion-label>      
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
   </ion-card> 
 <!------------------------------------------------------------------------------------------------------->
-  <ion-content>    
+<div *ngIf="reporte == true;"> <!-- Interfaz para ver reporte-->  
+  <ion-button color="light">
+    <ion-title>  Reporte de actividades </ion-title>
+    <ion-button color="danger"(click)="close()"> 
+      <ion-icon name="close-sharp"></ion-icon>
+    </ion-button>                  
+  </ion-button>
+</div>
 
+  <ion-content>        
     <div *ngIf="reporte == true;"> <!-- Interfaz para ver reporte-->              
       <ion-content
         [scrollEvents]="true"
         (ionScrollStart)="logScrollStart()"
         (ionScroll)="logScrolling($event)"
         (ionScrollEnd)="logScrollEnd()">                    
-          <div slot="fixed">            
-          
-                <ion-button color="light">
-                  <ion-title>  Reporte de actividades </ion-title>
-                  <ion-button color="danger"(click)="close()"> 
-                    <ion-icon name="close-sharp"></ion-icon>
-                  </ion-button>                  
-                </ion-button>                      
+          <div slot="fixed">                                                       
 
               <tr  *ngFor="let actividad of actividads">      
                 <!--
                 {{nrc}} - {{nTrabajador}}<br>
                 {{actividad.nrc}} - {{actividad.noTrabajador}}<br><br>
+                {{user}}, {{actividad.matricula}}                
+                {{actividad.id_equipo}}
+                <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador && user == actividad.matricula && id == actividad.id_equipo">
                 -->
-                <div *ngIf="nrc == actividad.nrc && nTrabajador == actividad.noTrabajador">                    
-                                    
+                                
+                <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">  
                     <ion-card>
 
                       <ion-item color="primary">         
-                        <ion-title>{{actividad.nombre}}</ion-title>                                   
+                        <ion-title> {{actividad.nombre}}</ion-title>                                   
                       </ion-item>
 
                       <ion-card>  
@@ -64,8 +69,8 @@
                         Hora de entrega: {{ actividad.horaEntrega}}<br>
                         Profesor: {{actividad.noTrabajador}}<br>
                         nrc: {{ actividad.nrc}}<br>
-                        id Equipo: {{actividad.id_equipo}}<br>
-                        calificacion: {{actividad.calificacion}}<br>
+                        id Equipo: {{actividad.id_equipo}}<br>                        
+                        calificacion: {{actividad.calificacion}}<br>                        
                         matricula: {{actividad.matricula}}<br>    
                         actividad del profesor: {{actividad.urlProfesor}}<br>                                                                       
                         actividad entregada: {{actividad.urlEstudiante}}<br>                        
@@ -92,9 +97,14 @@
                     </ion-card>
                                                
                 </div>                               
-              </tr>             
-          </div>
-      </ion-content>                      
+              </tr>
+              
+              <ion-card>
+                <ion-title>Calificación promedio: {{promedio}}</ion-title>
+              </ion-card>
+
+          </div>          
+      </ion-content>                           
     </div>
     
     <div *ngIf="lista == true"> <!-- Liste de cursos -->
