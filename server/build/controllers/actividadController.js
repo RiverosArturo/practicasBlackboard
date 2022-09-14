@@ -23,7 +23,7 @@ class ActividadController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc, noTrabajador } = req.params;
-            const actividad = yield database_1.default.query('SELECT DISTINCT `id`, `nombre`, `descripcion`, `fecha`, `fechaEntrega`, `horaEntrega`, `noTrabajador`, `nrc`, `id_equipo`, `calificacion`, `urlProfesor`, `urlEstudiante`, `fechaEstudiante`, `comentarioProfesor` FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc, noTrabajador]);
+            const actividad = yield database_1.default.query('SELECT DISTINCT `id`, `nombre`, `descripcion`, `fecha`, `fechaEntrega`, `horaEntrega`, `noTrabajador`, `nrc`, `id_equipo`, `urlProfesor` FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc, noTrabajador]);
             res.json(actividad);
         });
     }

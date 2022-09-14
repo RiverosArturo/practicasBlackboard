@@ -9,7 +9,7 @@ class ActividadController {
       }
     public async list (req: Request, res: Response){
         const {nrc, noTrabajador} = req.params;
-        const actividad = await pool.query('SELECT DISTINCT `id`, `nombre`, `descripcion`, `fecha`, `fechaEntrega`, `horaEntrega`, `noTrabajador`, `nrc`, `id_equipo`, `calificacion`, `urlProfesor`, `urlEstudiante`, `fechaEstudiante`, `comentarioProfesor` FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL',[nrc, noTrabajador]);
+        const actividad = await pool.query('SELECT DISTINCT `id`, `nombre`, `descripcion`, `fecha`, `fechaEntrega`, `horaEntrega`, `noTrabajador`, `nrc`, `id_equipo`, `urlProfesor` FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL',[nrc, noTrabajador]);
         res.json(actividad);
     }
     public async getOne (req:Request, res:Response): Promise<any>{

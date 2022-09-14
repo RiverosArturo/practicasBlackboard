@@ -43,8 +43,23 @@
       </ion-button>                                                                  
     </tr> 
     <tr *ngFor="let act of actividades2">
-      <div *ngIf="boton==2">
+      <!-- <div *ngIf="boton==2">
         {{act.nombre}} {{act.matricula}}
+      </div> -->
+      <div class="container" *ngIf="boton==2">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+          <div class="contenido">
+            <h3>{{act.id}} : {{act.nombre}}</h3>
+            <p>{{act.descripcion}}</p>
+            <a href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
+            <ion-label for="califiacion" color="dark">Calificación:</ion-label><ion-input type="text" name="calificacion" #calificacion="ngModel" [(ngModel)]="act.calificacion" color="primary"></ion-input>
+            <!-- <p>Subido el: {{activity.fecha}}</p> -->
+            <!-- <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p> -->
+            <a (click)="calificar()">Calificar Actividad</a>
+            
+          </div>
+        </div>
       </div>
     </tr>
 
