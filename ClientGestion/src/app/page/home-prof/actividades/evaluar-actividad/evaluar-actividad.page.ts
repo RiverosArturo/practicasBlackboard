@@ -65,8 +65,7 @@ export class EvaluarActividadPage implements OnInit {
   getActividad(){
     this.datosService.getActivity(this.nrc, this.nTrabajador).subscribe(
       res => {
-        this.actividades = res;   
-        console.log(this.actividades[0].id)     
+        this.actividades = res;       
       },
       err => console.error(err)
     );
