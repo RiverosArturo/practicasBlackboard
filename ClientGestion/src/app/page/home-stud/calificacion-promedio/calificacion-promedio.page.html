@@ -39,9 +39,15 @@
               <ion-label>Actividad: {{actividad.nombre}}</ion-label>
               <ion-label>Calificacion: {{actividad.calificacion}}</ion-label>
               <div *ngIf="actividad.urlEstudiante == ''">
-              Actividad entregada: no.
+                <ion-label>
+                  Actividad entregada: no.
+                  <ion-icon color="danger" name="warning-sharp"></ion-icon>
+                </ion-label>              
             </div><div *ngIf="actividad.urlEstudiante != ''">
-              Actividad entregada: si.
+              <ion-label>
+                Actividad entregada: si.                
+                <ion-icon color="success"  name="checkmark-sharp"></ion-icon>                                           
+            </ion-label>
             </div><br>                     
             
           </div>

@@ -77,10 +77,17 @@
                         <ion-title>Reporte de actividad</ion-title><br>
                         
                         <div *ngIf="actividad.urlEstudiante == ''">
-                          Actividad entregada: no.
-                        </div><div *ngIf="actividad.urlEstudiante != ''">
-                          Actividad entregada: si.
+                          <ion-label>
+                            Actividad entregada: no.
+                            <ion-icon color="danger" name="warning-sharp"></ion-icon>
+                          </ion-label>              
                         </div>
+                        <div *ngIf="actividad.urlEstudiante != ''">
+                          <ion-label>
+                            Actividad entregada: si.                
+                            <ion-icon color="success"  name="checkmark-sharp"></ion-icon>                                           
+                        </ion-label>
+                        </div>                        
                         <div *ngIf="actividad.calificacion <= 5 ">
                           calificacion: {{actividad.calificacion}} no aprovatoria.
                         </div>

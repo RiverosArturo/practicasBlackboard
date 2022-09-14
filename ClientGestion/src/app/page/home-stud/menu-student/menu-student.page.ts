@@ -74,7 +74,7 @@ getCurso(){
 }
 ////////////////////////////////////////////////////////////////
 
-  OpenMenuStud(){
+  OpenMenuStud(user:number,nrc:number,nTrabajador:number,materia:string,id:number){
     this.menu.enable(true,'MenuStud');
     this.menu.open('MenuStud');
   }

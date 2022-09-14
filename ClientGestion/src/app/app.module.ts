@@ -21,6 +21,10 @@ import { DatosService } from './services/datos.service';
 export class AppModule {
 
   user:number = 0;
+  nrc:number = 0;
+  nTrabajador:number = 0;
+  materia:string = '';
+  id:number = 0;
 
 }
 

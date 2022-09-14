@@ -7,22 +7,11 @@
 <ion-menu type = "reveal" side="start" menu-id="MenuProf" content-id="main">
   <ion-header>
     <ion-toolbar color="primary">
+      <label>{{user}}, {{nrc}}, {{nTrabajador}}, {{materis}}.{{id}}</label>
       <ion-title>Menu profesor </ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
-    <!--
-    <ion-card>
-      <ion-item [routerLink] = "['/home-prof/',user]"><ion-title color = "primary">Inicio profesor</ion-title></ion-item>
-    </ion-card>
-    <ion-card>
-      <ion-title color = "dark"> Gestionar curso </ion-title>
-        <ion-list>
-          <ion-item [routerLink] = "'/home-prof/MenuProf/crear-curso'"><ion-title color = "primary">Crear curso</ion-title></ion-item>
-          <ion-item [routerLink] = "'/home-prof/MenuProf/consultar-curso'"><ion-title color = "primary">Consultar curso</ion-title></ion-item>
-          <ion-item [routerLink] = "'/home-prof/MenuProf/eliminar-curso'"><ion-title color = "primary">Eliminar curso</ion-title></ion-item>
-        </ion-list>
-  </ion-card>-->
+  <ion-content>    
   <ion-card>
     <ion-item [routerLink] = "'/home'">
       <ion-title color = "primary">Cerrar sesion</ion-title>
@@ -68,16 +57,20 @@
 <!-- ------menu estudiante---------------------------------------------------------------------  -->
 <ion-menu type = "reveal" side="start" menu-id="MenuStud" content-id="main" >
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar color="primary">      
       <ion-title >Menu estudiante </ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header>  
   <ion-content color = "light">
     <ion-card>
       <ion-item [routerLink] = "'/home'">
-        <ion-title color = "primary">Cerrar sesion</ion-title>
-      </ion-item>    
-    </ion-card>
+        <ion-list>
+          <ion-title color = "primary">Cerrar sesion</ion-title>
+          <ion-title>Datos: {{user}}, {{nrc}}, {{nTrabajador}}, {{materis}}, {{id}} </ion-title>             
+      </ion-list>
+      </ion-item>
+      
+    </ion-card>    
       <ion-card >
           <ion-title color = "dark"> Gestionar curso </ion-title>
         <ion-list>
