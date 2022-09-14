@@ -12,7 +12,6 @@
   </ion-toolbar>  
 </ion-header>
 
-<ion-content>
   <ion-card>
     <ion-header>
       <ion-toolbar>
@@ -24,83 +23,104 @@
     </ion-header>
   </ion-card>
 
-  <ion-card-content>
-    <!-- <div class="title">
-      <ion-title>Actividades individuales</ion-title>
-    </div> -->
-    <ion-label color="dark" *ngIf="boton==0">Desea visualizar las actividades individuales o en equipo?</ion-label>
-    <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
-    <ion-button (click)="condicion2()" *ngIf="boton==0"> Equipos </ion-button>
-  
-    <tr  *ngFor="let activity of actividades">                   
-      <!-- <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >                  
-        ver
-      </ion-button>  -->
-      <div class="container" *ngIf="boton==1">
-        <div class="card">
-          <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
-          <div class="contenido">
-            <h3>{{activity.id}} : {{activity.nombre}}</h3>
-            <p>{{activity.descripcion}}</p><br>
-            <!-- <p>Subido el: {{activity.fecha}}</p> -->
-            <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
-            <a *ngIf="activity.urlEstudiante == '' " [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Consultar Actividad</a>
-            <a *ngIf="activity.urlEstudiante != '' && activity.calificacion == 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Editar Entrega Actividad</a>
-            <a *ngIf="activity.calificacion > 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Calificación: {{activity.calificacion}}</a>
-          </div>
-        </div>
-      </div>
-        <!-- {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}} -->
-    </tr>
+<ion-content>
+  <ion-content
+    [scrollEvents]="true"
+    (ionScrollStart)="logScrollStart()"
+    (ionScroll)="logScrolling($event)"
+    (ionScrollEnd)="logScrollEnd()">
 
-    <!-- <div class="title">
-      <ion-title>Actividades por equipos</ion-title>
-    </div> -->
-    <tr  *ngFor="let activity of actividadesE">                   
-      <!-- <ion-button (click)="a()" [routerLink]="['/home-prof/actividades/modificar-actividad',activity.id,activity.id_equipo,activity.noTrabajador,activity.nrc]" color="primary" >
-        ver
-      </ion-button> 
-        {{ activity.id }}, {{ activity.nombre}}, {{activity.fecha}}, {{activity.fechaEntrega}} -->
-        <div class="container" *ngIf="boton==2">
-          <div class="card">
-            <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
-
-            <div class="contenido">
-              <p>Equipo: {{equipos[activity.id_equipo].nombre}}</p>
-              <h3>{{activity.id}} : {{activity.nombre}}</h3>
-              <p>{{activity.descripcion}}</p><br>
-              <!-- <p>Subido el: {{activity.fecha}}</p> -->
-              <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
-              <a *ngIf="activity.urlEstudiante == '' " [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Consultar Actividad</a>
-              <a *ngIf="activity.urlEstudiante != '' && activity.calificacion == 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                  activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                  activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                  activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Editar Entrega Actividad</a>
-              <a *ngIf="activity.calificacion > 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
-                                  activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
-                                  activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
-                                  activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Calificación: {{activity.calificacion}}</a>
+    <div slot="fixed">
+      <ion-card-content>
+        <ion-label color="dark" *ngIf="boton==0">Desea visualizar las actividades individuales o en equipo?</ion-label>
+        <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
+        <ion-button (click)="condicion2()" *ngIf="boton==0"> Equipos </ion-button>
+      
+        <tr  *ngFor="let activity of actividades">                   
+          <div class="container" *ngIf="boton==1">
+            <div class="card">
+              <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+              <div class="contenido">
+                <ion-list>
+                  <ion-list-header>
+                    <ion-label>{{activity.id}} : {{activity.nombre}}</ion-label>
+                  </ion-list-header>
+                  <ion-item>
+                    <p>{{activity.descripcion}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <a *ngIf="activity.urlEstudiante" href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
+                    <a *ngIf="!activity.urlEstudiante">Aún no entregado</a><br>
+                  </ion-item>
+                  <ion-item>
+                    <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+                  </ion-item>
+                </ion-list>
+                <a *ngIf="activity.urlEstudiante == '' " [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                    activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                    activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                    activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Consultar Actividad</a>
+                <a *ngIf="activity.urlEstudiante != '' && activity.calificacion == 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                    activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                    activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                    activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Editar Entrega Actividad</a>
+                <a *ngIf="activity.calificacion > 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                    activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                    activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                    activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Calificación: {{activity.calificacion}}</a>
+              </div>
             </div>
           </div>
-        </div>
-      </tr>
-      <ion-button (click)="regresar()" *ngIf="boton == 1 || boton==2">
-        <ion-icon name="arrow-undo-outline"></ion-icon>
-      </ion-button>  
-  </ion-card-content>
-
+        </tr>
+    
+        
+        <tr  *ngFor="let activity of actividadesE">                   
+            
+          <div class="container" *ngIf="boton==2">
+              <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+    
+                <div class="contenido">
+                  <ion-list>
+                    <ion-list-header>
+                      <ion-label>Equipo: {{equipos[activity.id_equipo].nombre}}</ion-label>
+                    </ion-list-header>
+                    <ion-list-header>
+                      <ion-label>{{activity.id}} : {{activity.nombre}}</ion-label>
+                    </ion-list-header>
+                    <ion-item>
+                      <p>{{activity.descripcion}}</p>
+                    </ion-item>
+                    <ion-item>
+                      <a *ngIf="activity.urlEstudiante" href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
+                      <a *ngIf="!activity.urlEstudiante">Aún no entregado</a><br>
+                    </ion-item>
+                    <ion-item>
+                      <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
+                    </ion-item>
+                  </ion-list>
+                  <a *ngIf="activity.urlEstudiante == '' " [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                    activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                    activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                    activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Consultar Actividad</a>
+                  <a *ngIf="activity.urlEstudiante != '' && activity.calificacion == 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                      activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                      activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                      activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Editar Entrega Actividad</a>
+                  <a *ngIf="activity.calificacion > 0" [routerLink] = "['/home-stud/actividades/entregar-actividad',user,nrc,nTrabajador,activity.id_equipo,
+                                      activity.id, activity.nombre, activity.descripcion, activity.fecha, activity.fechaEntrega,
+                                      activity.horaEntrega, activity.calificacion, activity.urlProfesor, activity.urlEstudiante, 
+                                      activity.fechaEstudiante, activity.comentarioProfesor, curso, activity.horaEstudiante]" (click)="regresar()">Calificación: {{activity.calificacion}}</a>
+                </div>
+              </div>
+            </div>
+          </tr>
+          <ion-button (click)="regresar()" *ngIf="boton == 1 || boton==2">
+            <ion-icon name="arrow-undo-outline"></ion-icon>
+          </ion-button>  
+      </ion-card-content>
+    </div>
+  </ion-content>
 </ion-content>
 
 <ion-footer>

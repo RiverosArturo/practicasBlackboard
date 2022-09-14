@@ -12,81 +12,128 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
   <ion-card>
-
-    <ion-card>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
-            <ion-title> Evaluar actividad </ion-title><br>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-    </ion-card>
-
-
-   <ion-card-content>
-    <!-- <ion-item>          
-      <ion-label>Actividad:</ion-label>
-      <select name="actividad" [(ngModel)]="actividad.nrc" name="nrc" >            
-          <option [value]="actividad.id" *ngFor="let actividad of actividads">{{actividad.id}},{{ actividad.nombre}}</option>
-      </select>                
-    </ion-item> <br> -->
-    <ion-label for="pregunta" color="dark" *ngIf="boton==0">Desea calificar las actividades de equipo o individuales?</ion-label>
-    <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
-    <ion-button (click)="condicion2()" *ngIf="boton==0"> Por Equipo </ion-button>
-    <tr  *ngFor="let actividad of actividades" >            
-      <ion-button color="light" *ngIf="boton==1" (click)="act(actividad.nrc, actividad.noTrabajador, actividad.id)">       
-        {{actividad.nombre}}                                        
-      </ion-button>                                                                  
-    </tr> 
-    <tr *ngFor="let act of actividades2">
-      <!-- <div *ngIf="boton==2">
-        {{act.nombre}} {{act.matricula}}
-      </div> -->
-      <div class="container" *ngIf="boton==2">
-        <div class="card">
-          <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
-          <div class="contenido">
-            <h3>{{act.id}} : {{act.nombre}}</h3>
-            <p>{{act.descripcion}}</p>
-            <a href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
-            <ion-label for="califiacion" color="dark">Calificación:</ion-label><ion-input type="text" name="calificacion" #calificacion="ngModel" [(ngModel)]="act.calificacion" color="primary"></ion-input>
-            <!-- <p>Subido el: {{activity.fecha}}</p> -->
-            <!-- <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p> -->
-            <a (click)="calificar()">Calificar Actividad</a>
-            
-          </div>
-        </div>
-      </div>
-    </tr>
-
-    <tr  *ngFor="let actividad of actividadesE" >            
-      <ion-button color="light" *ngIf="boton==3" (click)="actE(actividad.nrc, actividad.noTrabajador, actividad.id, actividad.id_equipo)">      
-        {{actividad.nombre}}                                     
-      </ion-button>                                                                   
-    </tr> 
-    <tr *ngFor="let act of actividades2E">
-        <div *ngIf="boton==4">
-          {{act.nombre}} {{act.id_equipo}}
-        </div>
-    </tr>  
-    <ion-button (click)="atras()" *ngIf="boton == 1 || boton == 3">
-      <ion-icon name="arrow-undo"></ion-icon>
-    </ion-button>
-    <ion-button *ngIf="boton == 2" name="arrow-undo" (click)="atras2()">
-      <ion-icon name="arrow-undo"></ion-icon>
-    </ion-button>
-    <ion-button *ngIf="boton == 4" name="arrow-undo" (click)="atras3()">
-      <ion-icon name="arrow-undo"></ion-icon>
-    </ion-button>
-      <!-- <ion-button > Evaluar </ion-button><br><br> -->
-   </ion-card-content>
-
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button (click)="OpenMenuProf()" color = "primary" autoHide="false" menu="MenuProf"></ion-menu-button>
+          <ion-title> Evaluar actividad </ion-title><br>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
   </ion-card>
-</ion-content>
+
+  <ion-content>
+    <ion-content
+      [scrollEvents]="true"
+      (ionScrollStart)="logScrollStart()"
+      (ionScroll)="logScrolling($event)"
+      (ionScrollEnd)="logScrollEnd()">
+
+      <div slot="fixed">
+        <ion-card-content>
+
+          <ion-label for="pregunta" color="dark" *ngIf="boton==0">Desea calificar las actividades de equipo o individuales?</ion-label>
+          <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
+          <ion-button (click)="condicion2()" *ngIf="boton==0"> Por Equipo </ion-button>
+          
+          <tr  *ngFor="let actividad of actividades" >            
+            <ion-button color="light" *ngIf="boton==1" (click)="act(actividad.nrc, actividad.noTrabajador, actividad.id)">       
+              {{actividad.nombre}}                                        
+            </ion-button>                                                                  
+          </tr> 
+
+          <tr *ngFor="let act of actividades2">
+            <div class="container" *ngIf="boton==2">
+              <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                <div class="contenido">
+                  <form (ngSubmit)="onSubmit(act.id, act.nrc, act.noTrabajador, act.id_equipo, act.matricula, act)" #entregarAct="ngForm">
+                    <ion-list>
+                      <ion-list-header>
+                        <ion-label>{{alumnos[act.matricula].nombre}} - {{act.id}} : {{act.nombre}}</ion-label>
+                      </ion-list-header>
+                      <ion-item>
+                        <p>{{act.descripcion}}</p>
+                      </ion-item>
+                      <ion-item>
+                        <a *ngIf="act.urlEstudiante" href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
+                        <a *ngIf="!act.urlEstudiante">Aún no entregado</a><br>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label for="comentario" color="dark" position="floating">Comentario:</ion-label>
+                        <ion-input name="comentario" #comentario="ngModel" [(ngModel)]="act.comentarioProfesor" color="primary" placeholder="Agrega un comentario para el estudiante."></ion-input>    
+                      </ion-item>
+                      <ion-item>
+                        <ion-label for="califiacion" color="dark" position="floating">Calificación:</ion-label>
+                        <ion-input name="calificacion" #calificacion="ngModel" [(ngModel)]="act.calificacion" color="primary"></ion-input>    
+                      </ion-item>
+                    </ion-list>
+                    <ion-button *ngIf="act.calificacion == 0" color="primary" type="submit" value="Enviar">Calificar Actividad</ion-button>
+                    <ion-button *ngIf="act.calificacion > 0 || act.comentarioProfesor != '' " color="success" type="submit" value="Enviar">Modificar Calificación</ion-button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </tr>
+      
+          <tr  *ngFor="let actividad of actividadesE" >            
+            <ion-button color="light" *ngIf="boton==3" (click)="actE(actividad.nrc, actividad.noTrabajador, actividad.id, actividad.id_equipo)">      
+              {{actividad.nombre}}                                     
+            </ion-button>                                                                   
+          </tr> 
+
+          <tr *ngFor="let act of actividades2E">
+            <div class="container" *ngIf="boton==4">
+              <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                <div class="contenido">
+                  <form (ngSubmit)="onSubmit(act.id, act.nrc, act.noTrabajador, act.id_equipo, act.matricula, act)" #entregarAct="ngForm">
+                    <ion-list>
+                      <ion-list-header>
+                        <ion-label>{{equipos[act.id_equipo].nombre}}</ion-label>
+                      </ion-list-header>
+                      <ion-list-header>
+                        <ion-label>{{alumnos2[act.matricula].nombre}} - {{act.id}} : {{act.nombre}}</ion-label>
+                      </ion-list-header>
+                      <ion-item>
+                        <p>{{act.descripcion}}</p>
+                      </ion-item>
+                      <ion-item>
+                        <a *ngIf="act.urlEstudiante" href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
+                        <a *ngIf="!act.urlEstudiante">Aún no entregado</a><br>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label for="comentario" color="dark" position="floating">Comentario:</ion-label>
+                        <ion-input name="comentario" #comentario="ngModel" [(ngModel)]="act.comentarioProfesor" color="primary" placeholder="Agrega un comentario para el estudiante."></ion-input>    
+                      </ion-item>
+                      <ion-item>
+                        <ion-label for="califiacion" color="dark" position="floating">Calificación:</ion-label>
+                        <ion-input name="calificacion" #calificacion="ngModel" [(ngModel)]="act.calificacion" color="primary"></ion-input>    
+                      </ion-item>
+                    </ion-list>
+                    <ion-button color="primary" type="submit" value="Enviar">Calificar Actividad</ion-button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </tr>  
+
+
+          <ion-button (click)="atras()" *ngIf="boton == 1 || boton == 3">
+            <ion-icon name="arrow-undo"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="boton == 2" name="arrow-undo" (click)="atras2()">
+            <ion-icon name="arrow-undo"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="boton == 4" name="arrow-undo" (click)="atras3()">
+            <ion-icon name="arrow-undo"></ion-icon>
+          </ion-button>
+            <!-- <ion-button > Evaluar </ion-button><br><br> -->
+         </ion-card-content>
+      </div>
+    </ion-content>
+  </ion-content>
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
