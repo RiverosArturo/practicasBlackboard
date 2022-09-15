@@ -23,7 +23,7 @@ export class ConsultarEquipoPage implements OnInit {
 
   user:string;
   nrc:number;
-  materia:string;
+  materia:string = 'IA';
   id:number;
   nTrabajador:number;
 
@@ -39,7 +39,7 @@ oneEquipos:any = [];//Alumnos integrantes del equipo
 
 equipo:Equipo ={
   id: 0,
-  nombre:'',
+  nombre:'Equipo IA',
   curso_nrc:0,
   nTrabajador:0
 
@@ -62,6 +62,7 @@ equi:boolean = false;
 deleteEqui:boolean = false;
 delete2:boolean = false;
 nomb:string;
+
 
 
 students:any = [];//Alumnos de la base para nombre del alumno  
@@ -90,7 +91,7 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res; 
+          this.equipos = res;           
         },
         err => console.error(err)
       )
@@ -138,7 +139,7 @@ studCourses:any = [];//Alumnos del curso
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
     this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
       res => {
-        this.studCourses = res;              
+        this.studCourses = res;                  
       },
       err => console.error(err)
     );
@@ -154,7 +155,8 @@ studCourses:any = [];//Alumnos del curso
   get1Equipo(id:number){// Optiene datos de un solo equipo    
     this.datosService.getOneEquipo(id).subscribe(
       res => {
-        this.oneEquipos = res;            
+        this.oneEquipos = res;   
+        console.log(this.oneEquipos);         
       },
       err => console.error(err)
     );
@@ -162,7 +164,7 @@ studCourses:any = [];//Alumnos del curso
   getEquipos1(nrc:number, nTrabajador:number){    
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
-        this.equipos = res;
+        this.equipos = res;        
       },
       err => console.error(err)
     );
