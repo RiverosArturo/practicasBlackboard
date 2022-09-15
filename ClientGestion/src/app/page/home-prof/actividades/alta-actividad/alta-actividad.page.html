@@ -28,9 +28,28 @@
 
 
   <ion-card-content>
-    <ion-label for="pregunta" color="dark" *ngIf="boton==true">Agregara una actividad para todo el curso o para un equipo?:</ion-label>
-    <ion-button (click)="condicion1()" *ngIf="boton==true"> Todo el curso </ion-button>
-    <ion-button (click)="condicion2()" *ngIf="boton==true"> Para un equipo </ion-button>
+    <ion-card-content>
+      <ion-row size="2">
+      <ion-col offset="0">
+        <div class="car" *ngIf="boton==true">
+          <ion-icon name="person-sharp" size="large"></ion-icon>
+          <div class="conte">
+            <h3>dar de alta actividad para todo el curso</h3>
+            <ion-button (click)="condicion1()" *ngIf="boton==true"> Curso </ion-button>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col offset="0">
+        <div class="car" *ngIf="boton==true">
+          <ion-icon name="people-sharp" size="large"></ion-icon>
+          <div class="conte">
+            <h3>dar de alta actividad por equipo</h3>
+            <ion-button (click)="condicion2()" *ngIf="boton==true"> Equipo </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    </ion-card-content>
     
     <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAct="ngForm">
       <ion-label for="id" color="dark">Id actividad:</ion-label>

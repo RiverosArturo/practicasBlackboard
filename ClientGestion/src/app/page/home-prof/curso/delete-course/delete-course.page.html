@@ -21,39 +21,45 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-    <div slot="fixed">
-      <ion-list>      
+    <div class="iocont" slot="fixed">  
 
     <tr  *ngFor="let pCourse of pCourses" >           
-      <div *ngIf="pCourse.nTrabajador == user;">            
-        <ion-button color="medium">&nbsp;            
+      <div *ngIf="pCourse.nTrabajador == user;">                
           <tr *ngFor="let course of courses">
-            <div *ngIf="course.nrc == pCourse.nrc">&nbsp;&nbsp;          
-              <ion-button color="danger" (click)="AlertOne(pCourse.nTrabajador, pCourse.nrc)"  >Eliminar
-                <ion-icon name="trash"></ion-icon>
-              </ion-button>&nbsp;&nbsp;
-              <ion-label>
-                Profesor:[{{pCourse.nTrabajador}}], NRC:[{{pCourse.nrc}}]-[{{course.materia}}]    
-              </ion-label>
-              &nbsp;&nbsp;&nbsp;  
+            <div *ngIf="course.nrc == pCourse.nrc">  
+              
+              <div class="container" *ngIf="course.nrc == pCourse.nrc">
+                  <div class="card">
+                    <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                    <div class="contenido">
+                      <ion-list>
+                        <ion-list-header>
+                          <h3 class="title">{{course.materia}}</h3>
+                        </ion-list-header>
+                        <ion-item>
+                          <p>Clave: {{course.clave}}</p>
+                        </ion-item>
+                        <ion-item>
+                          <p>Sección: {{course.seccion}} NRC:{{pCourse.nrc}}</p>
+                        </ion-item>
+                        <ion-item>
+                          <p>Horario:{{course.horario}}</p>
+                        </ion-item>
+                      </ion-list>
+                      <ion-button color="danger" (click)="AlertOne(pCourse.nTrabajador, pCourse.nrc)"  >Eliminar
+                        <ion-icon name="trash"></ion-icon>
+                      </ion-button>&nbsp;&nbsp;
+                    </div>
+                  </div>
+                </div>
+
             </div>
-          </tr>&nbsp;                     
-        </ion-button>          
+          </tr>      
       </div>     
   </tr>
-  </ion-list>
   </div>
 </ion-content>
 </ion-content> 
-
-<ion-card>
-  <ion-item>    
-    <ion-button slot="end" color="danger" (click)="AlertAll()">
-      <ion-label> Eliminar Todo </ion-label>
-      <ion-icon slot="end" name="trash"></ion-icon> 
-    </ion-button>
-  </ion-item>
-</ion-card>
 
 
 <ion-footer>

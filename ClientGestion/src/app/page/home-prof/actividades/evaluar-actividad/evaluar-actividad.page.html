@@ -32,11 +32,27 @@
 
       <div slot="fixed">
         <ion-card-content>
+          <ion-row size="2">
+            <ion-col offset="3">
+              <div class="car" *ngIf="boton==0">
+                <ion-icon name="person-sharp" size="large"></ion-icon>
+                <div class="conte">
+                  <h3>evaluar actividades individuales</h3>
+                  <ion-button (click)="condicion1()"> Individuales </ion-button>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col offset="0.5">
+              <div class="car" *ngIf="boton==0">
+                <ion-icon name="people-sharp" size="large"></ion-icon>
+                <div class="conte">
+                  <h3>evaluar actividades por equipo</h3>
+                  <ion-button (click)="condicion2()"> Equipos </ion-button>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
 
-          <ion-label for="pregunta" color="dark" *ngIf="boton==0">Desea calificar las actividades de equipo o individuales?</ion-label>
-          <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
-          <ion-button (click)="condicion2()" *ngIf="boton==0"> Por Equipo </ion-button>
-          
           <tr  *ngFor="let actividad of actividades" >            
             <ion-button color="light" *ngIf="boton==1" (click)="act(actividad.nrc, actividad.noTrabajador, actividad.id)">       
               {{actividad.nombre}}                                        

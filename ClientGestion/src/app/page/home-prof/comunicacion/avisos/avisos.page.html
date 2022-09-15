@@ -33,12 +33,30 @@
     (ionScrollEnd)="logScrollEnd()">
 
     <div slot="fixed">
+      <ion-row size="2">
+        <ion-col offset="3">
+          <div class="car" *ngIf="boton2==true">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3 class="title">avisos individuales</h3>
+              <ion-button (click)="condicion1()"> Individuales </ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col offset="0.5">
+          <div class="car" *ngIf="boton2==true">
+            <ion-icon name="people-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>avisos por equipo</h3>
+              <ion-button (click)="condicion2()"> Equipos </ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      
       <ion-card-content>
-        <ion-label color="dark" *ngIf="boton2==true">Desea visualizar las actividades individuales o en equipo?</ion-label>
-        <ion-button (click)="condicion1()" *ngIf="boton2==true"> Individuales </ion-button>
-        <ion-button (click)="condicion2()" *ngIf="boton2==true"> Equipos </ion-button>
-        
-        <div *ngIf="avisos.length >= 1 && boton == 2 || avisos.length >= 1 && boton == 1">
+
+        <div class="iocont" *ngIf="avisos.length >= 1 && boton == 2 || avisos.length >= 1 && boton == 1">
           <tr  *ngFor="let aviso of avisos">
   
             <div class="container" *ngIf="aviso.id_equipo==null && boton==2">
@@ -47,7 +65,7 @@
                 <div class="contenido">
                   <ion-list>
                     <ion-list-header>
-                      <ion-label>AVISO PARA TODO EL CURSO</ion-label>
+                      <h3 class="title">AVISO PARA TODO EL CURSO</h3>
                     </ion-list-header>
                     <ion-item>
                       <p>{{aviso.aviso}}</p>
@@ -71,7 +89,7 @@
                 <div class="contenido">
                   <ion-list>
                     <ion-list-header>
-                      <ion-label>Aviso para equipo {{equipos[aviso.id_equipo].nombre}}</ion-label>
+                      <h3 class="title">Aviso para equipo {{equipos[aviso.id_equipo].nombre}}</h3>
                     </ion-list-header>
                     <ion-item>
                       <p>{{aviso.aviso}}</p>
