@@ -27,29 +27,51 @@
 
 
 <ion-content>
-    <ion-label>Selecciona el  NRC </ion-label>
-    <form>      
-    <ion-card>      
-      <ion-header>
-        <ion-label> Selecciona </ion-label>
-      </ion-header>                  
-      <ion-item>          
-        <ion-label>NRC</ion-label>
-        <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-            <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
-        </select>                
-      </ion-item> <br>
-      <ion-label> {{pCourse.nrc}} </ion-label>            
-    </ion-card>
-  <ion-item>
-    <ion-toolbar>      
-      <ion-button slot="end"   (click)=" getUSERNRC(user, pCourse.nrc)">
-        <ion-label> Guardar </ion-label>
-      </ion-button>            
-    </ion-toolbar>
-  </ion-item><br>
-  </form>
-  </ion-content>
+
+  <div class="container">
+    <div class="card">
+      <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+      <div class="contenido">
+        <ion-list>
+          <ion-list-header>
+            <h3 class="title">Crear curso</h3>
+          </ion-list-header>
+          <ion-item>
+            <p>Selecciona el nrc del curso:</p>
+            <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
+                <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
+            </select>
+          </ion-item>
+          <ion-item>
+            <tr *ngFor="let course of courses">
+              <div *ngIf="course.nrc == pCourse.nrc">
+                <ion-list>
+                  <ion-list-header>
+                    Infromacion del curso:
+                  </ion-list-header>
+                  <ion-item>
+                    <p>Materia:{{course.materia}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <p>Nrc: {{course.nrc}} Sección: {{course.seccion}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <p>Clave: {{course.clave}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <p>Horario:{{course.horario}}</p>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </tr>
+          </ion-item>
+        </ion-list><br>
+        <ion-button slot="end"   (click)=" getUSERNRC(user, pCourse.nrc)">Crear Curso</ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
 
 
 <ion-footer>
