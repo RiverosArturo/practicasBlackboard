@@ -26,12 +26,13 @@
   </ion-card>
 
   <!-- opciones -->
-    <ion-item>      
+    <!-- <ion-item>      
       <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
       <ion-button color = "primary" (click)="AlertDeleteStudentEquipo(user, id, nrc, nTrabajador)"> Salir del Equipo </ion-button>      
-    </ion-item>
+    </ion-item> -->
     <!-- Edita el nombre del equipo -->
-    <div *ngIf="edit == true ">
+    <!-- <div *ngIf="edit == true ">
+      
       <ion-item class="form-group">                  
       <ion-card>
         <ion-toolbar>
@@ -57,7 +58,7 @@
         </ion-card>       
       </ion-card>
       </ion-item>
-    </div>
+    </div> -->
 
   
 
@@ -69,22 +70,64 @@
   (ionScrollEnd)="logScrollEnd()">  
       
     <div slot="fixed">
-      <ion-list>
-      <tr  *ngFor="let equipo of equipos">        
-        <ion-buttons>
-          <tr *ngFor="let student of students">
-            <div *ngIf="equipo.matricula == student.matricula ">
-              {{equipo.matricula}}, {{student.nombre}}, {{student.correo}}
-
-              <ion-button color="danger" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)" >                                                                 
-                <ion-icon name="trash"></ion-icon> 
-              </ion-button>
-
+        <div class="container">
+          <div class="card">
+            <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+            <div class="contenido">
+              <tr  *ngFor="let equipo of equipos">        
+                <ion-buttons>
+                  <tr *ngFor="let student of students">
+                    <div *ngIf="equipo.matricula == student.matricula ">
+                      <ion-list>
+                        <ion-item>
+                          <p>{{equipo.matricula}}, {{student.nombre}}, {{student.correo}}</p>
+                          <ion-button *ngIf="equipo.matricula == user" color="danger" (click)="AlertDeleteStudentEquipo(equipo.matricula, id, nrc, nTrabajador)" >                                                                 
+                            <ion-icon name="trash"></ion-icon> 
+                          </ion-button>
+                        </ion-item>
+                      </ion-list>
+                    </div>
+                  </tr>
+                </ion-buttons>
+              </tr><br>
+              <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
+              <ion-button color = "primary" (click)="AlertDeleteStudentEquipo(user, id, nrc, nTrabajador)"> Salir del Equipo </ion-button>      
             </div>
-          </tr>                          
-        </ion-buttons>
-      </tr>
-      </ion-list>
+          </div>
+
+          <div *ngIf="edit == true ">
+      
+            <ion-item class="form-group">                  
+            <ion-card>
+              <ion-toolbar>
+                <ion-title>  Editar {{ equipo.nombre }} </ion-title>
+                <ion-button color="danger" slot="end"  (click)="close()">
+                  <ion-icon name="close-sharp"></ion-icon>
+                </ion-button>
+              </ion-toolbar>              
+              <ion-card>
+                <form>                 
+                  <ion-item class="form-group">
+                    <ion-label position="floating"> Nombre de equipo </ion-label>
+                    <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>              
+                  </ion-item>                
+                  <ion-item>
+                    <ion-toolbar>                    
+                      <ion-button slot="end"  (click)="editEquipoButton(equipo.id, nombre, nrc, nTrabajador)">
+                        <ion-label> Guardar </ion-label>
+                      </ion-button>
+                    </ion-toolbar>
+                  </ion-item>
+                  </form>                                            
+              </ion-card>       
+            </ion-card>
+            </ion-item>
+          </div>
+
+
+        </div>                         
+
+
     </div>
 </ion-content>
 </ion-content>

@@ -12,25 +12,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
-            <ion-title> Estudiante </ion-title><br>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-    </ion-card>
-    <ion-card>
-        <h1> Gestionar curso </h1> <br>
-        <ion-button [routerLink] = "['../home-stud/consultar',user]">   Consultar curso   </ion-button>
-        <br><br>
-    </ion-card>
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+        <ion-title> Estudiante </ion-title><br>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
 
-  </ion-card>
+<ion-content>
+  <h1> Gestionar curso </h1>
+  <div class="ioncont">
+    <div class="contai">
+      <div class="car">
+        <ion-icon name="layers-sharp" size="large"></ion-icon>
+        <ion-icon name="search-sharp" size="large"></ion-icon>
+        <div class="conte">
+          <h3>Consultar Cursos</h3>
+          <ion-button [routerLink] = "['../home-stud/consultar',user]"> Consultar </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer>

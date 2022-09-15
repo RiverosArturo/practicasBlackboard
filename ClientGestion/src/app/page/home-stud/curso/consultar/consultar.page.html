@@ -23,24 +23,40 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-    <div slot="fixed">
+    <div class="ioncont" slot="fixed">
       
       <tr  *ngFor="let cursoEs of eCursos" >           
-        <div *ngIf="cursoEs.matricula == user;">     
-          <ion-card>              
+        <div *ngIf="cursoEs.matricula == user;">                
             <tr *ngFor="let course of courses">  
-              <div *ngIf="course.nrc == cursoEs.nrc">
-                <ion-item>
-                  <ion-button  [routerLink]="['../../menu-student', user, cursoEs.nrc, course.materia,cursoEs.nTrabajador]" > curso                  
-                    &nbsp;<ion-icon name="eye-outline"></ion-icon>
-                 </ion-button>
-
-                  <ion-title >&nbsp; NRC:{{cursoEs.nrc }}, Materia:{{course.materia }}, Profesor:{{ cursoEs.nTrabajador }}  </ion-title>                  
-
-                </ion-item>                 
-              </div> 
-            </tr>               
-          </ion-card>          
+              
+                <div class="container" *ngIf="course.nrc == cursoEs.nrc">
+                  <div class="card">
+                    <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+                    <div class="contenido">
+                      <ion-list>
+                        <ion-list-header>
+                          <h3 class="title">{{course.materia}}</h3>
+                        </ion-list-header>
+                        <ion-item>
+                          <p>Profesor: {{cursoEs.nTrabajador}}</p>
+                        </ion-item>
+                        <ion-item>
+                          <p>Clave: {{course.clave}}</p>
+                        </ion-item>
+                        <ion-item>
+                          <p>Sección: {{course.seccion}} NRC:{{cursoEs.nrc}}</p>
+                        </ion-item>
+                        <ion-item>
+                          <p>Horario:{{course.horario}}</p>
+                        </ion-item>
+                      </ion-list><br>
+                      <ion-button  [routerLink]="['../../menu-student', user, cursoEs.nrc, course.materia,cursoEs.nTrabajador]" > ver                 
+                        &nbsp;<ion-icon name="eye-outline"></ion-icon>
+                     </ion-button>
+                    </div>
+                  </div>
+                </div>               
+            </tr>                        
         </div>     
     </tr>
   

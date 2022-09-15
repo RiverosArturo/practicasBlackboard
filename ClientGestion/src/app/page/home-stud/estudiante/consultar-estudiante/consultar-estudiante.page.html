@@ -41,21 +41,26 @@
     <div slot="fixed">        
         
         <tr  *ngFor="let studCourse of studCourses" >            
-              <ion-button color="light">&nbsp;                              
+              <ion-button color="white">&nbsp;                              
                     <tr *ngFor="let student of students">
                       <div *ngIf="studCourse.matricula == student.matricula">
                         <tr *ngFor="let course of courses">
                           <div *ngIf=" studCourse.nrc == course.nrc">       
-                            <ion-button color="light">
-                              <ion-icon name="person-sharp"></ion-icon>&nbsp;
-                              {{studCourse.matricula}}, {{student.nombre}}, {{student.correo}}, {{studCourse.nrc}}, {{course.materia}}   
-                            </ion-button>                                                 
+                            <ion-list>
+                              <ion-item>
+                                Nombre: {{student.nombre}} | Matricula: {{studCourse.matricula}} 
+                                <ion-button color="dark">                                          
+                                  <ion-icon name="person-sharp"></ion-icon>
+                                </ion-button>
+                              </ion-item>
+                            </ion-list>                                                 
                           </div>
                         </tr>                                                
                       </div>
                     </tr>                                      
               </ion-button>                                                                 
         </tr> 
+        
 
     </div>
   </ion-content>

@@ -29,30 +29,32 @@
 
 <ion-content>
 
-  <ion-card>
-    <div> <!-- Datos del perfil -->
-      <ion-item >
-        <ion-label position="floating"> Matricula:&nbsp;{{student.matricula}} </ion-label>
-        <ion-label position="floating"> Nombre:&nbsp;&nbsp;&nbsp;{{student.nombre}} </ion-label>
-        <ion-label position="floating"> Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{student.correo}} </ion-label>        
-        <ion-label position="floating"> Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}}, {{ curso}} </ion-label>
-        <br><br>
-        <br>
-      </ion-item>
+  <div class="container">
+    <div class="card">
+      <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+      <div class="contenido">
+          <ion-list>
+            <ion-item>
+              <ion-label>Nombre:&nbsp;&nbsp;&nbsp;{{student.nombre}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <p>Matricula:&nbsp;{{student.matricula}}</p>
+            </ion-item>
+            <ion-item>
+              <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{student.correo}}</p>
+            </ion-item>
+            <ion-item>
+              <p>Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}}, {{ curso}}</p>
+            </ion-item>
+          </ion-list>
+          <ion-button (click)="editPerfil()"> Editar perfil </ion-button>
+          <ion-button (click)="editPassword()"> Cambiar contraseña </ion-button></div>
     </div>
-  </ion-card>
+  </div>
 
-  <ion-card>
-    <ion-item>
-      <ion-button (click)="editPerfil()"> Editar perfil </ion-button>
-      <ion-button (click)="editPassword()"> Cambiar contraseña </ion-button>
-    </ion-item>
-  </ion-card>
+  <div class="cont2">
 
-
-  <ion-card>
-
-    <div *ngIf="EditPerfil == true"> <!--  Editar perfil   -->
+    <div class="cont" *ngIf="EditPerfil == true"> <!--  Editar perfil   -->
       <ion-item class="form-group">
         <ion-card>
           <ion-item color="primary">
@@ -65,7 +67,7 @@
             <form>
             <ion-item class="form-group">
               <ion-label position="floating"> Matricula </ion-label>
-              <ion-input [(ngModel)]="student.matricula" name="matricula" autofocus></ion-input>
+              <ion-input readonly="true" [(ngModel)]="student.matricula" name="matricula" autofocus></ion-input>
             </ion-item> 
             <ion-item class="form-group">
               <ion-label position="floating"> Nombre </ion-label>
@@ -88,7 +90,7 @@
       </ion-item>      
     </div>
 
-    <div *ngIf="EditPassword == true"> <!--  Editar contraseña-->
+    <div class="cont" *ngIf="EditPassword == true"> <!--  Editar contraseña-->
       <ion-item class="form-group">
         <ion-card>
         <form>
@@ -132,7 +134,7 @@
       </ion-item>                
     </div>        
 
-  </ion-card>     
+  </div>     
         
   
 </ion-content>

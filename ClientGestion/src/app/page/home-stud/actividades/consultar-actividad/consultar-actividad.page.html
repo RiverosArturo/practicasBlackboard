@@ -32,10 +32,27 @@
 
     <div slot="fixed">
       <ion-card-content>
-        <ion-label color="dark" *ngIf="boton==0">Desea visualizar las actividades individuales o en equipo?</ion-label>
-        <ion-button (click)="condicion1()" *ngIf="boton==0"> Individuales </ion-button>
-        <ion-button (click)="condicion2()" *ngIf="boton==0"> Equipos </ion-button>
-      
+        
+        <div class="contai" *ngIf="boton==0">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>visualizar actividades individuales</h3>
+              <ion-button (click)="condicion1()"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai" *ngIf="boton==0">
+          <div class="car">
+            <ion-icon name="people-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>visualizar actividades por equipo</h3>
+              <ion-button (click)="condicion2()"> Equipos </ion-button>
+            </div>
+          </div>
+        </div>
+
         <tr  *ngFor="let activity of actividades">                   
           <div class="container" *ngIf="boton==1">
             <div class="card">
