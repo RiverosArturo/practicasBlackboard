@@ -29,36 +29,37 @@
 
     <ion-content>
 
-      <ion-card>
-        <form>
-          <ion-toolbar>
-
-            <ion-item class="form-group">   
-            <ion-button   (click)="random(id, max)">
-              <ion-label> Generar id </ion-label>
-            </ion-button>   
-          </ion-item>  
-          <ion-item>
-            <ion-label position="floating">id del Equipo:</ion-label>
-            <ion-input [(ngModel)]=" equipo.id" name=" id"></ion-input>    
-          </ion-item>
-
-          </ion-toolbar>          
-
-        <ion-item class="form-group">
-          <ion-label position="floating"> Nombre </ion-label>
-          <ion-input [(ngModel)]="equipo.nombre" name="nombre" autofocus></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-toolbar>
-            <ion-button   (click)="Save(equipo.id, equipo.nombre, nrc, nTrabajador)">
-              <ion-label> Guardar </ion-label>
-            </ion-button>
-          </ion-toolbar>
-        </ion-item>
-        </form>
-      </ion-card>
+      <form>
+        <div class="container">
+          <div class="card">
+            <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+            <div class="contenido">
+              <ion-list>
+                <ion-list-header>
+                  <h3 class="title">Generar Equipo</h3>
+                </ion-list-header>
+                <ion-item>
+                  <ion-label position="floating">Id del Equipo:</ion-label>
+                  <ion-input [(ngModel)]=" equipo.id" name=" id"></ion-input> 
+                  
+                  <ion-item class="form-group">   
+                    <ion-button   (click)="random(id, max)">
+                      <ion-label> Generar id aleatorio </ion-label>
+                    </ion-button>   
+                  </ion-item>
+                </ion-item>
+                <ion-item class="form-group">
+                  <ion-label position="floating"> Nombre del Equipo:</ion-label>
+                  <ion-input [(ngModel)]="equipo.nombre" name="nombre" autofocus></ion-input>
+                </ion-item>
+              </ion-list><br>
+              <ion-button   (click)="Save(equipo.id, equipo.nombre, nrc, nTrabajador)">
+                <ion-label> Guardar Equipo </ion-label>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </form>
     
     </ion-content>
 

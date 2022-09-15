@@ -33,26 +33,28 @@
     (ionScrollEnd)="logScrollEnd()">
 
     <div slot="fixed">
-      <ion-row size="2">
-        <ion-col offset="3">
-          <div class="car" *ngIf="boton2==true">
+
+      <div class="iocont">
+        <div class="contai" *ngIf="boton2==true">
+          <div class="car">
             <ion-icon name="person-sharp" size="large"></ion-icon>
             <div class="conte">
               <h3 class="title">avisos individuales</h3>
-              <ion-button (click)="condicion1()"> Individuales </ion-button>
+                <ion-button (click)="condicion1()"> Individuales </ion-button>
             </div>
           </div>
-        </ion-col>
-        <ion-col offset="0.5">
-          <div class="car" *ngIf="boton2==true">
+        </div>
+    
+        <div class="contai" *ngIf="boton2==true">
+          <div class="car">
             <ion-icon name="people-sharp" size="large"></ion-icon>
             <div class="conte">
               <h3>avisos por equipo</h3>
-              <ion-button (click)="condicion2()"> Equipos </ion-button>
+                <ion-button (click)="condicion2()"> Equipos </ion-button>
             </div>
           </div>
-        </ion-col>
-      </ion-row>
+        </div>
+      </div>
       
       <ion-card-content>
 

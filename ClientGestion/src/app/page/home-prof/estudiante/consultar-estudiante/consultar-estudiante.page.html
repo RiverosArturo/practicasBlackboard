@@ -40,18 +40,21 @@
         
     <div slot="fixed">        
         
-        <tr  *ngFor="let studCourse of studCourses" >            
-              <ion-button color="light">&nbsp;        
+        <tr *ngFor="let studCourse of studCourses" >            
+              <ion-button color="white">&nbsp;        
                       
                     <tr *ngFor="let student of students">
                       <div *ngIf="studCourse.matricula == student.matricula">
                         <tr *ngFor="let course of courses">
                           <div *ngIf=" studCourse.nrc == course.nrc">
-
-                            <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
-                              <ion-icon name="trash"></ion-icon>
-                            </ion-button>
-                            {{studCourse.matricula}}, {{student.nombre}}, {{studCourse.nrc}}, {{course.materia}}   
+                            <ion-list>
+                              <ion-item>
+                                Nombre: {{student.nombre}} | Matricula: {{studCourse.matricula}} 
+                                <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
+                                  <ion-icon name="trash"></ion-icon>
+                                </ion-button>
+                              </ion-item>
+                            </ion-list>
                           </div>
                         </tr>                                                
                       </div>
@@ -62,17 +65,6 @@
     </div>
   </ion-content>
   </ion-content>
-   
-<!----------------------------------------------------------------------------->       
-<ion-card>
-  <ion-item>    
-    <ion-button slot="end" color="danger" (click)="AlertAll(nrc, nTrabajador)">
-      <ion-label> Eliminar Todo </ion-label>
-      <ion-icon slot="end" name="trash"></ion-icon> 
-    </ion-button>
-  </ion-item>
-</ion-card>
-
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

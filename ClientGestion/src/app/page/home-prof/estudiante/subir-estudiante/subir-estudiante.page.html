@@ -13,7 +13,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
 
     <ion-card>
       <ion-header>
@@ -31,43 +30,50 @@
 
 
    <ion-card-content>
-      <form (ngSubmit)="onSubmit()" #subirEstForm="ngForm">
-          <ion-label for="profesor" color="dark">Profesor:</ion-label>
-          <ion-input type="text" name="profesor" #profesor="ngModel" [(ngModel)]="subirEst.nTrabajador" color="primary" readonly="true"></ion-input>
-
-          <ion-label for="materia" color="dark">Materia:</ion-label>
-          <ion-input type="text" name="materia" #materia="ngModel" [(ngModel)]="nrc" color="primary" readonly="true"></ion-input>
-        <!--
-          <ion-label for="estudiante" color="dark">Estudiante:</ion-label>
-          <ion-input type="text" name="estudiante" #estudiante="ngModel" [(ngModel)]="subirEst.matricula" color="primary" placeholder="Matricula estudiante"></ion-input>
-        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir estudiante </ion-button><br><br>
-        -->
-        
-        <ion-card>      
-          <ion-header>
-            <ion-label> Selecciona el alumno </ion-label>
-          </ion-header>                  
-          <ion-item>          
-            <ion-label>Alumno</ion-label>
-            <select name="miselect" [(ngModel)]="subirEst.matricula" name="matricula" >            
-                <option [value]="student.matricula" *ngFor="let student of students">Alumno:{{student.matricula }},{{ student.nombre}}</option>
-            </select>                
-          </ion-item> <br>
-          <ion-label> Matricula:{{ subirEst.matricula}} </ion-label>            
-        </ion-card>
-      <ion-item>
-        <ion-toolbar>      
-          <ion-button slot="end"   (click)=" getMAT(user, subirEst.matricula, nrc)">
-            <ion-label> Guardar </ion-label>
-          </ion-button>            
-        </ion-toolbar>
-      </ion-item><br>
-      
-
-      </form>
-   </ion-card-content>
-
-  </ion-card>
+    <form (ngSubmit)="onSubmit()" #subirEstForm="ngForm">
+      <div class="container">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+          <div class="contenido">
+            <ion-list>
+              <ion-list-header>
+                <h3 class="title">Subir Estudiante</h3>
+              </ion-list-header>
+              <ion-item>
+                <p>Seleccione la matricula del alumno:</p>
+                <select name="miselect" [(ngModel)]="subirEst.matricula" name="matricula" >            
+                  <option [value]="student.matricula" *ngFor="let student of students">Matricula: {{student.matricula}}, Nombre: {{ student.nombre}}</option>
+                </select>
+              </ion-item>
+              <ion-item>
+                <tr *ngFor="let stud of students">
+                  <div *ngIf=" stud.matricula == subirEst.matricula">
+                    <ion-list>
+                      <ion-list-header>
+                        Infromacion del estudiante:
+                      </ion-list-header>
+                      <ion-item>
+                        <p>Nombre: {{stud.nombre}}</p>
+                      </ion-item>
+                      <ion-item>
+                        <p>Matricula: {{stud.matricula}}</p>
+                      </ion-item>
+                      <ion-item>
+                        <p>Correo: {{stud.correo}}</p>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                </tr>
+              </ion-item>
+            </ion-list><br>
+            <ion-button slot="end"   (click)=" getMAT(user, subirEst.matricula, nrc)">
+              <ion-label> Subir Estudiante </ion-label>
+            </ion-button> 
+          </div>
+        </div>
+      </div>
+    </form>
+  </ion-card-content>
 </ion-content>
 
 <ion-footer>

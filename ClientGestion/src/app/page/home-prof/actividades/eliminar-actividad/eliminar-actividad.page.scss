@@ -75,6 +75,12 @@ ion-card-content {
     background: #3880ff;
     color: #fff;
 }
+
+.contai{
+    
+    margin: 30px;
+}
+
 .car{
     width: 100%;
     max-width: 1050px;
@@ -100,4 +106,13 @@ ion-card-content {
     font-weight: bold;
    // margin-top: 10px;
     margin-bottom: 15px;
+}
+.ioncont{
+    width: 100%;
+    display: flex;
+    //height: 100vh;
+    //align-items: cente;
+    justify-items: center;
+    font-family: sans-serif;
+    flex-wrap: wrap;
 }

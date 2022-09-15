@@ -64,7 +64,7 @@ export class ConsultarEquipoPage implements OnInit {
     this.nTrabajador = params.user;
 
     this.getCourse();
-    this.getEquipos1(this.nrc, this.nTrabajador);
+    this.getEquipos1(this.nrc, this.nTrabajador); 
     this.getStudCourse(this.nrc,this.nTrabajador); 
     this.getStudent();
 
@@ -236,7 +236,8 @@ export class ConsultarEquipoPage implements OnInit {
     this.deleteEqui = true;
     this.datosService.deleteEquipo(id, nrc, nTrabajador).subscribe(
       res => {
-        console.log(res);     
+        console.log(res);    
+        this.getEquipos1(this.nrc, this.nTrabajador); 
         //this.getEquipos1(this.nrc, this.nTrabajador);            
       },
       err => console.error(err)
@@ -381,7 +382,6 @@ async AlerteditOKEquipo( nombre:string ) {
             this.deleteStudentsEquipo(id, curso_nrc, nTrabajador);            
             this.deleteEquipo(id, curso_nrc, nTrabajador); 
             this.query = false; 
-            this.getEquipos1(this.nrc, this.nTrabajador);
           }
         }
       ]

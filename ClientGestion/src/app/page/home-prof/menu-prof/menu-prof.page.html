@@ -12,46 +12,132 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons>
+        <ion-menu-button (click)="OpenMenuProf()"  color="primary" autoHide="false" menu-id="MenuProf"></ion-menu-button>
+        <ion-title> Menu Profesor </ion-title> 
+        <ion-title > NRC: {{nrc}} , CURSO: {{curso}}</ion-title> <br>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-card>
+
 <ion-content>
   <ion-card>
-    <ion-card>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons>
-            <ion-menu-button (click)="OpenMenuProf()"  color="primary" autoHide="false" menu-id="MenuProf"></ion-menu-button>
-            <ion-title> Menu Profesor </ion-title> 
-            <ion-title > NRC: {{nrc}} , CURSO: {{curso}}</ion-title> <br>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-    </ion-card>
 
     <ion-card>
       <h1>Administar estudiante</h1>
-      <ion-button [routerLink] = "['/home-prof/estudiante/subir-estudiante',user,nrc,curso]">   Subir estudiante  </ion-button>
-      <ion-button [routerLink] = "['/home-prof/estudiante/consultar-estudiante',user,nrc,curso]">   Consultar estudiante   </ion-button>
-  <!--    <ion-button [routerLink] = "['/home-prof/estudiante/eliminar-estudiante']">   Eliminar estudiante   </ion-button> -->
-    </ion-card>
-    <ion-card>
-        <h1> Gestionar equipo </h1> <br>
-        <ion-button [routerLink] = "['/home-prof/equipo/generar-equipo',user,nrc,curso]">   Generar equipo </ion-button>
-        <ion-button [routerLink] = "['/home-prof/equipo/consultar-equipo',user,nrc,curso]">   Consultar equipo </ion-button>
-  <!--      <ion-button [routerLink] = "'/home-prof/equipo/modificar-equipo'">   Modificar equipo </ion-button> -->
-  <!--      <ion-button [routerLink] = "'/home-prof/equipo/eliminar-equipo'">   Eliminar equipo </ion-button>-->
-        <br><br>
-    </ion-card>    
-    <ion-card>
-      <h1>Gestionar actividades</h1>
-      <ion-button [routerLink] = "['/home-prof/actividades/alta-actividad',user,nrc]">   Dar de alta actividad  </ion-button>
-      <ion-button [routerLink] = "['/home-prof/actividades/eliminar-actividad',user,nrc]">   Consultar actividad   </ion-button>
-      <ion-button [routerLink] = "['/home-prof/actividades/evaluar-actividad',user,nrc]">   Evaluar actividad   </ion-button>
-    </ion-card>
-    <ion-card>
-      <h1>Gestionar comunicacion</h1>
-      <ion-button [routerLink] = "['/home-prof/comunicacion/avisos',user,nrc]">   Avisos  </ion-button>
-      <ion-button [routerLink] = "['/home-prof/comunicacion/chat',user,nrc]">   Chat  </ion-button>
-    </ion-card>
 
+      <div class="ioncont">
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="person-add-sharp" size="large"></ion-icon>
+            <ion-icon name="cloud-upload" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Subir estudiante</h3>
+              <ion-button [routerLink] = "['/home-prof/estudiante/subir-estudiante',user,nrc,curso]"> Subir </ion-button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Consultar estudiantes</h3>
+              <ion-button [routerLink] = "['/home-prof/estudiante/consultar-estudiante',user,nrc,curso]"> Consultar </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1> Gestionar equipo </h1> <br>
+      <div class="ioncont">
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="people-sharp" size="large"></ion-icon>
+            <ion-icon name="add-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Generar Equipo</h3>
+              <ion-button [routerLink] = "['/home-prof/equipo/generar-equipo',user,nrc,curso]"> Generar </ion-button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="people-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Consultar Equipo</h3>
+              <ion-button [routerLink] = "['/home-prof/equipo/consultar-equipo',user,nrc,curso]"> Consultar </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1>Gestionar actividades</h1>
+      <div class="ioncont">
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="receipt-sharp" size="large"></ion-icon>
+            <ion-icon name="add-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Dar alta actividad</h3>
+              <ion-button [routerLink] = "['/home-prof/actividades/alta-actividad',user,nrc]"> Dar de alta </ion-button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="receipt-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Consultar Actividad</h3>
+              <ion-button [routerLink] = "['/home-prof/actividades/eliminar-actividad',user,nrc]"> Consultar </ion-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="receipt-sharp" size="large"></ion-icon>
+            <ion-icon name="checkmark-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Evaluar Actividad</h3>
+              <ion-button [routerLink] = "['/home-prof/actividades/evaluar-actividad',user,nrc]"> Evaluar </ion-button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <h1>Gestionar comunicacion</h1>
+      <div class="ioncont">
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="warning-sharp" size="large"></ion-icon>
+            <!-- <ion-icon name="nuclear-sharp" size="large"></ion-icon> -->
+            <div class="conte">
+              <h3>Avisos</h3>
+              <ion-button [routerLink] = "['/home-prof/comunicacion/avisos',user,nrc]"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="logo-wechat" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Chat</h3>
+              <ion-button [routerLink] = "['/home-prof/comunicacion/chat',user,nrc]"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+      </div><br><br>
+    </ion-card>
   </ion-card>
 </ion-content>
 

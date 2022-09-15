@@ -12,8 +12,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
     <ion-card>
       <ion-header>
         <ion-toolbar>
@@ -23,14 +21,44 @@
         </ion-toolbar>
       </ion-header>
     </ion-card>
-    <ion-card>      
+<ion-content>    
         <h1> Gestionar curso </h1> <br>
-        <ion-button [routerLink] = "['../home-prof/create-course',user]">   Crear curso   </ion-button>
-        <ion-button [routerLink] = "['../home-prof/consult-course',user]">   Consultar cursos   </ion-button>
-        <ion-button [routerLink] = "['../home-prof/delete-course',user]">   Eliminar curso   </ion-button><br><br>
-    </ion-card>
+        <div class="ioncont">
+          <div class="contai">
+            <div class="car">
+              <ion-icon name="layers-sharp" size="large"></ion-icon>
+              <ion-icon name="add-sharp" size="large"></ion-icon>
+              <div class="conte">
+                <h3>Crear Curso</h3>
+                <ion-button [routerLink] = "['../home-prof/create-course',user]"> Crear </ion-button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="contai">
+            <div class="car">
+              <ion-icon name="layers-sharp" size="large"></ion-icon>
+              <ion-icon name="search-sharp" size="large"></ion-icon>
+              <div class="conte">
+                <h3>Consultar Cursos</h3>
+                <ion-button [routerLink] = "['../home-prof/consult-course',user]"> Consultar </ion-button>
+              </div>
+            </div>
+          </div>
+  
+          <div class="contai">
+            <div class="car">
+              <ion-icon name="layers-sharp" size="large"></ion-icon>
+              <ion-icon name="trash-sharp" size="large"></ion-icon>
+              <div class="conte">
+                <h3>Eliminar Curso</h3>
+                <ion-button [routerLink] = "['../home-prof/delete-course',user]"> Eliminar </ion-button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
 
-  </ion-card>
 </ion-content>
 
 <ion-footer>

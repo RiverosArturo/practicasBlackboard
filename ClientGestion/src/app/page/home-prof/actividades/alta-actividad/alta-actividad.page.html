@@ -29,26 +29,27 @@
 
   <ion-card-content>
     <ion-card-content>
-      <ion-row size="2">
-      <ion-col offset="0">
-        <div class="car" *ngIf="boton==true">
-          <ion-icon name="person-sharp" size="large"></ion-icon>
-          <div class="conte">
-            <h3>dar de alta actividad para todo el curso</h3>
-            <ion-button (click)="condicion1()" *ngIf="boton==true"> Curso </ion-button>
+      <div class="ioncont">
+        <div class="contai" *ngIf="boton==true">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>dar de alta actividad para todo el curso</h3>
+              <ion-button (click)="condicion1()" *ngIf="boton==true"> Curso </ion-button>
+            </div>
           </div>
         </div>
-      </ion-col>
-      <ion-col offset="0">
-        <div class="car" *ngIf="boton==true">
-          <ion-icon name="people-sharp" size="large"></ion-icon>
-          <div class="conte">
-            <h3>dar de alta actividad por equipo</h3>
-            <ion-button (click)="condicion2()" *ngIf="boton==true"> Equipo </ion-button>
+    
+        <div class="contai" *ngIf="boton==true">
+          <div class="car">
+            <ion-icon name="people-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>dar de alta actividad por equipo</h3>
+              <ion-button (click)="condicion2()" *ngIf="boton==true"> Equipo </ion-button>
+            </div>
           </div>
         </div>
-      </ion-col>
-    </ion-row>
+      </div>
     </ion-card-content>
     
     <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAct="ngForm">
