@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./comunicacion/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
-    path: 'calificacion-promedio/:user/:nrc/:materia/:id',
+    path: 'calificacion-promedio/:user/:nrc/:materia/:id/:nTrabajador',
     loadChildren: () => import('./calificacion-promedio/calificacion-promedio.module').then( m => m.CalificacionPromedioPageModule)
   },
   {
@@ -115,7 +115,7 @@ const routes: Routes = [
     component: ModificarEstudiantePage
   },
   {
-    path: 'perfil/:user/:nrc/:materia',
+    path: 'perfil/:user/:nrc/:materia/:id/:nTrabajador',
     loadChildren: () => import('./estudiante/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {

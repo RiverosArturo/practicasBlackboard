@@ -18,6 +18,7 @@ export class PerfilPage implements OnInit {
   nrc:number;
   nTrabajador:number;
   curso:string;
+  id:number;
   
   perfil:boolean = false;
   EditPerfil:boolean = false;
@@ -46,6 +47,7 @@ export class PerfilPage implements OnInit {
     this.nrc = params.nrc;
     this.nTrabajador = params.nTrabajador;
     this.matricula = params.user;
+    this.id = params.id;
     this.getAlumno(this.matricula);
     this.perfil = true;
     this.getCurso();

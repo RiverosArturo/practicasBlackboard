@@ -51,6 +51,7 @@ export class CalificacionPromedioPage implements OnInit {
     this.nrc = params.nrc;
     this.curso = params.materia;
     this.id = params.id;
+    this.nTrabajador = params.nTrabajador;
 
     this.getCourse();
     this.estudiantesCursos();
