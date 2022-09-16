@@ -29,48 +29,63 @@
     (ionScrollStart)="logScrollStart()"
     (ionScroll)="logScrolling($event)"
     (ionScrollEnd)="logScrollEnd()">                    
-      <div slot="fixed"> 
-        <ion-title>Detalles</ion-title><br>  
-
-        <ion-item>
-          <ion-card>          
-        <tr  *ngFor="let actividad of actividads">                                                      
-          <div *ngIf="id == actividad.id_equipo && user == actividad.matricula">              
-              <ion-label>Actividad: {{actividad.nombre}}</ion-label>
-              <ion-label>Calificacion: {{actividad.calificacion}}</ion-label>
-              <div *ngIf="actividad.urlEstudiante == ''">
-                <ion-label>
-                  Actividad entregada: no.
-                  <ion-icon color="danger" name="warning-sharp"></ion-icon>
-                </ion-label>              
-            </div><div *ngIf="actividad.urlEstudiante != ''">
-              <ion-label>
-                Actividad entregada: si.                
-                <ion-icon color="success"  name="checkmark-sharp"></ion-icon>                                           
-            </ion-label>
-            </div><br>                     
-            
+      <div class="ioncont" slot="fixed">                   
+          <div class="container">
+            <div class="card">
+              <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+              <div class="contenido">
+                <ion-list class="ilist">
+                  <ion-list-header>
+                    <h3 class="title">Actividades Individuales</h3>
+                  </ion-list-header>
+                  <tr  *ngFor="let activity of actividades" >
+                    <ion-item *ngIf=" activity.calificacion > 0 ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Calificada <ion-icon color="success"  name="checkmark-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEntrega == activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00' || activity.fechaEntrega > activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00'">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Entregada <ion-icon color="success"  name="checkmark-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante == '0000-00-00' ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Aún no entregada <ion-icon color="danger" name="warning-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante != '0000-00-00' && activity.fechaEntrega < activity.fechaEstudiante ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Entrega con retardo <ion-icon color="warning" name="alert-circle-outline"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                  </tr><br>
+                  <ion-list-header>
+                    <h3 class="title">Actividades por equipo</h3>
+                  </ion-list-header>
+                  <tr *ngFor="let activity of actividadesE">
+                    <ion-item *ngIf=" activity.calificacion > 0 ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Calificada <ion-icon color="success"  name="checkmark-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEntrega == activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00' || activity.fechaEntrega > activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00'">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Entregada <ion-icon color="success"  name="checkmark-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante == '0000-00-00' ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Aún no entregada <ion-icon color="danger" name="warning-sharp"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante != '0000-00-00' && activity.fechaEntrega < activity.fechaEstudiante ">
+                      <p>{{activity.id}}: {{activity.nombre}} &nbsp;&nbsp;&nbsp;&nbsp; Entrega con retardo <ion-icon color="warning" name="alert-circle-outline"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; Calificación: {{activity.calificacion}}</p>
+                    </ion-item>
+                  </tr><br>
+                    <ion-list-header>
+                      <h3 class="title">Reporte final</h3>
+                    </ion-list-header>
+                    <ion-item>
+                      <p>Actividades individuales: {{actA}}  &nbsp;&nbsp;&nbsp; Actividades calificadas: {{actC}} de {{actA}} &nbsp;&nbsp;&nbsp; Promedio Actual: {{calificacionA/actA}}</p>
+                    </ion-item>
+                    <ion-item>
+                      <p>Actividades por equipo: {{actAE}}  &nbsp;&nbsp;&nbsp;&nbsp;  Actividades calificadas: {{actCE}} de {{actAE}} &nbsp;&nbsp;&nbsp; Promedio Actual: {{calificacionAE/actAE}}</p>
+                    </ion-item>
+                    <ion-item color="danger">
+                      <p>Actividades totales: {{actA + actAE}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Promedio Final: {{ (calificacionA+calificacionAE)/(actA+actAE) }}</p>
+                    </ion-item>
+                </ion-list>
+              </div>
+            </div>
           </div>
-        </tr><br>
-      </ion-card>
-      </ion-item><br>
-
-      <ion-card>                
-        <div *ngIf="promedio < 0">
-          <ion-label>  Sin actividades</ion-label>
-        </div>
-        <div *ngIf="promedio >= 0">             
-          <ion-title>Actividades y promedio final.</ion-title><br>             
-          <ion-label>Actividades: {{num}}</ion-label>
-          <ion-title>Calificación promedio: {{promedio}}</ion-title>
-        </div><br>             
-      </ion-card><br>
-
-
       </div>
-
-      
-
   </ion-content> 
 </ion-content>
 

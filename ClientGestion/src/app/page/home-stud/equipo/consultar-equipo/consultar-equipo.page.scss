@@ -3,11 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-ion-card-content {
+.contenido{
+    margin: 0px auto;
+}
+.ioncont {
     width: 100%;
     display: flex;
-    height: 100vh;
-    //align-items: cente;
+    height: 25vh;
+    //align-items: center;
     justify-items: center;
     font-family: sans-serif;
     flex-wrap: wrap;
@@ -21,7 +24,8 @@ ion-card-content {
 .container{
     width: 100%;
     display: flex;
-    max-width: 1450px;
+    max-width: 1400px;
+    // min-width: 700px;
     //min-width: 450px;
     margin: 0px auto;
 }
@@ -38,6 +42,10 @@ ion-card-content {
 // .card:hover{
 //     box-shadow: 4px 4px 20px rgba(0,0,0,0.4);
 //     transform: translateY(-3%);
+// }
+// .contenido{
+//     max-width: 1400px;
+//     min-width: 700px;
 // }
 .card img{
     width: 100%;

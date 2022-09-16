@@ -69,15 +69,20 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">  
       
-    <div slot="fixed">
+    <div class="ioncont" slot="fixed">
         <div class="container">
           <div class="card">
             <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
             <div class="contenido">
+              <ion-list-header>
+                <h3 class="title">
+                  {{nombreEquipo}}
+                </h3>
+              </ion-list-header>
               <tr  *ngFor="let equipo of equipos">        
                 <ion-buttons>
                   <tr *ngFor="let student of students">
-                    <div *ngIf="equipo.matricula == student.matricula ">
+                    <div class="centrar" *ngIf="equipo.matricula == student.matricula ">
                       <ion-list>
                         <ion-item>
                           <p>{{equipo.matricula}}, {{student.nombre}}, {{student.correo}}</p>
