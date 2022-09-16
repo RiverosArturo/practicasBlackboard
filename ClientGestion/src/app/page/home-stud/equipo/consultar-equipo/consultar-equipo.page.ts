@@ -36,7 +36,15 @@ student: Student = {
 courses:any = [];  
 equipos:any = [];
 oneEquipos:any = [];//Alumnos integrantes del equipo
+Eequipos:any = [];
 
+Eequipo:Equipo ={
+  id: 0,
+  nombre:'Equipo IA',
+  curso_nrc:0,
+  nTrabajador:0
+
+};
 equipo:Equipo ={
   id: 0,
   nombre:'Equipo IA',
@@ -62,6 +70,7 @@ equi:boolean = false;
 deleteEqui:boolean = false;
 delete2:boolean = false;
 nomb:string;
+nombreEquipo:string = 'equi';
 
 
 
@@ -74,12 +83,12 @@ studCourses:any = [];//Alumnos del curso
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
-    this.materia = params.materia;
+    //this.materia = params.materia;
     this.id = params.id;
     this.nTrabajador = params.nTrabajador;
     this.getequipoAlumno();
     this.getStudent();
-    
+    this.getEquipo(this.id);
   }
   editar(){
     this.edit = true;
@@ -87,18 +96,33 @@ studCourses:any = [];//Alumnos del curso
   close(){
     this.edit = false;
   }
+  getEquipo(id:number){// Optiene datos de un solo equipo    
+    this.datosService.getEquipos().subscribe(
+      res => {
+        this.Eequipos = res;   
+        console.log('id:',id);
+        for(let i = 0; i<this.Eequipos.length;i++){
+          if(id == this.Eequipos[i].id){
+            this.nombreEquipo = this.Eequipos[i].nombre;
+          }
+        }               
+      },
+      err => console.error(err)
+    );
+  }
   getequipoAlumno(){// Optiene alumnos integrantes del equipo
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res;           
+          this.equipos = res;      
+          //console.log(':::>',this.equipos);         
         },
         err => console.error(err)
       )
   }
   
   editEquipoButton(id:number, nombre:string, nrc:number, nTrabajador:number){//verifica si el nombre has si usado y edita el nombre del equipo
-    console.log("Inicia funcion");    
+    console.log("Inicia funcion");      
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
         this.oneEquipos = res;        
@@ -139,7 +163,7 @@ studCourses:any = [];//Alumnos del curso
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
     this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
       res => {
-        this.studCourses = res;                  
+        this.studCourses = res;                          
       },
       err => console.error(err)
     );
@@ -156,7 +180,7 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.getOneEquipo(id).subscribe(
       res => {
         this.oneEquipos = res;   
-        console.log(this.oneEquipos);         
+        //console.log(this.oneEquipos);         
       },
       err => console.error(err)
     );
