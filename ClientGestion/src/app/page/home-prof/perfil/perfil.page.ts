@@ -80,16 +80,12 @@ getCurso(){
     )
 }  
 //-------------------------------------------------------------------------------  
-updateProf1(){     
-  console.log(this.prof.nTrabajador, this.prof.nombre, this.prof.correo, this.prof.password);  
-  
-}
-updateProf(){   
-  console.log(this.prof.nTrabajador, this.prof.nombre, this.prof.correo, this.prof.password);          
-    console.log(this.password);  
-    this.prof.password = this.password;
-    
-    this.datosService.updateProf(this.prof.nTrabajador, this.student)
+
+updateProf(){  
+  this.prof.password = this.password; 
+  console.log(this.prof.nTrabajador, this.prof.nombre, this.prof.correo, this.prof.password);            
+
+  this.datosService.updateProf(this.prof.nTrabajador, this.prof)
     .subscribe(
       res =>{
         console.log(res);
