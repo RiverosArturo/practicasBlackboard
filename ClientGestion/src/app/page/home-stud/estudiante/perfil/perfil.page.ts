@@ -72,7 +72,10 @@ export class PerfilPage implements OnInit {
         err => console.error(err)
       )
   }
-  updateStudent(){
+  updateStudent(){    
+    console.log(this.student.matricula, this.student.nombre, this.student.correo, this.student.password);
+    console.log(this.password);
+    this.student.password = this.password;
     this.datosService.updateStudent(this.student.matricula, this.student)
     .subscribe(
       res =>{
@@ -123,7 +126,7 @@ export class PerfilPage implements OnInit {
     });
     await alert.present();
   }
-  async AlertPassword2() {
+  async AlertPassword2(password:string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: ' Mensaje ',
@@ -134,7 +137,7 @@ export class PerfilPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');    
-            //this.updateStudent();        
+            this.updateStudent();        
           }
         }
       ]

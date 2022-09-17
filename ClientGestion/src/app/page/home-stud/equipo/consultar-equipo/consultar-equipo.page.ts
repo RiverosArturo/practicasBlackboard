@@ -114,8 +114,7 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res;      
-          //console.log(':::>',this.equipos);         
+          this.equipos = res;                      
         },
         err => console.error(err)
       )

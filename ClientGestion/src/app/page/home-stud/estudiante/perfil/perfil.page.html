@@ -42,10 +42,7 @@
             </ion-item>
             <ion-item>
               <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{student.correo}}</p>
-            </ion-item>
-            <!-- <ion-item>
-              <p>Curso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{nrc}}, {{ curso}}</p>
-            </ion-item> -->
+            </ion-item>              
           </ion-list><br>
           <ion-button (click)="editPerfil()"> Editar perfil </ion-button>&nbsp;&nbsp;&nbsp;
           <ion-button (click)="editPassword()"> Cambiar contraseña </ion-button></div>
@@ -76,7 +73,7 @@
             <ion-item class="form-group">
               <ion-label position="floating"> Correo </ion-label>
               <ion-input [(ngModel)]="student.correo" name="correo" autofocus></ion-input>
-            </ion-item>            
+            </ion-item>           
             <ion-item>
               <ion-toolbar>
                 <ion-button  (click)="updateStudent()">
@@ -94,21 +91,21 @@
       <ion-item class="form-group">
         <ion-card>
         <form>
-          <ion-item color="primary">
+          <ion-item color="primary">            
             <ion-title>Cambiar contraseña</ion-title>
             <ion-button color="danger" slot="end"  (click)="close()">
               <ion-icon name="close-sharp"></ion-icon>
             </ion-button>
           </ion-item>
-          <ion-item class="form-group">
+          <ion-item class="form-group">                   
             <ion-label position="floating"> Cambiar Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="password" name="password" ></ion-input>
           </ion-item>
           <ion-item class="form-group">
             <ion-label position="floating">Confirmar Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="password2" name="password2" ></ion-input>
-          </ion-item>
-
+          </ion-item>          
+          <!-- botun  de contraseña inactivo -->
           <div *ngIf="(password == null || password2 == null) || (password != password2)"> 
             <ion-item>
               <ion-toolbar>
@@ -118,11 +115,11 @@
               </ion-toolbar>  
             </ion-item>            
           </div>
-          <!-- button cambiar contraseña -->
+          <!-- button cambiar contraseña activo-->
           <div *ngIf="(password != null && password2 != null) && (password == password2)"> 
             <ion-item>
               <ion-toolbar>
-                <ion-button color="primary" (click)="AlertPassword2()">
+                <ion-button color="primary" (click)="AlertPassword2(password)">
                   <ion-label> Guardar </ion-label>
                 </ion-button>  
               </ion-toolbar>  
