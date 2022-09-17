@@ -83,12 +83,13 @@ studCourses:any = [];//Alumnos del curso
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
-    //this.materia = params.materia;
+    this.materia = params.materia;
     this.id = params.id;
     this.nTrabajador = params.nTrabajador;
     this.getequipoAlumno();
     this.getStudent();
     this.getEquipo(this.id);
+    console.log('params ',params.materia);
   }
   editar(){
     this.edit = true;
