@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   };  
   login:User = {
     id: 'admi',
-    user: 20,
+    
     password: '',
   }  
   id:string;
