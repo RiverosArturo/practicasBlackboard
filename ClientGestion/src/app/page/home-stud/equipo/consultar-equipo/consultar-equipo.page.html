@@ -25,43 +25,6 @@
     </ion-header>
   </ion-card>
 
-  <!-- opciones -->
-    <!-- <ion-item>      
-      <ion-button color = "primary" (click)="editar()"> Editar  </ion-button>
-      <ion-button color = "primary" (click)="AlertDeleteStudentEquipo(user, id, nrc, nTrabajador)"> Salir del Equipo </ion-button>      
-    </ion-item> -->
-    <!-- Edita el nombre del equipo -->
-    <!-- <div *ngIf="edit == true ">
-      
-      <ion-item class="form-group">                  
-      <ion-card>
-        <ion-toolbar>
-          <ion-title>  Editar {{ equipo.nombre }} </ion-title>
-          <ion-button color="danger" slot="end"  (click)="close()">
-            <ion-icon name="close-sharp"></ion-icon>
-          </ion-button>
-        </ion-toolbar>              
-        <ion-card>
-          <form>                 
-            <ion-item class="form-group">
-              <ion-label position="floating"> Nombre de equipo </ion-label>
-              <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>              
-            </ion-item>                
-            <ion-item>
-              <ion-toolbar>                    
-                <ion-button slot="end"  (click)="editEquipoButton(equipo.id, nombre, nrc, nTrabajador)">
-                  <ion-label> Guardar </ion-label>
-                </ion-button>
-              </ion-toolbar>
-            </ion-item>
-            </form>                                            
-        </ion-card>       
-      </ion-card>
-      </ion-item>
-    </div> -->
-
-  
-
   <ion-content>
   <ion-content
   [scrollEvents]="true"
@@ -105,7 +68,7 @@
             <ion-item class="form-group">                  
             <ion-card>
               <ion-toolbar>
-                <ion-title>  Editar {{ equipo.nombre }} </ion-title>
+                <ion-title>  Editar {{ nombreEquipo }} </ion-title>
                 <ion-button color="danger" slot="end"  (click)="close()">
                   <ion-icon name="close-sharp"></ion-icon>
                 </ion-button>
@@ -115,10 +78,14 @@
                   <ion-item class="form-group">
                     <ion-label position="floating"> Nombre de equipo </ion-label>
                     <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>              
-                  </ion-item>                
+                  </ion-item>
                   <ion-item>
+                    <ion-label>Nombre actual: </ion-label>
+                    <ion-card><ion-label>{{ nombre}}</ion-label></ion-card>                    
+                  </ion-item>                  
+                  <ion-item>                    
                     <ion-toolbar>                    
-                      <ion-button slot="end"  (click)="editEquipoButton(equipo.id, nombre, nrc, nTrabajador)">
+                      <ion-button slot="end"  (click)="editEquipoButton(id, nombre, nrc, nTrabajador)">
                         <ion-label> Guardar </ion-label>
                       </ion-button>
                     </ion-toolbar>

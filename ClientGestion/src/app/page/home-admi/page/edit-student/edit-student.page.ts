@@ -48,7 +48,7 @@ export class EditStudentPage implements OnInit {
     this.datosService.updateStudent(this.student.matricula, this.student)
     .subscribe(
       res =>{
-        console.log(res);
+       // console.log(res);
         this.getStudent();
         this.router.navigate(['/home-admi']);
       },

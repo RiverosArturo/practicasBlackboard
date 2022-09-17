@@ -83,12 +83,12 @@ studCourses:any = [];//Alumnos del curso
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
     this.nrc = params.nrc;
-    //this.materia = params.materia;
+    this.materia = params.materia;
     this.id = params.id;
     this.nTrabajador = params.nTrabajador;
     this.getequipoAlumno();
     this.getStudent();
-    this.getEquipo(this.id);
+    this.getEquipo(this.id);    
   }
   editar(){
     this.edit = true;
@@ -114,15 +114,14 @@ studCourses:any = [];//Alumnos del curso
     this.datosService.getOneEquipo(this.id)
       .subscribe(
         res =>{       
-          this.equipos = res;      
-          //console.log(':::>',this.equipos);         
+          this.equipos = res;                      
         },
         err => console.error(err)
       )
   }
   
   editEquipoButton(id:number, nombre:string, nrc:number, nTrabajador:number){//verifica si el nombre has si usado y edita el nombre del equipo
-    console.log("Inicia funcion");      
+    console.log("Inicia funcion", id, nrc, nTrabajador, nombre );        
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
         this.oneEquipos = res;        
@@ -148,8 +147,11 @@ studCourses:any = [];//Alumnos del curso
               this.edit = true;
               this.check = true;
               this.getEquipos1(nrc,nTrabajador);
+              this.getequipoAlumno();
+              this.getStudent();
+              this.getEquipo(this.id);
               console.log('Nombre cambiado.');
-              this.AlerteditOKEquipo(nombre);
+              //this.AlerteditOKEquipo(nombre);
             },
             err => console.error(err)
             )

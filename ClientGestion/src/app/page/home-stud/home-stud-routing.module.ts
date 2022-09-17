@@ -7,7 +7,6 @@ import { ConsultarActividadPage } from './actividades/consultar-actividad/consul
 import { ConsultarPage } from './curso/consultar/consultar.page';
 import { MenuStudentPage } from './menu-student/menu-student.page';
 import { ConsultarEquipoPage } from '../home-prof/equipo/consultar-equipo/consultar-equipo.page';
-import { ReportePage } from './reporte/reporte.page';
 import { AvisosPage } from '../home-prof/comunicacion/avisos/avisos.page';
 import { ChatPage } from './comunicacion/chat/chat.page';
 import { CalificacionPromedioPage } from './calificacion-promedio/calificacion-promedio.page';
@@ -23,10 +22,6 @@ const routes: Routes = [
   {
     path: 'consultar/:user',
     loadChildren: () => import('./curso/consultar/consultar.module').then( m => m.ConsultarPageModule)
-  },
-  {
-    path: 'reporte/:user/:nrc/:materia/:id',
-    loadChildren: () => import('./reporte/reporte.module').then( m => m.ReportePageModule)
   },
   {
     path: 'avisos/:user/:nrc/:nTrabajador/:curso/:id_equipo',
@@ -84,10 +79,6 @@ const routes: Routes = [
     path: 'modificar-equipo/:user/:nrc',
     component: ConsultarEquipoPage
   },
-  /*{
-    path: 'reporte/:user/:nrc',
-    component: ReportePage
-  },*/
   {
     path: 'consultar-actividad/:user/:nrc/:id_equipo/:nTrabajador/:curso',
     component: ConsultarActividadPage
@@ -100,11 +91,6 @@ const routes: Routes = [
     path: 'chat/:user/:nrc/:nTrabajador/:id/:curso',
     component: ChatPage
   },
-  /*
-  {
-    path: 'calificacion-promedio/:user/:nrc/:materia/:id',
-    component: CalificacionPromedioPage
-  },*/
   ///////////////Posiblemente estos dos componentes se tengan que borrar////////
   {
     path: 'consultar-estudiante/:user/:nrc',
