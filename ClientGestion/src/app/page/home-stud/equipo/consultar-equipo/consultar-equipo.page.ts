@@ -88,8 +88,7 @@ studCourses:any = [];//Alumnos del curso
     this.nTrabajador = params.nTrabajador;
     this.getequipoAlumno();
     this.getStudent();
-    this.getEquipo(this.id);
-    console.log('params ',params.materia);
+    this.getEquipo(this.id);    
   }
   editar(){
     this.edit = true;
@@ -123,7 +122,7 @@ studCourses:any = [];//Alumnos del curso
   }
   
   editEquipoButton(id:number, nombre:string, nrc:number, nTrabajador:number){//verifica si el nombre has si usado y edita el nombre del equipo
-    console.log("Inicia funcion");      
+    console.log("Inicia funcion", id, nrc, nTrabajador, nombre );        
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
         this.oneEquipos = res;        
@@ -149,8 +148,11 @@ studCourses:any = [];//Alumnos del curso
               this.edit = true;
               this.check = true;
               this.getEquipos1(nrc,nTrabajador);
+              this.getequipoAlumno();
+              this.getStudent();
+              this.getEquipo(this.id);
               console.log('Nombre cambiado.');
-              this.AlerteditOKEquipo(nombre);
+              //this.AlerteditOKEquipo(nombre);
             },
             err => console.error(err)
             )
