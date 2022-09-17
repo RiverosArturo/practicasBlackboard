@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-button [routerLink]="['/home-prof/menu-prof/menu-prof', user, nrc]">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+      </ion-button>      
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
+      <ion-label >Usuario: {{user}}</ion-label>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+
+  <ion-card>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-menu-button (click)="OpenMenuStud()" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button>
+          <ion-title> Perfil </ion-title>
+          <ion-item slot="end">            
+          </ion-item>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </ion-card>
+
+
+<ion-content>
+
+  <div class="container">
+    <div class="card">
+      <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+      <div class="contenido">
+          <ion-list>
+            <ion-item>
+              <ion-label>Nombre:&nbsp;&nbsp;&nbsp;{{prof.nombre}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <p>No.Trabajador:&nbsp;{{prof.nTrabajador}}</p>
+            </ion-item>
+            <ion-item>
+              <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp;{{prof.correo}}</p>
+            </ion-item>              
+          </ion-list><br>
+          <ion-button (click)="editPerfil()"> Editar perfil </ion-button>&nbsp;&nbsp;&nbsp;
+          <ion-button (click)="editPassword()"> Cambiar contraseña </ion-button></div>
+    </div>
+  </div>
+
+  <div class="cont2">
+
+    <div class="cont" *ngIf="EditPerfil == true"> <!--  Editar perfil   -->
+      <ion-item class="form-group">
+        <ion-card>
+          <ion-item color="primary">
+            <ion-title>Editar perfil </ion-title>
+            <ion-button color="danger" slot="end"  (click)="close()">
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-card>
+            <form>
+            <ion-item class="form-group">
+              <ion-label position="floating"> no.Trabajador </ion-label>
+              <ion-input readonly="true" [(ngModel)]="prof.nTrabajador" name="nTrabajador" autofocus></ion-input>
+            </ion-item> 
+            <ion-item class="form-group">
+              <ion-label position="floating"> Nombre </ion-label>
+              <ion-input [(ngModel)]="prof.nombre" name="nombre" autofocus></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Correo </ion-label>
+              <ion-input [(ngModel)]="prof.correo" name="correo" autofocus></ion-input>
+            </ion-item>           
+            <ion-item>
+              <ion-toolbar>
+                <ion-button  (click)="updateProf1()">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>
+              </ion-toolbar>
+            </ion-item>
+            </form>
+          </ion-card>
+        </ion-card>
+      </ion-item>      
+    </div>
+
+    <div class="cont" *ngIf="EditPassword == true"> <!--  Editar contraseña-->
+      <ion-item class="form-group">
+        <ion-card>
+        <form>
+          <ion-item color="primary">            
+            <ion-title>Cambiar contraseña</ion-title>
+            <ion-button color="danger" slot="end"  (click)="close()">
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item class="form-group">                   
+            <ion-label position="floating"> Cambiar Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" ></ion-input>
+          </ion-item>
+          <ion-item class="form-group">
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password2" name="password2" ></ion-input>
+          </ion-item>          
+          <!-- botun  de contraseña inactivo -->
+          <div *ngIf="(password == null || password2 == null) || (password != password2)"> 
+            <ion-item>
+              <ion-toolbar>
+                <ion-button color="medium" (click)="AlertPassword()">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>  
+              </ion-toolbar>  
+            </ion-item>            
+          </div>
+          <!-- button cambiar contraseña activo-->
+          <div *ngIf="(password != null && password2 != null) && (password == password2)"> 
+            <ion-item>
+              <ion-toolbar>
+                <ion-button color="primary" (click)="AlertPassword2(password)">
+                  <ion-label> Guardar </ion-label>
+                </ion-button>  
+              </ion-toolbar>  
+            </ion-item>
+          </div>
+
+        </form>     
+        </ion-card>        
+      </ion-item>                
+    </div>        
+
+  </div>     
+        
+  
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color = "primary"></ion-toolbar>
+</ion-footer>

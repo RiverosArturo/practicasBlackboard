@@ -27,9 +27,22 @@
 <ion-content>
   <ion-card>
 
-    <ion-card>
-      <h1>Administar estudiante</h1>
+    <ion-card>      
+      <div class="ioncont">          
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Consultar perfil</h3>
+              <ion-label>{{user}}</ion-label><br>
+              <ion-button [routerLink] = "['/home-prof/perfil/perfil',user,nrc,curso]"> Consultar </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>      
 
+      <h1>Administar estudiante</h1>
       <div class="ioncont">
         <div class="contai">
           <div class="car">

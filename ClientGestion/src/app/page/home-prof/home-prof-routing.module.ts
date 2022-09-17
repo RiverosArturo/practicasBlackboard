@@ -157,7 +157,12 @@ const routes: Routes = [
   {
     path: 'modificar-aviso/:id/:id_equipo/:noTrabajador/:nrc',
     component: ModificarAvisoPage
+  },
+  {
+    path: 'perfil/:user/:nrc/:curso',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   }
+
 
 
 

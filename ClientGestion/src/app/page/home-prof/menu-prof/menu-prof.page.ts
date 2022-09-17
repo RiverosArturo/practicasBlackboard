@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProfCourse } from '../../../models/ProfCourse';
 import { Prof } from '../../../models/Prof';
 import { Curso } from '../../../models/Curso';
-import { User } from 'src/app/models/User';
 import { DatosService } from '../../../services/datos.service';
 
 
