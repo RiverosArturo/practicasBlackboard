@@ -1,13 +1,18 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="'../../home-admi'">
-        <ion-icon name="arrow-undo-outline"></ion-icon>
-      </ion-button>   
-      <ion-label >Usuario: {{user}}</ion-label>   
+      <ion-button>
+        <ion-back-button slot = "start"> </ion-back-button>  
+      </ion-button>    
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
+      <ion-label >Usuario: Administrador</ion-label>    
     </ion-buttons>
-  </ion-toolbar>  
+  </ion-toolbar>
 </ion-header>
+
+
 
 <h1 slot="start"> Lista de Alumnos</h1>
 

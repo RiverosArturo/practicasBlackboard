@@ -89,7 +89,7 @@ export class HomeAdmiPage implements OnInit {
 
   Estudiante(){
     console.log(this.objetoJson[0].Matricula);
-      if(this.objetoJson[0].Matricula != undefined){
+      if(this.objetoJson[0].Matricula != undefined){  //Agregar && this.objetoJson[0].Matricula == this.objetoJson[0].Contraseña
         for( let i = 0; i < this.data.length; i++ ){
           console.log("Matricula: " + this.objetoJson[i].Matricula + ", Contrasena: " +  this.objetoJson[i].Contraseña + ", Nombre: " +  this.objetoJson[i].Nombre + ", Correo: " +  this.objetoJson[i].Correo);
           ////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ export class HomeAdmiPage implements OnInit {
                     this.boton = false;
                   }
                 }else{
-                  window.alert("Tu archivo esta correcto!!!");
+                  window.alert("Su archivo esta bien estructurado!!!");
                   this.verificacion = 0;
                   this.boton = true;
                 }
@@ -236,7 +236,7 @@ export class HomeAdmiPage implements OnInit {
                     this.boton = false;
                   }
                 }else{
-                  window.alert("Tu archivo esta correcto!!!");
+                  window.alert("Su archivo esta bien estructurado!!!");
                   this.boton = true;
                   this.verificacion = 0;
                 }
@@ -246,107 +246,118 @@ export class HomeAdmiPage implements OnInit {
           err => console.error(err)
         );
       }
-    }else if(this.objetoJson[0].Matricula != undefined){
+    }else if(this.objetoJson[0].Matricula != undefined){ //Agregar: && this.objetoJson[0].Matricula == this.objetoJson[0].Contraseña
       for( let i = 0; i < this.data.length; i++ ){
-        
-        this.datosService.getStudent(this.objetoJson[i].Matricula).subscribe(
-          res => {
-            this.estudianteV = res;
-            
-            if( this.estudianteV.matricula === this.objetoJson[i].Matricula){
-              this.verificacion = this.verificacion + 1;
-              if( i == this.data.length-1 ){
-                if(this.verificacion > 0){
-                  if(this.verificacion == 1){
-                    window.alert("Tienes " + this.verificacion + " estudiante que ya esta en la BD, eliminalo o modificalo!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
+
+        if(this.objetoJson[i].Matricula == this.objetoJson[i].Contraseña ){
+
+          this.datosService.getStudent(this.objetoJson[i].Matricula).subscribe(
+            res => {
+              this.estudianteV = res;
+              
+              if( this.estudianteV.matricula === this.objetoJson[i].Matricula){
+                this.verificacion = this.verificacion + 1;
+                if( i == this.data.length-1 ){
+                  if(this.verificacion > 0){
+                    if(this.verificacion == 1){
+                      window.alert("Tienes " + this.verificacion + " estudiante que ya esta en la BD, eliminalo o modificalo!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }else{
+                      window.alert("Tienes " + this.verificacion + " estudiantes que ya estan en la BD, eliminalos o modificalos!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }
                   }else{
-                    window.alert("Tienes " + this.verificacion + " estudiantes que ya estan en la BD, eliminalos o modificalos!!!");
+                    window.alert("Su archivo esta bien estructurado!!!");
+                    this.boton = true;
                     this.verificacion = 0;
-                    this.boton = false;
                   }
-                }else{
-                  window.alert("Tu archivo esta correcto!!!");
-                  this.boton = true;
-                  this.verificacion = 0;
+                }
+              }else if(this.estudianteV.matricula == undefined){
+                if( i == this.data.length-1 ){
+                  if(this.verificacion > 0){
+                    if(this.verificacion == 1){
+                      window.alert("Tienes " + this.verificacion + " estudiante que ya esta en la BD, eliminalo o modificalo!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }else{
+                      window.alert("Tienes " + this.verificacion + " estudiantes que ya estan en la BD, eliminalos o modificalos!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }
+                  }else{
+                    window.alert("Su archivo esta bien estructurado!!!");
+                    this.boton = true;
+                    this.verificacion = 0;
+                  }
                 }
               }
-            }else if(this.estudianteV.matricula == undefined){
-              if( i == this.data.length-1 ){
-                if(this.verificacion > 0){
-                  if(this.verificacion == 1){
-                    window.alert("Tienes " + this.verificacion + " estudiante que ya esta en la BD, eliminalo o modificalo!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
-                  }else{
-                    window.alert("Tienes " + this.verificacion + " estudiantes que ya estan en la BD, eliminalos o modificalos!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
-                  }
-                }else{
-                  window.alert("Tu archivo esta correcto!!!");
-                  this.boton = true;
-                  this.verificacion = 0;
-                }
-              }
-            }
-          },
-          err => console.error(err)
-        );
+            },
+            err => console.error(err)
+          );
+        }else{
+          window.alert("Alguna contraseña no es igual a su usuario");
+        }
       }
-    }else if(this.objetoJson[0].nTrabajador != undefined){
+    }else if(this.objetoJson[0].nTrabajador != undefined){ //agregar: && this.objetoJson[0].nTrabajador == this.objetoJson[0].Contraseña
       for( let i = 0; i < this.data.length; i++ ){
         
-        this.datosService.getProf(this.objetoJson[i].nTrabajador).subscribe(
-          res => {
-            this.profesorV = res;
-            
-            if( this.profesorV.nTrabajador == this.objetoJson[i].nTrabajador){
-              this.verificacion = this.verificacion + 1;
-              if( i == this.data.length-1 ){
-                if(this.verificacion > 0){
-                  if(this.verificacion == 1){
-                    window.alert("Tienes " + this.verificacion + " profesor que ya esta en la BD, eliminalo o modificalo!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
+        if( this.objetoJson[i].nTrabajador == this.objetoJson[i].Contraseña ){
+          this.datosService.getProf(this.objetoJson[i].nTrabajador).subscribe(
+            res => {
+              this.profesorV = res;
+              
+              if( this.profesorV.nTrabajador == this.objetoJson[i].nTrabajador){
+                this.verificacion = this.verificacion + 1;
+                if( i == this.data.length-1 ){
+                  if(this.verificacion > 0){
+                    if(this.verificacion == 1){
+                      window.alert("Tienes " + this.verificacion + " profesor que ya esta en la BD, eliminalo o modificalo!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }else{
+                      window.alert("Tienes " + this.verificacion + " profesores que ya estan en la BD, eliminalos o modificalos!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }
                   }else{
-                    window.alert("Tienes " + this.verificacion + " profesores que ya estan en la BD, eliminalos o modificalos!!!");
+                    window.alert("Su archivo esta bien estructurado!!!");
+                    this.boton = true;
                     this.verificacion = 0;
-                    this.boton = false;
                   }
-                }else{
-                  window.alert("Tu archivo esta correcto!!!");
-                  this.boton = true;
-                  this.verificacion = 0;
+                }
+              }else if(this.profesorV.nTrabajador == undefined){
+                if( i == this.data.length-1 ){
+                  if(this.verificacion > 0){
+                    if(this.verificacion == 1){
+                      window.alert("Tienes " + this.verificacion + " profesor que ya esta en la BD, eliminalo o modificalo!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }else{
+                      window.alert("Tienes " + this.verificacion + " profesores que ya estan en la BD, eliminalos o modificalos!!!");
+                      this.verificacion = 0;
+                      this.boton = false;
+                    }
+                  }else{
+                    window.alert("Su archivo esta bien estructurado!!!");
+                    this.boton = true;
+                    this.verificacion = 0;
+                  }
                 }
               }
-            }else if(this.profesorV.nTrabajador == undefined){
-              if( i == this.data.length-1 ){
-                if(this.verificacion > 0){
-                  if(this.verificacion == 1){
-                    window.alert("Tienes " + this.verificacion + " profesor que ya esta en la BD, eliminalo o modificalo!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
-                  }else{
-                    window.alert("Tienes " + this.verificacion + " profesores que ya estan en la BD, eliminalos o modificalos!!!");
-                    this.verificacion = 0;
-                    this.boton = false;
-                  }
-                }else{
-                  window.alert("Tu archivo esta correcto!!!");
-                  this.boton = true;
-                  this.verificacion = 0;
-                }
-              }
-            }
-          },
-          err => console.error(err)
-        );
+            },
+            err => console.error(err)
+          );
+        }else{
+          window.alert("Algun usuario no coincide con su contraseña");
+        }
       }
   }else{
-          window.alert("Tu archivo esta mal estructurado!!!");
-          this.boton = false;
-        }}
+          window.alert("Su archivo esta bien estructurado!!!");
+          this.boton = true;
+          this.verificacion = 0;
+  }
+}
 
 }

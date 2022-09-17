@@ -3,74 +3,160 @@
     <ion-buttons>
       <ion-button [routerLink]="'/home'">
         <ion-icon name="arrow-undo"></ion-icon>
-      </ion-button>
-      <ion-label >Usuario: {{user}}</ion-label>      
+      </ion-button>    
+      <ion-avatar>
+        <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+      </ion-avatar>
+      <ion-label >Usuario: Administrador</ion-label>    
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-   <ion-card>
-     <ion-header>
-       <ion-card> 
-        <ion-title> Administrador </ion-title><br>
-       </ion-card>
-     </ion-header>
-   </ion-card>
-
-   <ion-card>      
-    <ion-title> CARGAR ARCHIVO</ion-title>
-  <ion-item>
-    
-    <!-- <h2>File Upload & Image Preview</h2>
-    <p class="lead">No Plugins <b>Just Javascript</b></p> -->
-
-    <!-- Upload  -->
-    <form id="file-upload-form" class="uploader">
-      <input id="file-upload" type="file" 
-      (change)="fileUpload($event)"
-      name="fileUpload" accept=".xls, .xlsx" />
-
-      <label for="file-upload" id="file-drag">
-        <img id="file-image" src="#" alt="Preview" class="hidden">
-        <div id="start">
-          <i class="fa fa-download" aria-hidden="true"></i>
-          <div>Cargar archivo!!!</div>
-          <div id="notimage" class="hidden">Please select an image</div>
-          <span id="file-upload-btn" class="btn btn-primary">Seleccionar</span>
-        </div>
-        <div id="response" class="hidden">
-          <div id="messages"></div>
-          <progress class="progress" id="file-progress" value="0">
-            <span>0</span>%
-          </progress>
-        </div>
-      </label>
-    </form>
-    
-     <ion-card>
-      <ion-item>
-        <ion-title *ngIf="boton==true">Guardar el archivo en: </ion-title> 
-        <ion-title *ngIf="boton==false">Asegurate de que tu archivo excel esta bien estructurado: </ion-title> 
-      </ion-item>
-      <ion-button (click)="validacion()" *ngIf="boton==false"> Valida Archivo </ion-button>
-      <ion-button (click)="Estudiante()" *ngIf="boton==true"> Estudiantes </ion-button>
-      <ion-button (click) = "Profesor()" *ngIf="boton==true"> Profesores </ion-button>
-      <ion-button (click) = "Curso()" *ngIf="boton==true"> Cursos </ion-button>
-     </ion-card>
-      
-     
-    
-  </ion-item><br>
+<!-- 
+<ion-header>
+  <ion-card> 
+  <ion-title> Administrador </ion-title><br>
+  </ion-card>
+</ion-header> -->
+  
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons>
+        <!-- <ion-menu-button (click)="OpenMenuStud(user,nrc,nTrabajador,materia,id)" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button> -->
+        <ion-title> Menú Administrador </ion-title><br>
+        <!-- <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br> -->
+      </ion-buttons>          
+    </ion-toolbar>
+  </ion-header>
 </ion-card>
 
-    <ion-card><br>
-      <ion-title> Listado </ion-title><br>
-      <ion-button [routerLink]="'../home-admi/list-students'"> Listar Estudiantes </ion-button>
-      <ion-button [routerLink]="'../home-admi/list-prof'"> Listar Profesores </ion-button>
-      <ion-button [routerLink]="'../home-admi/list-courses'"> Listar Curso </ion-button><br><br>
-    </ion-card>
+
+<ion-content>
+  <ion-content
+    [scrollEvents]="true"
+    (ionScrollStart)="logScrollStart()"
+    (ionScroll)="logScrolling($event)"
+    (ionScrollEnd)="logScrollEnd()">
+
+    <div class="ioncardcont" slot="fixed">
+
+      <ion-card-content>
+        <ion-title class="tit"> CARGAR ARCHIVO</ion-title>
+        <div class="ioncont">
+            <form id="file-upload-form" class="uploader">
+              <input id="file-upload" type="file" 
+              (change)="fileUpload($event)"
+              name="fileUpload" accept=".xls, .xlsx" />
+    
+              <label for="file-upload" id="file-drag">
+                <img id="file-image" src="#" alt="Preview" class="hidden">
+                <div id="start">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                  <div>Cargar archivo!!!</div>
+                  <div id="notimage" class="hidden">Please select an image</div>
+                  <span id="file-upload-btn" class="btn btn-primary">Seleccionar</span>
+                </div>
+                <div id="response" class="hidden">
+                  <div id="messages"></div>
+                  <progress class="progress" id="file-progress" value="0">
+                    <span>0</span>%
+                  </progress>
+                </div>
+              </label>
+            </form>
+        </div>
+    
+    
+      <div class="ioncont">
+          
+        <div class="contai" *ngIf="boton==false">
+          <div class="car">
+            <ion-icon name="document-text-sharp" size="large"></ion-icon>
+            <ion-icon name="checkmark-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Validar Archivo Excel</h3>
+              <ion-button (click)="validacion()" *ngIf="boton==false"> Valida Archivo </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai" *ngIf="boton==true">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <ion-icon name="cloud-upload-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Almacenar Estudiantes</h3>
+              <ion-button (click)="Estudiante()" *ngIf="boton==true"> Estudiantes </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai" *ngIf="boton==true">
+          <div class="car">
+            <ion-icon name="briefcase-sharp" size="large"></ion-icon>
+            <ion-icon name="cloud-upload-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Almacenar Profesores</h3>
+              <ion-button (click) = "Profesor()"> Almacenar </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai" *ngIf="boton==true">
+          <div class="car">
+            <ion-icon name="library-sharp" size="large"></ion-icon>
+            <ion-icon name="cloud-upload-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Almacenar Cursos</h3>
+              <ion-button (click) = "Curso()"> Almacenar </ion-button>
+            </div>
+          </div>
+        </div>
+       </div><br>
+    
+       <ion-title class="tit"> Listado </ion-title>
+
+       <div class="ioncont">
+    
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="person-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Ver Estudiantes</h3>
+              <ion-button [routerLink]="'../home-admi/list-students'"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="briefcase-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Ver Profesores</h3>
+              <ion-button [routerLink]="'../home-admi/list-prof'"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="contai">
+          <div class="car">
+            <ion-icon name="library-sharp" size="large"></ion-icon>
+            <ion-icon name="search-sharp" size="large"></ion-icon>
+            <div class="conte">
+              <h3>Ver Cursos</h3>
+              <ion-button [routerLink]="'../home-admi/list-courses'"> Ver </ion-button>
+            </div>
+          </div>
+        </div>
+       </div>
+    </ion-card-content>
+
+    </div>
   </ion-content>
+</ion-content>
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
