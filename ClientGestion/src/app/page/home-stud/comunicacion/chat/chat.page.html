@@ -36,7 +36,7 @@
 
     <div class="chatContainer" *ngIf="boton > 1">
       <p [ngClass]="{'local': message.matricula == user, 'remoto': message.noTrabajador != user && message.matricula != user}" 
-          *ngFor="let message of webSocketService.chats">{{message.matricula}} {{message.mensaje}} - {{message.nombre}}</p>
+          *ngFor="let message of webSocketService.chats">{{message.mensaje}} - {{message.nombre}}</p>
     </div>
 
     <!-- <div class="chatContainer" *ngIf="boton > 1">
@@ -63,7 +63,7 @@
 
     <div class="chatContainer" *ngIf="boton2 > 1">
       <p [ngClass]="{'local': message.matricula == user, 'remoto': message.noTrabajador != user && message.matricula != user}" 
-          *ngFor="let message of webSocketService.chatsEquipo">{{message.matricula}} {{message.mensaje}} - {{message.nombre}}</p>
+          *ngFor="let message of webSocketService.chatsEquipo"> {{message.mensaje}} - {{message.nombre}}</p>
     </div>
     
     <div class="inputContainer" *ngIf="boton2 > 1">
