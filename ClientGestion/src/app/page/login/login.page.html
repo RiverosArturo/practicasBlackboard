@@ -9,61 +9,6 @@
   </ion-toolbar>  
 </ion-header>
 
-<!-- <ion-card>
-  <ion-header>
-    <ion-title> Login </ion-title>
-  </ion-header>
-</ion-card> -->
-
-<!-- <ion-content>
-  <ion-card>
-    <form>
-     
-      <div *ngIf="condition; else elseBlock">
-        <ion-item class="form-group">
-          <ion-label position="floating"> id</ion-label>
-          <ion-input [(ngModel)]="login.id" name="id" ></ion-input>
-        </ion-item>
-      </div>
-      <ng-template #elseBlock>        
-        <ion-item class="form-group">
-          <ion-label position="floating"> Usuario </ion-label>
-          <ion-input [(ngModel)]="login.user" name="user" ></ion-input>
-        </ion-item>  
-      </ng-template>      
-      
-    <ion-item class="form-group">
-      <ion-label position="floating"> Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="login.password" name="password" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-toolbar><br>        
-        <ion-button   (click)=" Login(login.id, login.user, login.password)">
-          <ion-label> Acceder </ion-label>
-        </ion-button>
-      </ion-toolbar>
-    </ion-item>
-    <ion-card>
-      <ion-title>{{mensaje}}</ion-title>
-    </ion-card>
-    </form>    
-  </ion-card>
-
-</ion-content> -->
-
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="primary">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
-    <!-- <ion-buttons slot="end">
-      <ion-button routerLink="/signup">Sign up</ion-button>
-    </ion-buttons> -->
-  <!-- </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <ion-card class="card">
   <div id="header">
@@ -85,9 +30,8 @@
       <ion-label position="floating" color="primary"> Contraseña: </ion-label>
       <ion-input [(ngModel)]="login.password" name="password" type="password" placeholder="Ej: 123456abc"></ion-input>
     </ion-item>
-    <!-- <app-input placeholder="#Trabajador"></app-input>
-    <app-input type="password" placeholder="Contraseña"></app-input> -->
-    <ion-button (click)=" Login(login.id, login.user, login.password)" expand="block" shape="round"> Login </ion-button>
+    
+    <ion-button (click)=" Login(login.id, login.user, login.password)" expand="block" shape="round"> Acceder </ion-button>
   </form>
 </ion-card>
 </ion-content>
