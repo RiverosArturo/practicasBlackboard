@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { DatosService } from 'src/app/services/datos.service';
 import { Student } from 'src/app/models/Student';
+import { Prof } from 'src/app/models/Prof';
 import { Curso } from 'src/app/models/Curso';
 import { AlertController } from '@ionic/angular';
 
@@ -13,7 +14,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class PerfilPage implements OnInit {
 
-  user:string;
+  user:number;
   matricula:number;
   nrc:number;
   nTrabajador:number;
@@ -23,6 +24,11 @@ export class PerfilPage implements OnInit {
   perfil:boolean = false;
   EditPerfil:boolean = false;
   EditPassword:boolean = false;
+
+  prof: Prof = {
+    password: '',
+  };
+  profs:any = [];
 
   student: Student = {
     password: '',
@@ -42,54 +48,55 @@ export class PerfilPage implements OnInit {
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;     
     this.user = params.user;  
+    this.nTrabajador = params.user;
     this.nrc = params.nrc;
-    this.user = params.user;
-    this.nrc = params.nrc;
-    this.nTrabajador = params.nTrabajador;
-    this.matricula = params.user;
-    this.id = params.id;
-    this.getAlumno(this.matricula);
+    this.curso = params.curso;          
+     
+    console.log(this.user);
     this.perfil = true;
+    this.getProfe();    
     this.getCurso();
   }
   //-------------------------------- Funciones -----------------------------------
-  getCurso(){
-    this.datosService.getCourse(this.nrc)
-      .subscribe(
-        res =>{       
-          this.course = res;    
-          this.curso = this.course.materia;               
-        },
-        err => console.error(err)
-      )
-  }
-  getAlumno(matricula:number){
-    this.datosService.getStudent(matricula)
+  
+  getProfe(){
+    this.datosService.getProf(this.nTrabajador)
       .subscribe(
         res =>{          
-          this.student = res;        
+          this.prof = res;   
+          console.log(this.prof);           
         },
         err => console.error(err)
       )
   }
-  updateStudent(){        
-    this.student.password = this.password;
-    this.datosService.updateStudent(this.student.matricula, this.student)
+getCurso(){
+  this.datosService.getCourse(this.nrc)
     .subscribe(
-      res =>{
-        console.log(res);
-        this.getStudent();        
+      res =>{       
+        this.course = res;    
+        this.curso = this.course.materia;               
       },
       err => console.error(err)
     )
-  }
-  getStudent(){
-    this.datosService.getStudents().subscribe(
-      res => {
-        this.students = res;     
+}  
+//-------------------------------------------------------------------------------  
+updateProf1(){     
+  console.log(this.prof.nTrabajador, this.prof.nombre, this.prof.correo, this.prof.password);  
+  
+}
+updateProf(){   
+  console.log(this.prof.nTrabajador, this.prof.nombre, this.prof.correo, this.prof.password);          
+    console.log(this.password);  
+    this.prof.password = this.password;
+    
+    this.datosService.updateProf(this.prof.nTrabajador, this.student)
+    .subscribe(
+      res =>{
+        console.log(res);
+        this.getProfe();        
       },
       err => console.error(err)
-    );
+    )
   }
 
   editPerfil(){
@@ -135,7 +142,7 @@ export class PerfilPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');    
-            this.updateStudent();        
+            this.updateProf();        
           }
         }
       ]
