@@ -20,6 +20,7 @@ class EquipoRoutes {
         this.router.put('/:id/:nrc/:nTrabajador', equipoController_1.default.updateEquipo);
         this.router.delete('/:id/:curso_nrc/:nTrabajador', equipoController_1.default.deleteEquipo);
         this.router.delete('/:curso_nrc/:nTrabajador', equipoController_1.default.deleteAllEquipos);
+        this.router.post('/:nrc', equipoController_1.default.deleteEquipoo);
     }
 }
 const equipoRoutes = new EquipoRoutes();

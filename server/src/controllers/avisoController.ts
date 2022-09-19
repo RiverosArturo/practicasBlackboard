@@ -55,9 +55,18 @@ class AvisoController {
         await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [id,nrc,id_equipo,noTrabajador]);
         res.json({message: 'The aviso was delated'});
     }
-    public async deleteAllAvisos (req:Request, res:Response): Promise <void>{
-        await pool.query('DELETE FROM aviso');
-        res.json({message: 'The courses was deleted'});
+    public async deleteAvisos (req:Request, res:Response): Promise <void>{
+        const{nrc} = req.params;
+        if(req.body.nrc > 0){
+            await pool.query('DELETE FROM aviso WHERE nrc=?', [req.body.nrc]);
+            res.json({message: 'The avisos was delated'});
+        }else if(req.body.matricula > 0){
+            await pool.query('DELETE FROM aviso WHERE matricula=?', [req.body.matricula]);
+            res.json({message: 'The avisos was delated'});
+        }else if(req.body.nTrabajador > 0){
+            await pool.query('DELETE FROM aviso WHERE noTrabajador=?', [req.body.nTrabajador]);
+            res.json({message: 'The avisos was delated'});
+        }
     }
 }
 const avisoController = new AvisoController();

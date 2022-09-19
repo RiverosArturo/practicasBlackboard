@@ -26,6 +26,7 @@ class EquipoStudentsRoutes {
         this.router.delete('/:matricula/:id_equipo/:nrc/:nTrabajador', equipoStudentsController.deleteStudentEquipo);
         this.router.delete('/:id_equipo/:nrc/:nTrabajador', equipoStudentsController.deleteStudentsEquipo);
         this.router.delete('/:id/:nombre/:curso_nrc/:nTrabajador', equipoStudentsController.deleteEquipo); 
+        this.router.post('/:nrc', equipoStudentsController.deleteEquipoEs); 
 
     }
 

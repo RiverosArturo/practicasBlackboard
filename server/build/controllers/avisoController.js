@@ -84,10 +84,21 @@ class AvisoController {
             res.json({ message: 'The aviso was delated' });
         });
     }
-    deleteAllAvisos(req, res) {
+    deleteAvisos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM aviso');
-            res.json({ message: 'The courses was deleted' });
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM aviso WHERE nrc=?', [req.body.nrc]);
+                res.json({ message: 'The avisos was delated' });
+            }
+            else if (req.body.matricula > 0) {
+                yield database_1.default.query('DELETE FROM aviso WHERE matricula=?', [req.body.matricula]);
+                res.json({ message: 'The avisos was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM aviso WHERE noTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The avisos was delated' });
+            }
         });
     }
 }

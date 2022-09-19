@@ -30,7 +30,7 @@
         {{student.matricula}} {{student.nombre}} {{student.correo}}  {{student.password}}
 
         <ion-button color="secondary" [routerLink]="['../edit-student', student.matricula]">Editar <ion-icon name="pencil"></ion-icon></ion-button>
-        <ion-button color="danger" (click)="AlertOne(student.matricula)">Eliminar <ion-icon name="trash"></ion-icon></ion-button>        
+        <ion-button color="danger" (click)="AlertOne(student.matricula, student)">Eliminar <ion-icon name="trash"></ion-icon></ion-button>        
     </tr>
   </ion-list>
   </div>

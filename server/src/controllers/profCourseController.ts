@@ -29,6 +29,16 @@ public async getUSERNRC(req:Request, res:Response): Promise<any>{
         await pool.query('DELETE FROM profesor_curso');
         res.json({message: 'The courses was deleted'});
     }
+    public async deleteProfesorCu(req:Request, res:Response): Promise <void>{
+        const {nrc} = req.params;
+        if(req.body.nrc > 0){
+            await pool.query('DELETE FROM profesor_curso WHERE nrc=?', [req.body.nrc]);
+            res.json({message: 'The profesor_curso was delated'});
+        }else if(req.body.nTrabajador > 0){
+            await pool.query('DELETE FROM profesor_curso WHERE nTrabajador=?', [req.body.nTrabajador]);
+            res.json({message: 'The profesor_curso was delated'});
+        }
+    }
     
 }
 const profCourseController = new ProfCourseController();

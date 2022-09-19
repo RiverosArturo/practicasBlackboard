@@ -41,6 +41,13 @@ class CursoController {
         }
         res.json({Text:"El curso no existe"});
     }
+    public async deleteCursos(req:Request, res:Response): Promise <void>{
+        const {nrc} = req.params;
+        if(req.body.nrc > 0 ){
+            await pool.query('DELETE FROM curso WHERE nrc=?', [req.body.nrc]);
+            res.json({message: 'The profesor_curso was delated'});
+        }
+    }
 }
 const cursoController = new CursoController();
 export default cursoController;

@@ -42,11 +42,79 @@ export class ListCoursesPage implements OnInit {
       err => console.error(err)
     )
   }
-  async AlertOne(clave: number) {
+
+  borrar(nrc:number, obj:object){
+    this.datosService.eliminarChat(nrc, obj).subscribe(
+      res => {
+        console.log(res);
+
+        this.datosService.eliminarAvisos(nrc, obj).subscribe(
+          res => {
+            console.log(res);
+
+            this.datosService.eliminarActividad(nrc, obj).subscribe(
+              res => {
+                console.log(res);
+
+                this.datosService.eliminarEquipoEs(nrc, obj).subscribe(
+                  res => {
+                    console.log(res);
+
+                    this.datosService.eliminarEquipo(nrc, obj).subscribe(
+                      res => {
+                        console.log(res);
+                        
+                        this.datosService.eliminarEstudianteCu(nrc, obj).subscribe(
+                          res => {
+                            console.log(res);
+
+                            this.datosService.eliminarProfesorCu(nrc, obj).subscribe(
+                              res => {
+                                console.log(res);
+
+                                this.datosService.eliminarCurso(nrc, obj).subscribe(
+                                  res => {
+                                    console.log(res);
+                                    this.getCourse();
+                                    
+                                  },
+                                  err => console.error(err)
+                                )
+                                
+                              },
+                              err => console.error(err)
+                            )
+                            
+                          },
+                          err => console.error(err)
+                        )
+                      },
+                      err => console.error(err)
+                    )
+                    
+                  },
+                  err => console.error(err)
+                )
+                
+              },
+              err => console.error(err)
+            )
+            
+          },
+          err => console.error(err)
+        )
+        
+      },
+      err => console.error(err)
+    )
+
+  }
+
+  async AlertOne(nrc: number, curso:object) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar </strong>!!! '+ clave ,
+      message: 'Message <strong>Deseas eliminar </strong>!!! '+ nrc ,
       buttons: [
         {
           text: 'Cancel',
@@ -61,13 +129,15 @@ export class ListCoursesPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteCourse(clave);
+            this.borrar(nrc, curso);
           }
         }
       ]
     });
     await alert.present();
   }
+
+
   async AlertAll() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -94,5 +164,7 @@ export class ListCoursesPage implements OnInit {
     });
     await alert.present();
   }
+
+
 
 }

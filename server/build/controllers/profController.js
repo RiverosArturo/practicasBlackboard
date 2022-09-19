@@ -56,6 +56,15 @@ class ProfController {
             res.json({ message: 'The Profesores was delated' });
         });
     }
+    deleteProfesor(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM actividad WHERE nTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The teacher was delated' });
+            }
+        });
+    }
 }
 const profController = new ProfController();
 exports.default = profController;

@@ -52,6 +52,19 @@ class studCourseController {
         await pool.query('DELETE FROM estudiante_curso WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]); 
         res.json({message: 'The students was deleted'});
     }
+    public async deleteCursoEs(req:Request, res:Response): Promise <void>{
+        const {nrc} = req.params;
+        if(req.body.nrc > 0 ){
+            await pool.query('DELETE FROM estudiante_curso WHERE nrc=?', [req.body.nrc]);
+            res.json({message: 'The estudiante_curso was delated'});
+        }else if(req.body.matricula > 0){
+            await pool.query('DELETE FROM estudiante_curso WHERE matricula=?', [req.body.matricula]);
+            res.json({message: 'The estudiante_curso was delated'});
+        }else if(req.body.nTrabajador > 0){
+            await pool.query('DELETE FROM estudiante_curso WHERE nTrabajador=?', [req.body.nTrabajador]);
+            res.json({message: 'The estudiante_curso was delated'});
+        }
+    }
 }
 const StudCourseController = new studCourseController();
 export default StudCourseController;

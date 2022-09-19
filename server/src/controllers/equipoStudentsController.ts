@@ -79,6 +79,19 @@ public async deleteEquipo (req:Request, res:Response): Promise <void>{
     //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
     //res.json({message: 'equipo was delated'});
 }
+public async deleteEquipoEs(req:Request, res:Response): Promise <void>{
+    const {nrc} = req.params;
+    if(req.body.nrc > 0 ){
+        await pool.query('DELETE FROM equipo_estudiantes WHERE nrc=?', [req.body.nrc]);
+        res.json({message: 'The equipoEs was delated'});
+    }else if(req.body.matricula > 0 ){
+        await pool.query('DELETE FROM equipo_estudiantes WHERE matricula=?', [req.body.matricula]);
+        res.json({message: 'The equipoEs was delated'});
+    }else if(req.body.nTrabajador > 0 ){
+        await pool.query('DELETE FROM equipo_estudiantes WHERE nTrabajador=?', [req.body.nTrabajador]);
+        res.json({message: 'The equipoEs was delated'});
+    }
+}
 }
 const equipoStudentsController = new EquipoStudentsController();
 export default equipoStudentsController;

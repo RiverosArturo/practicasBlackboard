@@ -19,7 +19,7 @@ class AvisoRoutes {
         this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', avisoController.updateAvEq);
         this.router.delete('/:id/:nrc/:noTrabajador', avisoController.delete);
         this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', avisoController.deleteEq);
-        this.router.delete('/', avisoController.deleteAllAvisos);
+        this.router.post('/:nrc', avisoController.deleteAvisos);
     }
 
 }

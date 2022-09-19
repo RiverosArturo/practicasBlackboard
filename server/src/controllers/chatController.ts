@@ -45,15 +45,28 @@ class ChatController {
     //     await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
     //     res.json({message: 'The actividad was UPDATE'});
     // }
-    public async delete (req:Request, res:Response): Promise <void>{
-        const {matricula,nrc,noTrabajador} = req.params;
-        await pool.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [matricula,nrc,noTrabajador]);
-        res.json({message: 'The msj was delated'});
-    }
-    public async deleteEq (req:Request, res:Response): Promise <void>{
-        const {nrc,id_equipo,noTrabajador,x} = req.params;
-        await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador,x]);
-        res.json({message: 'The msj was delated'});
+    // public async delete (req:Request, res:Response): Promise <void>{
+    //     const {matricula,nrc,noTrabajador} = req.params;
+    //     await pool.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [matricula,nrc,noTrabajador]);
+    //     res.json({message: 'The msj was delated'});
+    // }
+    // public async deleteEq (req:Request, res:Response): Promise <void>{
+    //     const {nrc,id_equipo,noTrabajador,x} = req.params;
+    //     await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador,x]);
+    //     res.json({message: 'The msj was delated'});
+    // }
+    public async deleteChat (req:Request, res:Response): Promise <void>{
+        const{nrc} = req.params;
+        if(req.body.nrc > 0){
+            await pool.query('DELETE FROM chat WHERE nrc=?', [req.body.nrc]);
+            res.json({message: 'The chats was delated'});
+        }else if(req.body.matricula > 0){
+            await pool.query('DELETE FROM chat WHERE matricula=?', [req.body.matricula]);
+            res.json({message: 'The chats was delated'});
+        }else if(req.body.nTrabajador > 0){
+            await pool.query('DELETE FROM chat WHERE noTrabajador=?', [req.body.nTrabajador]);
+            res.json({message: 'The chats was delated'});
+        }
     }
     // public async deleteAllAvisos (req:Request, res:Response): Promise <void>{
     //     await pool.query('DELETE FROM aviso');

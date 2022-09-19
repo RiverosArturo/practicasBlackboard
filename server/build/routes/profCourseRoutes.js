@@ -16,6 +16,7 @@ class ProfCourseRoutes {
         this.router.post('/', profCourseController_1.default.create);
         this.router.delete('/:nTrabajador/:nrc', profCourseController_1.default.delete);
         this.router.delete('/', profCourseController_1.default.deleteAllProfCourses);
+        this.router.post('/:nrc', profCourseController_1.default.deleteProfesorCu);
     }
 }
 const profCourseRoutes = new ProfCourseRoutes();

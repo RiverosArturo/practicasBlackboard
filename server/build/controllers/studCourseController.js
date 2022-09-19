@@ -83,6 +83,23 @@ class studCourseController {
             res.json({ message: 'The students was deleted' });
         });
     }
+    deleteCursoEs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM estudiante_curso WHERE nrc=?', [req.body.nrc]);
+                res.json({ message: 'The estudiante_curso was delated' });
+            }
+            else if (req.body.matricula > 0) {
+                yield database_1.default.query('DELETE FROM estudiante_curso WHERE matricula=?', [req.body.matricula]);
+                res.json({ message: 'The estudiante_curso was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM estudiante_curso WHERE nTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The estudiante_curso was delated' });
+            }
+        });
+    }
 }
 const StudCourseController = new studCourseController();
 exports.default = StudCourseController;

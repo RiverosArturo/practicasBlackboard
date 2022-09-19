@@ -17,8 +17,9 @@ class ChatRoutes {
         this.router.post('/', chatController.create);
         // this.router.put('/:id/:nrc/:noTrabajador', ActividadController.updateAct);
         // this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', ActividadController.updateActEq);
-        this.router.delete('/:matricula/:nrc/:noTrabajador', chatController.delete);
-        this.router.delete('/:nrc/:id_equipo/:noTrabajador', chatController.deleteEq);
+        // this.router.delete('/:matricula/:nrc/:noTrabajador', chatController.delete);
+        // this.router.delete('/:nrc/:id_equipo/:noTrabajador', chatController.deleteEq);
+        this.router.post('/:nrc', chatController.deleteChat);
     }
 
 }

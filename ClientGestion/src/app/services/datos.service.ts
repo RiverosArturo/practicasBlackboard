@@ -15,6 +15,7 @@ import { Actividad } from '../models/Actividad';
 import { Aviso } from '../models/Aviso';
 import { Chat } from '../models/chat';
 import { tap } from 'rxjs/operators'
+import { EliminarActividadPage } from '../page/home-prof/actividades/eliminar-actividad/eliminar-actividad.page';
 
 @Injectable({
   providedIn: 'root'
@@ -315,5 +316,38 @@ obtenerMsjsCursoEquipo(nrc:number,id_equipo:number,noTrabajador:number){
     return this.http.get(`${this.API_URI}/curso/${nrc}`)
   }
   
+
+  //////////////////////////////Funciones para eliminar curso, profesor, estudiante/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  eliminarChat(nrc:number, chat:Object ) {
+    return this.http.post(`${this.API_URI}/chat/${nrc}`, chat);
+  }
+  eliminarAvisos(nrc:number, aviso:Object ) {
+    return this.http.post(`${this.API_URI}/aviso/${nrc}`, aviso);
+  }
+  eliminarActividad(nrc:number, actividad:Object ){
+    return this.http.post(`${this.API_URI}/actividad/${nrc}`, actividad);
+  }
+  eliminarEquipoEs(nrc:number, equipoEs:Object ){
+    return this.http.post(`${this.API_URI}/equipoStudents/${nrc}`, equipoEs);
+  }
+  eliminarEquipo(nrc:number, equipo:Object ){
+    return this.http.post(`${this.API_URI}/equipo/${nrc}`, equipo);
+  }
+  eliminarEstudianteCu(nrc:number, estudianteCu:Object ){
+    return this.http.post(`${this.API_URI}/studCourse/${nrc}`, estudianteCu);
+  }
+  eliminarProfesorCu(nrc:number, profesorCu:Object ){
+    return this.http.post(`${this.API_URI}/profCourse/${nrc}`, profesorCu);
+  }
+  eliminarCurso(nrc:number, curso:Object ){
+    return this.http.post(`${this.API_URI}/curso/${nrc}`, curso);
+  }
+  eliminarEstudiante(nrc:number, estudiante:Object ){
+    return this.http.post(`${this.API_URI}/student/${nrc}`, estudiante);
+  }
+  eliminarProfesores(nTrabajador:number, profesores:Object ){
+    return this.http.post(`${this.API_URI}/prof/${nTrabajador}`, profesores);
+  }
+
 
 }
