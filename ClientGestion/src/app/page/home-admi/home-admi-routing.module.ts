@@ -26,15 +26,15 @@ const routes: Routes = [
     loadChildren: () => import('./page/list-courses/list-courses.module').then( m => m.ListCoursesPageModule)
   },
   {
-    path: 'edit-course',
+    path: 'edit-course/:nrc',
     loadChildren: () => import('./page/edit-course/edit-course.module').then( m => m.EditCoursePageModule)
   },
   {
-    path: 'edit-student',
+    path: 'edit-student/:matricula',
     loadChildren: () => import('./page/edit-student/edit-student.module').then( m => m.EditStudentPageModule)
   },
   {
-    path: 'edit-prof',
+    path: 'edit-prof/:nTrabajador',
     loadChildren: () => import('./page/edit-prof/edit-prof.module').then( m => m.EditProfPageModule)
   },
   {

@@ -27,18 +27,10 @@
       <ion-list>
       <tr  *ngFor="let student of students">
 
-           [ {{student.matricula}} ]-[ {{student.nombre}} ]-[ {{student.correo}} ]-[ {{student.password}} ]
-        
-            <ion-button color="secondary">            
-              <ion-button color="secondary" [routerLink]="['/home-admi/edit-student',student.matricula]">Editar</ion-button>
-              <ion-icon name="pencil"></ion-icon>
-            </ion-button>
-  
-            <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(student.matricula)">Eliminar</ion-button>
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>          
-      &nbsp;
+        {{student.matricula}} {{student.nombre}} {{student.correo}}  {{student.password}}
+
+        <ion-button color="secondary" [routerLink]="['../edit-student', student.matricula]">Editar <ion-icon name="pencil"></ion-icon></ion-button>
+        <ion-button color="danger" (click)="AlertOne(student.matricula)">Eliminar <ion-icon name="trash"></ion-icon></ion-button>        
     </tr>
   </ion-list>
   </div>

@@ -12,9 +12,7 @@ export class EditStudentPage implements OnInit {
 
   @HostBinding('class') classes = 'row';
 
-  student: Student = {
-    password: '',
-  };
+  student: Student;
   students:any = [];
   edit:boolean = false;
 
