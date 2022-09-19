@@ -56,7 +56,7 @@
         <ion-label for="curso" color="dark">Curso:</ion-label>
         <ion-input type="number" name="curso" #curso="ngModel" [(ngModel)]="actividadCurso.nrc" color="primary" readonly="true"></ion-input> -->
         
-        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
+        <ion-button *ngIf="actividadCurso.nombre && actividadCurso.descripcion && actividadCurso.fecha && actividadCurso.fechaEntrega && actividadCurso.horaEntrega" type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
       </form>
   
       <form *ngIf="condicionE==false" (ngSubmit)="onSubmit()" #crearAct="ngForm">
@@ -90,7 +90,7 @@
         <ion-label for="equipo" color="dark">Equipo  </ion-label>
         <ion-input type="number" name="equipo" #equipo="ngModel" [(ngModel)]="actividadCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789"></ion-input><br> -->
       
-        <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
+        <ion-button *ngIf="actividadCurso.nombre && actividadCurso.descripcion && actividadCurso.fecha && actividadCurso.fechaEntrega && actividadCurso.horaEntrega" type="submit" value="Enviar" value="number" maxlength="9"> Actualizar actividad </ion-button><br><br>
       </form>
     </ion-card>
 

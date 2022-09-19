@@ -45,6 +45,11 @@ class AvisoController {
         await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
         res.json({message: 'The actividad was UPDATE'});
     }
+    public async deleteAviCur (req:Request, res:Response): Promise <void>{
+        const {nrc,noTrabajador} = req.params;
+        await pool.query('DELETE FROM aviso WHERE nrc=? AND noTrabajador=?', [nrc,noTrabajador]);
+        res.json({message: 'The aviso was delated'});
+    }
     public async delete (req:Request, res:Response): Promise <void>{
         const {id,nrc,noTrabajador} = req.params;
         await pool.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [id,nrc,noTrabajador]);

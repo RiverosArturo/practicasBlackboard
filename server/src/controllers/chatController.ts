@@ -55,6 +55,11 @@ class ChatController {
     //     await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador,x]);
     //     res.json({message: 'The msj was delated'});
     // }
+    public async deleteChatCur (req:Request, res:Response): Promise <void>{
+        const{nrc, noTrabajador} = req.params;
+        await pool.query('DELETE FROM chat WHERE nrc=? AND noTrabajador=?', [nrc, noTrabajador]);
+        res.json({message: 'The chats was delated'});
+    }
     public async deleteChat (req:Request, res:Response): Promise <void>{
         const{nrc} = req.params;
         if(req.body.nrc > 0){

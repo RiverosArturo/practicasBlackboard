@@ -127,9 +127,20 @@
                       <ion-item>
                         <p>{{act.descripcion}}</p>
                       </ion-item>
-                      <ion-item>
-                        <a *ngIf="act.urlEstudiante" href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
-                        <a *ngIf="!act.urlEstudiante">Aún no entregado</a><br>
+                      <ion-item *ngIf="act.urlEstudiante">
+                        <a href="{{act.urlEstudiante}}">Trabajo: {{act.urlEstudiante}}</a><br>
+                      </ion-item>
+                      <ion-item *ngIf=" act.calificacion > 0 ">
+                        <p>Calificada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                      </ion-item>
+                      <ion-item *ngIf="act.fechaEntrega == act.fechaEstudiante && act.calificacion == 0 && act.fechaEstudiante != '0000-00-00' || act.fechaEntrega > act.fechaEstudiante && act.calificacion == 0 && act.fechaEstudiante != '0000-00-00'">
+                        <p>Entregada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                      </ion-item>
+                      <ion-item *ngIf="act.fechaEstudiante == '0000-00-00' ">
+                        <p>Aún no entregada <ion-icon color="danger" name="warning-sharp"></ion-icon></p>
+                      </ion-item>
+                      <ion-item *ngIf="act.fechaEstudiante != '0000-00-00' && act.fechaEntrega < act.fechaEstudiante ">
+                        <p>Entrega con retardo <ion-icon color="warning" name="alert-circle-outline"></ion-icon></p>
                       </ion-item>
                       <ion-item>
                         <ion-label for="comentario" color="dark" position="floating">Comentario:</ion-label>

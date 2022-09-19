@@ -69,6 +69,8 @@ export class AltaActividadPage implements OnInit {
 
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
+    this.condicionE=null;
+    this.boton=true;
   }
   
   onSubmit(){
@@ -167,13 +169,24 @@ export class AltaActividadPage implements OnInit {
   }
 
   condicion1(){
+    let hoy = new Date();
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let agnio = hoy.getFullYear();
+    let dia2 = ('0' + dia).slice(-2);
+    let mes2 = ('0' + mes).slice(-2);
+    let horas = hoy.getHours();
+    let minutos = hoy.getMinutes();
+    
     this.condicionE = true;
     this.boton = false;
     this.actividadCurso.id = '';
     this.actividadCurso.nombre = '';
     this.actividadCurso.descripcion = '';
-    this.actividadCurso.fecha = '';
+    // this.actividadCurso.fecha = '';
+    this.actividadCurso.fecha = `${agnio}-${mes2}-${dia2}`;
     this.actividadCurso.fechaEntrega = '';
+    this.actividadCurso.horaEntrega = `${horas}:${minutos}`;
     this.actividadCurso.noTrabajador = this.nTrabajador;
     this.actividadCurso.nrc = this.nrc;
     this.actividadCurso.id_equipo = null;
@@ -184,13 +197,24 @@ export class AltaActividadPage implements OnInit {
     this.studCourses = [];
   }
   condicion2(){
+    let hoy = new Date();
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let agnio = hoy.getFullYear();
+    let dia2 = ('0' + dia).slice(-2);
+    let mes2 = ('0' + mes).slice(-2);
+    let horas = hoy.getHours();
+    let minutos = hoy.getMinutes();
+
     this.condicionE = false;
     this.boton = false;
     this.actividadCurso.id = '';
     this.actividadCurso.nombre = '';
     this.actividadCurso.descripcion = '';
-    this.actividadCurso.fecha = '';
+    // this.actividadCurso.fecha = '';
+    this.actividadCurso.fecha = `${agnio}-${mes2}-${dia2}`;
     this.actividadCurso.fechaEntrega = '';
+    this.actividadCurso.horaEntrega = `${horas}:${minutos}`;
     this.actividadCurso.noTrabajador = this.nTrabajador;
     this.actividadCurso.nrc = this.nrc;
     this.actividadCurso.id_equipo = null;

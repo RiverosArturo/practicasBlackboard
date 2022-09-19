@@ -54,7 +54,7 @@
     
     <form *ngIf="condicionE==true" (ngSubmit)="onSubmit()" #crearAct="ngForm">
       <ion-label for="id" color="dark">Id actividad:</ion-label>
-      <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" placeholder="Id actividad Ej: ACT1/123456"></ion-input>
+      <ion-input type="text" name="id" #id="ngModel" [(ngModel)]="actividadCurso.id" color="primary" placeholder="Id actividad Ej: ACT1/123456" required></ion-input>
   
       <ion-label for="nombre" color="dark">Nombre:</ion-label>
       <ion-input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="actividadCurso.nombre" color="primary" placeholder="Nombre de la actividad"></ion-input>
@@ -77,7 +77,7 @@
       <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
-      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
+      <ion-button *ngIf="actividadCurso.id && actividadCurso.nombre && actividadCurso.descripcion && actividadCurso.fecha && actividadCurso.fechaEntrega && actividadCurso.horaEntrega" type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
     </form>
 
     <form *ngIf="condicionE==false" (ngSubmit)="onSubmit()" #crearAct="ngForm">
@@ -110,7 +110,7 @@
       <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
-      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
+      <ion-button *ngIf="actividadCurso.id && actividadCurso.nombre && actividadCurso.descripcion && actividadCurso.fecha && actividadCurso.fechaEntrega && actividadCurso.horaEntrega && actividadCurso.id_equipo" type="submit" value="Enviar" value="number" maxlength="9"> Subir actividad </ion-button><br><br>
     </form>
   </ion-card-content>
 

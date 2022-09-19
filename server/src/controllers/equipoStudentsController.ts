@@ -79,6 +79,11 @@ public async deleteEquipo (req:Request, res:Response): Promise <void>{
     //await pool.query('DELETE FROM equipo WHERE id = ? AND nombre = ? AND curso_nrc = ? AND nTrabajador = ?', [id,nombre,curso_nrc,nTrabajador]);         
     //res.json({message: 'equipo was delated'});
 }
+public async deleteEquipoEsCur (req:Request, res:Response): Promise <void>{
+    const {nrc, nTrabajador} = req.params;
+    await pool.query('DELETE FROM `equipo_estudiantes` WHERE nrc = ? AND nTrabajador = ?', [nrc,nTrabajador]);         
+    res.json({message: 'The student the Equipo was deleted'});  
+}  
 public async deleteEquipoEs(req:Request, res:Response): Promise <void>{
     const {nrc} = req.params;
     if(req.body.nrc > 0 ){

@@ -39,16 +39,16 @@
       <ion-label for="aviso" color="dark">Aviso:</ion-label>
       <ion-input type="text" name="aviso" #aviso="ngModel" [(ngModel)]="avisoCurso.aviso" color="primary" placeholder="Escriba el aviso"></ion-input>
   
-      <ion-label for="fecha" color="dark">Fecha:</ion-label>
-      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary"></ion-input>
+      <!-- <ion-label for="fecha" color="dark">Fecha:</ion-label>
+      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary" readonly="true"></ion-input>
 
       <ion-label for="hora" color="dark">Hora:</ion-label>
-      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
+      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary" readonly="true"></ion-input> -->
       
        <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
-      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
+      <ion-button *ngIf="avisoCurso.id && avisoCurso.aviso" type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
     </form>
 
     <form *ngIf="condicionE==false" (ngSubmit)="onSubmit()" #crearAvi="ngForm">
@@ -58,11 +58,11 @@
       <ion-label for="aviso" color="dark">Aviso:</ion-label>
       <ion-input type="text" name="aviso" #aviso="ngModel" [(ngModel)]="avisoCurso.aviso" color="primary" placeholder="Escriba el aviso"></ion-input>
   
-      <ion-label for="fecha" color="dark">Fecha:</ion-label>
-      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary"></ion-input>
+      <!-- <ion-label for="fecha" color="dark">Fecha:</ion-label>
+      <ion-input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="avisoCurso.fecha" color="primary" readonly="true"></ion-input>
 
       <ion-label for="hora" color="dark">Hora:</ion-label>
-      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary"></ion-input>
+      <ion-input type="time" name="hora" #hora="ngModel" [(ngModel)]="avisoCurso.hora" color="primary" readonly="true"></ion-input> -->
       
       <ion-label for="equipo" color="dark">Equipo:  </ion-label>
       <select type="number" name="equipo" #equipo="ngModel" [(ngModel)]="avisoCurso.id_equipo" color="primary" placeholder="Id del equipo Ej: 123456789">
@@ -72,7 +72,7 @@
       <ion-button *ngIf="boton==false || boton==false"(click)="actualizar()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>
-      <ion-button type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
+      <ion-button *ngIf="avisoCurso.id && avisoCurso.aviso && avisoCurso.id_equipo" type="submit" value="Enviar" value="number" maxlength="9"> Crear Aviso </ion-button><br><br>
     </form>
   </ion-card-content>
 

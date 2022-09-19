@@ -77,6 +77,13 @@ class ChatController {
     //     await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador,x]);
     //     res.json({message: 'The msj was delated'});
     // }
+    deleteChatCur(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM chat WHERE nrc=? AND noTrabajador=?', [nrc, noTrabajador]);
+            res.json({ message: 'The chats was delated' });
+        });
+    }
     deleteChat(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc } = req.params;

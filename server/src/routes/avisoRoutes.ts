@@ -17,6 +17,7 @@ class AvisoRoutes {
         this.router.post('/', avisoController.create);
         this.router.put('/:id/:nrc/:noTrabajador', avisoController.updateAv);
         this.router.put('/:id/:nrc/:noTrabajador/:id_equipo', avisoController.updateAvEq);
+        this.router.delete('/:nrc/:noTrabajador', avisoController.deleteAviCur); 
         this.router.delete('/:id/:nrc/:noTrabajador', avisoController.delete);
         this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', avisoController.deleteEq);
         this.router.post('/:nrc', avisoController.deleteAvisos);

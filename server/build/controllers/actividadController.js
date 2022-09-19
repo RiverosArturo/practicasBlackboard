@@ -92,6 +92,13 @@ class ActividadController {
             res.json({ message: 'The actividad was delated' });
         });
     }
+    deleteActividadCur(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM actividad WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc, noTrabajador]);
+            res.json({ message: 'The activitys was delated' });
+        });
+    }
     deleteActividad(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc } = req.params;

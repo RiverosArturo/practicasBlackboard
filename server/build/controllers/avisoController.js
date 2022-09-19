@@ -70,6 +70,13 @@ class AvisoController {
             res.json({ message: 'The actividad was UPDATE' });
         });
     }
+    deleteAviCur(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM aviso WHERE nrc=? AND noTrabajador=?', [nrc, noTrabajador]);
+            res.json({ message: 'The aviso was delated' });
+        });
+    }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, nrc, noTrabajador } = req.params;
