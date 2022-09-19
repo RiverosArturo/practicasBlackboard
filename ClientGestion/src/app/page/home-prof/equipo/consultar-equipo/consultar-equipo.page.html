@@ -76,7 +76,7 @@
                           <option [value]="studCourse.matricula" *ngFor="let studCourse of studCourses">{{studCourse.matricula}}</option>
                       </select>                
                     </ion-item> <br>
-                    <ion-label>{{studentEquipo.matricula}} </ion-label>            
+                    <!-- <ion-label>{{studentEquipo.matricula}} </ion-label>             -->
                   </ion-card>
                 <ion-item>
                   <ion-toolbar>      
@@ -152,16 +152,6 @@
         </div>        
       </ion-content>
       </ion-content> 
-
-      <ion-card>
-        <ion-item>    
-          <ion-button slot="end" color="danger" (click)="AlertDeleteAll(nrc, nTrabajador)">
-            <ion-label> Eliminar Todo </ion-label>
-            <ion-icon slot="end" name="trash"></ion-icon> 
-          </ion-button>
-        </ion-item>
-      </ion-card>
-
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>
