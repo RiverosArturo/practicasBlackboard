@@ -36,7 +36,7 @@ class ProfController {
     public async deleteProfesor(req:Request, res:Response): Promise <void>{
         const {nrc} = req.params;
         if(req.body.nTrabajador > 0){
-            await pool.query('DELETE FROM actividad WHERE nTrabajador=?', [req.body.nTrabajador]);
+            await pool.query('DELETE FROM profesor WHERE nTrabajador=?', [req.body.nTrabajador]);
             res.json({message: 'The teacher was delated'});
         }
     }

@@ -52,7 +52,7 @@ export class EditCoursePage implements OnInit {
       res =>{
         console.log(res);
         this.getCourse();
-        this.router.navigate(['/home-admi']);
+        this.router.navigate(['../home-admi/list-courses']);
       },
       err => console.error(err)
     )

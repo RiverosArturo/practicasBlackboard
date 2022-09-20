@@ -59,7 +59,7 @@ export class EditProfPage implements OnInit {
     .subscribe(
       res =>{
         console.log(res);
-        this.router.navigate(['/home-admi']);
+        this.router.navigate(['../home-admi/list-prof']);
       },
       err => console.error(err)
     )

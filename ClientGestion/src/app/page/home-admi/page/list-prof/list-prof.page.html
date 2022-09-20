@@ -22,24 +22,16 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-    <div slot="fixed">
+  <div slot="fixed">  
+    <tr  *ngFor="let prof of profs">
       <ion-list>
-      <tr  *ngFor="let prof of profs">
-
-           [ {{prof.nTrabajador}} ]-[ {{prof.nombre}} ][ {{prof.correo}} ][ {{prof.password}} ]
-        
-            <ion-button color="secondary">            
-              <ion-button color="secondary" [routerLink]="['../edit-prof',prof.nTrabajador]">Editar</ion-button>
-              <ion-icon name="pencil"></ion-icon>
-            </ion-button>
-  
-            <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(prof.nTrabajador, prof)">Eliminar</ion-button>
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>          
-      &nbsp;
-    </tr>
-  </ion-list>
+        <ion-item>
+          {{prof.nombre}} &nbsp;&nbsp;&nbsp; Número de Trabajador: {{prof.nTrabajador}} &nbsp;&nbsp;&nbsp;
+          <ion-button color="secondary" [routerLink]="['../edit-prof',prof.nTrabajador]">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+          <ion-button color="danger" (click)="AlertOne(prof.nTrabajador, prof)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>     
+        </ion-item>
+      </ion-list>
+    </tr>  
   </div>
 
 </ion-content>
@@ -50,10 +42,10 @@
       <ion-label> Agregar </ion-label>
       <ion-icon name="add-circle"></ion-icon>
     </ion-button>
-    <ion-button slot="end" color="danger" (click)="AlertAll()">
+    <!-- <ion-button slot="end" color="danger" (click)="AlertAll()">
       <ion-label> Eliminar Todo </ion-label>
       <ion-icon slot="end" name="trash"></ion-icon> 
-    </ion-button>
+    </ion-button> -->
   </ion-item>
 </ion-card>
 

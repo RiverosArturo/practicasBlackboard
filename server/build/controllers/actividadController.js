@@ -111,7 +111,7 @@ class ActividadController {
                 res.json({ message: 'The activitys was delated' });
             }
             else if (req.body.nTrabajador > 0) {
-                yield database_1.default.query('DELETE FROM actividad WHERE noTrabajador=?', [req.body.nTrabajador]);
+                yield database_1.default.query('DELETE FROM actividad WHERE noTrabajador=?', [nrc]);
                 res.json({ message: 'The activitys was delated' });
             }
         });

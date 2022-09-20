@@ -22,15 +22,16 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-    <div slot="fixed">
+  <div slot="fixed">
+    <tr  *ngFor="let course of courses">
       <ion-list>
-      <tr  *ngFor="let course of courses">
-          {{course.nrc}} ] - [ {{course.materia}} ] - [{{course.clave}}] - [{{course.clave}}] - [{{course.horario}}
-        <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]">Editar<ion-icon name="pencil"></ion-icon></ion-button>
-        <ion-button color="danger" (click)="AlertOne(course.nrc, course)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>
-    
+        <ion-item>
+          Materia: {{course.materia}} &nbsp;&nbsp;&nbsp; Nrc: {{course.nrc}} &nbsp;&nbsp;&nbsp;
+          <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+          <ion-button color="danger" (click)="AlertOne(course.nrc, course)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>
+        </ion-item>
+      </ion-list>
     </tr>
-  </ion-list>
   </div>
 </ion-content>
 </ion-content> 
