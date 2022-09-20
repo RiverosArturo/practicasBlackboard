@@ -2,6 +2,7 @@ import {Request, Response} from 'express';
 import pool from '../database';
 
 class EquipoStudentsController {
+    
     public async getEquipos (req: Request, res: Response){
       const equipo = await pool.query('SELECT * FROM equipo_estudiantes');
         res.json(equipo);

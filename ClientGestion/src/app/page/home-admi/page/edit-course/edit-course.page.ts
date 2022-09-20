@@ -18,13 +18,19 @@ export class EditCoursePage implements OnInit {
   };
   courses:any = [];
   edit:boolean = false;
+  nrc:number; 
 
   constructor( private datosService: DatosService, private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;    
+    this.nrc = params.nrc;
     if(params.nrc){
-      this.datosService.getCourse(params.nrc)
+      this.getCurso(params.nrc);
+    }
+  }
+  getCurso(nrc:number){
+    this.datosService.getCourse(nrc)
       .subscribe(
         res =>{
           console.log(res);
@@ -33,7 +39,6 @@ export class EditCoursePage implements OnInit {
         },
         err => console.error(err)
       )
-    }
   }
   saveNewCourse(){
     this.datosService.saveCourse(this.course)
@@ -52,7 +57,8 @@ export class EditCoursePage implements OnInit {
       res =>{
         console.log(res);
         this.getCourse();
-        this.router.navigate(['/home-admi']);
+        this.getCurso(this.nrc);
+        //this.router.navigate(['../../list-courses']);
       },
       err => console.error(err)
     )

@@ -49,10 +49,11 @@ export class ConsultarEquipoPage implements OnInit {
   deleteEqui:boolean = false;
   delete2:boolean = false;
   nomb:string;
-  
+  addStud:boolean = false;
 
   students:any = [];//Alumnos de la base para nombre del alumno  
   studCourses:any = [];//Alumnos del curso
+  listEquipos:any = [];//lista completa de la tabla estudiante_equipo
 
   constructor(private activedRoute:ActivatedRoute,private menu:MenuController, private datosService: DatosService, public alertController:AlertController, private router: Router) { }
 
@@ -144,32 +145,56 @@ export class ConsultarEquipoPage implements OnInit {
     this.studentEquipo.id_equipo = id;
     this.studentEquipo.nrc = this.nrc;
     this.studentEquipo.nTrabajador = this.nTrabajador;
-    // codigo comprueba si el alumno ya ha sido agregado a un equipo             
-    this.datosService.getStudentEquipo( matricula , nTrabajador).subscribe(
-      res => {        
-        this.oneEquipos = res;
-        console.log( this.oneEquipos );
-
-        if(this.oneEquipos.matricula == 0 ){
-          //codigo agrega alumno al equipo funciona correcto.   
-          console.log('Alumno agregado.');  
-          this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
-            res => {
-              console.log(res);  
-              this.add = false; 
-              this.AlertAdd(matricula, nombre);
-            },
-            err => console.error(err)
-          )          
-        }else{
-          console.log('Alumno ya existe en un equipo.');
-          this.AlertYaExiste(matricula);
-        }
-        },
-        err => console.error(err)
-      ); 
+    console.log('-->',matricula, id, this.nrc, nTrabajador, nombre);
+    // codigo comprueba si el alumno ya ha sido agregado a un equipo   
+          
+      this.datosService.getEquiposE().subscribe(
+        res => {        
+          this.listEquipos = res;      
+          console.log('dat ', this.listEquipos);
+          for(let i=0;i<this.listEquipos.length;i++){
+            if( matricula == this.listEquipos[i].matricula){
+              if(this.listEquipos[i].nrc == this.nrc){
+                if(this.listEquipos[i].id_equipo == id){
+                  this.addStud = false;
+                  console.log('Alumno ya existe en un equipo.',i,this.addStud);                  
+                }else{
+                  this.addStud = true;
+                }     
+              }                                 
+            }else{           
+              //this.addStud = true;
+              console.log('Agregando alumno al equipo.',i,this.addStud);  
+              if(this.addStud == true){
+                console.log('Agregando alumno al equipo.',i);  
+                this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
+                res => {
+                  console.log(res);  
+                  this.add = false; 
+                  this.addStud = false;
+                  //this.AlertAdd(matricula, nombre);
+                },
+                err => console.error(err)
+              )
+              }                                   
+            }
+          }        
+          },
+          err => console.error(err)
+        );            
   }
+  addStudentEquipo(matricula:number, nombre:string){
+    this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
+      res => {
+        console.log(res);  
+        this.add = false; 
+        this.addStud = false;
+        //this.AlertAdd(matricula, nombre);
+      },
+      err => console.error(err)
+    )
 
+  }
   getStudCourse(nrc:number, nTrabajador:number){//optine  los alumnos del curso
     this.datosService.getStudCourse(nrc,nTrabajador).subscribe(
       res => {
@@ -214,11 +239,11 @@ export class ConsultarEquipoPage implements OnInit {
       err => console.error(err)
     );
   }
+ //-------------------------------------------------------- 
   deleteStudentsEquipo(id:number, nrc:number, nTrabajador:number){    
     this.datosService.deleteStudentsEquipo(id, nrc, nTrabajador ).subscribe(
       res => {
-        console.log(res);  
-        //this.getEquipos1(this.nrc, this.nTrabajador);       
+        console.log(res);              
       },
       err => console.error(err)
     )
@@ -319,7 +344,7 @@ async AlerteditOKEquipo( nombre:string ) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: ' ',
-      message: 'Alumno '+ matricula + ' agregado al ' + nombre,
+      message: 'Alumno '+ matricula + ' agregado a ' + nombre,
       buttons: [
         {
           text: 'Ok',

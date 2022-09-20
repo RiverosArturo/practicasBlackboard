@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button>
-        <ion-back-button slot = "start"> </ion-back-button>  
+      <ion-button [routerLink]="'../../home-admi'">
+        <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>    
       <ion-avatar>
         <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
@@ -26,17 +26,20 @@
       <ion-list>
       <tr  *ngFor="let course of courses">
 
+        <ion-button color="danger" (click)="AlertOne(course.nrc)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+
+        <ion-button color="secondary">            
+          <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]">Editar</ion-button>
+          <ion-icon name="pencil"></ion-icon>
+        </ion-button>
+
            [ {{course.nrc}} ] - [ {{course.materia}} ] - [{{course.clave}}] - [{{course.clave}}] - [{{course.horario}}]   
-        
-            <ion-button color="secondary">            
-              <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]">Editar</ion-button>
-              <ion-icon name="pencil"></ion-icon>
-            </ion-button>
-  
-            <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(course.nrc)">Eliminar</ion-button>
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>          
+                       
+            
+          
+                              
     </tr>
   </ion-list>
   </div>

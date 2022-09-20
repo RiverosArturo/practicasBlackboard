@@ -1,6 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-students',
@@ -13,7 +15,7 @@ export class ListStudentsPage implements OnInit {
   user:string='Administrador';
   students:any =[];
   
-  constructor(private datosService: DatosService, public alertController: AlertController ) { }
+  constructor(private datosService: DatosService, public alertController: AlertController,private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     this.getStudent();

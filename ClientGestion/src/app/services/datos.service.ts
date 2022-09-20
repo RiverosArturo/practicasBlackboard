@@ -99,6 +99,9 @@ deleteAllEquipos(nrc: number, nTrabajador:number){
 saveStudentEquipo(studentEquipo: Equipo){//
   return this.http.post(`${this.API_URI}/equipoStudents/`,studentEquipo);
 }
+getEquiposE() {
+  return this.http.get(`${this.API_URI}/equipoStudents/`);
+}
 getOneEquipo(id: number){
   return this.http.get(`${this.API_URI}/equipoStudents/${id}`);
 }
