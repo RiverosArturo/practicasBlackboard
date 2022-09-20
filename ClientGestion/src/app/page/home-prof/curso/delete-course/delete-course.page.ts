@@ -55,26 +55,86 @@ export class DeleteCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  deleteProfCourse(nTrabajador:number, nrc:number){
-    console.log('user', nTrabajador, 'nrc:', nrc);
-    this.datosService.deleteProfCourse(nTrabajador, nrc).subscribe(
-      res => {
-        console.log(res);        
-        this.getProfCourse();
-        this.AlertDelete(nrc);
-      },
-      err => console.error(err)
-    )
-  }
-  deleteAllProfCourse(){
-    this.datosService.deleteAllProfCourse().subscribe(
+  // deleteProfCourse(nTrabajador:number, nrc:number){
+  //   console.log('user', nTrabajador, 'nrc:', nrc);
+  //   this.datosService.deleteProfCourse(nTrabajador, nrc).subscribe(
+  //     res => {
+  //       console.log(res);        
+  //       this.getProfCourse();
+  //       this.AlertDelete(nrc);
+  //     },
+  //     err => console.error(err)
+  //   )
+  // }
+  // deleteAllProfCourse(){
+  //   this.datosService.deleteAllProfCourse().subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.getProfCourse();
+  //     },
+  //     err => console.error(err)
+  //   )
+  // }
+  borrar(nrc:number, noTrabajador:number){
+    this.datosService.deleteChatCur(nrc, noTrabajador).subscribe(
       res => {
         console.log(res);
-        this.getProfCourse();
+
+        this.datosService.deleteAviCur(nrc, noTrabajador).subscribe(
+          res => {
+            console.log(res);
+
+            this.datosService.deleteActividadCur(nrc, noTrabajador).subscribe(
+              res => {
+                console.log(res);
+
+                this.datosService.deleteEquipoEsCur(nrc, noTrabajador).subscribe(
+                  res => {
+                    console.log(res);
+
+                    this.datosService.deleteAllEquipos(nrc, noTrabajador).subscribe(
+                      res => {
+                        console.log(res);
+                        
+                        this.datosService.deleteAllStudCourse(nrc, noTrabajador).subscribe(
+                          res => {
+                            console.log(res);
+
+                            this.datosService.deleteProfCourse(noTrabajador, nrc).subscribe(
+                              res => {
+                                console.log(res);
+                                this.getCourse();
+                                this.getProfCourse();
+                                this.AlertDelete(nrc);
+                              },
+                              err => console.error(err)
+                            )
+                            
+                          },
+                          err => console.error(err)
+                        )
+                      },
+                      err => console.error(err)
+                    )
+                    
+                  },
+                  err => console.error(err)
+                )
+                
+              },
+              err => console.error(err)
+            )
+            
+          },
+          err => console.error(err)
+        )
+        
       },
       err => console.error(err)
     )
+
   }
+
   async AlertDelete(nrc:number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -111,38 +171,38 @@ export class DeleteCoursePage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteProfCourse(nTrabajador, nrc);
+            this.borrar(nrc, nTrabajador);
           }
         }
       ]
     });
     await alert.present();
   }
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllProfCourse();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+  // async AlertAll() {
+  //   const alert = await this.alertController.create({
+  //     cssClass: 'my-custom-class',
+  //     header: 'Confirm!',
+  //     message: 'Message <strong>Deseas eliminar</strong>!!! ',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         id: 'cancel-button',
+  //         handler: (blah) => {
+  //           console.log('Confirm Cancel: blah');
+  //         }
+  //       }, {
+  //         text: 'Ok',
+  //         id: 'confirm-button',
+  //         handler: () => {
+  //           console.log('Confirm Okay');
+  //           this.deleteAllProfCourse();
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   await alert.present();
+  // }
 
 }

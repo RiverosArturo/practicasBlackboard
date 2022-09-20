@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<h1 slot="start"> Lista de Profesores</h1>
+<!-- <h1 slot="start"> Lista de Profesores</h1> -->
 
 <ion-content>
 <ion-content
@@ -22,29 +22,73 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-    <div slot="fixed">
-      <ion-list>
-      <tr  *ngFor="let prof of profs">
+  <div class="ioncont" slot="fixed">  
 
-           [ {{prof.nTrabajador}} ]-[ {{prof.nombre}} ][ {{prof.correo}} ][ {{prof.password}} ]
-        
-            <ion-button color="secondary">            
-              <ion-button color="secondary" [routerLink]="['../edit-prof',prof.nTrabajador]">Editar</ion-button>
-              <ion-icon name="pencil"></ion-icon>
-            </ion-button>
-  
-            <ion-button color="danger">
-              <ion-button color="danger" (click)="AlertOne(prof.nTrabajador)">Eliminar</ion-button>
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>          
-      &nbsp;
-    </tr>
-  </ion-list>
+    <div class="cont">
+      <ion-list>
+        <ion-list-header *ngIf="boton==0">
+          <h1 > Lista de Profesores</h1>
+        </ion-list-header>
+        <tr  *ngFor="let prof of profs">
+            <ion-item *ngIf="boton==0">
+              {{prof.nombre}} &nbsp;&nbsp;&nbsp; Número de Trabajador: {{prof.nTrabajador}} &nbsp;&nbsp;&nbsp;
+              <ion-button color="secondary" (click)="condicion(prof)">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+              <ion-button color="danger" (click)="AlertOne(prof.nTrabajador, prof)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>     
+            </ion-item>
+        </tr>
+      </ion-list>
+    </div>
+
+    <div class="container" *ngIf="boton==1">
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+        <div class="contenido">
+          <ion-list>
+            <ion-list-header>
+              <h3>Profesor: {{prf.nombre}}</h3>
+            </ion-list-header>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Número de trabajador:</ion-label>
+              <ion-input [(ngModel)]="prf.nTrabajador" name="matricula" autofocus readonly="true"></ion-input>
+            </ion-item> 
+            <ion-item class="form-group">
+              <ion-label position="floating"> Nombre </ion-label>
+              <ion-input [(ngModel)]="prf.nombre" name="nombre" autofocus></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Correo </ion-label>
+              <ion-input [(ngModel)]="prf.correo" name="correo" autofocus></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Contraseña</ion-label>
+              <ion-input [(ngModel)]="prf.password" name="password" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-toolbar>
+                <ion-button  (click)="updateProf(prf.nTrabajador, prf)">
+                  <ion-label> Actualizar </ion-label>
+                </ion-button>
+              </ion-toolbar>
+            </ion-item>
+            </ion-list>
+        </div>
+      </div>
+    </div>
+
+    <!-- <tr  *ngFor="let prof of profs">
+      <ion-list>
+        <ion-item>
+          {{prof.nombre}} &nbsp;&nbsp;&nbsp; Número de Trabajador: {{prof.nTrabajador}} &nbsp;&nbsp;&nbsp;
+          <ion-button color="secondary" [routerLink]="['../edit-prof',prof.nTrabajador]">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+          <ion-button color="danger" (click)="AlertOne(prof.nTrabajador, prof)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>     
+        </ion-item>
+      </ion-list>
+    </tr>   -->
   </div>
 
 </ion-content>
 </ion-content> 
-<ion-card>
+<!-- <ion-card>
   <ion-item>
     <ion-button [routerLink]="'/home-admi/add-prof'" color="secondary" slot="end">
       <ion-label> Agregar </ion-label>
@@ -55,7 +99,7 @@
       <ion-icon slot="end" name="trash"></ion-icon> 
     </ion-button>
   </ion-item>
-</ion-card>
+</ion-card> -->
 
 <ion-footer>
   <ion-toolbar color = "primary"></ion-toolbar>

@@ -50,6 +50,19 @@ class ProfCourseController {
             res.json({ message: 'The courses was deleted' });
         });
     }
+    deleteProfesorCu(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM profesor_curso WHERE nrc=?', [req.body.nrc]);
+                res.json({ message: 'The profesor_curso was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM profesor_curso WHERE nTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The profesor_curso was delated' });
+            }
+        });
+    }
 }
 const profCourseController = new ProfCourseController();
 exports.default = profCourseController;

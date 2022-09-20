@@ -16,6 +16,7 @@ class StudRoutes {
         this.router.put('/:matricula', studController.update); 
         this.router.delete('/:matricula', studController.delete); 
         this.router.delete('/', studController.deleteAllStudents); 
+        this.router.post('/:matricula', studController.deleteEstudiante); 
     }
 
 }

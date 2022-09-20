@@ -33,6 +33,13 @@ class StudController {
         await pool.query('DELETE FROM estudiante');
         res.json({message: 'The students was deleted'});
     }
+    public async deleteEstudiante(req:Request, res:Response): Promise <void>{
+        const {matricula} = req.params;
+        if(req.body.matricula > 0 ){
+            await pool.query('DELETE FROM estudiante WHERE matricula=?', [req.body.matricula]);
+            res.json({message: 'The estudent was delated'});
+        }
+    }
 }
 const studController = new StudController();
 export default studController;

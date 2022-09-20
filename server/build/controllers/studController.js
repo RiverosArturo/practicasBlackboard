@@ -56,6 +56,15 @@ class StudController {
             res.json({ message: 'The students was deleted' });
         });
     }
+    deleteEstudiante(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { matricula } = req.params;
+            if (req.body.matricula > 0) {
+                yield database_1.default.query('DELETE FROM estudiante WHERE matricula=?', [req.body.matricula]);
+                res.json({ message: 'The estudent was delated' });
+            }
+        });
+    }
 }
 const studController = new StudController();
 exports.default = studController;

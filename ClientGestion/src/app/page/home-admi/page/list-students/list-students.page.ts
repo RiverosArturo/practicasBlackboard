@@ -1,8 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Student } from '../../../../models/Student';
 
 @Component({
   selector: 'app-list-students',
@@ -14,11 +13,36 @@ export class ListStudentsPage implements OnInit {
   @HostBinding('class') classes = 'row';
   user:string='Administrador';
   students:any =[];
+  boton:number = 0;
+  est:Student = {
+    matricula: 0,
+    password: '',
+    nombre: '',
+    correo: ''
+  }
+
+  // estudiante:Student = {
+  //   matricula: 201888937,
+  // }
   
   constructor(private datosService: DatosService, public alertController: AlertController,private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     this.getStudent();
+    // this.datosService.eliminarActividad(201888937, this.estudiante).subscribe(
+    //   res => {
+    //     console.log(res);
+    //   },
+    //   err => console.error(err)
+    // )
+    //this.borrar(201888937, this.estudiante);
+  }
+  condicion(stud:Student){
+    this.est.matricula = stud.matricula;
+    this.est.password = stud.password;
+    this.est.nombre = stud.nombre;
+    this.est.correo = stud.correo;
+    this.boton=1;
   }
   getStudent(){
     this.datosService.getStudents().subscribe(
@@ -37,16 +61,53 @@ export class ListStudentsPage implements OnInit {
       err => console.error(err)
     )
   }
-  deleteAllStudents(){
-    this.datosService.deleteAllStudents().subscribe(
-      res => {  
+  borrar(nrc:number, obj:object){
+    this.datosService.eliminarChat(nrc, obj).subscribe(
+      res => {
         console.log(res);
-        this.getStudent();
+
+        this.datosService.eliminarAvisos(nrc, obj).subscribe(
+          res => {
+            console.log(res);
+
+            this.datosService.eliminarActividad(nrc, obj).subscribe(
+              res => {
+                console.log(res);
+
+                this.datosService.eliminarEquipoEs(nrc, obj).subscribe(
+                  res => {
+                    console.log(res);
+                    this.datosService.eliminarEstudianteCu(nrc, obj).subscribe(
+                      res => {
+                        console.log(res);
+                            this.datosService.eliminarEstudiante(nrc, obj).subscribe(
+                              res => {
+                                console.log(res);
+                                this.getStudent();
+                              },
+                              err => console.error(err)
+                            )
+                      },
+                      err => console.error(err)
+                    )
+                  },
+                  err => console.error(err)
+                )
+                
+              },
+              err => console.error(err)
+            )
+            
+          },
+          err => console.error(err)
+        )
+        
       },
       err => console.error(err)
     )
+
   }
-  async AlertOne(matricula: number) {
+  async AlertOne(matricula: number, estudiante:object) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
@@ -65,7 +126,7 @@ export class ListStudentsPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
-            this.deleteStudent(matricula);
+            this.borrar(matricula, estudiante);
           }
         }
       ]
@@ -73,32 +134,18 @@ export class ListStudentsPage implements OnInit {
 
     await alert.present();
   }
-  
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllStudents();
-          }
-        }
-      ]
-    });
-    await alert.present();
+  updateStudent(matricula:number, stude:Student){
+    this.datosService.updateStudent(matricula, stude)
+    .subscribe(
+      res =>{
+        console.log(res);
+        window.alert("Actualizado con exito!!!");
+        this.boton = 0;
+        this.getStudent();
+
+      },
+      err => console.error(err)
+    )
   }
 
 }

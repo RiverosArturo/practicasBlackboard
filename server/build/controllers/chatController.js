@@ -67,18 +67,38 @@ class ChatController {
     //     await pool.query('UPDATE aviso set ? WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo=?', [req.body,id,nrc,noTrabajador,id_equipo]);
     //     res.json({message: 'The actividad was UPDATE'});
     // }
-    delete(req, res) {
+    // public async delete (req:Request, res:Response): Promise <void>{
+    //     const {matricula,nrc,noTrabajador} = req.params;
+    //     await pool.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [matricula,nrc,noTrabajador]);
+    //     res.json({message: 'The msj was delated'});
+    // }
+    // public async deleteEq (req:Request, res:Response): Promise <void>{
+    //     const {nrc,id_equipo,noTrabajador,x} = req.params;
+    //     await pool.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc,id_equipo,noTrabajador,x]);
+    //     res.json({message: 'The msj was delated'});
+    // }
+    deleteChatCur(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { matricula, nrc, noTrabajador } = req.params;
-            yield database_1.default.query('DELETE FROM aviso WHERE id=? AND nrc=? AND noTrabajador=? AND id_equipo IS NULL', [matricula, nrc, noTrabajador]);
-            res.json({ message: 'The msj was delated' });
+            const { nrc, noTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM chat WHERE nrc=? AND noTrabajador=?', [nrc, noTrabajador]);
+            res.json({ message: 'The chats was delated' });
         });
     }
-    deleteEq(req, res) {
+    deleteChat(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nrc, id_equipo, noTrabajador, x } = req.params;
-            yield database_1.default.query('DELETE FROM `aviso` WHERE id=? AND nrc=? AND id_equipo=? AND noTrabajador=?', [nrc, id_equipo, noTrabajador, x]);
-            res.json({ message: 'The msj was delated' });
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM chat WHERE nrc=?', [req.body.nrc]);
+                res.json({ message: 'The chats was delated' });
+            }
+            else if (req.body.matricula > 0) {
+                yield database_1.default.query('DELETE FROM chat WHERE matricula=?', [req.body.matricula]);
+                res.json({ message: 'The chats was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM chat WHERE noTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The chats was delated' });
+            }
         });
     }
 }

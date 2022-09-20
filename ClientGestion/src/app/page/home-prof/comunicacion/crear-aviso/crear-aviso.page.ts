@@ -64,6 +64,8 @@ export class CrearAvisoPage implements OnInit {
 
   navProf(){
     this.router.navigate(['/home-prof/home-prof/menu-prof',this.nTrabajador,this.nrc]);
+    this.boton=true;
+    this.condicionE=null;
   }
   
   onSubmit(){
@@ -152,12 +154,21 @@ export class CrearAvisoPage implements OnInit {
   }
 
   condicion1(){
+    let hoy = new Date();
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let agnio = hoy.getFullYear();
+    let dia2 = ('0' + dia).slice(-2);
+    let mes2 = ('0' + mes).slice(-2);
+    let horas = hoy.getHours();
+    let minutos = hoy.getMinutes();
+
     this.condicionE = true;
     this.boton = false;
     this.avisoCurso.id = '';
     this.avisoCurso.aviso = '';
-    this.avisoCurso.fecha = '';
-    this.avisoCurso.hora = '';
+    this.avisoCurso.fecha = `${agnio}-${mes2}-${dia2}`;
+    this.avisoCurso.hora = `${horas}:${minutos}`;
     this.avisoCurso.noTrabajador = this.nTrabajador;
     this.avisoCurso.nrc = this.nrc;
     this.avisoCurso.id_equipo = null;
@@ -167,12 +178,21 @@ export class CrearAvisoPage implements OnInit {
     this.studCourses = [];
   }
   condicion2(){
+    let hoy = new Date();
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let agnio = hoy.getFullYear();
+    let dia2 = ('0' + dia).slice(-2);
+    let mes2 = ('0' + mes).slice(-2);
+    let horas = hoy.getHours();
+    let minutos = hoy.getMinutes();
+
     this.condicionE = false;
     this.boton = false;
     this.avisoCurso.id = '';
     this.avisoCurso.aviso = '';
-    this.avisoCurso.fecha = '';
-    this.avisoCurso.hora = '';
+    this.avisoCurso.fecha = `${agnio}-${mes2}-${dia2}`;
+    this.avisoCurso.hora = `${horas}:${minutos}`;
     this.avisoCurso.noTrabajador = this.nTrabajador;
     this.avisoCurso.nrc = this.nrc;
     this.avisoCurso.id_equipo = null;
@@ -182,12 +202,18 @@ export class CrearAvisoPage implements OnInit {
   }
 
   getEquipos(){
-    this.datosService.getEquipos().subscribe(
-      res => {
-        this.equipos = res;
-      },
-      err => console.error(err)
-    );
+      this.datosService.getEquipos1(this.nrc, this.nTrabajador).subscribe(
+        res => {
+          this.equipos = res;
+          if(this.equipos.length > 0){
+            this.equipos = res;
+          }else{
+            console.log("no hay equipos")
+            this.equipos = [];
+          }
+        },
+        err => console.error(err)
+      );
   }
   actualizar(){
     this.boton=true;

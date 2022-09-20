@@ -88,6 +88,19 @@ class EquipoController {
             res.json({ message: 'The Equipos was deleted' });
         });
     }
+    deleteEquipoo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM equipo WHERE curso_nrc=?', [req.body.nrc]);
+                res.json({ message: 'The equipo was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM equipo WHERE nTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The equipo was delated' });
+            }
+        });
+    }
 }
 const equipoController = new EquipoController();
 exports.default = equipoController;

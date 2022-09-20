@@ -116,6 +116,30 @@ class EquipoStudentsController {
             //res.json({message: 'equipo was delated'});
         });
     }
+    deleteEquipoEsCur(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc, nTrabajador } = req.params;
+            yield database_1.default.query('DELETE FROM `equipo_estudiantes` WHERE nrc = ? AND nTrabajador = ?', [nrc, nTrabajador]);
+            res.json({ message: 'The student the Equipo was deleted' });
+        });
+    }
+    deleteEquipoEs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nrc } = req.params;
+            if (req.body.nrc > 0) {
+                yield database_1.default.query('DELETE FROM equipo_estudiantes WHERE nrc=?', [req.body.nrc]);
+                res.json({ message: 'The equipoEs was delated' });
+            }
+            else if (req.body.matricula > 0) {
+                yield database_1.default.query('DELETE FROM equipo_estudiantes WHERE matricula=?', [req.body.matricula]);
+                res.json({ message: 'The equipoEs was delated' });
+            }
+            else if (req.body.nTrabajador > 0) {
+                yield database_1.default.query('DELETE FROM equipo_estudiantes WHERE nTrabajador=?', [req.body.nTrabajador]);
+                res.json({ message: 'The equipoEs was delated' });
+            }
+        });
+    }
 }
 const equipoStudentsController = new EquipoStudentsController();
 exports.default = equipoStudentsController;

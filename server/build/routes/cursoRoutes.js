@@ -16,6 +16,7 @@ class CursoRoutes {
         this.router.post('/', cursoController_1.default.create);
         this.router.put('/:clave', cursoController_1.default.update);
         this.router.delete('/:nrc', cursoController_1.default.delete);
+        this.router.post('/:nrc', cursoController_1.default.deleteCursos);
         this.router.delete('/', cursoController_1.default.deleteAllCourses);
         this.router.get('/:nrc', cursoController_1.default.verifica);
     }
