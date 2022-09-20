@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
+import { Prof } from '../../../../models/Prof';
 
 @Component({
   selector: 'app-list-prof',
@@ -11,11 +12,26 @@ export class ListProfPage implements OnInit {
   
   @HostBinding('class') classes = 'row';
   profs:any =[];
+  boton:number = 0;
+  prf: Prof = {
+    nTrabajador: 0,
+    password: '',
+    nombre: '',
+    correo: ''
+  }
   
   constructor(private datosService: DatosService, public alertController: AlertController ) { }
 
   ngOnInit() {
     this.getProfs();
+  }
+
+  condicion(pro:Prof){
+    this.prf.nTrabajador = pro.nTrabajador;
+    this.prf.password = pro.password;
+    this.prf.nombre = pro.nombre;
+    this.prf.correo = pro.correo;
+    this.boton=1;
   }
   
   getProfs(){
@@ -25,6 +41,17 @@ export class ListProfPage implements OnInit {
       },
       err => console.error(err)
     );
+  }
+  updateProf(nTrabajador:number, pro:Prof){
+    this.datosService.updateProf(nTrabajador, pro)
+    .subscribe(
+      res =>{
+        console.log(res);
+        this.boton = 0;
+        this.getProfs();
+      },
+      err => console.error(err)
+    )
   }
   deleteProf(nTrabajador: number){
     this.datosService.deleteProf(nTrabajador).subscribe(

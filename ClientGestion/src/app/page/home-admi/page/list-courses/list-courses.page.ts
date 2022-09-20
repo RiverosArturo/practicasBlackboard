@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
+import { Curso } from '../../../../models/Curso';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-list-courses',
@@ -10,11 +12,28 @@ import { AlertController } from '@ionic/angular';
 export class ListCoursesPage implements OnInit {
   user:string='Administrador';
   courses:any = [];
+  boton:number = 0;
+  cur:Curso = {
+    materia: '',
+    nrc: 0,
+    clave: '',
+    seccion: '',
+    horario: ''
+  }
 
   constructor( private datosService: DatosService, public alertController:AlertController) { }
 
   ngOnInit() {
     this.getCourse();
+  }
+
+  condicion(curs:Curso){
+    this.cur.materia = curs.materia;
+    this.cur.nrc = curs.nrc;
+    this.cur.clave = curs.clave;
+    this.cur.seccion = curs.seccion;
+    this.cur.horario = curs.horario;
+    this.boton=1;
   }
   getCourse(){
     this.datosService.getCourses().subscribe(
@@ -23,6 +42,17 @@ export class ListCoursesPage implements OnInit {
       },
       err => console.error(err)
     );
+  }
+  updateCourse(nrc:number, curso:Curso){
+    this.datosService.updateCourse(nrc, curso)
+    .subscribe(
+      res =>{
+        console.log(res);
+        this.boton = 0;
+        this.getCourse();
+      },
+      err => console.error(err)
+    )
   }
   deleteCourse(nrc:number){
     this.datosService.deleteCourse(nrc).subscribe(

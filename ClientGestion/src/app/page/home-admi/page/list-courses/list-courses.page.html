@@ -22,22 +22,78 @@
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
       
-  <div slot="fixed">
-    <tr  *ngFor="let course of courses">
+  <div class="ioncont" slot="fixed">
+
+    <div class="cont">
+      <ion-list>
+        <ion-list-header *ngIf="boton==0">
+          <h1 > Lista de Cursos</h1>
+        </ion-list-header>
+        <tr  *ngFor="let course of courses">
+            <ion-item *ngIf="boton==0">
+              Materia: {{course.materia}} &nbsp;&nbsp;&nbsp; Nrc: {{course.nrc}} &nbsp;&nbsp;&nbsp;
+              <ion-button color="secondary" (click)="condicion(course)">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+              <ion-button color="danger" (click)="AlertOne(course.nrc, course)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>
+            </ion-item>
+        </tr>
+      </ion-list>
+    </div>
+
+    <div class="container" *ngIf="boton==1">
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/colores-de-textura-cuero-artificial-color-azul-brillante-vista-superior-copiar-espacio-elegante-para-fondo-con-detalles-visibles-171422230.jpg">
+        <div class="contenido">
+          <ion-list>
+            <ion-list-header>
+              <h3>Curso {{cur.nrc}} : {{cur.materia}}</h3>
+            </ion-list-header>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Materia </ion-label>
+              <ion-input [(ngModel)]="cur.materia" name="materia" ></ion-input>
+            </ion-item>  
+            <ion-item class="form-group">
+              <ion-label position="floating"> NRC </ion-label>
+              <ion-input [(ngModel)]="cur.nrc" name="nrc" readonly="true"></ion-input>
+            </ion-item>    
+            <ion-item class="form-group">
+              <ion-label position="floating"> clave </ion-label>
+              <ion-input [(ngModel)]="cur.clave" name="clave" ></ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+              <ion-label position="floating"> Seccion </ion-label>
+              <ion-input [(ngModel)]="cur.seccion" name="seccion" ></ion-input>
+            </ion-item> 
+            <ion-item class="form-group">
+              <ion-label position="floating"> Horario </ion-label>
+              <ion-input [(ngModel)]="cur.horario" name="Horario" ></ion-input>
+            </ion-item> 
+            <ion-item>
+              <ion-toolbar>
+                <ion-button  (click)="updateCourse(cur.nrc, cur)">
+                  <ion-label> Actualizar </ion-label>
+                </ion-button>
+              </ion-toolbar>
+            </ion-item>
+            </ion-list>
+        </div>
+      </div>
+    </div>
+
+    <!-- <tr  *ngFor="let course of courses">
       <ion-list>
         <ion-item>
           Materia: {{course.materia}} &nbsp;&nbsp;&nbsp; Nrc: {{course.nrc}} &nbsp;&nbsp;&nbsp;
-          <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]">Editar<ion-icon name="pencil"></ion-icon></ion-button>
+          <ion-button color="secondary" [routerLink]="['../edit-course',course.nrc]" (click)="act()">Editar<ion-icon name="pencil"></ion-icon></ion-button>
           <ion-button color="danger" (click)="AlertOne(course.nrc, course)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>
         </ion-item>
       </ion-list>
-    </tr>
+    </tr> -->
   </div>
 </ion-content>
 </ion-content> 
 
 
-<ion-card>
+<!-- <ion-card>
   <ion-item>
     <ion-button [routerLink]="'../add-course'" color="secondary" slot="end">
       <ion-label> Agregar </ion-label>
@@ -48,7 +104,7 @@
       <ion-icon slot="end" name="trash"></ion-icon> 
     </ion-button>
   </ion-item>
-</ion-card>
+</ion-card> -->
 
 
 <ion-footer>

@@ -13,6 +13,13 @@ export class ListStudentsPage implements OnInit {
   @HostBinding('class') classes = 'row';
   user:string='Administrador';
   students:any =[];
+  boton:number = 0;
+  est:Student = {
+    matricula: 0,
+    password: '',
+    nombre: '',
+    correo: ''
+  }
 
   // estudiante:Student = {
   //   matricula: 201888937,
@@ -30,6 +37,13 @@ export class ListStudentsPage implements OnInit {
     // )
     //this.borrar(201888937, this.estudiante);
   }
+  condicion(stud:Student){
+    this.est.matricula = stud.matricula;
+    this.est.password = stud.password;
+    this.est.nombre = stud.nombre;
+    this.est.correo = stud.correo;
+    this.boton=1;
+  }
   getStudent(){
     this.datosService.getStudents().subscribe(
       res => {
@@ -41,15 +55,6 @@ export class ListStudentsPage implements OnInit {
   deleteStudent(matricula: number){
     this.datosService.deleteStudent(matricula).subscribe(
       res => {
-        console.log(res);
-        this.getStudent();
-      },
-      err => console.error(err)
-    )
-  }
-  deleteAllStudents(){
-    this.datosService.deleteAllStudents().subscribe(
-      res => {  
         console.log(res);
         this.getStudent();
       },
@@ -129,32 +134,18 @@ export class ListStudentsPage implements OnInit {
 
     await alert.present();
   }
-  
-  async AlertAll() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>Deseas eliminar</strong>!!! ',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Ok',
-          id: 'confirm-button',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteAllStudents();
-          }
-        }
-      ]
-    });
-    await alert.present();
+  updateStudent(matricula:number, stude:Student){
+    this.datosService.updateStudent(matricula, stude)
+    .subscribe(
+      res =>{
+        console.log(res);
+        window.alert("Actualizado con exito!!!");
+        this.boton = 0;
+        this.getStudent();
+
+      },
+      err => console.error(err)
+    )
   }
 
 }
