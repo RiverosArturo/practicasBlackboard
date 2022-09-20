@@ -99,7 +99,7 @@ class ActividadController {
             res.json({ message: 'The activitys was delated' });
         });
     }
-    deleteActividad(req, res) {
+    deleteActProf(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc } = req.params;
             if (req.body.nrc > 0) {

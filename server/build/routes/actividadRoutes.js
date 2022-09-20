@@ -22,7 +22,7 @@ class actividadRoutes {
         this.router.delete('/:id/:nrc/:noTrabajador', actividadController_1.default.delete);
         this.router.delete('/:id/:nrc/:id_equipo/:noTrabajador', actividadController_1.default.deleteEq);
         this.router.delete('/:nrc/:noTrabajador', actividadController_1.default.deleteActividadCur);
-        this.router.post('/:nrc', actividadController_1.default.deleteActividad);
+        this.router.post('/:nrc', actividadController_1.default.deleteActProf);
     }
 }
 const ActividadRoutes = new actividadRoutes();

@@ -64,7 +64,7 @@ class ActividadController {
         await pool.query('DELETE FROM actividad WHERE nrc=? AND noTrabajador=? AND id_equipo IS NULL', [nrc,noTrabajador]);
         res.json({message: 'The activitys was delated'});
     }
-    public async deleteActividad(req:Request, res:Response): Promise <void>{
+    public async deleteActProf(req:Request, res:Response): Promise <void>{
         const {nrc} = req.params;
         if(req.body.nrc > 0){
             await pool.query('DELETE FROM actividad WHERE nrc=?', [req.body.nrc]);
@@ -73,7 +73,7 @@ class ActividadController {
             await pool.query('DELETE FROM actividad WHERE matricula=?', [req.body.matricula]);
             res.json({message: 'The activitys was delated'});
         }else if(req.body.nTrabajador > 0){
-            await pool.query('DELETE FROM actividad WHERE noTrabajador=?', [req.body.nTrabajador]);
+            await pool.query('DELETE FROM actividad WHERE noTrabajador=?', [nrc]);
             res.json({message: 'The activitys was delated'});
         }
     }
