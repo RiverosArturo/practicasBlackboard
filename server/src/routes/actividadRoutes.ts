@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import actividadController from '../controllers/actividadController';
 import ActividadController from '../controllers/actividadController';
 
 class actividadRoutes {
