@@ -23,6 +23,7 @@ class Server {
     public app : Application;
     public server: any;
     public io: any;
+    public httpServer: any;
 
     constructor(){
         this.app = express();
