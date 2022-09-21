@@ -52,6 +52,7 @@ export class EditCoursePage implements OnInit {
     )
   }
   updateCourse(){
+    
     this.datosService.updateCourse(this.course.clave, this.course)
     .subscribe(
       res =>{
