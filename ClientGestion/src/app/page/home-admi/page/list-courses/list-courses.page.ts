@@ -50,8 +50,9 @@ export class ListCoursesPage implements OnInit {
       err => console.error(err)
     );
   }
-  updateCourse(nrc:number, curso:Curso){
-    this.datosService.updateCourse(nrc, curso)
+  
+  updateCourse( ){
+    this.datosService.updateCourse(this.cur.clave, this.cur)
     .subscribe(
       res =>{
         console.log(res);
