@@ -28,6 +28,9 @@ export class ListStudentsPage implements OnInit {
   ngOnInit() {
     this.getStudent();
   }
+  condicion2(){
+    this.boton = 0;
+  }
   condicion(stud:Student){
     this.est.matricula = stud.matricula;
     this.est.password = stud.password;

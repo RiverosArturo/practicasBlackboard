@@ -34,6 +34,10 @@ export class ListCoursesPage implements OnInit {
     this.getCourse();
   }
 
+  condicion2(){
+    this.boton = 0;
+  }
+
   condicion(curs:Curso){
     this.cur.materia = curs.materia;
     this.cur.nrc = curs.nrc;
@@ -42,6 +46,7 @@ export class ListCoursesPage implements OnInit {
     this.cur.horario = curs.horario;
     this.boton=1;
   }
+
   getCourse(){
     this.datosService.getCourses().subscribe(
       res => {

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="'../../home-admi'">
+      <ion-button [routerLink]="'../../home-admi'" (click)="condicion2()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>    
       <ion-avatar>
@@ -31,7 +31,7 @@
         </ion-list-header>
         <tr  *ngFor="let student of students">
             <ion-item *ngIf="boton==0">
-              {{student.nombre}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{student.matricula}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{student.correo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{student.password}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {{student.nombre}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matricula: {{student.matricula}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{student.correo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{student.password}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ion-button color="secondary" (click)="condicion(student)">Editar <ion-icon name="pencil"></ion-icon></ion-button>
               <ion-button color="danger" (click)="AlertOne(student.matricula, student)">Eliminar <ion-icon name="trash"></ion-icon></ion-button>        
             </ion-item>

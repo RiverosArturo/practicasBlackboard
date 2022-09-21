@@ -26,6 +26,10 @@ export class ListProfPage implements OnInit {
     this.getProfs();
   }
 
+  condicion2(){
+    this.boton = 0;
+  }
+
   condicion(pro:Prof){
     this.prf.nTrabajador = pro.nTrabajador;
     this.prf.password = pro.password;

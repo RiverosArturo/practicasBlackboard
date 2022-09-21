@@ -12,25 +12,15 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- 
-<ion-header>
-  <ion-card> 
-  <ion-title> Administrador </ion-title><br>
-  </ion-card>
-</ion-header> -->
-  
 <ion-card>
   <ion-header>
     <ion-toolbar>
       <ion-buttons>
-        <!-- <ion-menu-button (click)="OpenMenuStud(user,nrc,nTrabajador,materia,id)" color = "primary" autoHide="false" menu="MenuStud"></ion-menu-button> -->
         <ion-title> Menú Administrador </ion-title><br>
-        <!-- <ion-title slot="end" > NRC: {{nrc}} , CURSO: {{materia}}</ion-title> <br> -->
       </ion-buttons>          
     </ion-toolbar>
   </ion-header>
 </ion-card>
-
 
 <ion-content>
   <ion-content
@@ -87,7 +77,7 @@
             <ion-icon name="cloud-upload-sharp" size="large"></ion-icon>
             <div class="conte">
               <h3>Almacenar Estudiantes</h3>
-              <ion-button (click)="Estudiante()" *ngIf="boton==true"> Estudiantes </ion-button>
+              <ion-button (click)="Estudiante()" *ngIf="boton==true"> Almacenar </ion-button>
             </div>
           </div>
         </div>

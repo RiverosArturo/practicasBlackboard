@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-buttons>
-      <ion-button [routerLink]="'../../home-admi'">
+      <ion-button [routerLink]="'../../home-admi'" (click)="condicion2()">
         <ion-icon name="arrow-undo"></ion-icon>
       </ion-button>    
       <ion-avatar>
@@ -11,9 +11,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-
-<h1 slot="start"> Lista de Cursos</h1>
 
 <ion-content>
 <ion-content
@@ -31,7 +28,7 @@
         </ion-list-header>
         <tr  *ngFor="let course of courses">
             <ion-item *ngIf="boton==0">
-              Materia: {{course.materia}} &nbsp;&nbsp;&nbsp; Nrc: {{course.nrc}} &nbsp;&nbsp;&nbsp;
+              {{course.materia}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nrc:{{course.nrc}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{course.clave}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{course.seccion}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{course.horario}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ion-button color="secondary" (click)="condicion(course)">Editar<ion-icon name="pencil"></ion-icon></ion-button>
               <ion-button color="danger" (click)="AlertOne(course.nrc, course)">Eliminar<ion-icon name="trash"></ion-icon></ion-button>
             </ion-item>

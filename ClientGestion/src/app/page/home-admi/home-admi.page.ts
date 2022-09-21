@@ -125,8 +125,6 @@ export class HomeAdmiPage implements OnInit {
     if(this.objetoJson[0].nTrabajador != undefined){
       for( let i = 0; i < this.data.length; i++ ){
         console.log("Numero de trabajador: " + this.objetoJson[i].nTrabajador + ", Contrasena: " +  this.objetoJson[i].Contraseña);
-        
-        
         ////////////////////////////////////////////////////////////////////////////////////////////
         this.profesor.nTrabajador = this.objetoJson[i].nTrabajador;
         this.profesor.password = this.objetoJson[i].Contraseña;
@@ -141,8 +139,6 @@ export class HomeAdmiPage implements OnInit {
             },
             err => console.error(err)
           )
-        
-
         ///////////////////////////////////////////////////////////////////////////////
         if(i == this.data.length-1){
           window.alert('Insercion de profesores finalizada con exito!!!');
@@ -162,16 +158,13 @@ export class HomeAdmiPage implements OnInit {
     if(this.objetoJson[0].Materia != undefined){
       for( let i = 0; i < this.data.length; i++ ){
         console.log("Materia: " + this.objetoJson[i].Materia + ", Nrc: " +  this.objetoJson[i].Nrc + ", Clave: " +  this.objetoJson[i].Clave + ", Sección: " +  this.objetoJson[i]["Sección"] + ", Horario: " +  this.objetoJson[i].Horario);
-        
         ////////////////////////////////////////////////////////////////////////////////////////////
         this.curso.materia = this.objetoJson[i].Materia;
         this.curso.nrc = this.objetoJson[i].Nrc;
         this.curso.clave = this.objetoJson[i].Clave;
         this.curso.seccion = this.objetoJson[i]["Sección"];
         this.curso.horario = this.objetoJson[i].Horario;
-
         console.log(this.curso);
-
         this.datosService.saveCurso(this.curso)
           .subscribe(
             res => {
@@ -179,11 +172,7 @@ export class HomeAdmiPage implements OnInit {
             },
             err => console.error(err)
           )
-        
-
         ///////////////////////////////////////////////////////////////////////////////
-        
-        
         if(i == this.data.length-1){
           window.alert('Insercion de cursos finalizada con exito!!!');
           this.boton = false;
