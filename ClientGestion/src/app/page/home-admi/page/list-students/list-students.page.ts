@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Student } from '../../../../models/Student';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-students',
