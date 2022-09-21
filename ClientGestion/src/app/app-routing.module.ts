@@ -2,8 +2,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
-import { EditStudentPage } from './page/home-admi/page/edit-student/edit-student.page';
-
 import { LoginPage } from  './page/login/login.page'
 
 const routes: Routes = [
@@ -31,10 +29,6 @@ const routes: Routes = [
   {
     path: 'home-prof/:user',
     loadChildren: () => import('./page/home-prof/home-prof.module').then( m => m.HomeProfPageModule)
-  },
-  {
-    path:'home-admi/edit-student/:user',
-    component: EditStudentPage
   },
   {
     path: 'home',
