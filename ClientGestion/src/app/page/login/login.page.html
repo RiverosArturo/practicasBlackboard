@@ -11,29 +11,29 @@
 
 <ion-content>
   <ion-card class="card">
-  <div id="header">
-    <h1>Login</h1>
-    <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
-  </div>
+    <div id="header">
+      <h1>Login</h1>
+      <img src="https://www.cs.buap.mx/~secreacademica/images/minerva_icon.png">
+    </div>
 
-  <form id="form">
-    <ion-item *ngIf="condition; else elseBlock" class="ion-margin-bottom">
-      <ion-input [(ngModel)]="login.id" name="id"></ion-input>
-    </ion-item>
-    <ng-template #elseBlock>
-      <ion-item class="ion-margin-bottom">
-        <ion-label position="floating" color="primary"> Usuario: </ion-label>
-        <ion-input [(ngModel)]="login.user" name="user" placeholder="Ej: 201701568"></ion-input>
+    <form id="form">
+      <ion-item *ngIf="condition; else elseBlock" class="ion-margin-bottom">
+        <ion-input [(ngModel)]="login.id" name="id"></ion-input>
       </ion-item>
-    </ng-template>
-    <ion-item class="ion-margin-bottom">
-      <ion-label position="floating" color="primary"> Contraseña: </ion-label>
-      <ion-input [(ngModel)]="login.password" name="password" type="password" placeholder="Ej: 123456abc"></ion-input>
-    </ion-item>
-    
-    <ion-button (click)=" Login(login.id, login.user, login.password)" expand="block" shape="round"> Acceder </ion-button>
-  </form>
-</ion-card>
+      <ng-template #elseBlock>
+        <ion-item class="ion-margin-bottom">
+          <ion-label position="floating" color="primary"> Usuario: </ion-label>
+          <ion-input [(ngModel)]="login.user" name="user" placeholder="Ej: 201701568"></ion-input>
+        </ion-item>
+      </ng-template>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="floating" color="primary"> Contraseña: </ion-label>
+        <ion-input [(ngModel)]="login.password" name="password" type="password" placeholder="Ej: 123456abc"></ion-input>
+      </ion-item>
+      
+      <ion-button (click)=" Login(login.id, login.user, login.password)" expand="block" shape="round"> Acceder </ion-button>
+    </form>
+  </ion-card>
 </ion-content>
 
 

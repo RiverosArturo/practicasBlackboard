@@ -21,22 +21,11 @@ export class ListStudentsPage implements OnInit {
     nombre: '',
     correo: ''
   }
-
-  // estudiante:Student = {
-  //   matricula: 201888937,
-  // }
   
   constructor(private datosService: DatosService, public alertController: AlertController,private router: Router, private activedRoute:ActivatedRoute ) { }
 
   ngOnInit() {
     this.getStudent();
-    // this.datosService.eliminarActividad(201888937, this.estudiante).subscribe(
-    //   res => {
-    //     console.log(res);
-    //   },
-    //   err => console.error(err)
-    // )
-    //this.borrar(201888937, this.estudiante);
   }
   condicion(stud:Student){
     this.est.matricula = stud.matricula;
