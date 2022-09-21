@@ -20,6 +20,13 @@ export class ListCoursesPage implements OnInit {
     seccion: '',
     horario: ''
   }
+  curso:Curso = {
+    materia: '',
+    nrc: 0,
+    clave: '',
+    seccion: '',
+    horario: ''
+  }
 
   constructor( private datosService: DatosService, public alertController:AlertController) { }
 

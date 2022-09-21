@@ -35,6 +35,12 @@ export class ConsultarEquipoPage implements OnInit {
     nrc:0,
     nTrabajador:0,
   };
+  sEquipo:any = {// estructura del alumno integrante del equipo para ocupar como auxiliar.
+    matricula:0,
+    id_equipo:0,
+    nrc:0,
+    nTrabajador:0,
+  };
 
   user:number= 2013;
   nrc:number = 0;
@@ -152,32 +158,35 @@ export class ConsultarEquipoPage implements OnInit {
         res => {        
           this.listEquipos = res;      
           console.log('dat ', this.listEquipos);
+
           for(let i=0;i<this.listEquipos.length;i++){
-            if( matricula == this.listEquipos[i].matricula){
-              if(this.listEquipos[i].nrc == this.nrc){
-                if(this.listEquipos[i].id_equipo == id){
-                  this.addStud = false;
-                  console.log('Alumno ya existe en un equipo.',i,this.addStud);                  
-                }else{
-                  this.addStud = true;
-                }     
-              }                                 
-            }else{           
-              //this.addStud = true;
-              console.log('Agregando alumno al equipo.',i,this.addStud);  
-              if(this.addStud == true){
-                console.log('Agregando alumno al equipo.',i);  
-                this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
-                res => {
-                  console.log(res);  
-                  this.add = false; 
-                  this.addStud = false;
-                  //this.AlertAdd(matricula, nombre);
-                },
-                err => console.error(err)
-              )
-              }                                   
+            if( this.listEquipos[i].matricula == matricula && this.listEquipos[i].id_equipo == id ){
+              console.log('Alumno ya existe en este equipo.',i);
+              this.AlertYaExiste1(matricula);
+              this.addStud = false;
             }
+            if(this.listEquipos[i].matricula == matricula && this.listEquipos[i].nrc == this.nrc && id != this.listEquipos[i].id_equipo){
+              console.log('Alumno ya existe en un equipo en este curso',i);
+              this.AlertYaExiste2(matricula);
+              this.addStud = false;
+            }
+            if(matricula != this.listEquipos[i].matricula && id != this.listEquipos[i].id ){
+              this.addStud = true;
+              console.log('Agredando alumno',i);
+            }            
+          }//final for
+          if(this.addStud == true){
+            console.log('Alumno agregado al equipo ',nombre);
+            this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
+              res => {
+                //console.log(res);  
+                this.add = false; 
+                this.addStud = false;
+                this.AlertAdd(matricula, nombre);
+              },
+              err => console.error(err)
+            )
+              this.addStud = false;
           }        
           },
           err => console.error(err)
@@ -322,11 +331,28 @@ async AlerteditOKEquipo( nombre:string ) {
     await alert.present();
   }  
 
-  async AlertYaExiste(matricula:number) {
+  async AlertYaExiste1(matricula:number) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: ' ',
-      message: 'Alumno '+ matricula + ' ya existe en un equipo ',
+      message: 'Alumno '+ matricula + ' ya existe en este equipo ',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async AlertYaExiste2(matricula:number) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: ' ',
+      message: 'Alumno '+ matricula + ' ya existe en un equipo en este curso. ',
       buttons: [
         {
           text: 'Ok',
@@ -344,7 +370,7 @@ async AlerteditOKEquipo( nombre:string ) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: ' ',
-      message: 'Alumno '+ matricula + ' agregado a ' + nombre,
+      message: 'Alumno '+ matricula + ' agregado al equipo ' + nombre,
       buttons: [
         {
           text: 'Ok',
