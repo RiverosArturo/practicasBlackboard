@@ -2,6 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { DatosService } from '../../../../services/datos.service';
 import { AlertController } from '@ionic/angular';
 import { Student } from '../../../../models/Student';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-students',
