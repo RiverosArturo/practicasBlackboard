@@ -157,26 +157,8 @@ export class ConsultarEquipoPage implements OnInit {
       this.datosService.getEquiposE().subscribe(
         res => {        
           this.listEquipos = res;      
-          console.log('dat ', this.listEquipos);
-
-          for(let i=0;i<this.listEquipos.length;i++){
-            if( this.listEquipos[i].matricula == matricula && this.listEquipos[i].id_equipo == id ){
-              console.log('Alumno ya existe en este equipo.',i);
-              this.AlertYaExiste1(matricula);
-              this.addStud = false;
-            }
-            if(this.listEquipos[i].matricula == matricula && this.listEquipos[i].nrc == this.nrc && id != this.listEquipos[i].id_equipo){
-              console.log('Alumno ya existe en un equipo en este curso',i);
-              this.AlertYaExiste2(matricula);
-              this.addStud = false;
-            }
-            if(matricula != this.listEquipos[i].matricula && id != this.listEquipos[i].id ){
-              this.addStud = true;
-              console.log('Agredando alumno',i);
-            }            
-          }//final for
-          if(this.addStud == true){
-            console.log('Alumno agregado al equipo ',nombre);
+          console.log('dat ', this.listEquipos.length);
+          if(this.listEquipos.length == 0){
             this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
               res => {
                 //console.log(res);  
@@ -186,9 +168,38 @@ export class ConsultarEquipoPage implements OnInit {
               },
               err => console.error(err)
             )
-              this.addStud = false;
-          }        
-          },
+          }else{
+            for(let i=0;i<this.listEquipos.length;i++){
+              if( this.listEquipos[i].matricula == matricula && this.listEquipos[i].id_equipo == id ){
+                console.log('Alumno ya existe en este equipo.',i);
+                this.AlertYaExiste1(matricula);
+                this.addStud = false;
+              }
+              if(this.listEquipos[i].matricula == matricula && this.listEquipos[i].nrc == this.nrc && id != this.listEquipos[i].id_equipo){
+                console.log('Alumno ya existe en un equipo de este curso',i);
+                this.AlertYaExiste2(matricula);
+                this.addStud = false;
+              }
+              if(matricula != this.listEquipos[i].matricula && id != this.listEquipos[i].id ){
+                this.addStud = true;
+                console.log('Agredando alumno',i);
+              }            
+            }//final for
+            if(this.addStud == true){
+              console.log('Alumno agregado al equipo ',nombre);
+              this.datosService.saveStudentEquipo(this.studentEquipo).subscribe(
+                res => {
+                  //console.log(res);  
+                  this.add = false; 
+                  this.addStud = false;
+                  this.AlertAdd(matricula, nombre);
+                },
+                err => console.error(err)
+              )
+                this.addStud = false;
+            } 
+          }       
+        },
           err => console.error(err)
         );            
   }

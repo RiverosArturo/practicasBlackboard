@@ -133,7 +133,7 @@
                           <tr  *ngFor="let student of students">
                             <div *ngIf="oneEquipo.matricula == student.matricula ">                              
                               <ion-title>
-                                {{ equipo.nombre }}, id:{{ oneEquipo.id_equipo }}, {{ oneEquipo.matricula }}, {{ student.nombre }} 
+                                {{ student.nombre }} &nbsp;&nbsp;&nbsp;&nbsp; {{ oneEquipo.matricula }}
                                 <ion-button color="danger" (click)="AlertDeleteStudentEquipo(oneEquipo.matricula, oneEquipo.id_equipo, nrc, nTrabajador)">                                          
                                   <ion-icon name="trash"></ion-icon>                
                                 </ion-button>                                
