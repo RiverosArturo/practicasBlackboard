@@ -43,27 +43,22 @@ export class AvisosPage implements OnInit {
   }
 
   getAviso(){
-    //console.log(this.boton)
     this.datosService.getAviso(this.nrc, this.nTrabajador).subscribe(
       res => {
         this.avisos = res;  
-        //console.log(this.avisos[1]);
         if(this.avisos.length > 0){
           console.log("si hay avisos para mostrar!!!");
           for(let i = 0; i<this.avisos.length;i++){
             const fecha = String(this.avisos[i].fecha);
             this.avisos[i].fecha = fecha.substr(0,10);
-            //console.log(this.avisos[i])
           }
         }else{
-          //console.log("No hay avisos para mostrar");
           this.alerta = "No hay avisos para mostrar...";
         }
       },
       err => console.error(err)
     );
   }
-  
   getEquipos(nrc:number,nTrabajador:number){
     this.datosService.getEquipos1(nrc, nTrabajador).subscribe(
       res => {
@@ -72,21 +67,16 @@ export class AvisosPage implements OnInit {
       err => console.error(err)
     );
   }
-
   getAvisoEq(){
     this.datosService.getAvisoEqAl(this.nrc, this.nTrabajador, this.id_equipo).subscribe(
       res => {
         this.avisosEq = res;  
-        //console.log(this.id_equipo);
         if(this.avisosEq.length > 0){
           console.log("si hay avisos para mostrar!!!");
-          //console.log(this.avisosEq);
           for(let i = 0; i<this.avisosEq.length;i++){
             const fecha = String(this.avisosEq[i].fecha);
             this.avisosEq[i].fecha = fecha.substr(0,10);
-            //console.log(this.avisos[i])
             if(this.avisosEq[i].id_equipo != null){
-              //console.log(this.avisos[i]);
               this.datosService.getid(this.avisosEq[i].id_equipo).subscribe(
                 res => {
                   this.equipos[this.avisosEq[i].id_equipo] = res; 
@@ -98,7 +88,6 @@ export class AvisosPage implements OnInit {
             }
           }
         }else{
-          //console.log("No hay avisos para mostrar");
           this.alerta = "No hay avisos para mostrar...";
         }      
       },

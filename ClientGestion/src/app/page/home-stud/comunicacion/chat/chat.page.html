@@ -39,12 +39,6 @@
           *ngFor="let message of webSocketService.chats">{{message.mensaje}} - {{message.nombre}}</p>
     </div>
 
-    <!-- <div class="chatContainer" *ngIf="boton > 1">
-      <tr *ngFor="let message of webSocketService.chats">
-        {{message.mensaje}}
-      </tr>
-    </div>
-     -->
     <div class="inputContainer" *ngIf="boton > 1">
         <form (submit)="sendMessage()" >
             <input [(ngModel)]="chat.mensaje" [ngModelOptions]="{standalone:true}" type="text">
