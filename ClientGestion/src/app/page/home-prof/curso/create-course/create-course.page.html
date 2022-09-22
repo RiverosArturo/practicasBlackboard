@@ -39,7 +39,7 @@
           <ion-item>
             <p>Selecciona el nrc del curso:</p>
             <select name="miselect" [(ngModel)]="pCourse.nrc" name="nrc" >            
-                <option [value]="course.nrc" *ngFor="let course of courses">NRC:{{course.nrc}},{{ course.materia}}</option>
+                <option [value]="course.nrc" *ngFor="let course of courses">&nbsp;&nbsp;{{course.nrc}} &nbsp;&nbsp;&nbsp; {{ course.materia}}</option>
             </select>
           </ion-item>
           <ion-item>

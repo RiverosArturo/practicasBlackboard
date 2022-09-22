@@ -49,7 +49,7 @@
                           <div *ngIf=" studCourse.nrc == course.nrc">
                             <ion-list>
                               <ion-item>
-                                Nombre: {{student.nombre}} | Matricula: {{studCourse.matricula}} 
+                                {{student.nombre}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matricula: {{studCourse.matricula}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <ion-button color="danger" (click)="AlertOne(studCourse.matricula,studCourse.nrc,studCourse.nTrabajador)">                                          
                                   <ion-icon name="trash"></ion-icon>
                                 </ion-button>

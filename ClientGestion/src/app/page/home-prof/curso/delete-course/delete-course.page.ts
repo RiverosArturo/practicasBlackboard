@@ -55,26 +55,6 @@ export class DeleteCoursePage implements OnInit {
       err => console.error(err)
     );
   }
-  // deleteProfCourse(nTrabajador:number, nrc:number){
-  //   console.log('user', nTrabajador, 'nrc:', nrc);
-  //   this.datosService.deleteProfCourse(nTrabajador, nrc).subscribe(
-  //     res => {
-  //       console.log(res);        
-  //       this.getProfCourse();
-  //       this.AlertDelete(nrc);
-  //     },
-  //     err => console.error(err)
-  //   )
-  // }
-  // deleteAllProfCourse(){
-  //   this.datosService.deleteAllProfCourse().subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.getProfCourse();
-  //     },
-  //     err => console.error(err)
-  //   )
-  // }
   borrar(nrc:number, noTrabajador:number){
     this.datosService.deleteChatCur(nrc, noTrabajador).subscribe(
       res => {
