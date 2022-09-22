@@ -71,6 +71,10 @@ export class ModificarAvisoPage implements OnInit {
 
   onSubmit(){
     if(this.avisoCurso.id_equipo > 0 && this.avisoCurso.id_equipo != null){
+      let hoy = new Date();
+      let horas = hoy.getHours();
+      let minutos = hoy.getMinutes();
+      this.avisoCurso.hora =  `${horas}:${minutos}`;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarAvEq(this.avisoCurso.id, this.avisoCurso.nrc, this.avisoCurso.noTrabajador, this.avisoCurso.id_equipo, this.avisoCurso)
             .subscribe(
@@ -82,6 +86,10 @@ export class ModificarAvisoPage implements OnInit {
               err => console.error(err)
             )
     }else{
+      let hoy = new Date();
+      let horas = hoy.getHours();
+      let minutos = hoy.getMinutes();
+      this.avisoCurso.hora =  `${horas}:${minutos}`;
       alert("Actividad actualizada con exito!!!");
       this.datosService.actualizarAv(this.avisoCurso.id, this.avisoCurso.nrc, this.avisoCurso.noTrabajador, this.avisoCurso)
             .subscribe(

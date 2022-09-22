@@ -65,9 +65,20 @@
                   <ion-item>
                     <p>{{activity.descripcion}}</p>
                   </ion-item>
-                  <ion-item>
-                    <a *ngIf="activity.urlEstudiante" href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
-                    <a *ngIf="!activity.urlEstudiante">Aún no entregado</a><br>
+                  <ion-item *ngIf=" activity.calificacion > 0 ">
+                    <p>Calificada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                  </ion-item>
+                  <ion-item *ngIf="activity.fechaEntrega == activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00' || activity.fechaEntrega > activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00'">
+                    <p>Entregada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                  </ion-item>
+                  <ion-item *ngIf="activity.fechaEstudiante == '0000-00-00' ">
+                    <p>Aún no entregada <ion-icon color="danger" name="warning-sharp"></ion-icon></p>
+                  </ion-item>
+                  <ion-item *ngIf="activity.fechaEstudiante != '0000-00-00' && activity.fechaEntrega < activity.fechaEstudiante ">
+                    <p>Entrega con retardo <ion-icon color="warning" name="alert-circle-outline"></ion-icon></p>
+                  </ion-item>
+                  <ion-item *ngIf="activity.urlEstudiante">
+                    <a href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
                   </ion-item>
                   <ion-item>
                     <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>
@@ -108,9 +119,20 @@
                     <ion-item>
                       <p>{{activity.descripcion}}</p>
                     </ion-item>
-                    <ion-item>
-                      <a *ngIf="activity.urlEstudiante" href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
-                      <a *ngIf="!activity.urlEstudiante">Aún no entregado</a><br>
+                    <ion-item *ngIf=" activity.calificacion > 0 ">
+                      <p>Calificada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEntrega == activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00' || activity.fechaEntrega > activity.fechaEstudiante && activity.calificacion == 0 && activity.fechaEstudiante != '0000-00-00'">
+                      <p>Entregada <ion-icon color="success"  name="checkmark-sharp"></ion-icon></p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante == '0000-00-00' ">
+                      <p>Aún no entregada <ion-icon color="danger" name="warning-sharp"></ion-icon></p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.fechaEstudiante != '0000-00-00' && activity.fechaEntrega < activity.fechaEstudiante ">
+                      <p>Entrega con retardo <ion-icon color="warning" name="alert-circle-outline"></ion-icon></p>
+                    </ion-item>
+                    <ion-item *ngIf="activity.urlEstudiante">
+                      <a href="{{activity.urlEstudiante}}">Trabajo: {{activity.urlEstudiante}}</a><br>
                     </ion-item>
                     <ion-item>
                       <p>Entrega: {{activity.fechaEntrega}} antes de las {{activity.horaEntrega}}</p>

@@ -24,7 +24,7 @@ class AdmiController {
 
     public async actividadesE (req: Request, res: Response){
         const {nrc, noTrabajador, id, id_equipo} = req.params;
-        const actividad = await pool.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NOT NULL',[nrc, noTrabajador,id,id_equipo]);
+        const actividad = await pool.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo=?',[nrc, noTrabajador,id,id_equipo]);
         res.json(actividad);
     }
 }

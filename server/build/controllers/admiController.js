@@ -40,7 +40,7 @@ class AdmiController {
     actividadesE(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nrc, noTrabajador, id, id_equipo } = req.params;
-            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo IS NOT NULL', [nrc, noTrabajador, id, id_equipo]);
+            const actividad = yield database_1.default.query('SELECT * FROM `actividad` WHERE nrc=? AND noTrabajador=? AND id=? AND id_equipo=?', [nrc, noTrabajador, id, id_equipo]);
             res.json(actividad);
         });
     }

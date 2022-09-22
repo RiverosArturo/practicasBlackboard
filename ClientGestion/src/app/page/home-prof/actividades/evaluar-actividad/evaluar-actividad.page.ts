@@ -105,6 +105,7 @@ export class EvaluarActividadPage implements OnInit {
       err => console.error(err)
     );
   }
+  
   actE(nrc:number, noTrabajador:number, id:string, id_equipo:number){
     this.boton=4;
     this.datosService.actE(nrc, noTrabajador, id, id_equipo).subscribe(
